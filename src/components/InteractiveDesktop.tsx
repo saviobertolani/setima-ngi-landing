@@ -698,10 +698,9 @@ const VideoAqui = memo(() => {
   const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
   const [debugHighlight, setDebugHighlight] = useState(false);
   const primaryId = 'I9Wcs3Q3d4U';
-  const fallbackId = 'M7lc1UVf-VE'; // Vídeo de demonstração do YouTube API (embutível)
+  const fallbackId = 'M7lc1UVf-VE';
   const [videoId, setVideoId] = useState<string>(primaryId);
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://example.com';
-  // Usa youtube.com (não nocookie) para reduzir chances de bloqueio por extensões/trackers
   const src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1&origin=${encodeURIComponent(origin)}`;
 
   const sendCommand = useCallback((func: string, args: any[] = []) => {
@@ -731,7 +730,7 @@ const VideoAqui = memo(() => {
     }
   }, [isPlaying, sendCommand]);
 
-  // Garante mute no mount (caso o player não respeite o param por algum motivo)
+  // Mute garantido e fallback simples
   useEffect(() => {
     const muteTimer = window.setTimeout(() => sendCommand('mute'), 500);
     const failTimer = window.setTimeout(() => {
@@ -743,21 +742,17 @@ const VideoAqui = memo(() => {
     };
   }, [sendCommand, loaded]);
 
-  // Ouve mensagens do player para detectar erros de incorporação (101/150) e outros
+  // Handler de mensagens do player
   useEffect(() => {
     const onMessage = (evt: MessageEvent) => {
       try {
-        // Aceita mensagens apenas do YouTube
         const allowed = typeof evt.origin === 'string' && (evt.origin.includes('youtube.com') || evt.origin.includes('youtube-nocookie.com'));
         if (!allowed) return;
         const data = typeof evt.data === 'string' ? JSON.parse(evt.data) : evt.data;
         if (!data) return;
-        // Erros do player
         if (data.event === 'onError' && typeof data.info === 'number') {
           const code = data.info;
-          // 2: invalid param, 5: html5 error, 101/150: incorporação não permitida
           if (code === 101 || code === 150 || code === 2 || code === 5) {
-            // Tenta fallback automático uma única vez
             if (videoId !== fallbackId) {
               setVideoId(fallbackId);
               setLoaded(false);
@@ -767,18 +762,16 @@ const VideoAqui = memo(() => {
             }
           }
         }
-        // Marca carregado quando receber infoDelivery com playerState ou videoData
         if (data.event === 'infoDelivery' && !loaded) {
           setLoaded(true);
         }
-      } catch {
-        // ignora parsing
-      }
+      } catch {}
     };
     window.addEventListener('message', onMessage);
     return () => window.removeEventListener('message', onMessage);
   }, [loaded, fallbackId, videoId]);
 
+  // Ativa debug opcional
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
@@ -789,59 +782,25 @@ const VideoAqui = memo(() => {
     return () => window.clearTimeout(timer);
   }, []);
 
-  // Resolve o alvo do portal após o mount
+  // Portal alvo: ancora dentro do bloco para posicionamento relativo e responsivo
   useEffect(() => {
     if (typeof document !== 'undefined') {
-      setPortalTarget(document.body);
+      const anchor = document.getElementById('video1-anchor');
+      setPortalTarget(anchor ?? document.body);
     }
   }, []);
 
-  // Posição fixa calculada matematicamente a partir do stage 1440px centralizado
-  const [fixedStyle, setFixedStyle] = useState<{left:number; top:number; width:number; height:number}>({left:-9999, top:-9999, width:958, height:538});
-  useEffect(() => {
-    let raf = 0;
-
-    const computeFromStage = () => {
-      const base = { width: 958, height: 538 };
-      // Stage desktop: 1440px centralizado; offsets exatos do Figma
-      const STAGE_WIDTH = 1440;
-      const BLOCO2_TOP = 700;     // posição do bloco na página
-      const VIDEO_TOP = 136;      // posição do vídeo dentro do bloco
-      const VIDEO_LEFT = 404;     // posição do vídeo dentro do stage
-
-      const stageLeft = Math.round((window.innerWidth - STAGE_WIDTH) / 2);
-      const left = stageLeft + VIDEO_LEFT;
-      const absoluteTop = BLOCO2_TOP + VIDEO_TOP;
-      const top = Math.round(absoluteTop - window.scrollY);
-      setFixedStyle({ left, top, width: base.width, height: base.height });
-    };
-
-    const schedule = () => {
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(computeFromStage);
-    };
-
-    // Inicializa e conecta aos eventos de scroll/resize
-    schedule();
-    window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule, { passive: true });
-
-    return () => {
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener('scroll', schedule);
-      window.removeEventListener('resize', schedule);
-    };
-  }, []);
-
+  // Wrapper absoluto, centralizado e responsivo (16:9). Posicionado relativo à âncora (#video1-anchor).
   const videoNode = (
     <div
       className="video-portal-wrapper"
       style={{
-        position: 'fixed',
-        left: `${fixedStyle.left}px`,
-        top: `${fixedStyle.top}px`,
-        width: `${fixedStyle.width}px`,
-        height: `${fixedStyle.height}px`,
+        position: 'absolute',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        top: 0,
+        width: 'min(958px, 92vw)',
+        aspectRatio: '16 / 9',
         zIndex: 2147483000,
         pointerEvents: 'auto',
         isolation: 'isolate',
@@ -850,11 +809,6 @@ const VideoAqui = memo(() => {
       }}
       aria-hidden={false}
     >
-      {debugHighlight && (
-        <div className="absolute left-0 top-0 text-[10px] text-white bg-[rgba(0,0,0,0.6)] px-2 py-1 rounded-br" style={{ pointerEvents: 'none', zIndex: 2147483001 }}>
-          DEBUG: {fixedStyle.left},{fixedStyle.top} • {fixedStyle.width}×{fixedStyle.height}
-        </div>
-      )}
       <div
         className="absolute inset-0 overflow-hidden rounded-[20px]"
         style={{
