@@ -993,6 +993,7 @@ function Bloco02() {
   const h1Parallax = useScrollParallax({ speed: -0.06 });
   const p1Parallax = useScrollParallax({ speed: -0.04 });
   const p2Parallax = useScrollParallax({ speed: -0.04 });
+  const debug = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('videoDebug');
   return (
   <div className="absolute contents left-0 top-[700px] z-[500]" data-name="Bloco 02">
       <div
@@ -1003,9 +1004,9 @@ function Bloco02() {
       {/* Âncora invisível usada para posicionar o vídeo via portal (position: fixed) */}
       <div
         id="video1-anchor"
-  className="absolute left-[154px] top-[726px] w-[958px] h-[538px] z-[4000]"
-  aria-hidden="false"
-  style={{ pointerEvents: 'auto', contain: 'layout paint' }}
+        className="absolute left-[154px] top-[726px] w-[958px] h-[538px] z-[4000] relative"
+        aria-hidden="false"
+        style={{ pointerEvents: 'auto', contain: 'layout paint', outline: debug ? '2px solid red' : undefined, outlineOffset: debug ? '2px' : undefined }}
       />
       
   <div className="absolute fig-ubuntu-light fig-title-45 fig-white text-smooth left-[77px] not-italic top-[887px] w-[271px]" style={h1Parallax.tw}>
