@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useMemo, memo, useRef } from "react";
 import { createPortal } from "react-dom";
 import type { MouseEvent, CSSProperties } from "react";
 import { Instagram, Linkedin, Volume2, VolumeX } from "lucide-react";
+import { useScrollParallax } from "./hooks/useScrollParallax";
 import svgPaths from "../imports/svg-opxanfmkh6";
 import imgAquamarine31 from "figma:asset/86d3063cb2abbf00887077f00ed48a7f75469ca4.png";
 import img250127AlmapStillTeraTheTownFrenteV081 from "figma:asset/0e4c4fe22e1cb5636a33462c5ac2022a711c0f36.png";
@@ -398,23 +399,34 @@ const Bloco07 = memo(({ openAccordion, toggleAccordion }: {
 });
 
 const Bloco06 = memo(() => {
+  const titleParallax = useScrollParallax({ speed: -0.06 });
+  const bulletParallax = useScrollParallax({ speed: -0.04 });
+  const bgParallax = useScrollParallax({ speed: -0.05 });
+  const clampY = (v: number) => Math.max(-30, Math.min(30, v));
   return (
     <div className="absolute contents left-[-132px] top-[4380px]" data-name="Bloco 06">
       <div
         className="absolute bg-[#13171a] h-[1250px] top-[4380px]"
-         style={{ ...fullBleedBackground, zIndex: 0 }}
+        style={{ ...fullBleedBackground, zIndex: 0 }}
       />
-      <div className="absolute bg-center bg-cover bg-no-repeat h-[852px] left-[-132px] top-[4656px] w-[1515px]" data-name="aquamarine (3) 1" style={{ backgroundImage: `url('${imgAquamarine31}')` }} />
-  <div className="absolute left-[77px] top-[4530px] w-[987px] fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
+      <div
+        className="absolute bg-center bg-cover bg-no-repeat h-[852px] left-[-132px] top-[4656px] w-[1515px]"
+        data-name="aquamarine (3) 1"
+        style={{
+          backgroundImage: `url('${imgAquamarine31}')`,
+          backgroundPosition: `50% calc(50% + ${clampY(bgParallax.offsetY).toFixed(2)}px)`,
+        }}
+      />
+      <div className="absolute left-[77px] top-[4530px] w-[987px] fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={titleParallax.tw}>
         <p className="m-0">O FLUXO NGI: DA ESTRATÉGIA À PRODUÇÃO, CRIATIVIDADE E TÉCNICA ACELERADAS PELA IA.</p>
       </div>
-  <div className="absolute left-[1082px] top-[5497px] w-[326px] fig-subtitle-32-bold fig-light leading-[0] not-italic">
+      <div className="absolute left-[1082px] top-[5497px] w-[326px] fig-subtitle-32-bold fig-light leading-[0] not-italic" style={bulletParallax.tw}>
         <p className="leading-[normal]">+ IMPACTANTE</p>
       </div>
-  <div className="absolute left-[1082px] top-[5455px] w-[288px] fig-subtitle-32-bold fig-light leading-[0] not-italic">
+      <div className="absolute left-[1082px] top-[5455px] w-[288px] fig-subtitle-32-bold fig-light leading-[0] not-italic" style={bulletParallax.tw}>
         <p className="leading-[normal]">+ ESCALÁVEL</p>
       </div>
-  <div className="absolute left-[1082px] top-[5412px] w-[256px] fig-subtitle-32-bold fig-light leading-[0] not-italic">
+      <div className="absolute left-[1082px] top-[5412px] w-[256px] fig-subtitle-32-bold fig-light leading-[0] not-italic" style={bulletParallax.tw}>
         <p className="leading-[normal]">+ RÁPIDO</p>
       </div>
     </div>
@@ -422,15 +434,17 @@ const Bloco06 = memo(() => {
 });
 
 const Bloco05 = memo(() => {
+  const titleParallax = useScrollParallax({ speed: -0.06 });
+  const bodyParallax = useScrollParallax({ speed: -0.04 });
   return (
     <div className="absolute contents left-0 top-[3780px]" data-name="Bloco 05">
   <div
     className="absolute bg-[#f8f8f2] h-[600px] left-0 top-[3780px] w-[1440px]"
   />
-  <div className="absolute left-[816px] top-[4136px] w-[421px] fig-body-23 fig-dark text-smooth not-italic leading-[26px]">
+  <div className="absolute left-[816px] top-[4136px] w-[421px] fig-body-23 fig-dark text-smooth not-italic leading-[26px]" style={bodyParallax.tw}>
     <p className="m-0 leading-[26px]">Integramos criatividade, estratégia e tecnologia em um só fluxo, criando conteúdos relevantes de maneira mais rápida, escalável e impactante.</p>
       </div>
-  <div className="absolute left-[181px] top-[3933px] w-[590px] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic leading-[52px]">
+  <div className="absolute left-[181px] top-[3933px] w-[590px] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic leading-[52px]" style={titleParallax.tw}>
     <p className="mb-0 leading-[52px]">MAIS DE 60 PROJETOS</p>
     <p className="mb-0 leading-[52px]">EM 2025 QUE AJUDARAM NOSSOS CLIENTES A ECONOMIZAR MILHÕES</p>
     <p className="mb-0 leading-[52px]">EM COMPARAÇÃO A PRODUÇÕES TRADICIONAIS.</p>
@@ -450,56 +464,56 @@ const galleryImages = (localGallery.images.length ? localGallery.images.map((src
 })) : [
   {
     id: 0,
-    src: "https://images.unsplash.com/photo-1563010501-8dbf76424fb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2b2xrc3dhZ2VuJTIwdGVyYSUyMHNpbHZlciUyMGNhciUyMGZyb250fGVufDF8fHx8MTc1ODEwMDM0N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", // 25_0127_Almap_Still_TeraTheTown_Frente_V08.png
+    src: "https://images.unsplash.com/photo-1563010501-8dbf76424fb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2b2xrc3dhZ2VuJTIwdGVyYSUyMHNpbHZlciUyMGNhciUyMGZyb250fGVufDF8fHx8MTc1ODEwMDM0N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     mask: img250127AlmapStillTeraTheTownFrenteV82,
     thumbnail: "https://images.unsplash.com/photo-1754782385916-3efd2d1ae8fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjB0aHVtYiUyMHJlYXIlMjBzaWx2ZXJ8ZW58MXx8fHwxNzU4MTAwMzg0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     alt: "25_0127_Almap_Still_TeraTheTown_Frente_V08"
   },
   {
     id: 1,
-    src: "https://images.unsplash.com/photo-1650535508320-5ab630c0ab09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBpbnRlcmlvciUyMG5hdmlnYXRpb24lMjBzeXN0ZW18ZW58MXx8fHwxNzU4MTAwMzU2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", // AFX_NAVEG_CONFIGURADOR_30seg_ARG_3840x1920_20250805-10h (1).jpg
+    src: "https://images.unsplash.com/photo-1650535508320-5ab630c0ab09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBpbnRlcmlvciUyMG5hdmlnYXRpb24lMjBzeXN0ZW18ZW58MXx8fHwxNzU4MTAwMzU2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     mask: img250127AlmapStillTeraTheTownFrenteV82,
     thumbnail: "https://images.unsplash.com/photo-1639060015191-9d83063eab2a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBkZXRhaWwlMjBuYXZpZ2F0aW9uJTIwcHJldmlld3xlbnwxfHx8fDE3NTgxMDAzOTZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     alt: "AFX NAVEG CONFIGURADOR 30seg ARG 3840x1920"
   },
   {
     id: 2,
-    src: "https://images.unsplash.com/photo-1563010501-8dbf76424fb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2b2xrc3dhZ2VuJTIwdGVyYSUyMHNpbHZlciUyMGNhciUyMGZyb250fGVufDF8fHx8MTc1ODEwMDM0N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", // 25_0002_STILL_TERA_HG_170TSI_MY26_OUTFIT_THETOWN_3_4_FRENTE_R4A1_PRATA_LUNAR_AMB_NOITE_9000X6000px.jpg
+    src: "https://images.unsplash.com/photo-1563010501-8dbf76424fb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2b2xrc3dhZ2VuJTIwdGVyYSUyMHNpbHZlciUyMGNhciUyMGZyb250fGVufDF8fHx8MTc1ODEwMDM0N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     mask: img250127AlmapStillTeraTheTownFrenteV82,
     thumbnail: "https://images.unsplash.com/photo-1716615188690-aea33d1d41f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBzYWZldHklMjBmZWF0dXJlJTIwZGV0YWlsfGVufDF8fHx8MTc1ODEwMDQwMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     alt: "25_0002_STILL_TERA_HG_170TSI_MY26_OUTFIT_THETOWN_3_4_FRENTE_R4A1_PRATA_LUNAR_AMB_NOITE"
   },
   {
     id: 3,
-    src: "https://images.unsplash.com/photo-1643686978526-7ae17c701e30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBkYXNoYm9hcmQlMjBzYWZldHklMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc1ODEwMDM1OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", // AEB_Frenagem-autonoma-de-emergência-com-reconhecimento-e-protecao-de-pedestres_v18_limpo.jpg
+    src: "https://images.unsplash.com/photo-1643686978526-7ae17c701e30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBkYXNoYm9hcmQlMjBzYWZldHklMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc1ODEwMDM1OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     mask: img250127AlmapStillTeraTheTownFrenteV82,
     thumbnail: "https://images.unsplash.com/photo-1705237458425-6d560bd4625c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbWVyZ2VuY3klMjBicmFrZSUyMGRldGFpbCUyMGNhcnxlbnwxfHx8fDE3NTgxMDA0MDV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     alt: "AEB Frenagem Autônoma de Emergência v18"
   },
   {
     id: 4,
-    src: "https://images.unsplash.com/photo-1680516125126-e92100cdcbba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjByZWFyJTIwdmlldyUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzU4MTAwMzY3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", // 25_0002_STILL_AL_TERA_HG_170TSI_MY26_OUTFIT_BADGE_TRASEIRA_R4A1_PRATA_LUNAR_AMB_DIA_9000X6000px.png
+    src: "https://images.unsplash.com/photo-1680516125126-e92100cdcbba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjByZWFyJTIwdmlldyUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzU4MTAwMzY3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     mask: img250127AlmapStillTeraTheTownFrenteV82,
     thumbnail: "https://images.unsplash.com/photo-1675462378901-4fb9ed48591c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjByZWFyJTIwZGV0YWlsJTIwY2xvc2V8ZW58MXx8fHwxNzU4MTAwNDE2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     alt: "25_0002_STILL_AL_TERA_HG_170TSI_MY26_OUTFIT_BADGE_TRASEIRA_R4A1_PRATA_LUNAR_AMB_DIA"
   },
   {
     id: 5,
-    src: "https://images.unsplash.com/photo-1750661941636-7affe0df1fac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYW5lJTIwYXNzaXN0JTIwZHJpdmluZyUyMHNhZmV0eXxlbnwxfHx8fDE3NTgxMDAzNjR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", // Lane-Assist_Assistente-de-permanencia-na-faixa_v21_sem-lett.jpg
+    src: "https://images.unsplash.com/photo-1750661941636-7affe0df1fac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYW5lJTIwYXNzaXN0JTIwZHJpdmluZyUyMHNhZmV0eXxlbnwxfHx8fDE3NTgxMDAzNjR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     mask: img250127AlmapStillTeraTheTownFrenteV82,
     thumbnail: "https://images.unsplash.com/photo-1716615188690-aea33d1d41f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYW5lJTIwYXNzaXN0YW5jZSUyMGNhciUyMGRldGFpbHxlbnwxfHx8fDE3NTgxMDA0MjF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     alt: "Lane Assist Assistente de Permanência na Faixa v21"
   },
   {
     id: 6,
-    src: "https://images.unsplash.com/photo-1752959811093-9ed95c42b16d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjYXIlMjBiYWRnZSUyMGRldGFpbHxlbnwxfHx8fDE3NTgxMDAzNzV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", // 25_0002_STILL_TERA_HG_170TSI_MY26_OUTFIT_THETOWN_BADGE_VERSAO_R4A1_PRATA_LUNAR_AMB_NOITE_9000X6000px.png
+    src: "https://images.unsplash.com/photo-1752959811093-9ed95c42b16d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjYXIlMjBiYWRnZSUyMGRldGFpbHxlbnwxfHx8fDE3NTgxMDAzNzV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     mask: img250127AlmapStillTeraTheTownFrenteV82,
     thumbnail: "https://images.unsplash.com/photo-1718465388901-9c628510c01e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBkZXRhaWwlMjBiYWRnZSUyMHZlcnNpb258ZW58MXx8fHwxNzU4MTAwNDI0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     alt: "25_0002_STILL_TERA_HG_170TSI_MY26_OUTFIT_THETOWN_BADGE_VERSAO_R4A1_PRATA_LUNAR_AMB_NOITE"
   },
   {
     id: 7,
-    src: "https://images.unsplash.com/photo-1705617187494-05a0369a6446?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBpbnRlcmlvciUyMHBhbmVsJTIwZGFzaGJvYXJkfGVufDF8fHx8MTc1ODEwMDM3OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", // 25_0002_STILL_TERA_COMF_MY26_PAINEL_FRONTAL_TOTAL_2R2R_CINZA_PLATINUM_AMB_DIA_9000X6000px.png
+    src: "https://images.unsplash.com/photo-1705617187494-05a0369a6446?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBpbnRlcmlvciUyMHBhbmVsJTIwZGFzaGJvYXJkfGVufDF8fHx8MTc1ODEwMDM3OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     mask: img250127AlmapStillTeraTheTownFrenteV82,
     thumbnail: "https://images.unsplash.com/photo-1625062294718-827c8a646156?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBkYXNoYm9hcmQlMjBwYW5lbCUyMGdyYXl8ZW58MXx8fHwxNzU4MTAwNDI4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     alt: "25_0002_STILL_TERA_COMF_MY26_PAINEL_FRONTAL_TOTAL_2R2R_CINZA_PLATINUM_AMB_DIA"
@@ -508,16 +522,20 @@ const galleryImages = (localGallery.images.length ? localGallery.images.map((src
 
 function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
   const activeImage = galleryImages[activeIndex];
+  // Sutil parallax interno via background-position (não move o container)
+  const imgParallax = useScrollParallax({ speed: -0.05 });
+  const clampImg = (v:number) => Math.max(-30, Math.min(30, v));
 
   return (
-    <div className="absolute contents left-0 top-[2510px]" data-name="imagem grande">
+  <div className="absolute contents left-0 top-[2510px]" data-name="imagem grande">
       {/* Imagem principal com transição suave */}
       <div 
-        className="absolute bg-center bg-cover bg-no-repeat h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] transition-all duration-700 ease-in-out" 
+  className="absolute bg-center bg-cover bg-no-repeat h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] transition-all duration-700 ease-in-out" 
         data-name="main gallery image"
         style={{ 
           backgroundImage: `url('${activeImage.src}')`, 
           maskImage: `url('${activeImage.mask}')`,
+          backgroundPosition: `50% calc(50% + ${clampImg(imgParallax.offsetY).toFixed(2)}px)`,
           transform: 'translateZ(0)', // Força aceleração por hardware
           backfaceVisibility: 'hidden',
           width: 'max(2122px, calc(100vw + 534px))', // Garante cobertura total em qualquer resolução
@@ -582,7 +600,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
   }, []);
 
   return (
-    <div ref={galleryRef} className="absolute contents left-[251px] top-[3342px]" data-name="imagens carrossel">
+  <div ref={galleryRef} className="absolute contents left-[251px] top-[3342px]" data-name="imagens carrossel">
       {galleryImages.slice(0, 8).map((image, index) => (
         <button
           key={image.id}
@@ -619,6 +637,26 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
   );
 }
 
+const Bloco03 = memo(() => {
+  return (
+    <div className="absolute contents left-0 top-[1540px]" data-name="Bloco 03">
+      <div
+        className="absolute bg-[#f8f8f2] h-[970px] top-[1540px]"
+        data-name="background"
+        style={fullBleedBackground}
+      />
+      <VideoTera3D />
+  <div className="absolute left-1/2 top-[2390px] translate-x-[-50%] w-[715px] text-center fig-body-23 fig-dark text-smooth not-italic">
+        <p className="m-0">O 3D já trascende o universo de stills e CGI: tornou-se linguagem, experiência e presença digital que é capaz de capturar e converter.</p>
+      </div>
+  <div className="absolute left-1/2 top-[1692px] translate-x-[-50%] w-[1121px] text-center fig-title-45 fig-dark text-smooth not-italic">
+        <p className="mb-0 fig-ubuntu-light">{titles.section3.line1}</p>
+        <p className="fig-ubuntu-bold">{titles.section3.line2}</p>
+      </div>
+    </div>
+  );
+});
+
 function Bloco04() {
   const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
 
@@ -638,10 +676,10 @@ function Bloco04() {
         activeIndex={galleryActiveIndex} 
         onThumbnailClick={handleGalleryThumbnailClick} 
       />
-      <div className="absolute left-[718.5px] top-[3653px] translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic">
+    <div className="absolute left-1/2 top-[3653px] translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic">
         <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
       </div>
-  <div className="absolute left-[718.5px] top-[3533px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
+  <div className="absolute left-1/2 top-[3533px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
         <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
         <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
       </div>
@@ -649,25 +687,7 @@ function Bloco04() {
   );
 }
 
-const Bloco03 = memo(() => {
-  return (
-    <div className="absolute contents left-0 top-[1540px]" data-name="Bloco 03">
-      <div
-        className="absolute bg-[#f8f8f2] h-[970px] top-[1540px]"
-        data-name="background"
-        style={fullBleedBackground}
-      />
-      <VideoTera3D />
-      <div className="absolute left-[718.5px] top-[2390px] translate-x-[-50%] w-[715px] text-center fig-body-23 fig-dark text-smooth not-italic">
-        <p className="m-0">O 3D já trascende o universo de stills e CGI: tornou-se linguagem, experiência e presença digital que é capaz de capturar e converter.</p>
-      </div>
-  <div className="absolute left-[718.5px] top-[1692px] translate-x-[-50%] w-[1121px] text-center fig-title-45 fig-dark text-smooth not-italic">
-        <p className="mb-0 fig-ubuntu-light">{titles.section3.line1}</p>
-        <p className="fig-ubuntu-bold">{titles.section3.line2}</p>
-      </div>
-    </div>
-  );
-});
+// (duplicate Bloco06 removed)
 
 const VideoAqui = memo(() => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
@@ -994,6 +1014,10 @@ const VideoTera3D = memo(() => {
 });
 
 function Bloco02() {
+  // Parallax sutil para títulos e textos
+  const h1Parallax = useScrollParallax({ speed: -0.06 });
+  const p1Parallax = useScrollParallax({ speed: -0.04 });
+  const p2Parallax = useScrollParallax({ speed: -0.04 });
   return (
   <div className="absolute contents left-0 top-[700px] z-[500]" data-name="Bloco 02">
       <div
@@ -1008,16 +1032,16 @@ function Bloco02() {
         aria-hidden="true"
       />
       
-  <div className="absolute fig-ubuntu-light fig-title-45 fig-white text-smooth left-[77px] not-italic top-[887px] w-[271px]">
+  <div className="absolute fig-ubuntu-light fig-title-45 fig-white text-smooth left-[77px] not-italic top-[887px] w-[271px]" style={h1Parallax.tw}>
         <p className="mb-0">O CGI AGORA É NGI:</p>
         <p>NEXT-GEN IMAGERY.</p>
       </div>
       
-  <div className="absolute fig-ubuntu-light fig-body-23 fig-white text-smooth left-[77px] not-italic top-[1180px] w-[271px]">
+  <div className="absolute fig-ubuntu-light fig-body-23 fig-white text-smooth left-[77px] not-italic top-[1180px] w-[271px]" style={p1Parallax.tw}>
         <p className="m-0">Um novo fluxo de produção aonde 3D, IA e outras tecnologias trabalham juntas para escalar conteúdo com impacto e consistência.</p>
       </div>
       
-  <div className="absolute fig-ubuntu-light fig-body-23 fig-white text-smooth left-[77px] not-italic top-[1396px] w-[1285px]">
+  <div className="absolute fig-ubuntu-light fig-body-23 fig-white text-smooth left-[77px] not-italic top-[1396px] w-[1285px]" style={p2Parallax.tw}>
         <p className="m-0">Como uma content-tech, podemos atuar desde o conceito criativo até a distribuição multicanal e a análise de desempenho. Um fluxo sustentado por um stack tecnológico integrado que vai de IA à automação, do CMS/DAM ao analytics e além.</p>
       </div>
       
@@ -1072,11 +1096,13 @@ const carouselImages = [
   }
 ];
 
-const AnimatedCarousel = memo(({ currentIndex }: { currentIndex: number }) => {
+const AnimatedCarousel = memo(({ currentIndex, parallaxOffsetY }: { currentIndex: number; parallaxOffsetY?: number }) => {
   return (
     <div className="absolute h-[700px] w-[1440px] left-0 top-0">
       {carouselImages.map((image, index) => {
         const isActive = index === currentIndex;
+    // Parallax interno por background-position-Y evita deslocar o container
+    const clampedY = Math.max(-40, Math.min(40, parallaxOffsetY ?? 0));
         
         return (
           <div
@@ -1085,9 +1111,13 @@ const AnimatedCarousel = memo(({ currentIndex }: { currentIndex: number }) => {
             style={{
               backgroundImage: `url('${image.src}')`,
               maskImage: `url('${image.mask}')`,
+      // Move somente o conteúdo do background dentro do mesmo box
+      backgroundPosition: `50% calc(50% + ${clampedY.toFixed(2)}px)`,
               opacity: isActive ? 1 : 0,
               zIndex: isActive ? 2 : 1,
-              transform: 'translateZ(0)',
+      // Mantém aceleração via GPU sem alterar posição do elemento
+      transform: 'translateZ(0)',
+      willChange: 'background-position',
               backfaceVisibility: 'hidden',
               transition: 'opacity 800ms cubic-bezier(0.25, 0.1, 0.25, 1)',
               pointerEvents: 'none'
@@ -1100,9 +1130,14 @@ const AnimatedCarousel = memo(({ currentIndex }: { currentIndex: number }) => {
 });
 
 const BackInicial = memo(({ currentImageIndex }: { currentImageIndex: number }) => {
+  // Parallax sutil aplicado via background-position nas camadas internas
+  const imagesParallax = useScrollParallax({ speed: -0.08 });
   return (
-    <div className="absolute h-[700px] left-1/2 overflow-clip top-0 translate-x-[-50%] w-[1440px]" data-name="Back_inicial">
-      <AnimatedCarousel currentIndex={currentImageIndex} />
+    <div
+      className="absolute h-[700px] left-1/2 overflow-clip top-0 translate-x-[-50%] w-[1440px]"
+      data-name="Back_inicial"
+    >
+      <AnimatedCarousel currentIndex={currentImageIndex} parallaxOffsetY={imagesParallax.offsetY} />
     </div>
   );
 });
@@ -1123,8 +1158,9 @@ function IconeSeta1() {
 }
 
 function BotaoCall1({ onClick }: { onClick?: () => void }) {
+  const ctaParallax = useScrollParallax({ speed: 0.08 });
   return (
-    <div className="absolute h-[36px] left-[561px] top-[629px] w-[315px] pulse-animation">
+    <div className="absolute h-[36px] left-1/2 translate-x-[-50%] top-[629px] w-[315px] pulse-animation" style={ctaParallax.tw}>
       <button 
         onClick={onClick}
         className="relative h-full w-full cursor-pointer hover:opacity-90 transition-opacity duration-200" 
@@ -1144,6 +1180,10 @@ const Bloco01 = memo(({ onCallClick, currentImageIndex }: {
   onCallClick: () => void; 
   currentImageIndex: number;
 }) => {
+  // Parallax sutil e aditivo (<= 0.1x), sem alterar posicionamento
+  const titleParallax = useScrollParallax({ speed: -0.08 }) // Títulos grandes
+  const textParallax = useScrollParallax({ speed: -0.06 }) // Textos normais
+
   return (
     <div className="absolute contents left-[-1px] top-0" data-name="Bloco 01">
       {/* Full-bleed background para eliminar barras laterais no herói */}
@@ -1153,18 +1193,24 @@ const Bloco01 = memo(({ onCallClick, currentImageIndex }: {
           ...fullBleedBackground,
           zIndex: 0,
           // Gradiente sutil coerente com a arte do herói
-          background: 'linear-gradient(180deg, #0f1418 0%, #0b0d0f 100%)'
+      background: 'linear-gradient(180deg, #0f1418 0%, #0b0d0f 100%)'
         }}
         aria-hidden="true"
       />
       <Transparencias />
-      <BackInicial currentImageIndex={currentImageIndex} />
-      <BotaoCall1 onClick={onCallClick} />
-      <div className="absolute fig-ubuntu-light fig-title-40 fig-white text-smooth left-[718px] top-[527px] not-italic text-center translate-x-[-50%] whitespace-pre">
+    <BackInicial currentImageIndex={currentImageIndex} />
+    <BotaoCall1 onClick={onCallClick} />
+      <div 
+        className="absolute fig-ubuntu-light fig-title-40 fig-white text-smooth left-1/2 top-[527px] not-italic text-center translate-x-[-50%] whitespace-pre w-[1100px]"
+        style={titleParallax.tw}
+      >
         <p className="mb-0">A NOVA MATEMÁTICA DO MARKETING:</p>
         <p>MENOS CUSTO, MAIS IMPACTO.</p>
       </div>
-      <div className="absolute fig-ubuntu-medium fig-subtitle-18 fig-white text-smooth left-[718.5px] top-[502px] not-italic text-center translate-x-[-50%]">
+      <div
+        className="absolute fig-ubuntu-medium fig-subtitle-18 fig-white text-smooth left-1/2 top-[502px] not-italic text-center translate-x-[-50%] w-[800px]"
+        style={textParallax.tw}
+      >
         <p className="m-0">SOMOS UMA CONTENT-TECH</p>
       </div>
     </div>

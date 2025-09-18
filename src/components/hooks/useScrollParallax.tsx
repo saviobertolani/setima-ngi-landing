@@ -1,0 +1,53 @@
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
+
+type UseScrollParallaxOptions = {
+  /** Fator de velocidade. Ex: -0.2, -0.3, 0.1, -0.5 */
+  speed?: number
+  /** Usa translate3d para performance via GPU */
+  use3d?: boolean
+  /** Define uma posição base (offset) para o cálculo */
+  base?: number
+}
+
+/**
+ * Hook de parallax por scroll. Retorna um objeto `style` com transform aplicado.
+ * - Mantém classes e eventos existentes; aplique em style={parallaxStyle}
+ */
+export function useScrollParallax(options: UseScrollParallaxOptions = {}) {
+  const { speed = -0.2, use3d = true, base = 0 } = options
+  const frame = useRef<number | null>(null)
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (frame.current != null) return
+      frame.current = requestAnimationFrame(() => {
+        frame.current = null
+        setScrollY(window.scrollY || window.pageYOffset || 0)
+      })
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    // inicial
+    setScrollY(window.scrollY || window.pageYOffset || 0)
+    return () => {
+      if (frame.current) cancelAnimationFrame(frame.current)
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [])
+
+  const style = useMemo((): { transform: string; willChange: string; tw: CSSProperties & { ['--tw-translate-y']?: string }; offsetY: number } => {
+    const delta = (scrollY - base) * speed
+    const ty = Number.isFinite(delta) ? delta : 0
+    const transform = use3d
+      ? `translate3d(0, ${ty.toFixed(2)}px, 0)`
+      : `translateY(${ty.toFixed(2)}px)`
+    // tw: usa a variável do Tailwind para compor com outras transforms (ex.: translate-x-[-50%])
+    const tw = { ['--tw-translate-y']: `${ty.toFixed(2)}px` } as CSSProperties & { ['--tw-translate-y']?: string }
+    return { transform, willChange: 'transform', tw, offsetY: ty }
+  }, [scrollY, speed, use3d, base])
+
+  return style
+}
+
+export default useScrollParallax
