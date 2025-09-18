@@ -895,13 +895,7 @@ const VideoAqui = memo(() => {
   );
 
   // Se a âncora não foi encontrada por algum motivo, ainda renderiza inline como fallback visível
-  if (!portalTarget) {
-    return (
-      <div style={{ position: 'absolute', left: '154px', top: '726px', width: '958px', height: '538px', zIndex: 8000 }}>
-        {videoNode}
-      </div>
-    );
-  }
+  if (!portalTarget) return videoNode;
   return (
     <>
       {isDebug && (
@@ -1017,7 +1011,7 @@ function Bloco02() {
       {/* Âncora invisível usada para posicionar o vídeo via portal (position: fixed) */}
       <div
         id="video1-anchor"
-        className="absolute left-[154px] top-[726px] w-[958px] h-[538px] z-[4000] relative"
+        className="absolute left-[154px] top-[726px] w-[958px] h-[538px] z-[8000]"
         aria-hidden="false"
         style={{ pointerEvents: 'auto', contain: 'layout paint', outline: debug ? '2px solid red' : undefined, outlineOffset: debug ? '2px' : undefined }}
       />
