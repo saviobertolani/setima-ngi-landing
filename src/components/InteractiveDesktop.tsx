@@ -533,22 +533,37 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
       {/* Fundo cinza do Figma (apenas para espelhar a arquitetura) */}
       <div className="absolute left-0 top-0 w-[1440px] h-[970px] bg-[#D9D9D9]" aria-hidden />
 
-      {/* Imagem 2122x1274 posicionada exatamente como no Figma */}
-      <div
-        className="absolute bg-center bg-cover bg-no-repeat will-transform-3d transition-opacity duration-700 z-[1]"
-        style={{
-          width: '2122px',
-          height: '1274px',
-          left: '-267px',
-          top: `${-292 + clampImg(imgParallax.offsetY)}px`,
-          backgroundImage: `url('${activeImage.src}')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          transform: 'translateZ(0)',
-          backfaceVisibility: 'hidden',
-        }}
-        aria-label={activeImage.alt}
-      />
+      {/* Imagem 2122x1274 centralizada de forma estável (evita corte incorreto) */}
+      {(() => {
+        // Dimensões de referência do design (viewPort da moldura)
+        const VIEW_W = 1440;
+        const VIEW_H = 970;
+        const IMG_W = 2122;
+        const IMG_H = 1274;
+        // Centralização exata: posiciona a imagem no centro do viewport
+        const centeredLeft = (VIEW_W - IMG_W) / 2; // -341
+        const centeredTop = (VIEW_H - IMG_H) / 2;  // -152
+        // Parallax sutil apenas no eixo Y
+        const topWithParallax = centeredTop + clampImg(imgParallax.offsetY);
+        return (
+          <img
+            key={String(activeIndex)}
+            src={activeImage.src}
+            alt={activeImage.alt}
+            width={IMG_W}
+            height={IMG_H}
+            className="absolute will-change-transform transition-opacity duration-700 select-none pointer-events-none"
+            style={{
+              left: `${centeredLeft}px`,
+              top: `${topWithParallax}px`,
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
+              userSelect: 'none'
+            }}
+            draggable={false}
+          />
+        );
+      })()}
     </div>
   );
 }
@@ -595,7 +610,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
   }, []);
 
   return (
-    <div ref={galleryRef} className="absolute left-0 top-[860px] w-[1440px] h-[79px] z-[3]" data-name="imagens carrossel">
+    <div ref={galleryRef} className="absolute left-0 top-[860px] w-[1440px] h-[79px] z-[10]" data-name="imagens carrossel">
       {galleryImages.slice(0, 8).map((image, index) => {
         const isActive = activeIndex === index;
         return (
@@ -609,6 +624,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
               left: `${thumbnailPositions[index]}px`,
               top: '0px',
               animationDelay: `${index * 100}ms`, // Efeito em cascata 100ms
+              zIndex: 11,
             }}
             data-name={`thumbnail-${index}`}
             title={image.alt}
@@ -656,7 +672,7 @@ function Bloco04() {
   }, []);
 
   return (
-    <div className="absolute left-0 top-[2510px] w-[1440px]" data-name="Bloco 04">
+    <div className="absolute left-0 top-[2510px] w-[1440px] h-[1400px]" data-name="Bloco 04">
       {/* Faixa preta inferior (top 970, h 300) */}
       <div
         className="absolute bg-[#13171a] h-[300px] left-0 top-[970px] z-0"
