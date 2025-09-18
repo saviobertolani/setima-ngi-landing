@@ -11,6 +11,14 @@
 				"$tsc"
 			],
 			"group": "build"
+		},
+		{
+			"label": "MCP: BrowserMCP (npx)",
+			"type": "shell",
+			"command": "npx",
+			"args": ["@browsermcp/mcp@latest"],
+			"isBackground": true,
+			"problemMatcher": []
 		}
 	]
 }
