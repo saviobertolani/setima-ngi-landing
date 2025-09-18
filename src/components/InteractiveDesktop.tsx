@@ -697,6 +697,7 @@ const VideoAqui = memo(() => {
   const [failed, setFailed] = useState(false);
   const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
   const [debugHighlight, setDebugHighlight] = useState(false);
+  const isDebug = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('videoDebug');
   const primaryId = 'I9Wcs3Q3d4U';
   const fallbackId = 'M7lc1UVf-VE';
   const [videoId, setVideoId] = useState<string>(primaryId);
@@ -813,8 +814,8 @@ const VideoAqui = memo(() => {
   bottom: 0,
   width: '100%',
   height: '100%',
-        // Mantém o vídeo acima do conteúdo, mas abaixo do header fixo (z-[9999])
-        zIndex: 4000,
+  // Mantém o vídeo acima do conteúdo, mas abaixo do header fixo (z-[9999])
+  zIndex: 8000,
         pointerEvents: 'auto',
         isolation: 'isolate',
         outline: debugHighlight ? '4px solid rgba(255, 0, 0, 0.55)' : undefined,
@@ -896,12 +897,24 @@ const VideoAqui = memo(() => {
   // Se a âncora não foi encontrada por algum motivo, ainda renderiza inline como fallback visível
   if (!portalTarget) {
     return (
-      <div style={{ position: 'absolute', left: '154px', top: '726px', width: '958px', height: '538px', zIndex: 4000 }}>
+      <div style={{ position: 'absolute', left: '154px', top: '726px', width: '958px', height: '538px', zIndex: 8000 }}>
         {videoNode}
       </div>
     );
   }
-  return createPortal(videoNode, portalTarget);
+  return (
+    <>
+      {isDebug && (
+        <div style={{ position: 'fixed', left: 8, top: 8, zIndex: 10000, background: 'rgba(0,0,0,0.7)', color: '#fff', padding: '6px 8px', borderRadius: 6, fontSize: 11, lineHeight: '14px', pointerEvents: 'none' }}>
+          <div>Video Debug</div>
+          <div>anchor: {portalTarget?.id || 'none'}</div>
+          <div>loaded: {String(loaded)}</div>
+          <div>failed: {String(failed)}</div>
+        </div>
+      )}
+      {createPortal(videoNode, portalTarget)}
+    </>
+  );
 });
 
 const VideoTera3D = memo(() => {
