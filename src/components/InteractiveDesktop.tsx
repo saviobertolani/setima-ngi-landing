@@ -548,6 +548,18 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
           userSelect: 'none'
         }}
       />
+      {/* Fallback <img> caso background falhe (garante visibilidade) */}
+      <img
+        src={activeImage.src}
+        alt={activeImage.alt || 'imagem-galeria'}
+        className="absolute left-0 top-0 w-[1440px] h-[970px] object-cover select-none"
+        style={{ opacity: 0.001, pointerEvents: 'none' }}
+        onError={(e) => {
+          // Se a imagem quebrar, deixa o fallback visível para não ficar cinza
+          e.currentTarget.style.opacity = '1';
+        }}
+        draggable={false}
+      />
     </div>
   );
 }
@@ -557,11 +569,19 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
   onThumbnailClick: (index: number) => void; 
 }) {
   const [showNavHint, setShowNavHint] = useState(false);
+  const [thumbsVisible, setThumbsVisible] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
   const isDebug = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('bloco4Debug');
-  // Por padrão as miniaturas ficam ocultas; só aparecem com ?thumbs=1 (ou debug)
-  const thumbsParam = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('thumbs');
-  const thumbsVisible = isDebug || thumbsParam;
+  // Determina visibilidade de thumbs de forma mais robusta (URL + variações + localStorage)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const sp = new URLSearchParams(window.location.search);
+    const v = sp.get('thumbs');
+    const has = sp.has('thumbs');
+    const local = (typeof localStorage !== 'undefined' && localStorage.getItem('bloco4_thumbs')) || '';
+    const on = has || v === '1' || v === 'true' || local === 'on' || isDebug;
+    setThumbsVisible(!!on);
+  }, [isDebug]);
   
   
   // Posições exatas das miniaturas do design original
