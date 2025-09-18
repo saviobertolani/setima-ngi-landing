@@ -520,35 +520,35 @@ const galleryImages = (localGallery.images.length ? localGallery.images.map((src
 ]);
 
 function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
-  // Parallax 20% mais devagar que o scroll
-  const imgParallax = useScrollParallax({ speed: -0.2 });
-  const clampImg = (v:number) => Math.max(-40, Math.min(40, v));
-
-  // Permite substituir as imagens por versões do Figma (quando adicionadas em assets)
-  const images = galleryImages;
+  const activeImage = galleryImages[activeIndex];
+  // Parallax sutil aplicando deslocamento vertical mínimo
+  const imgParallax = useScrollParallax({ speed: -0.05 });
+  const clampImg = (v: number) => Math.max(-20, Math.min(20, v));
 
   return (
-    <div className="absolute contents left-0 top-[2510px]" data-name="imagem grande">
-      {/* Crossfade entre camadas com parallax sutil */}
-    {images.map((img, idx) => (
-        <div
-          key={img.id}
-      className="absolute bg-center bg-cover bg-no-repeat h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] transition-opacity duration-700 ease-in-out"
-          data-name={idx === activeIndex ? 'main gallery image (active)' : 'main gallery image'}
-          style={{
-            backgroundImage: `url('${img.src}')`,
-            // Usa máscara se existir no item
-            ...(img.mask ? { maskImage: `url('${img.mask}')` } : {}),
-            backgroundPosition: `50% calc(50% + ${clampImg(imgParallax.offsetY).toFixed(2)}px)`,
-            transform: 'translateZ(0)',
-            backfaceVisibility: 'hidden',
-            width: 'max(2122px, calc(100vw + 534px))',
-            minWidth: '2122px',
-            opacity: activeIndex === idx ? 1 : 0,
-          }}
-          aria-hidden={activeIndex !== idx}
-        />
-      ))}
+    <div
+      className="absolute left-0 top-0 w-[1440px] h-[970px] overflow-hidden"
+      data-name="imagem grande"
+    >
+      {/* Fundo cinza do Figma (apenas para espelhar a arquitetura) */}
+      <div className="absolute left-0 top-0 w-[1440px] h-[970px] bg-[#D9D9D9]" aria-hidden />
+
+      {/* Imagem 2122x1274 posicionada exatamente como no Figma */}
+      <div
+        className="absolute bg-center bg-cover bg-no-repeat will-transform-3d transition-opacity duration-700"
+        style={{
+          width: '2122px',
+          height: '1274px',
+          left: '-267px',
+          top: `${-292 + clampImg(imgParallax.offsetY)}px`,
+          backgroundImage: `url('${activeImage.src}')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+        }}
+        aria-label={activeImage.alt}
+      />
     </div>
   );
 }
@@ -561,7 +561,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
   const galleryRef = useRef<HTMLDivElement>(null);
   
   // Posições exatas das miniaturas do design original
-  const thumbnailPositions = [251, 371, 491, 611, 731, 851, 971, 1091];
+  const thumbnailPositions = [289, 398, 507, 616, 725, 834, 943, 1052];
 
   // Animação de dica de navegação após scroll
   useEffect(() => {
@@ -595,14 +595,14 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
   }, []);
 
   return (
-    <div ref={galleryRef} className="absolute contents left-[251px] top-[3342px]" data-name="imagens carrossel">
+    <div ref={galleryRef} className="absolute left-0 top-[860px] w-[1440px] h-[79px]" data-name="imagens carrossel">
       {galleryImages.slice(0, 8).map((image, index) => {
         const isActive = activeIndex === index;
         return (
           <button
             key={image.id}
             onClick={() => onThumbnailClick(index)}
-            className={`absolute size-[98px] cursor-pointer rounded-lg overflow-hidden transform-gpu anim-fade-up hover-lift ${
+            className={`absolute h-[79px] w-[98px] cursor-pointer rounded overflow-hidden transform-gpu anim-fade-up hover-lift ${
               isActive ? 'ring-2 ring-white/80' : 'opacity-95'
             } ${!isActive && showNavHint ? 'breathe' : ''}`}
             style={{
@@ -653,23 +653,27 @@ function Bloco04() {
   }, []);
 
   return (
-    <div className="absolute contents left-0 top-[2510px]" data-name="Bloco 04">
+    <div className="absolute left-0 top-[2510px] w-[1440px]" data-name="Bloco 04">
+      {/* Faixa preta inferior (top 970, h 300) */}
       <div
-        className="absolute bg-[#13171a] h-[300px] top-[3479px]"
+        className="absolute bg-[#13171a] h-[300px] left-0 top-[970px]"
         data-name="background"
         style={fullBleedBackground}
       />
+      {/* Container principal da imagem */}
       <ImagemGrande activeIndex={galleryActiveIndex} />
-      <ImagensCarrossel 
-        activeIndex={galleryActiveIndex} 
-        onThumbnailClick={handleGalleryThumbnailClick} 
+      {/* Thumbs */}
+      <ImagensCarrossel
+        activeIndex={galleryActiveIndex}
+        onThumbnailClick={handleGalleryThumbnailClick}
       />
-    <div className="absolute left-1/2 top-[3653px] translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic">
-        <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
-      </div>
-  <div className="absolute left-1/2 top-[3533px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
+      {/* Títulos e corpo exatamente como no Figma */}
+      <div className="absolute left-[158px] top-[1023px] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
         <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
         <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
+      </div>
+      <div className="absolute left-[266px] top-[1143px] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic">
+        <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
       </div>
     </div>
   );

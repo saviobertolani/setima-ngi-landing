@@ -140,9 +140,10 @@ const main = async () => {
     // Save raw for reference
     fs.writeFileSync(path.join(outCode, `${safe}.node.json`), JSON.stringify(node, null, 2));
 
-    // Target widths from requisitos
-    const targetW = isBig ? 1440 : isThumb ? 98 : 1440;
-    const targetH = isBig ? 970 : isThumb ? 78 : undefined;
+  // Tamanhos-alvo compatíveis com o layout do Bloco 4
+  // Big: plano de fundo maior que a máscara (2122x1274)
+  const targetW = isBig ? 2122 : isThumb ? 98 : 1440;
+  const targetH = isBig ? 1274 : isThumb ? 78 : undefined;
     const abs = node.absoluteBoundingBox || { width: targetW };
     const scale = abs?.width ? Math.max(1, targetW / abs.width) : 1;
 
