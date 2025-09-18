@@ -521,45 +521,57 @@ const galleryImages = (localGallery.images.length ? localGallery.images.map((src
 
 function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
   const activeImage = galleryImages[activeIndex];
-  // Parallax sutil aplicando deslocamento vertical mínimo no background-position
-  const imgParallax = useScrollParallax({ speed: -0.05 });
-  const clampImg = (v: number) => Math.max(-30, Math.min(30, v));
+  // Quando houver assets locais do Figma, usar o enquadramento exato (2122x1274 @ offsets) sem parallax
+  const hasFigmaLocal = localGallery.images.length > 0;
 
   return (
     <div
       className="absolute left-0 top-0 w-[1440px] h-[970px] overflow-hidden z-[2]"
       data-name="imagem grande"
-      style={{
-        // Fundo cinza do Figma (apenas para espelhar a arquitetura)
-        backgroundColor: '#D9D9D9',
-      }}
+      style={{ backgroundColor: '#D9D9D9' }}
     >
-      {/* Fundo com cover para garantir enquadramento estável em qualquer asset */}
-      <div
-        className="absolute left-0 top-0 w-[1440px] h-[970px] will-change-transform"
-        aria-hidden
-        style={{
-          backgroundImage: `url('${activeImage.src}')`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: `50% calc(50% + ${clampImg(imgParallax.offsetY).toFixed(2)}px)`,
-          transform: 'translateZ(0)',
-          backfaceVisibility: 'hidden',
-          userSelect: 'none'
-        }}
-      />
-      {/* Fallback <img> caso background falhe (garante visibilidade) */}
-      <img
-        src={activeImage.src}
-        alt={activeImage.alt || 'imagem-galeria'}
-        className="absolute left-0 top-0 w-[1440px] h-[970px] object-cover select-none"
-        style={{ opacity: 0.001, pointerEvents: 'none' }}
-        onError={(e) => {
-          // Se a imagem quebrar, deixa o fallback visível para não ficar cinza
-          e.currentTarget.style.opacity = '1';
-        }}
-        draggable={false}
-      />
+      {hasFigmaLocal ? (
+        <img
+          src={activeImage.src}
+          alt={activeImage.alt || 'imagem-galeria'}
+          className="absolute select-none"
+          draggable={false}
+          // Figma: 2122x1274 posicionado em -267, -292 dentro de 1440x970
+          style={{
+            width: '2122px',
+            height: '1274px',
+            left: '-267px',
+            top: '-292px',
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden',
+            userSelect: 'none'
+          }}
+          onError={(e) => {
+            // fallback para caber no container com cover
+            const t = e.currentTarget as HTMLImageElement;
+            t.style.width = '1440px';
+            t.style.height = '970px';
+            t.style.left = '0px';
+            t.style.top = '0px';
+            t.style.objectFit = 'cover';
+          }}
+        />
+      ) : (
+        // Fallback: manter comportamento cover quando não há assets locais (sem parallax)
+        <div
+          className="absolute left-0 top-0 w-[1440px] h-[970px] will-change-transform"
+          aria-hidden
+          style={{
+            backgroundImage: `url('${activeImage.src}')`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden',
+            userSelect: 'none'
+          }}
+        />
+      )}
     </div>
   );
 }
@@ -569,23 +581,22 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
   onThumbnailClick: (index: number) => void; 
 }) {
   const [showNavHint, setShowNavHint] = useState(false);
-  const [thumbsVisible, setThumbsVisible] = useState(false);
+  const [thumbsVisible, setThumbsVisible] = useState(true);
   const galleryRef = useRef<HTMLDivElement>(null);
   const isDebug = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('bloco4Debug');
-  // Determina visibilidade de thumbs de forma mais robusta (URL + variações + localStorage)
+  // Visíveis por padrão; pode ocultar com ?thumbs=0/false ou localStorage=off; debug sempre força on
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const sp = new URLSearchParams(window.location.search);
-    const v = sp.get('thumbs');
-    const has = sp.has('thumbs');
-    const local = (typeof localStorage !== 'undefined' && localStorage.getItem('bloco4_thumbs')) || '';
-    const on = has || v === '1' || v === 'true' || local === 'on' || isDebug;
-    setThumbsVisible(!!on);
+  const v = String(sp.get('thumbs') || '').toLowerCase();
+  const local = String(typeof localStorage !== 'undefined' ? localStorage.getItem('bloco4_thumbs') || '' : '').toLowerCase();
+    const off = v === '0' || v === 'false' || local === 'off';
+    setThumbsVisible(!off || isDebug);
   }, [isDebug]);
   
   
-  // Posições exatas das miniaturas do design original
-  const thumbnailPositions = [325, 434, 543, 652, 761, 870, 979, 1088];
+  // Posições exatas das miniaturas do design original (Figma)
+  const thumbnailPositions = [289, 398, 507, 616, 725, 834, 943, 1052];
 
   // Animação de dica de navegação após scroll
   useEffect(() => {
@@ -647,25 +658,25 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
   return (
     <div
       ref={galleryRef}
-      className="absolute left-0 top-[860px] w-[1440px] h-[79px] z-[1000]"
+      className="absolute left-0 top-[860px] w-[1440px] z-[1000]"
       data-name="imagens carrossel"
       style={{ 
         ...(isDebug ? { 
           outline: '2px dashed rgba(255,0,0,0.6)', 
           background: 'rgba(255,0,0,0.05)'
         } : {}), 
-        overflow: 'visible' 
+        overflow: 'visible',
+        height: '78.63px'
       }}
     >
-      {/* Faixa de contraste para destacar as thumbs */}
-      <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.45)', pointerEvents: 'none', zIndex: 0 }} />
+      {/* Sem faixa de contraste — seguir Figma */}
       {galleryImages.slice(0, 8).map((image, index) => {
         const isActive = activeIndex === index;
         return (
           <button
             key={image.id}
             onClick={() => onThumbnailClick(index)}
-            className={`absolute h-[79px] w-[98px] cursor-pointer rounded overflow-hidden transform-gpu anim-fade-up hover-lift ${
+            className={`absolute w-[98px] cursor-pointer rounded overflow-hidden transform-gpu anim-fade-up hover-lift ${
               isActive ? 'ring-2 ring-white/80' : 'opacity-95'
             } ${!isActive && showNavHint ? 'breathe' : ''}`}
             style={{
@@ -675,7 +686,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
               zIndex: 11,
               pointerEvents: 'auto',
               width: '98px',
-              height: '79px',
+              height: '78.63px',
               display: 'block'
             }}
             data-name={`thumbnail-${index}`}
@@ -692,7 +703,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
                 const t = e.currentTarget;
                 if (t.src !== image.src) t.src = image.src;
               }}
-              style={{ width: '98px', height: '79px', display: 'block' }}
+              style={{ width: '98px', height: '78.63px', display: 'block' }}
             />
             {isDebug && (
               <div className="absolute inset-0 border border-red-500/60 pointer-events-none" />
