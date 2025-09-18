@@ -574,6 +574,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
 }) {
   const [showNavHint, setShowNavHint] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
+  const isDebug = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('bloco4Debug');
   
   // Posições exatas das miniaturas do design original
   const thumbnailPositions = [289, 398, 507, 616, 725, 834, 943, 1052];
@@ -609,8 +610,37 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
     };
   }, []);
 
+  // Debug: log estado das thumbs quando visível
+  useEffect(() => {
+    if (!isDebug) return;
+    const el = galleryRef.current;
+    if (!el) return;
+    const buttons = Array.from(el.querySelectorAll('button')) as HTMLButtonElement[];
+    console.groupCollapsed('[Bloco04] Debug Miniaturas');
+    console.log('Qtd imagens (galleryImages):', galleryImages.length);
+    console.log('Qtd thumbs no DOM:', buttons.length);
+    buttons.forEach((b, i) => {
+      const r = b.getBoundingClientRect();
+      const img = b.querySelector('img') as HTMLImageElement | null;
+      console.log(`#${i}`, {
+        left: r.left, top: r.top, width: r.width, height: r.height,
+        zIndex: getComputedStyle(b).zIndex,
+        display: getComputedStyle(b).display,
+        visibility: getComputedStyle(b).visibility,
+        opacity: getComputedStyle(b).opacity,
+        src: img?.src, complete: img?.complete, naturalWidth: img?.naturalWidth, naturalHeight: img?.naturalHeight
+      });
+    });
+    console.groupEnd();
+  }, [activeIndex, isDebug]);
+
   return (
-    <div ref={galleryRef} className="absolute left-0 top-[860px] w-[1440px] h-[79px] z-[10]" data-name="imagens carrossel">
+    <div
+      ref={galleryRef}
+      className="absolute left-0 top-[860px] w-[1440px] h-[79px] z-[10]"
+      data-name="imagens carrossel"
+      style={isDebug ? { outline: '2px dashed rgba(255,0,0,0.6)' } : undefined}
+    >
       {galleryImages.slice(0, 8).map((image, index) => {
         const isActive = activeIndex === index;
         return (
@@ -633,8 +663,13 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
             <img
               src={image.thumbnail || image.src}
               alt={image.alt}
-              className="absolute left-0 top-0 h-[79px] w-[98px] object-cover"
+              className="absolute left-0 top-0 h-[79px] w-[98px] object-cover bg-[#222]"
               draggable={false}
+              onError={(e) => {
+                // Fallback: se thumb falhar, usa a imagem grande
+                const t = e.currentTarget;
+                if (t.src !== image.src) t.src = image.src;
+              }}
             />
             <span className="sr-only">Selecionar imagem {index + 1}</span>
           </button>
@@ -666,6 +701,7 @@ const Bloco03 = memo(() => {
 
 function Bloco04() {
   const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
+  const isDebug = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('bloco4Debug');
 
   const handleGalleryThumbnailClick = useCallback((index: number) => {
     setGalleryActiveIndex(index);
@@ -686,6 +722,13 @@ function Bloco04() {
         activeIndex={galleryActiveIndex}
         onThumbnailClick={handleGalleryThumbnailClick}
       />
+      {isDebug && (
+        <div className="absolute left-4 top-4 z-[50] text-xs text-white bg-[rgba(0,0,0,0.6)] rounded px-2 py-1" style={{pointerEvents:'none'}}>
+          <div>Bloco04 Debug</div>
+          <div>Thumbs: top 860, left [289..1052], size 98x79</div>
+          <div>Layering: barra z0, imagem z1, thumbs z10+, textos z4</div>
+        </div>
+      )}
       {/* Títulos e corpo exatamente como no Figma */}
       <div className="absolute left-[158px] top-[1023px] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic z-[4]">
         <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
