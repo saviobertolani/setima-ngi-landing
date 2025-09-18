@@ -786,6 +786,16 @@ const VideoAqui = memo(() => {
   useEffect(() => {
     if (typeof document !== 'undefined') {
       const anchor = document.getElementById('video1-anchor');
+      // Força a âncora a ser interativa/visível mesmo que estilos antigos persistam
+      if (anchor) {
+        anchor.setAttribute('aria-hidden', 'false');
+        // Evita herdar pointer-events: none de versões anteriores
+        (anchor as HTMLElement).style.pointerEvents = 'auto';
+        // Garante que o vídeo fique acima do conteúdo, mas abaixo do header (z-[9999])
+        (anchor as HTMLElement).style.zIndex = (Number((anchor as HTMLElement).style.zIndex) || 0) < 4000 ? '4000' : (anchor as HTMLElement).style.zIndex;
+        // Cria um novo contexto de empilhamento para filhos absolutos
+        (anchor as HTMLElement).style.contain = (anchor as HTMLElement).style.contain || 'layout paint';
+      }
       setPortalTarget(anchor ?? document.body);
     }
   }, []);
@@ -795,13 +805,16 @@ const VideoAqui = memo(() => {
     <div
       className="video-portal-wrapper"
       style={{
-        position: 'absolute',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        top: 0,
-        width: 'min(958px, 92vw)',
-        aspectRatio: '16 / 9',
-        zIndex: 2147483000,
+  position: 'absolute',
+  // Preenche exatamente a âncora (#video1-anchor) para não deslocar
+  left: 0,
+  top: 0,
+  right: 0,
+  bottom: 0,
+  width: '100%',
+  height: '100%',
+        // Mantém o vídeo acima do conteúdo, mas abaixo do header fixo (z-[9999])
+        zIndex: 4000,
         pointerEvents: 'auto',
         isolation: 'isolate',
         outline: debugHighlight ? '4px solid rgba(255, 0, 0, 0.55)' : undefined,
@@ -816,7 +829,7 @@ const VideoAqui = memo(() => {
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
-          zIndex: 2147483000,
+          zIndex: 0,
           backgroundColor: '#0b0d0f'
         }}
       >
@@ -880,7 +893,15 @@ const VideoAqui = memo(() => {
     </div>
   );
 
-  return portalTarget ? createPortal(videoNode, portalTarget) : videoNode;
+  // Se a âncora não foi encontrada por algum motivo, ainda renderiza inline como fallback visível
+  if (!portalTarget) {
+    return (
+      <div style={{ position: 'absolute', left: '154px', top: '726px', width: '958px', height: '538px', zIndex: 4000 }}>
+        {videoNode}
+      </div>
+    );
+  }
+  return createPortal(videoNode, portalTarget);
 });
 
 const VideoTera3D = memo(() => {
@@ -982,8 +1003,9 @@ function Bloco02() {
       {/* Âncora invisível usada para posicionar o vídeo via portal (position: fixed) */}
       <div
         id="video1-anchor"
-        className="absolute left-[154px] top-[726px] w-[958px] h-[538px] pointer-events-none"
-        aria-hidden="true"
+  className="absolute left-[154px] top-[726px] w-[958px] h-[538px] z-[4000]"
+  aria-hidden="false"
+  style={{ pointerEvents: 'auto', contain: 'layout paint' }}
       />
       
   <div className="absolute fig-ubuntu-light fig-title-45 fig-white text-smooth left-[77px] not-italic top-[887px] w-[271px]" style={h1Parallax.tw}>
