@@ -622,7 +622,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
     console.groupEnd();
   }, [activeIndex, isDebug, thumbsVisible]);
 
-  if (!thumbsVisible) return null;
+  // Guard: por padrão não renderiza nada (thumbs só aparecem com ?thumbs=1 ou ?bloco4Debug=1)
   if (!thumbsVisible) return null;
   return (
     <div
