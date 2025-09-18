@@ -68,3 +68,20 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Smoke test (production URL)
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="https://ngi.setima.cc/"
+          echo "Probing $URL"
+          for i in {1..10}; do
+            code=$(curl -I --max-time 10 --silent -o /dev/null -w "%{http_code}" "$URL" || true)
+            echo "Attempt $i -> HTTP $code"
+            if [ "$code" = "200" ] || [ "$code" = "301" ] || [ "$code" = "308" ]; then
+              exit 0
+            fi
+            sleep 6
+          done
+          echo "Smoke test failed"
+          exit 1

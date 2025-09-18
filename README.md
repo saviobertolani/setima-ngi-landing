@@ -1,11 +1,14 @@
 
   # Landing Page Sétima - NGI
 
-  This is a code bundle for Landing Page Sétima - NGI. The original project is available at https://www.figma.com/design/5FoMIt2yaOCKtNyTCgakna/Landing-Page-S%C3%A9tima---NGI.
+  [![Deploy to GitHub Pages](https://github.com/Setima-GIT/setima-ngi-landing/actions/workflows/deploy.yml/badge.svg)](https://github.com/Setima-GIT/setima-ngi-landing/actions/workflows/deploy.yml)
 
-  ## Running the code
+  Produção: https://ngi.setima.cc
 
-  Run `npm i` to install the dependencies.
+  Este é o bundle de código da Landing Page Sétima - NGI. O projeto original está no Figma: https://www.figma.com/design/5FoMIt2yaOCKtNyTCgakna/Landing-Page-S%C3%A9tima---NGI.
 
-  Run `npm run dev` to start the development server.
+  ## Como rodar localmente
+
+  - `npm i` para instalar dependências
+  - `npm run dev` para subir o servidor de desenvolvimento (porta 3002)
   
