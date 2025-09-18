@@ -60,11 +60,10 @@ function IconeSeta() {
             <path d="M15.4 4.95H0" id="Vector_2" stroke="var(--stroke-0, #13171A)" strokeMiterlimit="10" />
           </g>
         </svg>
-      <div
-        id="video1-anchor"
-        className="absolute left-[404px] top-[836px] w-[958px] h-[538px] z-[8000]"
+      </div>
+    </div>
+  );
 }
-
 
 
 function LogoSetima() {
@@ -1011,7 +1010,7 @@ function Bloco02() {
       {/* Âncora invisível usada para posicionar o vídeo via portal (position: fixed) */}
       <div
         id="video1-anchor"
-        className="absolute left-[154px] top-[726px] w-[958px] h-[538px] z-[8000]"
+        className="absolute left-[404px] top-[836px] w-[958px] h-[538px] z-[8000]"
         aria-hidden="false"
         style={{ pointerEvents: 'auto', contain: 'layout paint', outline: debug ? '2px solid red' : undefined, outlineOffset: debug ? '2px' : undefined }}
       />
