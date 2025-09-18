@@ -527,7 +527,7 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
 
   return (
     <div
-      className="absolute left-0 top-0 w-[1440px] h-[970px] overflow-hidden"
+      className="absolute left-0 top-0 w-[1440px] h-[970px] overflow-hidden z-[1]"
       data-name="imagem grande"
     >
       {/* Fundo cinza do Figma (apenas para espelhar a arquitetura) */}
@@ -535,7 +535,7 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
 
       {/* Imagem 2122x1274 posicionada exatamente como no Figma */}
       <div
-        className="absolute bg-center bg-cover bg-no-repeat will-transform-3d transition-opacity duration-700"
+        className="absolute bg-center bg-cover bg-no-repeat will-transform-3d transition-opacity duration-700 z-[1]"
         style={{
           width: '2122px',
           height: '1274px',
@@ -595,7 +595,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
   }, []);
 
   return (
-    <div ref={galleryRef} className="absolute left-0 top-[860px] w-[1440px] h-[79px]" data-name="imagens carrossel">
+    <div ref={galleryRef} className="absolute left-0 top-[860px] w-[1440px] h-[79px] z-[3]" data-name="imagens carrossel">
       {galleryImages.slice(0, 8).map((image, index) => {
         const isActive = activeIndex === index;
         return (
@@ -609,14 +609,17 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
               left: `${thumbnailPositions[index]}px`,
               top: '0px',
               animationDelay: `${index * 100}ms`, // Efeito em cascata 100ms
-              backgroundImage: `url('${image.thumbnail || image.src}')`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
             }}
             data-name={`thumbnail-${index}`}
             title={image.alt}
             aria-current={isActive ? 'true' : undefined}
           >
+            <img
+              src={image.thumbnail || image.src}
+              alt={image.alt}
+              className="absolute left-0 top-0 h-[79px] w-[98px] object-cover"
+              draggable={false}
+            />
             <span className="sr-only">Selecionar imagem {index + 1}</span>
           </button>
         );
@@ -656,7 +659,7 @@ function Bloco04() {
     <div className="absolute left-0 top-[2510px] w-[1440px]" data-name="Bloco 04">
       {/* Faixa preta inferior (top 970, h 300) */}
       <div
-        className="absolute bg-[#13171a] h-[300px] left-0 top-[970px]"
+        className="absolute bg-[#13171a] h-[300px] left-0 top-[970px] z-0"
         data-name="background"
         style={fullBleedBackground}
       />
@@ -668,11 +671,11 @@ function Bloco04() {
         onThumbnailClick={handleGalleryThumbnailClick}
       />
       {/* Títulos e corpo exatamente como no Figma */}
-      <div className="absolute left-[158px] top-[1023px] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
+      <div className="absolute left-[158px] top-[1023px] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic z-[4]">
         <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
         <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
       </div>
-      <div className="absolute left-[266px] top-[1143px] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic">
+      <div className="absolute left-[266px] top-[1143px] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic z-[4]">
         <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
       </div>
     </div>
