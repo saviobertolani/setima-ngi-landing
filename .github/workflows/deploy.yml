@@ -49,12 +49,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Configure Pages (optional CNAME)
+      - name: Enable Pages for this repo
         uses: actions/configure-pages@v5
         with:
-          # Defina a variável de repositório CUSTOM_DOMAIN (Settings > Variables > Repository variables)
-          # Ex.: site.seudominio.com
-          cname: ${{ vars.CUSTOM_DOMAIN }}
+          enablement: true
+
+      - name: Download build artifact
+        uses: actions/download-pages-artifact@v3
+
+  # Para domínio customizado, crie manualmente um arquivo CNAME na raiz (ou adicione uma etapa aqui com echo "seu.dominio" > CNAME)
 
       - name: Deploy to GitHub Pages
         id: deployment
