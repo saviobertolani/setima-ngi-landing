@@ -458,7 +458,7 @@ const galleryImages = (localGallery.images.length ? localGallery.images.map((src
   id: idx,
   src,
   mask: localGallery.mask ?? img250127AlmapStillTeraTheTownFrenteV82,
-  thumbnail: src,
+  thumbnail: localGallery.thumbs?.[idx] || src,
   alt: `figma-local-${idx}`
 })) : [
   {
@@ -521,37 +521,33 @@ const galleryImages = (localGallery.images.length ? localGallery.images.map((src
 
 function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
   const activeImage = galleryImages[activeIndex];
-  // Sutil parallax interno via background-position (não move o container)
+  // Parallax sutil aplicando deslocamento vertical mínimo
   const imgParallax = useScrollParallax({ speed: -0.05 });
-  const clampImg = (v:number) => Math.max(-30, Math.min(30, v));
+  const clampImg = (v: number) => Math.max(-20, Math.min(20, v));
 
   return (
-  <div className="absolute contents left-0 top-[2510px]" data-name="imagem grande">
-      {/* Imagem principal com transição suave */}
-      <div 
-  className="absolute bg-center bg-cover bg-no-repeat h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] transition-all duration-700 ease-in-out" 
-        data-name="main gallery image"
-        style={{ 
-          backgroundImage: `url('${activeImage.src}')`, 
-          maskImage: `url('${activeImage.mask}')`,
-          backgroundPosition: `50% calc(50% + ${clampImg(imgParallax.offsetY).toFixed(2)}px)`,
-          transform: 'translateZ(0)', // Força aceleração por hardware
-          backfaceVisibility: 'hidden',
-          width: 'max(2122px, calc(100vw + 534px))', // Garante cobertura total em qualquer resolução
-          minWidth: '2122px' // Mantém largura mínima do design original
-        }} 
-      />
-      
-      {/* Overlay sutil para transições mais suaves */}
-      <div 
-        className="absolute bg-center bg-cover bg-no-repeat h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] w-[2122px] opacity-0 transition-opacity duration-300 pointer-events-none" 
-        data-name="transition overlay"
-        style={{ 
-          backgroundImage: `url('${activeImage.src}')`, 
-          maskImage: `url('${activeImage.mask}')`,
+    <div
+      className="absolute left-0 top-0 w-[1440px] h-[970px] overflow-hidden z-[1]"
+      data-name="imagem grande"
+    >
+      {/* Fundo cinza do Figma (apenas para espelhar a arquitetura) */}
+      <div className="absolute left-0 top-0 w-[1440px] h-[970px] bg-[#D9D9D9]" aria-hidden />
+
+      {/* Imagem 2122x1274 posicionada exatamente como no Figma */}
+      <div
+        className="absolute bg-center bg-cover bg-no-repeat will-transform-3d transition-opacity duration-700 z-[1]"
+        style={{
+          width: '2122px',
+          height: '1274px',
+          left: '-267px',
+          top: `${-292 + clampImg(imgParallax.offsetY)}px`,
+          backgroundImage: `url('${activeImage.src}')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           transform: 'translateZ(0)',
-          backfaceVisibility: 'hidden'
-        }} 
+          backfaceVisibility: 'hidden',
+        }}
+        aria-label={activeImage.alt}
       />
     </div>
   );
@@ -565,7 +561,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
   const galleryRef = useRef<HTMLDivElement>(null);
   
   // Posições exatas das miniaturas do design original
-  const thumbnailPositions = [251, 371, 491, 611, 731, 851, 971, 1091];
+  const thumbnailPositions = [289, 398, 507, 616, 725, 834, 943, 1052];
 
   // Animação de dica de navegação após scroll
   useEffect(() => {
@@ -599,39 +595,35 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
   }, []);
 
   return (
-  <div ref={galleryRef} className="absolute contents left-[251px] top-[3342px]" data-name="imagens carrossel">
-      {galleryImages.slice(0, 8).map((image, index) => (
-        <button
-          key={image.id}
-          onClick={() => onThumbnailClick(index)}
-          className={`absolute size-[98px] top-[3342px] cursor-pointer rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu thumbnail-nav-hint ${
-            activeIndex === index 
-              ? 'scale-105 shadow-lg shadow-black/20' 
-              : 'hover:scale-110 hover:shadow-xl hover:shadow-black/25 hover:-translate-y-1'
-          } ${
-            showNavHint && index !== activeIndex ? 'thumbnail-breathing' : ''
-          }`}
-          style={{ 
-            left: `${thumbnailPositions[index]}px`,
-            animationDelay: `${index * 150}ms` // Efeito em cascata
-          }}
-          data-name={`thumbnail-${index}`}
-          title={image.alt}
-        >
-          {/* Miniatura da imagem */}
-          <div 
-            className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-all duration-300"
-            style={{ 
-              backgroundImage: `url('${image.src}')`,
-              transform: 'translateZ(0)',
-              backfaceVisibility: 'hidden'
+    <div ref={galleryRef} className="absolute left-0 top-[860px] w-[1440px] h-[79px] z-[3]" data-name="imagens carrossel">
+      {galleryImages.slice(0, 8).map((image, index) => {
+        const isActive = activeIndex === index;
+        return (
+          <button
+            key={image.id}
+            onClick={() => onThumbnailClick(index)}
+            className={`absolute h-[79px] w-[98px] cursor-pointer rounded overflow-hidden transform-gpu anim-fade-up hover-lift ${
+              isActive ? 'ring-2 ring-white/80' : 'opacity-95'
+            } ${!isActive && showNavHint ? 'breathe' : ''}`}
+            style={{
+              left: `${thumbnailPositions[index]}px`,
+              top: '0px',
+              animationDelay: `${index * 100}ms`, // Efeito em cascata 100ms
             }}
-          />
-          
-          {/* Overlay de hover - apenas efeito lente */}
-          <div className="absolute inset-0 transition-all duration-300 bg-black/0 hover:bg-black/5" />
-        </button>
-      ))}
+            data-name={`thumbnail-${index}`}
+            title={image.alt}
+            aria-current={isActive ? 'true' : undefined}
+          >
+            <img
+              src={image.thumbnail || image.src}
+              alt={image.alt}
+              className="absolute left-0 top-0 h-[79px] w-[98px] object-cover"
+              draggable={false}
+            />
+            <span className="sr-only">Selecionar imagem {index + 1}</span>
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -664,23 +656,27 @@ function Bloco04() {
   }, []);
 
   return (
-    <div className="absolute contents left-0 top-[2510px]" data-name="Bloco 04">
+    <div className="absolute left-0 top-[2510px] w-[1440px]" data-name="Bloco 04">
+      {/* Faixa preta inferior (top 970, h 300) */}
       <div
-        className="absolute bg-[#13171a] h-[300px] top-[3479px]"
+        className="absolute bg-[#13171a] h-[300px] left-0 top-[970px] z-0"
         data-name="background"
         style={fullBleedBackground}
       />
+      {/* Container principal da imagem */}
       <ImagemGrande activeIndex={galleryActiveIndex} />
-      <ImagensCarrossel 
-        activeIndex={galleryActiveIndex} 
-        onThumbnailClick={handleGalleryThumbnailClick} 
+      {/* Thumbs */}
+      <ImagensCarrossel
+        activeIndex={galleryActiveIndex}
+        onThumbnailClick={handleGalleryThumbnailClick}
       />
-    <div className="absolute left-1/2 top-[3653px] translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic">
-        <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
-      </div>
-  <div className="absolute left-1/2 top-[3533px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
+      {/* Títulos e corpo exatamente como no Figma */}
+      <div className="absolute left-[158px] top-[1023px] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic z-[4]">
         <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
         <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
+      </div>
+      <div className="absolute left-[266px] top-[1143px] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic z-[4]">
+        <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
       </div>
     </div>
   );

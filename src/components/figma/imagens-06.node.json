@@ -1,0 +1,117 @@
+{
+  "id": "56:134",
+  "name": "imagens=06",
+  "type": "COMPONENT",
+  "scrollBehavior": "SCROLLS",
+  "children": [
+    {
+      "id": "56:135",
+      "name": "Rectangle 5",
+      "type": "RECTANGLE",
+      "scrollBehavior": "SCROLLS",
+      "blendMode": "PASS_THROUGH",
+      "fills": [
+        {
+          "blendMode": "NORMAL",
+          "type": "SOLID",
+          "color": {
+            "r": 0.8509804010391235,
+            "g": 0.8509804010391235,
+            "b": 0.8509804010391235,
+            "a": 1
+          }
+        }
+      ],
+      "strokes": [],
+      "strokeWeight": 1,
+      "strokeAlign": "INSIDE",
+      "absoluteBoundingBox": {
+        "x": 9635,
+        "y": 6011,
+        "width": 1440,
+        "height": 970
+      },
+      "absoluteRenderBounds": null,
+      "constraints": {
+        "vertical": "SCALE",
+        "horizontal": "SCALE"
+      },
+      "effects": [],
+      "isMask": true,
+      "maskType": "ALPHA",
+      "interactions": []
+    },
+    {
+      "id": "56:136",
+      "name": "25_0127_Almap_Still_TeraTheTown_Frente_V08 2",
+      "type": "RECTANGLE",
+      "scrollBehavior": "SCROLLS",
+      "blendMode": "PASS_THROUGH",
+      "fills": [
+        {
+          "blendMode": "NORMAL",
+          "type": "IMAGE",
+          "scaleMode": "FILL",
+          "imageRef": "6471694a75ae138d3623d6ae252911733c3c383d"
+        }
+      ],
+      "strokes": [],
+      "strokeWeight": 1,
+      "strokeAlign": "INSIDE",
+      "absoluteBoundingBox": {
+        "x": 9470,
+        "y": 5982,
+        "width": 1678.945068359375,
+        "height": 1008
+      },
+      "absoluteRenderBounds": {
+        "x": 9635,
+        "y": 6011,
+        "width": 1440,
+        "height": 970
+      },
+      "preserveRatio": true,
+      "targetAspectRatio": {
+        "x": 1678.945068359375,
+        "y": 1008
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "SCALE"
+      },
+      "effects": [],
+      "interactions": []
+    }
+  ],
+  "blendMode": "PASS_THROUGH",
+  "clipsContent": false,
+  "background": [],
+  "fills": [],
+  "strokes": [],
+  "strokeWeight": 1,
+  "strokeAlign": "INSIDE",
+  "backgroundColor": {
+    "r": 0,
+    "g": 0,
+    "b": 0,
+    "a": 0
+  },
+  "absoluteBoundingBox": {
+    "x": 9635,
+    "y": 6011,
+    "width": 1440,
+    "height": 970
+  },
+  "absoluteRenderBounds": {
+    "x": 9635,
+    "y": 6011,
+    "width": 1440,
+    "height": 970
+  },
+  "constraints": {
+    "vertical": "TOP",
+    "horizontal": "LEFT"
+  },
+  "effects": [],
+  "interactions": []
+}

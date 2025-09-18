@@ -1,0 +1,109 @@
+{
+  "id": "56:110",
+  "name": "thumbs=05",
+  "type": "COMPONENT",
+  "scrollBehavior": "SCROLLS",
+  "children": [
+    {
+      "id": "56:111",
+      "name": "Asset 8",
+      "type": "RECTANGLE",
+      "scrollBehavior": "SCROLLS",
+      "blendMode": "PASS_THROUGH",
+      "fills": [
+        {
+          "blendMode": "NORMAL",
+          "type": "IMAGE",
+          "scaleMode": "FILL",
+          "imageRef": "cc3f744f6a59fed51ea1e28cab48928c13b63562"
+        }
+      ],
+      "strokes": [],
+      "strokeWeight": 1,
+      "strokeAlign": "INSIDE",
+      "absoluteBoundingBox": {
+        "x": 2381,
+        "y": 5632,
+        "width": 98,
+        "height": 78.63240814208984
+      },
+      "absoluteRenderBounds": {
+        "x": 2381,
+        "y": 5632,
+        "width": 98,
+        "height": 78.63232421875
+      },
+      "preserveRatio": true,
+      "targetAspectRatio": {
+        "x": 253,
+        "y": 203
+      },
+      "constraints": {
+        "vertical": "SCALE",
+        "horizontal": "SCALE"
+      },
+      "effects": [],
+      "interactions": []
+    }
+  ],
+  "blendMode": "PASS_THROUGH",
+  "clipsContent": false,
+  "background": [
+    {
+      "blendMode": "NORMAL",
+      "visible": false,
+      "type": "SOLID",
+      "color": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      }
+    }
+  ],
+  "fills": [
+    {
+      "blendMode": "NORMAL",
+      "visible": false,
+      "type": "SOLID",
+      "color": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 1
+      }
+    }
+  ],
+  "strokes": [],
+  "strokeWeight": 1,
+  "strokeAlign": "INSIDE",
+  "backgroundColor": {
+    "r": 0,
+    "g": 0,
+    "b": 0,
+    "a": 0
+  },
+  "absoluteBoundingBox": {
+    "x": 2381,
+    "y": 5632,
+    "width": 98,
+    "height": 78.63240814208984
+  },
+  "absoluteRenderBounds": {
+    "x": 2381,
+    "y": 5632,
+    "width": 98,
+    "height": 78.63240814208984
+  },
+  "preserveRatio": true,
+  "targetAspectRatio": {
+    "x": 253,
+    "y": 203
+  },
+  "constraints": {
+    "vertical": "TOP",
+    "horizontal": "LEFT"
+  },
+  "effects": [],
+  "interactions": []
+}
