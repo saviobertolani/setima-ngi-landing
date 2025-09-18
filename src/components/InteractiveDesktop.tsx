@@ -458,7 +458,7 @@ const galleryImages = (localGallery.images.length ? localGallery.images.map((src
   id: idx,
   src,
   mask: localGallery.mask ?? img250127AlmapStillTeraTheTownFrenteV82,
-  thumbnail: src,
+  thumbnail: localGallery.thumbs?.[idx] || src,
   alt: `figma-local-${idx}`
 })) : [
   {
@@ -520,39 +520,35 @@ const galleryImages = (localGallery.images.length ? localGallery.images.map((src
 ]);
 
 function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
-  const activeImage = galleryImages[activeIndex];
-  // Sutil parallax interno via background-position (não move o container)
-  const imgParallax = useScrollParallax({ speed: -0.05 });
-  const clampImg = (v:number) => Math.max(-30, Math.min(30, v));
+  // Parallax 20% mais devagar que o scroll
+  const imgParallax = useScrollParallax({ speed: -0.2 });
+  const clampImg = (v:number) => Math.max(-40, Math.min(40, v));
+
+  // Permite substituir as imagens por versões do Figma (quando adicionadas em assets)
+  const images = galleryImages;
 
   return (
-  <div className="absolute contents left-0 top-[2510px]" data-name="imagem grande">
-      {/* Imagem principal com transição suave */}
-      <div 
-  className="absolute bg-center bg-cover bg-no-repeat h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] transition-all duration-700 ease-in-out" 
-        data-name="main gallery image"
-        style={{ 
-          backgroundImage: `url('${activeImage.src}')`, 
-          maskImage: `url('${activeImage.mask}')`,
-          backgroundPosition: `50% calc(50% + ${clampImg(imgParallax.offsetY).toFixed(2)}px)`,
-          transform: 'translateZ(0)', // Força aceleração por hardware
-          backfaceVisibility: 'hidden',
-          width: 'max(2122px, calc(100vw + 534px))', // Garante cobertura total em qualquer resolução
-          minWidth: '2122px' // Mantém largura mínima do design original
-        }} 
-      />
-      
-      {/* Overlay sutil para transições mais suaves */}
-      <div 
-        className="absolute bg-center bg-cover bg-no-repeat h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] w-[2122px] opacity-0 transition-opacity duration-300 pointer-events-none" 
-        data-name="transition overlay"
-        style={{ 
-          backgroundImage: `url('${activeImage.src}')`, 
-          maskImage: `url('${activeImage.mask}')`,
-          transform: 'translateZ(0)',
-          backfaceVisibility: 'hidden'
-        }} 
-      />
+    <div className="absolute contents left-0 top-[2510px]" data-name="imagem grande">
+      {/* Crossfade entre camadas com parallax sutil */}
+      {images.map((img, idx) => (
+        <div
+          key={img.id}
+          className="absolute bg-center bg-cover bg-no-repeat h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] transition-opacity duration-500 ease-in-out"
+          data-name={idx === activeIndex ? 'main gallery image (active)' : 'main gallery image'}
+          style={{
+            backgroundImage: `url('${img.src}')`,
+            // Usa máscara se existir no item
+            ...(img.mask ? { maskImage: `url('${img.mask}')` } : {}),
+            backgroundPosition: `50% calc(50% + ${clampImg(imgParallax.offsetY).toFixed(2)}px)`,
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden',
+            width: 'max(2122px, calc(100vw + 534px))',
+            minWidth: '2122px',
+            opacity: activeIndex === idx ? 1 : 0,
+          }}
+          aria-hidden={activeIndex !== idx}
+        />
+      ))}
     </div>
   );
 }
@@ -599,39 +595,32 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
   }, []);
 
   return (
-  <div ref={galleryRef} className="absolute contents left-[251px] top-[3342px]" data-name="imagens carrossel">
-      {galleryImages.slice(0, 8).map((image, index) => (
-        <button
-          key={image.id}
-          onClick={() => onThumbnailClick(index)}
-          className={`absolute size-[98px] top-[3342px] cursor-pointer rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu thumbnail-nav-hint ${
-            activeIndex === index 
-              ? 'scale-105 shadow-lg shadow-black/20' 
-              : 'hover:scale-110 hover:shadow-xl hover:shadow-black/25 hover:-translate-y-1'
-          } ${
-            showNavHint && index !== activeIndex ? 'thumbnail-breathing' : ''
-          }`}
-          style={{ 
-            left: `${thumbnailPositions[index]}px`,
-            animationDelay: `${index * 150}ms` // Efeito em cascata
-          }}
-          data-name={`thumbnail-${index}`}
-          title={image.alt}
-        >
-          {/* Miniatura da imagem */}
-          <div 
-            className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-all duration-300"
-            style={{ 
-              backgroundImage: `url('${image.src}')`,
-              transform: 'translateZ(0)',
-              backfaceVisibility: 'hidden'
+    <div ref={galleryRef} className="absolute contents left-[251px] top-[3342px]" data-name="imagens carrossel">
+      {galleryImages.slice(0, 8).map((image, index) => {
+        const isActive = activeIndex === index;
+        return (
+          <button
+            key={image.id}
+            onClick={() => onThumbnailClick(index)}
+            className={`absolute size-[98px] cursor-pointer rounded-lg overflow-hidden transform-gpu anim-fade-up hover-lift ${
+              isActive ? 'ring-2 ring-white/80' : 'opacity-95'
+            } ${!isActive && showNavHint ? 'breathe' : ''}`}
+            style={{
+              left: `${thumbnailPositions[index]}px`,
+              top: '0px',
+              animationDelay: `${index * 100}ms`, // Efeito em cascata 100ms
+              backgroundImage: `url('${image.thumbnail || image.src}')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
             }}
-          />
-          
-          {/* Overlay de hover - apenas efeito lente */}
-          <div className="absolute inset-0 transition-all duration-300 bg-black/0 hover:bg-black/5" />
-        </button>
-      ))}
+            data-name={`thumbnail-${index}`}
+            title={image.alt}
+            aria-current={isActive ? 'true' : undefined}
+          >
+            <span className="sr-only">Selecionar imagem {index + 1}</span>
+          </button>
+        );
+      })}
     </div>
   );
 }
