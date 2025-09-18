@@ -33,13 +33,21 @@ jobs:
       - name: Build
         run: |
           # Se tiver public/CNAME (domínio customizado), base = '/'; caso contrário, '/<repo>/'
-          if [ -f public/CNAME ]; then export BASE_PATH="/"; else export BASE_PATH="/${{ github.event.repository.name }}/"; fi
+          # Considera CNAME válido apenas se existir e tiver uma linha não vazia/nem comentada
+          if [ -f public/CNAME ] && grep -Ev '^[[:space:]]*(#|$)' public/CNAME >/dev/null; then
+            export BASE_PATH="/"
+          else
+            export BASE_PATH="/${{ github.event.repository.name }}/"
+          fi
           echo "Using BASE_PATH=$BASE_PATH"
           npm run build
 
       - name: Copy CNAME if present
         run: |
-          if [ -f public/CNAME ]; then cp public/CNAME build/CNAME; fi
+          # Copia CNAME somente se for válido (não vazio/comentado)
+          if [ -f public/CNAME ] && grep -Ev '^[[:space:]]*(#|$)' public/CNAME >/dev/null; then
+            cp public/CNAME build/CNAME
+          fi
 
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
