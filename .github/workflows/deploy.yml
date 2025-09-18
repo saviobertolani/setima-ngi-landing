@@ -54,10 +54,7 @@ jobs:
         with:
           enablement: true
 
-      - name: Download build artifact
-        uses: actions/download-pages-artifact@v3
-
-  # Para domínio customizado, crie manualmente um arquivo CNAME na raiz (ou adicione uma etapa aqui com echo "seu.dominio" > CNAME)
+  # Para domínio customizado, crie manualmente um arquivo CNAME na raiz do projeto (commitado) com o host desejado
 
       - name: Deploy to GitHub Pages
         id: deployment
