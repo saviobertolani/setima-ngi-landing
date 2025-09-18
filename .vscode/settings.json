@@ -1,3 +1,13 @@
 {
-    "CodeGPT.apiKey": "Github"
+    "CodeGPT.apiKey": "Github",
+    "mcpServers": {
+        "browsermcp": {
+            "command": "npx",
+            "args": [
+                "@browsermcp/mcp@latest"
+            ]
+        }
+    },
+    "chat.mcp.assisted.nuget.enabled": true,
+    "chat.mcp.autostart": "newAndOutdated"
 }

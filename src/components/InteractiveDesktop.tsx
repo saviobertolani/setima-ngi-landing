@@ -521,35 +521,32 @@ const galleryImages = (localGallery.images.length ? localGallery.images.map((src
 
 function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
   const activeImage = galleryImages[activeIndex];
-  // Parallax sutil aplicando deslocamento vertical mínimo
+  // Parallax sutil aplicando deslocamento vertical mínimo no background-position
   const imgParallax = useScrollParallax({ speed: -0.05 });
-  const clampImg = (v: number) => Math.max(-20, Math.min(20, v));
+  const clampImg = (v: number) => Math.max(-30, Math.min(30, v));
 
   return (
     <div
-      className="absolute left-0 top-0 w-[1440px] h-[970px] overflow-hidden z-[1]"
+      className="absolute left-0 top-0 w-[1440px] h-[970px] overflow-hidden z-[2]"
       data-name="imagem grande"
+      style={{
+        // Fundo cinza do Figma (apenas para espelhar a arquitetura)
+        backgroundColor: '#D9D9D9',
+      }}
     >
-      {/* Fundo cinza do Figma (apenas para espelhar a arquitetura) */}
-      <div className="absolute left-0 top-0 w-[1440px] h-[970px] bg-[#D9D9D9]" aria-hidden />
-
-      {/* Imagem 2122x1274 centralizada de forma estável (evita corte incorreto) */}
-      {/* Enquadramento exatamente como no Figma: 2122x1274, left -267px, top -292px */}
-      <img
-        key={String(activeIndex)}
-        src={activeImage.src}
-        alt={activeImage.alt}
-        width={2122}
-        height={1274}
-        className="absolute will-change-transform transition-opacity duration-700 select-none pointer-events-none"
+      {/* Fundo com cover para garantir enquadramento estável em qualquer asset */}
+      <div
+        className="absolute left-0 top-0 w-[1440px] h-[970px] will-change-transform"
+        aria-hidden
         style={{
-          left: `-267px`,
-          top: `${-292 + clampImg(imgParallax.offsetY)}px`,
+          backgroundImage: `url('${activeImage.src}')`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: `50% calc(50% + ${clampImg(imgParallax.offsetY).toFixed(2)}px)`,
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden',
           userSelect: 'none'
         }}
-        draggable={false}
       />
     </div>
   );
@@ -564,7 +561,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
   const isDebug = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('bloco4Debug');
   
   // Posições exatas das miniaturas do design original
-  const thumbnailPositions = [289, 398, 507, 616, 725, 834, 943, 1052];
+  const thumbnailPositions = [325, 434, 543, 652, 761, 870, 979, 1088];
 
   // Animação de dica de navegação após scroll
   useEffect(() => {
@@ -714,7 +711,7 @@ function Bloco04() {
     <div className="absolute left-0 top-[2510px] w-[1440px] h-[1400px]" data-name="Bloco 04" style={{ overflow: 'visible' }}>
       {/* Faixa preta inferior (top 970, h 300) */}
       <div
-        className="absolute bg-[#13171a] h-[300px] left-0 top-[970px] z-[0]"
+  className="absolute bg-[#13171a] h-[300px] left-0 top-[970px] z-[0]"
         data-name="background"
         style={fullBleedBackground}
       />
