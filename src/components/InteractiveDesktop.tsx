@@ -534,36 +534,23 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
       <div className="absolute left-0 top-0 w-[1440px] h-[970px] bg-[#D9D9D9]" aria-hidden />
 
       {/* Imagem 2122x1274 centralizada de forma estável (evita corte incorreto) */}
-      {(() => {
-        // Dimensões de referência do design (viewPort da moldura)
-        const VIEW_W = 1440;
-        const VIEW_H = 970;
-        const IMG_W = 2122;
-        const IMG_H = 1274;
-        // Centralização exata: posiciona a imagem no centro do viewport
-        const centeredLeft = (VIEW_W - IMG_W) / 2; // -341
-        const centeredTop = (VIEW_H - IMG_H) / 2;  // -152
-        // Parallax sutil apenas no eixo Y
-        const topWithParallax = centeredTop + clampImg(imgParallax.offsetY);
-        return (
-          <img
-            key={String(activeIndex)}
-            src={activeImage.src}
-            alt={activeImage.alt}
-            width={IMG_W}
-            height={IMG_H}
-            className="absolute will-change-transform transition-opacity duration-700 select-none pointer-events-none"
-            style={{
-              left: `${centeredLeft}px`,
-              top: `${topWithParallax}px`,
-              transform: 'translateZ(0)',
-              backfaceVisibility: 'hidden',
-              userSelect: 'none'
-            }}
-            draggable={false}
-          />
-        );
-      })()}
+      {/* Enquadramento exatamente como no Figma: 2122x1274, left -267px, top -292px */}
+      <img
+        key={String(activeIndex)}
+        src={activeImage.src}
+        alt={activeImage.alt}
+        width={2122}
+        height={1274}
+        className="absolute will-change-transform transition-opacity duration-700 select-none pointer-events-none"
+        style={{
+          left: `-267px`,
+          top: `${-292 + clampImg(imgParallax.offsetY)}px`,
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          userSelect: 'none'
+        }}
+        draggable={false}
+      />
     </div>
   );
 }
@@ -637,10 +624,18 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
   return (
     <div
       ref={galleryRef}
-      className="absolute left-0 top-[860px] w-[1440px] h-[79px] z-[10]"
+      className="absolute left-0 top-[860px] w-[1440px] h-[79px] z-[1000]"
       data-name="imagens carrossel"
-      style={isDebug ? { outline: '2px dashed rgba(255,0,0,0.6)' } : undefined}
+      style={{ 
+        ...(isDebug ? { 
+          outline: '2px dashed rgba(255,0,0,0.6)', 
+          background: 'rgba(255,0,0,0.05)'
+        } : {}), 
+        overflow: 'visible' 
+      }}
     >
+      {/* Faixa de contraste para destacar as thumbs */}
+      <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.45)', pointerEvents: 'none', zIndex: 0 }} />
       {galleryImages.slice(0, 8).map((image, index) => {
         const isActive = activeIndex === index;
         return (
@@ -655,22 +650,30 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
               top: '0px',
               animationDelay: `${index * 100}ms`, // Efeito em cascata 100ms
               zIndex: 11,
+              pointerEvents: 'auto',
+              width: '98px',
+              height: '79px',
+              display: 'block'
             }}
             data-name={`thumbnail-${index}`}
             title={image.alt}
             aria-current={isActive ? 'true' : undefined}
-          >
+            >
             <img
               src={image.thumbnail || image.src}
               alt={image.alt}
-              className="absolute left-0 top-0 h-[79px] w-[98px] object-cover bg-[#222]"
+              className="absolute left-0 top-0 object-cover bg-[#222]"
               draggable={false}
               onError={(e) => {
                 // Fallback: se thumb falhar, usa a imagem grande
                 const t = e.currentTarget;
                 if (t.src !== image.src) t.src = image.src;
               }}
+              style={{ width: '98px', height: '79px', display: 'block' }}
             />
+            {isDebug && (
+              <div className="absolute inset-0 border border-red-500/60 pointer-events-none" />
+            )}
             <span className="sr-only">Selecionar imagem {index + 1}</span>
           </button>
         );
@@ -708,10 +711,10 @@ function Bloco04() {
   }, []);
 
   return (
-    <div className="absolute left-0 top-[2510px] w-[1440px] h-[1400px]" data-name="Bloco 04">
+    <div className="absolute left-0 top-[2510px] w-[1440px] h-[1400px]" data-name="Bloco 04" style={{ overflow: 'visible' }}>
       {/* Faixa preta inferior (top 970, h 300) */}
       <div
-        className="absolute bg-[#13171a] h-[300px] left-0 top-[970px] z-0"
+        className="absolute bg-[#13171a] h-[300px] left-0 top-[970px] z-[0]"
         data-name="background"
         style={fullBleedBackground}
       />

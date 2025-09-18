@@ -122,8 +122,7 @@
 @layer base {
   * {
     border-color: var(--color-border);
-    outline: 1px solid var(--color-ring);
-    outline-offset: 2px;
+  /* outline global removido para evitar poluição visual */
   }
 
   body {
