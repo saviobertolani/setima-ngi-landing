@@ -530,10 +530,10 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
   return (
     <div className="absolute contents left-0 top-[2510px]" data-name="imagem grande">
       {/* Crossfade entre camadas com parallax sutil */}
-      {images.map((img, idx) => (
+    {images.map((img, idx) => (
         <div
           key={img.id}
-          className="absolute bg-center bg-cover bg-no-repeat h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] transition-opacity duration-500 ease-in-out"
+      className="absolute bg-center bg-cover bg-no-repeat h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] transition-opacity duration-700 ease-in-out"
           data-name={idx === activeIndex ? 'main gallery image (active)' : 'main gallery image'}
           style={{
             backgroundImage: `url('${img.src}')`,
