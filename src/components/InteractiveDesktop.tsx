@@ -559,6 +559,9 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
   const [showNavHint, setShowNavHint] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
   const isDebug = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('bloco4Debug');
+  // Por padrão as miniaturas ficam ocultas; só aparecem com ?thumbs=1 (ou debug)
+  const thumbsParam = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('thumbs');
+  const thumbsVisible = isDebug || thumbsParam;
   
   // Posições exatas das miniaturas do design original
   const thumbnailPositions = [325, 434, 543, 652, 761, 870, 979, 1088];
@@ -596,7 +599,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
 
   // Debug: log estado das thumbs quando visível
   useEffect(() => {
-    if (!isDebug) return;
+  if (!isDebug || !thumbsVisible) return;
     const el = galleryRef.current;
     if (!el) return;
     const buttons = Array.from(el.querySelectorAll('button')) as HTMLButtonElement[];
@@ -617,6 +620,8 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
     });
     console.groupEnd();
   }, [activeIndex, isDebug]);
+
+  if (!thumbsVisible) return null;
 
   return (
     <div
@@ -708,7 +713,7 @@ function Bloco04() {
   }, []);
 
   return (
-    <div className="absolute left-0 top-[2510px] w-[1440px] h-[1400px]" data-name="Bloco 04" style={{ overflow: 'visible' }}>
+  <div id="bloco4" className="absolute left-0 top-[2510px] w-[1440px] h-[1400px]" data-name="Bloco 04" style={{ overflow: 'visible' }}>
       {/* Faixa preta inferior (top 970, h 300) */}
       <div
   className="absolute bg-[#13171a] h-[300px] left-0 top-[970px] z-[0]"
