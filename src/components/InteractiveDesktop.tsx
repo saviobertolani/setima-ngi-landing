@@ -60,9 +60,9 @@ function IconeSeta() {
             <path d="M15.4 4.95H0" id="Vector_2" stroke="var(--stroke-0, #13171A)" strokeMiterlimit="10" />
           </g>
         </svg>
-      </div>
-    </div>
-  );
+      <div
+        id="video1-anchor"
+        className="absolute left-[404px] top-[836px] w-[958px] h-[538px] z-[8000]"
 }
 
 
