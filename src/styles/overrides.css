@@ -1,0 +1,11 @@
+/* Minimal, safe overrides (loaded after Tailwind) */
+html, body {
+  margin: 0;
+  padding: 0;
+  /* Prevent bounce/overscroll revealing background beyond edges */
+  overscroll-behavior-y: none;
+  /* Dark neutral to hide side gutters when stage is centered */
+  background-color: #0b0d0f;
+  /* Avoid any accidental horizontal scroll */
+  overflow-x: hidden;
+}
