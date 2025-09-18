@@ -694,7 +694,10 @@ const VideoAqui = memo(() => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
+  // Portal sempre para o body quando possível; posicionamos o wrapper com "position: fixed"
   const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
+  const anchorRef = useRef<HTMLElement | null>(null);
+  const [rect, setRect] = useState<{ left: number; top: number; width: number; height: number } | null>(null);
   const [debugHighlight, setDebugHighlight] = useState(false);
   const isDebug = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('videoDebug');
   const primaryId = 'I9Wcs3Q3d4U';
@@ -782,43 +785,92 @@ const VideoAqui = memo(() => {
     return () => window.clearTimeout(timer);
   }, []);
 
-  // Portal alvo: ancora dentro do bloco para posicionamento relativo e responsivo
+  // Portal alvo: usamos a própria âncora (#video1-anchor) para garantir stacking abaixo do header
   useEffect(() => {
-    if (typeof document !== 'undefined') {
-      const anchor = document.getElementById('video1-anchor');
-      // Força a âncora a ser interativa/visível mesmo que estilos antigos persistam
-      if (anchor) {
-        anchor.setAttribute('aria-hidden', 'false');
-        // Evita herdar pointer-events: none de versões anteriores
-        (anchor as HTMLElement).style.pointerEvents = 'auto';
-        // Garante que o vídeo fique acima do conteúdo, mas abaixo do header (z-[9999])
-        (anchor as HTMLElement).style.zIndex = (Number((anchor as HTMLElement).style.zIndex) || 0) < 4000 ? '4000' : (anchor as HTMLElement).style.zIndex;
-        // Cria um novo contexto de empilhamento para filhos absolutos
-        (anchor as HTMLElement).style.contain = (anchor as HTMLElement).style.contain || 'layout paint';
-      }
-      setPortalTarget(anchor ?? document.body);
+    if (typeof document === 'undefined') return;
+    const anchor = document.getElementById('video1-anchor') as HTMLElement | null;
+    anchorRef.current = anchor;
+    // Garante que a âncora esteja interativa/visível
+    if (anchor) {
+  anchor.setAttribute('aria-hidden', 'false');
+  // Fora do modo debug, a âncora não deve interceptar cliques nem sobrepor o player
+  anchor.style.pointerEvents = isDebug ? 'auto' : 'none';
+  // Força dimensões exatas do design para evitar influências de ancestors
+  anchor.style.width = '958px';
+  anchor.style.height = '538px';
+  // Também persiste valores numéricos via dataset para referência do debug
+  (anchor.dataset as any).fallbackWidth = String(anchor.offsetWidth || 958);
+  (anchor.dataset as any).fallbackHeight = String(anchor.offsetHeight || 538);
+  // Garante position absolute na âncora
+  if (getComputedStyle(anchor).position !== 'absolute') anchor.style.position = 'absolute';
     }
+  // Portal direto para a âncora
+  setPortalTarget(anchor);
+
+    const updateRect = () => {
+      const el = anchorRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      let left = r.left;
+      let top = r.top;
+      let w = r.width;
+      let h = r.height;
+      const DEFAULT_W = 958;
+      const DEFAULT_H = 538;
+      // Fallback quando algum estilo externo faz o rect reportar 0 de largura/altura
+      if (w < 1 || h < 1) {
+        const ow = el.offsetWidth;
+        const oh = el.offsetHeight;
+        if (ow > 0) w = ow;
+        if (oh > 0) h = oh;
+      }
+      // Fallback adicional: computed styles
+      if (w < 1 || h < 1) {
+        const cs = window.getComputedStyle(el);
+        const cw = parseFloat(cs.width || '0');
+        const ch = parseFloat(cs.height || '0');
+        if (cw > 0) w = cw;
+        if (ch > 0) h = ch;
+        // Também tenta recomputar left/top via offsetParent + computed left/top
+        const op = (el.offsetParent as HTMLElement | null);
+        if (op) {
+          const opRect = op.getBoundingClientRect();
+          const cleft = parseFloat(cs.left || '0');
+          const ctop = parseFloat(cs.top || '0');
+          if (isFinite(cleft)) left = opRect.left + cleft;
+          if (isFinite(ctop)) top = opRect.top + ctop;
+        }
+      }
+      // Última linha de defesa: usa dimensões padrão conhecidas do design
+      if (w < 1 && h >= 1) w = DEFAULT_W;
+      if (h < 1 && w >= 1) h = DEFAULT_H;
+      if (w < 1 && h < 1) { w = DEFAULT_W; h = DEFAULT_H; }
+      // Evita updates desnecessários
+      setRect(prev => {
+        const same = prev && Math.abs(prev.left - left) < 0.5 && Math.abs(prev.top - top) < 0.5 && Math.abs(prev.width - w) < 0.5 && Math.abs(prev.height - h) < 0.5;
+        if (same) return prev;
+        return { left, top, width: w, height: h };
+      });
+    };
+
+  // Observa mudanças da âncora para eventual debug
+  updateRect();
+  const ro = new ResizeObserver(() => updateRect());
+  if (anchor) ro.observe(anchor);
+  return () => ro.disconnect();
   }, []);
 
-  // Wrapper absoluto, centralizado e responsivo (16:9). Posicionado relativo à âncora (#video1-anchor).
+  // Wrapper absoluto ocupando a âncora inteira (#video1-anchor)
   const videoNode = (
     <div
-      className="video-portal-wrapper"
+      className="video-portal-wrapper absolute inset-0"
       style={{
-  position: 'absolute',
-  // Preenche exatamente a âncora (#video1-anchor) para não deslocar
-  left: 0,
-  top: 0,
-  right: 0,
-  bottom: 0,
-  width: '100%',
-  height: '100%',
-  // Mantém o vídeo acima do conteúdo, mas abaixo do header fixo (z-[9999])
-  zIndex: 8000,
-        pointerEvents: 'auto',
-        isolation: 'isolate',
-        outline: debugHighlight ? '4px solid rgba(255, 0, 0, 0.55)' : undefined,
-        outlineOffset: debugHighlight ? '4px' : undefined
+        zIndex: 1,
+        // Não deixar o wrapper interceptar cliques; os botões internos têm pointer-events: auto
+        pointerEvents: 'none',
+        outline: debugHighlight ? '2px solid rgba(0, 200, 255, 0.6)' : undefined,
+        outlineOffset: debugHighlight ? '2px' : undefined,
+        opacity: portalTarget ? 1 : 0
       }}
       aria-hidden={false}
     >
@@ -833,13 +885,14 @@ const VideoAqui = memo(() => {
           backgroundColor: '#0b0d0f'
         }}
       >
-        <iframe
+    <iframe
           ref={iframeRef}
           className="absolute inset-0 w-full h-full object-cover youtube-iframe"
           style={{
             transform: 'translateZ(0)',
             backfaceVisibility: 'hidden',
-            pointerEvents: 'none'
+      // iframe não recebe cliques (para não bloquear CTA do header)
+      pointerEvents: 'none'
           }}
           src={src}
           title="Sétima NGI Video"
@@ -897,15 +950,26 @@ const VideoAqui = memo(() => {
   if (!portalTarget) return videoNode;
   return (
     <>
-      {isDebug && (
+    {isDebug && (
         <div style={{ position: 'fixed', left: 8, top: 8, zIndex: 10000, background: 'rgba(0,0,0,0.7)', color: '#fff', padding: '6px 8px', borderRadius: 6, fontSize: 11, lineHeight: '14px', pointerEvents: 'none' }}>
           <div>Video Debug</div>
-          <div>anchor: {portalTarget?.id || 'none'}</div>
+      <div>portal: {portalTarget?.id ? `#${portalTarget.id}` : (portalTarget?.tagName?.toLowerCase() || 'none')}</div>
+          <div>anchorEl: {anchorRef.current ? '#video1-anchor' : 'not-found'}</div>
+      <div>rect: {rect ? `${Math.round(rect.left)},${Math.round(rect.top)} ${Math.round(rect.width)}x${Math.round(rect.height)}` : 'null'}</div>
+          {anchorRef.current && (
+            <div style={{opacity:0.9}}>offset: {anchorRef.current.offsetWidth}x{anchorRef.current.offsetHeight}</div>
+          )}
+          {anchorRef.current && (
+            <div style={{opacity:0.9}}>computed: {parseFloat(getComputedStyle(anchorRef.current).width || '0')}x{parseFloat(getComputedStyle(anchorRef.current).height || '0')}</div>
+          )}
+          {anchorRef.current && (
+            <div style={{opacity:0.8}}>fallback(ds): {anchorRef.current.dataset.fallbackWidth}x{anchorRef.current.dataset.fallbackHeight}</div>
+          )}
           <div>loaded: {String(loaded)}</div>
           <div>failed: {String(failed)}</div>
         </div>
       )}
-      {createPortal(videoNode, portalTarget)}
+    {portalTarget ? createPortal(videoNode, portalTarget) : null}
     </>
   );
 });
@@ -1010,9 +1074,15 @@ function Bloco02() {
       {/* Âncora invisível usada para posicionar o vídeo via portal (position: fixed) */}
       <div
         id="video1-anchor"
-        className="absolute left-[404px] top-[836px] w-[958px] h-[538px] z-[8000]"
+  className="absolute left-[404px] top-[836px] w-[958px] h-[538px] z-[10]"
         aria-hidden="false"
-        style={{ pointerEvents: 'auto', contain: 'layout paint', outline: debug ? '2px solid red' : undefined, outlineOffset: debug ? '2px' : undefined }}
+        style={{ 
+          pointerEvents: debug ? 'auto' : 'none', 
+          outline: debug ? '2px solid red' : undefined, 
+          outlineOffset: debug ? '2px' : undefined,
+          boxShadow: debug ? 'inset 0 0 0 2px rgba(255,0,0,0.7), 0 0 0 2px rgba(255,0,0,0.35)' : undefined,
+          background: debug ? 'rgba(255,0,0,0.08)' : undefined
+        }}
       />
       
   <div className="absolute fig-ubuntu-light fig-title-45 fig-white text-smooth left-[77px] not-italic top-[887px] w-[271px]" style={h1Parallax.tw}>
