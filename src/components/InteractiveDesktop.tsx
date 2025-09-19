@@ -470,9 +470,9 @@ const galleryList = (localGallery.images.length
 function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
   const fallback = { src: '', mask: localGallery.mask ?? img250127AlmapStillTeraTheTownFrenteV82 } as any;
   const activeImage = galleryList[activeIndex] ?? galleryList[0] ?? fallback;
-  // Sutil parallax interno via background-position (não move o container)
-  const imgParallax = useScrollParallax({ speed: -0.05 });
-  const clampImg = (v:number) => Math.max(-30, Math.min(30, v));
+  // Parallax interno DESATIVADO temporariamente para validação pixel-perfect
+  // const imgParallax = useScrollParallax({ speed: -0.05 });
+  // const clampImg = (v:number) => Math.max(-30, Math.min(30, v));
   // Escala responsiva: 1 em >=1440px, diminui proporcionalmente abaixo disso
   const [scale, setScale] = useState(1);
   // Fit inteligente por imagem
@@ -540,7 +540,8 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
             className="absolute inset-0 bg-no-repeat"
             style={{
               backgroundImage: `url('${activeImage.src}')`,
-              backgroundPosition: `50% calc(50% + ${clampImg(imgParallax.offsetY).toFixed(2)}px)`,
+              // Parallax desligado — manter centralizado
+              backgroundPosition: '50% 50%',
               backgroundSize: bgSize,
               transform: 'translateZ(0)',
               backfaceVisibility: 'hidden'
@@ -688,7 +689,7 @@ function Bloco04() {
       <div
         className="absolute bg-[#13171a] h-[300px]"
         data-name="background"
-        style={{ ...fullBleedBackground, top: `${3480 - offsetY}px` }}
+        style={{ ...fullBleedBackground, top: `${3480 - offsetY - 1}px` }}
       />
       <ImagemGrande activeIndex={maxIndex} />
       {/* Thumbs sobre a imagem grande, mantendo lefts do Figma */}
