@@ -481,6 +481,9 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
   const WINDOW_H = 970;
   const WINDOW_RATIO = WINDOW_W / WINDOW_H; // ~1.4845
   const THRESH = 0.06; // 6% de tolerância
+  // Ajuste fino constatado vs. Figma: janela estava alguns px para cima.
+  // deltaFix positivo empurra a janela para baixo de forma constante (independente do scale)
+  const deltaFix = 24; // ajuste de ~24px
   useEffect(() => {
     const update = () => {
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
@@ -516,7 +519,7 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
         style={{
           // Mantém a janela interna (top 292 dentro do wrapper) sempre ancorada em 2510px na página,
           // independente do scale aplicado ao wrapper.
-          top: `${2510 - 292 * scale}px`,
+          top: `${2510 - 292 * scale + deltaFix}px`,
           width: '2122px',
           height: '1274px',
           transform: `translateX(-50%) scale(${scale})`,
