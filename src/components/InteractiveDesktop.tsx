@@ -550,9 +550,10 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
   );
 }
 
-function ImagensCarrossel({ activeIndex, onThumbnailClick }: { 
+function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0 }: { 
   activeIndex: number; 
   onThumbnailClick: (index: number) => void; 
+  offsetY?: number;
 }) {
   const [showNavHint, setShowNavHint] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -596,7 +597,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
     <div
       ref={galleryRef}
       className="absolute"
-      style={{ left: '251px', top: '3605px', zIndex: 10 }}
+  style={{ left: '251px', top: `${3605 + offsetY}px`, zIndex: 10 }}
       data-name="imagens carrossel"
     >
       {Array.from({ length: count }).map((_, index) => {
@@ -615,9 +616,13 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
             style={{ 
               // Ajusta posições absolutas para o container (antes eram relativas à página)
               left: `${thumbnailPositions[index] - 251}px`,
-              animationDelay: `${index * 150}ms`
+              animationDelay: `${index * 150}ms`,
+              // Anel de destaque sutil no ativo (não é cortado por overflow)
+              boxShadow: activeIndex === index ? '0 0 0 2px #00f5b9' : undefined
             }}
             data-name={`thumbnail-${index}`}
+            aria-pressed={activeIndex === index}
+            tabIndex={0}
             title={image.alt}
           >
             <div 
@@ -663,16 +668,28 @@ function Bloco04() {
   }, []);
   // Garante limite pelo total disponível
   const maxIndex = Math.max(0, Math.min(galleryList.length - 1, galleryActiveIndex));
+  // Mantém os elementos do bloco sincronizados verticalmente com a janela escalada (ImagemGrande)
+  const [scale, setScale] = useState(1);
+  const offsetY = useMemo(() => 292 * (1 - scale), [scale]);
+  useEffect(() => {
+    const update = () => {
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      setScale(Math.min(1, vw / 1440));
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
   return (
     <div className="absolute contents left-0 top-[2510px]" data-name="Bloco 04">
   {/* Faixa de fundo abaixo da imagem grande (branca como no layout) */}
-  <div className="absolute bg-[#f8f8f2] h-[420px] top-[3479px]" data-name="background" style={fullBleedBackground} />
+  <div className="absolute bg-[#f8f8f2] h-[420px] top-[3479px]" data-name="background" style={{ ...fullBleedBackground, top: `${3479 + offsetY}px` }} />
       <ImagemGrande activeIndex={maxIndex} />
-      <ImagensCarrossel activeIndex={maxIndex} onThumbnailClick={handleGalleryThumbnailClick} />
-    <div className="absolute left-1/2 top-[3653px] translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic">
+      <ImagensCarrossel activeIndex={maxIndex} onThumbnailClick={handleGalleryThumbnailClick} offsetY={offsetY} />
+    <div className="absolute left-1/2 top-[3653px] translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic" style={{ top: `${3653 + offsetY}px` }}>
         <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
       </div>
-  <div className="absolute left-1/2 top-[3533px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
+  <div className="absolute left-1/2 top-[3533px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={{ top: `${3533 + offsetY}px` }}>
         <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
         <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
       </div>
