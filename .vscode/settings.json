@@ -1,3 +1,13 @@
 {
-    "CodeGPT.apiKey": "Github"
+    "CodeGPT.apiKey": "Github",
+    "mcpServers": {
+        "browsermcp": {
+            "command": "npx",
+            "args": ["@browsermcp/mcp@latest"],
+            "env": {
+                "BROWSER_MCP_ALLOWLIST": "http://localhost:5173,http://127.0.0.1:5173",
+                "BROWSER_MCP_VISIBLE": "1"
+            }
+        }
+    }
 }

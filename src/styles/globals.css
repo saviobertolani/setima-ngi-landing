@@ -122,8 +122,7 @@
 @layer base {
   * {
     border-color: var(--color-border);
-    outline: 1px solid var(--color-ring);
-    outline-offset: 2px;
+  /* outline global removida para evitar linhas claras nas bordas */
   }
 
   body {
@@ -308,6 +307,8 @@ html, body {
   padding: 0;
   /* Evita overscroll/bounce que revela o fundo além do topo/rodapé */
   overscroll-behavior-y: none;
+  /* Evita qualquer overflow horizontal e barras laterais indesejadas */
+  overflow-x: hidden;
   background-color: #0b0d0f; /* cor de borda lateral neutra/dark para estágios escuros */
 }
 
