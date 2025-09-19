@@ -458,95 +458,114 @@ const galleryImages = (localGallery.images.length ? localGallery.images.map((src
   id: idx,
   src,
   mask: localGallery.mask ?? img250127AlmapStillTeraTheTownFrenteV82,
-  thumbnail: localGallery.thumbs?.[idx] || src,
+  thumbnail: src,
   alt: `figma-local-${idx}`
 })) : [
-  // Fallback local com ativos do projeto para aproximar do layout de referência
-  { id: 0, src: img250127AlmapStillTeraTheTownFrenteV081, mask: img250127AlmapStillTeraTheTownFrenteV82, thumbnail: img250127AlmapStillTeraTheTownFrenteV081, alt: 'Tera The Town Frente' },
-  { id: 1, src: imgVwConstelattion313206X4CacambaPsb1, mask: img250127AlmapStillTeraTheTownFrenteV82, thumbnail: imgVwConstelattion313206X4CacambaPsb1, alt: 'VW Constellation' },
-  { id: 2, src: imgAquamarine31, mask: img250127AlmapStillTeraTheTownFrenteV82, thumbnail: imgAquamarine31, alt: 'Aquamarine stage' },
-  { id: 3, src: imgEmCima, mask: img250127AlmapStillTeraTheTownFrenteV82, thumbnail: imgEmCima, alt: 'Overlay top' },
-  { id: 4, src: imgEmbaixo, mask: img250127AlmapStillTeraTheTownFrenteV82, thumbnail: imgEmbaixo, alt: 'Overlay bottom' },
-  { id: 5, src: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D811, mask: img250127AlmapStillTeraTheTownFrenteV82, thumbnail: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D811, alt: 'AI Tools 811' },
-  { id: 6, src: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D813, mask: img250127AlmapStillTeraTheTownFrenteV82, thumbnail: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D813, alt: 'AI Tools 813' },
-  { id: 7, src: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D814, mask: img250127AlmapStillTeraTheTownFrenteV82, thumbnail: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D814, alt: 'AI Tools 814' }
+  {
+    id: 0,
+    src: "https://images.unsplash.com/photo-1563010501-8dbf76424fb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2b2xrc3dhZ2VuJTIwdGVyYSUyMHNpbHZlciUyMGNhciUyMGZyb250fGVufDF8fHx8MTc1ODEwMDM0N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    mask: img250127AlmapStillTeraTheTownFrenteV82,
+    thumbnail: "https://images.unsplash.com/photo-1754782385916-3efd2d1ae8fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjB0aHVtYiUyMHJlYXIlMjBzaWx2ZXJ8ZW58MXx8fHwxNzU4MTAwMzg0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    alt: "25_0127_Almap_Still_TeraTheTown_Frente_V08"
+  },
+  {
+    id: 1,
+    src: "https://images.unsplash.com/photo-1650535508320-5ab630c0ab09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBpbnRlcmlvciUyMG5hdmlnYXRpb24lMjBzeXN0ZW18ZW58MXx8fHwxNzU4MTAwMzU2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    mask: img250127AlmapStillTeraTheTownFrenteV82,
+    thumbnail: "https://images.unsplash.com/photo-1639060015191-9d83063eab2a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBkZXRhaWwlMjBuYXZpZ2F0aW9uJTIwcHJldmlld3xlbnwxfHx8fDE3NTgxMDAzOTZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    alt: "AFX NAVEG CONFIGURADOR 30seg ARG 3840x1920"
+  },
+  {
+    id: 2,
+    src: "https://images.unsplash.com/photo-1563010501-8dbf76424fb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2b2xrc3dhZ2VuJTIwdGVyYSUyMHNpbHZlciUyMGNhciUyMGZyb250fGVufDF8fHx8MTc1ODEwMDM0N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    mask: img250127AlmapStillTeraTheTownFrenteV82,
+    thumbnail: "https://images.unsplash.com/photo-1716615188690-aea33d1d41f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBzYWZldHklMjBmZWF0dXJlJTIwZGV0YWlsfGVufDF8fHx8MTc1ODEwMDQwMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    alt: "25_0002_STILL_TERA_HG_170TSI_MY26_OUTFIT_THETOWN_3_4_FRENTE_R4A1_PRATA_LUNAR_AMB_NOITE"
+  },
+  {
+    id: 3,
+    src: "https://images.unsplash.com/photo-1643686978526-7ae17c701e30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBkYXNoYm9hcmQlMjBzYWZldHklMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc1ODEwMDM1OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    mask: img250127AlmapStillTeraTheTownFrenteV82,
+    thumbnail: "https://images.unsplash.com/photo-1705237458425-6d560bd4625c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbWVyZ2VuY3klMjBicmFrZSUyMGRldGFpbCUyMGNhcnxlbnwxfHx8fDE3NTgxMDA0MDV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    alt: "AEB Frenagem Autônoma de Emergência v18"
+  },
+  {
+    id: 4,
+    src: "https://images.unsplash.com/photo-1680516125126-e92100cdcbba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjByZWFyJTIwdmlldyUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzU4MTAwMzY3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    mask: img250127AlmapStillTeraTheTownFrenteV82,
+    thumbnail: "https://images.unsplash.com/photo-1675462378901-4fb9ed48591c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjByZWFyJTIwZGV0YWlsJTIwY2xvc2V8ZW58MXx8fHwxNzU4MTAwNDE2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    alt: "25_0002_STILL_AL_TERA_HG_170TSI_MY26_OUTFIT_BADGE_TRASEIRA_R4A1_PRATA_LUNAR_AMB_DIA"
+  },
+  {
+    id: 5,
+    src: "https://images.unsplash.com/photo-1750661941636-7affe0df1fac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYW5lJTIwYXNzaXN0JTIwZHJpdmluZyUyMHNhZmV0eXxlbnwxfHx8fDE3NTgxMDAzNjR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    mask: img250127AlmapStillTeraTheTownFrenteV82,
+    thumbnail: "https://images.unsplash.com/photo-1716615188690-aea33d1d41f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYW5lJTIwYXNzaXN0YW5jZSUyMGNhciUyMGRldGFpbHxlbnwxfHx8fDE3NTgxMDA0MjF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    alt: "Lane Assist Assistente de Permanência na Faixa v21"
+  },
+  {
+    id: 6,
+    src: "https://images.unsplash.com/photo-1752959811093-9ed95c42b16d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjYXIlMjBiYWRnZSUyMGRldGFpbHxlbnwxfHx8fDE3NTgxMDAzNzV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    mask: img250127AlmapStillTeraTheTownFrenteV82,
+    thumbnail: "https://images.unsplash.com/photo-1718465388901-9c628510c01e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBkZXRhaWwlMjBiYWRnZSUyMHZlcnNpb258ZW58MXx8fHwxNzU4MTAwNDI0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    alt: "25_0002_STILL_TERA_HG_170TSI_MY26_OUTFIT_THETOWN_BADGE_VERSAO_R4A1_PRATA_LUNAR_AMB_NOITE"
+  },
+  {
+    id: 7,
+    src: "https://images.unsplash.com/photo-1705617187494-05a0369a6446?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBpbnRlcmlvciUyMHBhbmVsJTIwZGFzaGJvYXJkfGVufDF8fHx8MTc1ODEwMDM3OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    mask: img250127AlmapStillTeraTheTownFrenteV82,
+    thumbnail: "https://images.unsplash.com/photo-1625062294718-827c8a646156?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBkYXNoYm9hcmQlMjBwYW5lbCUyMGdyYXl8ZW58MXx8fHwxNzU4MTAwNDI4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    alt: "25_0002_STILL_TERA_COMF_MY26_PAINEL_FRONTAL_TOTAL_2R2R_CINZA_PLATINUM_AMB_DIA"
+  }
 ]);
 
 function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
   const activeImage = galleryImages[activeIndex];
-  // Para a primeira imagem (mockup do TERA), aplicamos enquadramento exato do Figma
-  const useFixedFraming = activeIndex === 0;
+  // Sutil parallax interno via background-position (não move o container)
+  const imgParallax = useScrollParallax({ speed: -0.05 });
+  const clampImg = (v:number) => Math.max(-30, Math.min(30, v));
 
   return (
-    <div
-      className="absolute left-0 top-0 w-[1440px] h-[970px] overflow-hidden z-[2]"
-      data-name="imagem grande"
-      style={{ backgroundColor: '#0b0d0f' }}
-    >
-      {useFixedFraming ? (
-        <img
-          src={activeImage.src}
-          alt={activeImage.alt || 'imagem-galeria'}
-          className="absolute select-none"
-          draggable={false}
-          style={{
-            width: '2122px',
-            height: '1274px',
-            left: '-267px',
-            top: '-292px',
-            transform: 'translateZ(0)',
-            backfaceVisibility: 'hidden',
-            userSelect: 'none'
-          }}
-          onError={(e) => {
-            const t = e.currentTarget as HTMLImageElement;
-            t.style.width = '1440px';
-            t.style.height = '970px';
-            t.style.left = '0px';
-            t.style.top = '0px';
-            t.style.objectFit = 'cover';
-          }}
-        />
-      ) : (
-        <div
-          className="absolute left-0 top-0 w-[1440px] h-[970px] will-change-transform"
-          aria-hidden
-          style={{
-            backgroundImage: `url('${activeImage.src}')`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            transform: 'translateZ(0)',
-            backfaceVisibility: 'hidden',
-            userSelect: 'none'
-          }}
-        />
-      )}
+  <div className="absolute contents left-0 top-[2510px]" data-name="imagem grande">
+      {/* Imagem principal com transição suave */}
+      <div 
+  className="absolute bg-center bg-cover bg-no-repeat h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] transition-all duration-700 ease-in-out" 
+        data-name="main gallery image"
+        style={{ 
+          backgroundImage: `url('${activeImage.src}')`, 
+          maskImage: `url('${activeImage.mask}')`,
+          backgroundPosition: `50% calc(50% + ${clampImg(imgParallax.offsetY).toFixed(2)}px)`,
+          transform: 'translateZ(0)', // Força aceleração por hardware
+          backfaceVisibility: 'hidden',
+          width: 'max(2122px, calc(100vw + 534px))', // Garante cobertura total em qualquer resolução
+          minWidth: '2122px' // Mantém largura mínima do design original
+        }} 
+      />
+      
+      {/* Overlay sutil para transições mais suaves */}
+      <div 
+        className="absolute bg-center bg-cover bg-no-repeat h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] w-[2122px] opacity-0 transition-opacity duration-300 pointer-events-none" 
+        data-name="transition overlay"
+        style={{ 
+          backgroundImage: `url('${activeImage.src}')`, 
+          maskImage: `url('${activeImage.mask}')`,
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden'
+        }} 
+      />
     </div>
   );
 }
 
-function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
-  activeIndex: number;
-  onThumbnailClick: (index: number) => void;
+function ImagensCarrossel({ activeIndex, onThumbnailClick }: { 
+  activeIndex: number; 
+  onThumbnailClick: (index: number) => void; 
 }) {
   const [showNavHint, setShowNavHint] = useState(false);
-  const [thumbsVisible, setThumbsVisible] = useState(true);
   const galleryRef = useRef<HTMLDivElement>(null);
-  const isDebug = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('bloco4Debug');
-
-  // Visíveis por padrão; pode ocultar com ?thumbs=0/false ou localStorage=off; debug sempre força on
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const sp = new URLSearchParams(window.location.search);
-    const v = String(sp.get('thumbs') || '').toLowerCase();
-    const local = String(typeof localStorage !== 'undefined' ? localStorage.getItem('bloco4_thumbs') || '' : '').toLowerCase();
-    const off = v === '0' || v === 'false' || local === 'off';
-    setThumbsVisible(!off || isDebug);
-  }, [isDebug]);
-
-  // Posições exatas das miniaturas do design original (Figma)
-  const thumbnailPositions = [289, 398, 507, 616, 725, 834, 943, 1052];
+  
+  // Posições exatas das miniaturas do design original
+  const thumbnailPositions = [251, 371, 491, 611, 731, 851, 971, 1091];
 
   // Animação de dica de navegação após scroll
   useEffect(() => {
@@ -554,10 +573,13 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            // Mostra dica após 1 segundo de visualização
             const timer = setTimeout(() => {
               setShowNavHint(true);
+              // Remove a dica após 3 segundos
               setTimeout(() => setShowNavHint(false), 3000);
             }, 1000);
+            
             return () => clearTimeout(timer);
           }
         });
@@ -565,87 +587,51 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
       { threshold: 0.6 }
     );
 
-    const el = galleryRef.current;
-    if (el) observer.observe(el);
-    return () => { if (el) observer.unobserve(el); };
+    if (galleryRef.current) {
+      observer.observe(galleryRef.current);
+    }
+
+    return () => {
+      if (galleryRef.current) {
+        observer.unobserve(galleryRef.current);
+      }
+    };
   }, []);
 
-  // Debug: log estado das thumbs quando visível
-  useEffect(() => {
-    if (!isDebug || !thumbsVisible) return;
-    const el = galleryRef.current;
-    if (!el) return;
-    const buttons = Array.from(el.querySelectorAll('button')) as HTMLButtonElement[];
-    console.groupCollapsed('[Bloco04] Debug Miniaturas');
-    console.log('Qtd imagens (galleryImages):', galleryImages.length);
-    console.log('Qtd thumbs no DOM:', buttons.length);
-    buttons.forEach((b, i) => {
-      const r = b.getBoundingClientRect();
-      const img = b.querySelector('img') as HTMLImageElement | null;
-      console.log(`#${i}`, {
-        left: r.left, top: r.top, width: r.width, height: r.height,
-        zIndex: getComputedStyle(b).zIndex,
-        display: getComputedStyle(b).display,
-        visibility: getComputedStyle(b).visibility,
-        opacity: getComputedStyle(b).opacity,
-        src: img?.src, complete: img?.complete, naturalWidth: img?.naturalWidth, naturalHeight: img?.naturalHeight
-      });
-    });
-    console.groupEnd();
-  }, [activeIndex, isDebug, thumbsVisible]);
-
-  // Guard: por padrão não renderiza nada
-  if (!thumbsVisible) return null;
   return (
-    <div
-      ref={galleryRef}
-      className="absolute left-0 top-[870px] w-[1440px] z-[5]"
-      data-name="imagens carrossel"
-      style={{
-        ...(isDebug ? { outline: '2px dashed rgba(255,0,0,0.6)', background: 'rgba(255,0,0,0.05)' } : {}),
-        overflow: 'visible',
-        height: '78.63px'
-      }}
-    >
-      {galleryImages.slice(0, 8).map((image, index) => {
-        const isActive = activeIndex === index;
-        return (
-          <button
-            key={image.id}
-            onClick={() => onThumbnailClick(index)}
-            className={`absolute w-[98px] cursor-pointer rounded overflow-hidden transform-gpu anim-fade-up hover-lift ${
-              isActive ? 'ring-2 ring-white/85 shadow-[0_6px_16px_rgba(0,0,0,0.45)]' : 'opacity-95 shadow-[0_4px_12px_rgba(0,0,0,0.35)]'
-            } ${!isActive && showNavHint ? 'breathe' : ''}`}
-            style={{
-              left: `${thumbnailPositions[index]}px`,
-              top: '0px',
-              animationDelay: `${index * 100}ms`,
-              zIndex: 6,
-              pointerEvents: 'auto',
-              width: '98px',
-              height: '78.63px',
-              display: 'block'
+  <div ref={galleryRef} className="absolute contents left-[251px] top-[3342px]" data-name="imagens carrossel">
+      {galleryImages.slice(0, 8).map((image, index) => (
+        <button
+          key={image.id}
+          onClick={() => onThumbnailClick(index)}
+          className={`absolute size-[98px] top-[3342px] cursor-pointer rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu thumbnail-nav-hint ${
+            activeIndex === index 
+              ? 'scale-105 shadow-lg shadow-black/20' 
+              : 'hover:scale-110 hover:shadow-xl hover:shadow-black/25 hover:-translate-y-1'
+          } ${
+            showNavHint && index !== activeIndex ? 'thumbnail-breathing' : ''
+          }`}
+          style={{ 
+            left: `${thumbnailPositions[index]}px`,
+            animationDelay: `${index * 150}ms` // Efeito em cascata
+          }}
+          data-name={`thumbnail-${index}`}
+          title={image.alt}
+        >
+          {/* Miniatura da imagem */}
+          <div 
+            className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-all duration-300"
+            style={{ 
+              backgroundImage: `url('${image.src}')`,
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden'
             }}
-            data-name={`thumbnail-${index}`}
-            title={image.alt}
-            aria-current={isActive ? 'true' : undefined}
-          >
-            <img
-              src={image.thumbnail || image.src}
-              alt={image.alt}
-              className="absolute left-0 top-0 object-cover bg-[#222]"
-              draggable={false}
-              onError={(e) => {
-                const t = e.currentTarget as HTMLImageElement;
-                if (t.src !== image.src) t.src = image.src;
-              }}
-              style={{ width: '98px', height: '78.63px', display: 'block' }}
-            />
-            {isDebug && <div className="absolute inset-0 border border-red-500/60 pointer-events-none" />}
-            <span className="sr-only">Selecionar imagem {index + 1}</span>
-          </button>
-        );
-      })}
+          />
+          
+          {/* Overlay de hover - apenas efeito lente */}
+          <div className="absolute inset-0 transition-all duration-300 bg-black/0 hover:bg-black/5" />
+        </button>
+      ))}
     </div>
   );
 }
@@ -672,47 +658,29 @@ const Bloco03 = memo(() => {
 
 function Bloco04() {
   const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
-  const isDebug = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('bloco4Debug');
 
   const handleGalleryThumbnailClick = useCallback((index: number) => {
     setGalleryActiveIndex(index);
   }, []);
 
   return (
-    <div id="bloco4" className="absolute left-0 top-[2510px] w-[1440px] h-[1400px]" data-name="Bloco 04" style={{ overflow: 'visible' }}>
-      {/* Faixa preta inferior (top 970, h 300) */}
+    <div className="absolute contents left-0 top-[2510px]" data-name="Bloco 04">
       <div
-  className="absolute bg-[#13171a] h-[300px] left-0 top-[970px] z-[0]"
+        className="absolute bg-[#13171a] h-[300px] top-[3479px]"
         data-name="background"
         style={fullBleedBackground}
       />
-      {/* Faixa escura de contraste por trás das thumbs (sobre a imagem) */}
-      <div className="absolute left-0 top-[842px] w-[1440px] h-[120px] z-[3] pointer-events-none" aria-hidden>
-        <div className="absolute inset-0" style={{
-          background: 'linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.65) 60%, rgba(0,0,0,0.80) 100%)'
-        }} />
-      </div>
-      {/* Container principal da imagem */}
       <ImagemGrande activeIndex={galleryActiveIndex} />
-      {/* Thumbs */}
-      <ImagensCarrossel
-        activeIndex={galleryActiveIndex}
-        onThumbnailClick={handleGalleryThumbnailClick}
+      <ImagensCarrossel 
+        activeIndex={galleryActiveIndex} 
+        onThumbnailClick={handleGalleryThumbnailClick} 
       />
-      {isDebug && (
-        <div className="absolute left-4 top-4 z-[50] text-xs text-white bg-[rgba(0,0,0,0.6)] rounded px-2 py-1" style={{pointerEvents:'none'}}>
-          <div>Bloco04 Debug</div>
-          <div>Thumbs: top 860, left [289..1052], size 98x79</div>
-          <div>Layering: barra z0, imagem z1, thumbs z10+, textos z4</div>
-        </div>
-      )}
-      {/* Títulos e corpo exatamente como no Figma */}
-      <div className="absolute left-[158px] top-[1023px] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic z-[4]">
+    <div className="absolute left-1/2 top-[3653px] translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic">
+        <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
+      </div>
+  <div className="absolute left-1/2 top-[3533px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
         <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
         <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
-      </div>
-      <div className="absolute left-[266px] top-[1143px] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic z-[4]">
-        <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
       </div>
     </div>
   );

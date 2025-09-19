@@ -1,21 +1,10 @@
 {
-  "file": "EjRFWj4w256X3KZeabJCY0",
+  "file": "ymdskPJsdCuYCw0ArQntqY",
   "items": [
-    { "name": "imagens=01", "nodeId": "" },
-    { "name": "imagens=02", "nodeId": "" },
-    { "name": "imagens=03", "nodeId": "" },
-    { "name": "imagens=04", "nodeId": "" },
-    { "name": "imagens=05", "nodeId": "" },
-    { "name": "imagens=06", "nodeId": "" },
-    { "name": "imagens=07", "nodeId": "" },
-    { "name": "imagens=08", "nodeId": "" },
-    { "name": "thumbs=01", "nodeId": "" },
-    { "name": "thumbs=02", "nodeId": "" },
-    { "name": "thumbs=03", "nodeId": "" },
-    { "name": "thumbs=04", "nodeId": "" },
-    { "name": "thumbs=05", "nodeId": "" },
-    { "name": "thumbs=06", "nodeId": "" },
-    { "name": "thumbs=07", "nodeId": "" },
-    { "name": "thumbs=08", "nodeId": "" }
+    {
+      "name": "Landing-Container",
+      "nodeId": "0:1",
+      "export": ["code", "assets"]
+    }
   ]
 }

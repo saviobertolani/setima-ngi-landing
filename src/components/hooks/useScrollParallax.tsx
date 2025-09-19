@@ -35,20 +35,19 @@ export function useScrollParallax(options: UseScrollParallaxOptions = {}) {
       window.removeEventListener('scroll', onScroll)
     }
   }, [])
-  const { style, transform, offsetY } = useMemo(() => {
+
+  const style = useMemo((): { transform: string; willChange: string; tw: CSSProperties & { ['--tw-translate-y']?: string }; offsetY: number } => {
     const delta = (scrollY - base) * speed
     const ty = Number.isFinite(delta) ? delta : 0
     const transform = use3d
       ? `translate3d(0, ${ty.toFixed(2)}px, 0)`
       : `translateY(${ty.toFixed(2)}px)`
-    const style = { transform, willChange: 'transform' } as const
-    return { style, transform, offsetY: ty }
+    // tw: usa a variável do Tailwind para compor com outras transforms (ex.: translate-x-[-50%])
+    const tw = { ['--tw-translate-y']: `${ty.toFixed(2)}px` } as CSSProperties & { ['--tw-translate-y']?: string }
+    return { transform, willChange: 'transform', tw, offsetY: ty }
   }, [scrollY, speed, use3d, base])
 
-  // Provide a convenient alias `.tw` for compatibility with existing code
-  const tw: CSSProperties = style
-
-  return { style, transform, offsetY, tw }
+  return style
 }
 
 export default useScrollParallax
