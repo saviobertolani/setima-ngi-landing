@@ -552,9 +552,10 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
   );
 }
 
-function ImagensCarrossel({ activeIndex, onThumbnailClick }: { 
+function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0 }: { 
   activeIndex: number; 
   onThumbnailClick: (index: number) => void; 
+  offsetY?: number;
 }) {
   const [showNavHint, setShowNavHint] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -599,7 +600,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
     <div
       ref={galleryRef}
       className="absolute"
-  style={{ left: 0, top: '3370px', zIndex: 10 }}
+  style={{ left: 0, top: `${3370 - offsetY}px`, zIndex: 20 }}
       data-name="imagens carrossel"
     >
       {Array.from({ length: count }).map((_, index) => {
@@ -668,16 +669,37 @@ function Bloco04() {
   }, []);
   // Garante limite pelo total disponível
   const maxIndex = Math.max(0, Math.min(galleryList.length - 1, galleryActiveIndex));
+  // Recalcula o scale da janela 1440 para corrigir o encaixe vertical sem gap
+  const [scale, setScale] = useState(1);
+  const offsetY = useMemo(() => 970 * (1 - scale), [scale]);
+  useEffect(() => {
+    const update = () => {
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      setScale(Math.min(1, vw / 1440));
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
   return (
     <div className="absolute contents left-0 top-[2510px]" data-name="Bloco 04">
-  {/* Faixa de fundo abaixo da imagem grande (branca como no layout) */}
-  <div className="absolute bg-[#13171a] h-[300px] top-[3480px]" data-name="background" style={fullBleedBackground} />
+      {/* Faixa preta colada no rodapé da imagem grande
+         top base 3480px menos o offset da escala da janela (970px de altura) */}
+      <div
+        className="absolute bg-[#13171a] h-[300px]"
+        data-name="background"
+        style={{ ...fullBleedBackground, top: `${3480 - offsetY}px` }}
+      />
       <ImagemGrande activeIndex={maxIndex} />
-      <ImagensCarrossel activeIndex={maxIndex} onThumbnailClick={handleGalleryThumbnailClick} />
-    <div className="absolute left-1/2 top-[3653px] translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic">
+      {/* Thumbs sobre a imagem grande, mantendo lefts do Figma */}
+      <ImagensCarrossel activeIndex={maxIndex} onThumbnailClick={handleGalleryThumbnailClick} offsetY={offsetY} />
+      {/* Textos acompanhando a faixa para não criarem gap visual */}
+      <div className="absolute left-1/2 translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic"
+        style={{ top: `${3653 - offsetY}px` }}>
         <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
       </div>
-  <div className="absolute left-1/2 top-[3533px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
+      <div className="absolute left-1/2 translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic"
+        style={{ top: `${3533 - offsetY}px` }}>
         <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
         <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
       </div>
