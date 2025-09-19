@@ -481,9 +481,8 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
   const WINDOW_H = 970;
   const WINDOW_RATIO = WINDOW_W / WINDOW_H; // ~1.4845
   const THRESH = 0.06; // 6% de tolerância
-  // Ajuste fino constatado vs. Figma: janela estava alguns px para cima.
-  // deltaFix positivo empurra a janela para baixo de forma constante (independente do scale)
-  const deltaFix = 24; // ajuste de ~24px
+  // Mantemos a janela visível exatamente em top=2510 independente do scale.
+  const deltaFix = 0;
   useEffect(() => {
     const update = () => {
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
@@ -553,16 +552,16 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
   );
 }
 
-function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0 }: { 
+function ImagensCarrossel({ activeIndex, onThumbnailClick }: { 
   activeIndex: number; 
   onThumbnailClick: (index: number) => void; 
-  offsetY?: number;
 }) {
   const [showNavHint, setShowNavHint] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
   
   // Posições exatas das miniaturas do design original
-  const thumbnailPositions = [251, 371, 491, 611, 731, 851, 971, 1091];
+  // Conforme Figma (lefts absolutos para botões com w=98)
+  const thumbnailLefts = [289, 398, 507, 616, 725, 834, 943, 1052];
 
   // Animação de dica de navegação após scroll
   useEffect(() => {
@@ -600,7 +599,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0 }: {
     <div
       ref={galleryRef}
       className="absolute"
-  style={{ left: '251px', top: `${3605 + offsetY}px`, zIndex: 10 }}
+  style={{ left: 0, top: '3370px', zIndex: 10 }}
       data-name="imagens carrossel"
     >
       {Array.from({ length: count }).map((_, index) => {
@@ -617,10 +616,8 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0 }: {
               showNavHint && index !== activeIndex ? 'thumbnail-breathing' : ''
             }`}
             style={{ 
-              // Ajusta posições absolutas para o container (antes eram relativas à página)
-              left: `${thumbnailPositions[index] - 251}px`,
+              left: `${thumbnailLefts[index]}px`,
               animationDelay: `${index * 150}ms`,
-              // Anel de destaque sutil no ativo (não é cortado por overflow)
               boxShadow: activeIndex === index ? '0 0 0 2px #00f5b9' : undefined
             }}
             data-name={`thumbnail-${index}`}
@@ -671,28 +668,16 @@ function Bloco04() {
   }, []);
   // Garante limite pelo total disponível
   const maxIndex = Math.max(0, Math.min(galleryList.length - 1, galleryActiveIndex));
-  // Mantém os elementos do bloco sincronizados verticalmente com a janela escalada (ImagemGrande)
-  const [scale, setScale] = useState(1);
-  const offsetY = useMemo(() => 292 * (1 - scale), [scale]);
-  useEffect(() => {
-    const update = () => {
-      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-      setScale(Math.min(1, vw / 1440));
-    };
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
-  }, []);
   return (
     <div className="absolute contents left-0 top-[2510px]" data-name="Bloco 04">
   {/* Faixa de fundo abaixo da imagem grande (branca como no layout) */}
-  <div className="absolute bg-[#f8f8f2] h-[420px] top-[3479px]" data-name="background" style={{ ...fullBleedBackground, top: `${3479 + offsetY}px` }} />
+  <div className="absolute bg-[#13171a] h-[300px] top-[3480px]" data-name="background" style={fullBleedBackground} />
       <ImagemGrande activeIndex={maxIndex} />
-      <ImagensCarrossel activeIndex={maxIndex} onThumbnailClick={handleGalleryThumbnailClick} offsetY={offsetY} />
-    <div className="absolute left-1/2 top-[3653px] translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic" style={{ top: `${3653 + offsetY}px` }}>
+      <ImagensCarrossel activeIndex={maxIndex} onThumbnailClick={handleGalleryThumbnailClick} />
+    <div className="absolute left-1/2 top-[3653px] translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic">
         <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
       </div>
-  <div className="absolute left-1/2 top-[3533px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={{ top: `${3533 + offsetY}px` }}>
+  <div className="absolute left-1/2 top-[3533px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
         <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
         <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
       </div>
