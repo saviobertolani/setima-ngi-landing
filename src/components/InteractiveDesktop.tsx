@@ -599,7 +599,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0, insideSt
 
   const count = Math.min(8, galleryList.length);
   const containerStyle = insideStripe
-    ? { left: 0, top: `24px`, zIndex: 30 as number }
+    ? { left: 0, top: `24px`, zIndex: 2 as number }
     : { left: 0, top: `${3370 - offsetY}px`, zIndex: 20 as number };
   return (
     <div
@@ -692,7 +692,7 @@ function Bloco04() {
       <ImagemGrande activeIndex={maxIndex} />
       {/* Tarja preta como container com filhos; encostada no rodapé da imagem */}
       <div
-        className="absolute bg-[#13171a] h-[300px]"
+        className="absolute bg-[#13171a] h-[300px] overflow-hidden"
         data-name="faixa-preta-container"
         style={{ ...fullBleedBackground, top: `${3480 - offsetY - 1}px` }}
       >
