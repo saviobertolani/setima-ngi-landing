@@ -553,10 +553,11 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
   );
 }
 
-function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0 }: { 
+function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0, insideStripe = false }: { 
   activeIndex: number; 
   onThumbnailClick: (index: number) => void; 
   offsetY?: number;
+  insideStripe?: boolean;
 }) {
   const [showNavHint, setShowNavHint] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -597,11 +598,14 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0 }: {
   }, []);
 
   const count = Math.min(8, galleryList.length);
+  const containerStyle = insideStripe
+    ? { left: 0, top: `24px`, zIndex: 30 as number }
+    : { left: 0, top: `${3370 - offsetY}px`, zIndex: 20 as number };
   return (
     <div
       ref={galleryRef}
       className="absolute"
-  style={{ left: 0, top: `${3370 - offsetY}px`, zIndex: 20 }}
+      style={containerStyle}
       data-name="imagens carrossel"
     >
       {Array.from({ length: count }).map((_, index) => {
@@ -683,26 +687,32 @@ function Bloco04() {
     return () => window.removeEventListener('resize', update);
   }, []);
   return (
-    <div className="absolute contents left-0 top-[2510px]" data-name="Bloco 04">
-      {/* Faixa preta colada no rodapé da imagem grande
-         top base 3480px menos o offset da escala da janela (970px de altura) */}
+    <div className="absolute contents left-0 top-[2510px] z-[20]" data-name="Bloco 04">
+      {/* Imagem grande */}
+      <ImagemGrande activeIndex={maxIndex} />
+      {/* Tarja preta como container com filhos; encostada no rodapé da imagem */}
       <div
         className="absolute bg-[#13171a] h-[300px]"
-        data-name="background"
+        data-name="faixa-preta-container"
         style={{ ...fullBleedBackground, top: `${3480 - offsetY - 1}px` }}
-      />
-      <ImagemGrande activeIndex={maxIndex} />
-      {/* Thumbs sobre a imagem grande, mantendo lefts do Figma */}
-      <ImagensCarrossel activeIndex={maxIndex} onThumbnailClick={handleGalleryThumbnailClick} offsetY={offsetY} />
-      {/* Textos acompanhando a faixa para não criarem gap visual */}
-      <div className="absolute left-1/2 translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic"
-        style={{ top: `${3653 - offsetY}px` }}>
-        <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
-      </div>
-      <div className="absolute left-1/2 translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic"
-        style={{ top: `${3533 - offsetY}px` }}>
-        <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
-        <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
+      >
+        {/* Wrapper centralizado com largura de stage (1440px) */}
+        <div className="relative h-full w-[1440px] left-1/2 -translate-x-1/2">
+          {/* Thumbs dentro da tarja */}
+          <ImagensCarrossel
+            activeIndex={maxIndex}
+            onThumbnailClick={handleGalleryThumbnailClick}
+            insideStripe
+          />
+          {/* Títulos e textos com top relativo à tarja (diferenças originais: 53px e 173px do topo da tarja) */}
+          <div className="absolute left-1/2 translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={{ top: '53px' }}>
+            <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
+            <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
+          </div>
+          <div className="absolute left-1/2 translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic" style={{ top: '173px' }}>
+            <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
+          </div>
+        </div>
       </div>
     </div>
   );
