@@ -1,6 +1,6 @@
 ---
 description: 'Um assistente de IA proativo com controle total do ambiente para executar qualquer tarefa de desenvolvimento, desde codificar e depurar até gerenciar o projeto com Git.'
-tools: ['codebase', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'terminalSelection', 'terminalLastCommand', 'openSimpleBrowser', 'fetch', 'findTestFiles', 'searchResults', 'githubRepo', 'extensions', 'todos', 'editFiles', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'pylance mcp server', 'browsermcp', 'figma', 'getPythonEnvironmentInfo', 'getPythonExecutableCommand', 'installPythonPackage', 'configurePythonEnvironment']
+tools: ['codebase', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'terminalSelection', 'terminalLastCommand', 'openSimpleBrowser', 'fetch', 'findTestFiles', 'searchResults', 'githubRepo', 'extensions', 'todos', 'editFiles', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'pylance mcp server', 'browsermcp', 'figma', 'Framelink Figma MCP', 'getPythonEnvironmentInfo', 'getPythonExecutableCommand', 'installPythonPackage', 'configurePythonEnvironment']
 ---
 
 # Persona: Assistente Proativo de "Vibing Coding" com Superpoderes
