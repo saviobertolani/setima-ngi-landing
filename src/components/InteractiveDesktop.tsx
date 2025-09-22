@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback, useMemo, memo, useRef } from "react";
+import React, { CSSProperties, memo, useCallback, useEffect, useMemo, useRef, useState, useLayoutEffect } from 'react';
 import { createPortal } from "react-dom";
-import type { MouseEvent, CSSProperties } from "react";
+import type { MouseEvent } from "react";
 import { Instagram, Linkedin, Volume2, VolumeX } from "lucide-react";
 import { useScrollParallax } from "./hooks/useScrollParallax";
 import svgPaths from "../imports/svg-opxanfmkh6";
@@ -695,9 +695,29 @@ const Bloco03 = memo(() => {
 
 function Bloco04() {
   const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
-  // Tarja colada exatamente ao rodapé do clip 1440x970 (com 1px de overlap)
-  // Como o container usa display: contents, ancoramos em coordenada de PÁGINA
-  const stripeTop = 2510 + 970 - 1;
+  const stageRef = useRef<HTMLDivElement | null>(null);
+  const [stripeTop, setStripeTop] = useState<number>(2510 + 970 - 1);
+  // Mede o bottom do stage-clip em coordenada de página e encosta a tarja
+  useLayoutEffect(() => {
+    const update = () => {
+      const el = stageRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const pageTop = Math.round((window.scrollY || window.pageYOffset || 0) + r.top);
+      setStripeTop(pageTop + Math.round(r.height) - 1);
+    };
+    update();
+    window.addEventListener('resize', update);
+    window.addEventListener('orientationchange', update);
+    // Algumas UIs podem alterar fontes/zoom: observar o elemento
+    const ro = new ResizeObserver(() => update());
+    if (stageRef.current) ro.observe(stageRef.current);
+    return () => {
+      window.removeEventListener('resize', update);
+      window.removeEventListener('orientationchange', update);
+      ro.disconnect();
+    };
+  }, []);
   const handleGalleryThumbnailClick = useCallback((index: number) => {
     setGalleryActiveIndex(index);
   }, []);
