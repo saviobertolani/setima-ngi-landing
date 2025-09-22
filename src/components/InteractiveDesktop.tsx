@@ -454,6 +454,9 @@ const Bloco05 = memo(() => {
   );
 });
 
+// Coordenada base onde inicia o Bloco 04 (top do stage-clip)
+const BASE_TOP = 2509;
+
 // Array de imagens da galeria - prefere ativos locais do Figma se existirem
 const localGallery = getGalleryAssets();
 const galleryList = (localGallery.images.length
@@ -486,13 +489,12 @@ const ImagemGrande = ({
   // Constantes da janela e thresholds — definidas antes do uso
   const WINDOW_W = 1440;
   const WINDOW_H = 970;
-  const WINDOW_RATIO = WINDOW_W / WINDOW_H; // ~1.4845
-  const THRESH = 0.06; // 6% de tolerância
+  // Removido cálculo de aspect ratio: sempre crop (cover)
   // Escala responsiva: 1 em >=1440px, diminui proporcionalmente abaixo disso
   const [scale, setScale] = useState(1);
   const offsetY = useMemo(() => WINDOW_H * (1 - scale), [scale]);
-  // Fit inteligente por imagem
-  const [bgSize, setBgSize] = useState<'cover' | 'contain'>('cover');
+  // Fit fixo: sempre crop para 1440x970
+  const bgSize: 'cover' = 'cover';
   // Mantemos a janela visível exatamente em top=2510 independente do scale.
   const deltaFix = 0;
   useEffect(() => {
@@ -514,22 +516,7 @@ const ImagemGrande = ({
     onBottomChange?.(bottom);
   }, [scale, onBottomChange, relativeContainer, offsetY]);
 
-  // Atualiza background-size conforme aspect ratio da imagem ativa
-  useEffect(() => {
-    let cancelled = false;
-    const src = activeImage?.src;
-    if (!src) return;
-    const img = new Image();
-    img.onload = () => {
-      if (cancelled) return;
-      const ratio = img.width / img.height;
-      const diff = Math.abs(ratio - WINDOW_RATIO) / WINDOW_RATIO;
-      // Se a diferença de aspecto for pequena, usamos cover para evitar barras; senão contain para não cortar demais
-      setBgSize(diff <= THRESH ? 'cover' : 'contain');
-    };
-    img.src = src;
-    return () => { cancelled = true; };
-  }, [activeImage?.src]);
+  // Sem cálculo por imagem: sempre 'cover' para garantir recorte no frame 1440x970
 
   return (
     <div className="absolute contents left-0" data-name="imagem grande">
@@ -632,7 +619,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0, insideSt
 
   const count = Math.min(8, galleryList.length);
   const containerStyle: React.CSSProperties = relative
-    ? { left: 0, right: 0, bottom: `${relativeBottom ?? 24}px`, height: '98px', zIndex: 3 }
+    ? { left: 0, right: 0, bottom: `${relativeBottom ?? 24}px`, height: '98px', zIndex: 10 }
     : insideStripe
       ? { left: 0, top: `24px`, zIndex: 2 }
       : { left: 0, top: `${3370 - offsetY}px`, zIndex: 20 };
@@ -704,18 +691,18 @@ const Bloco03 = memo(() => {
 
 function Bloco04() {
   const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
-  const [stripeTop, setStripeTop] = useState<number>(2510 + 970 - 1);
+  const [stripeTop, setStripeTop] = useState<number>(BASE_TOP + 970 - 1);
   const handleGalleryThumbnailClick = useCallback((index: number) => {
     setGalleryActiveIndex(index);
   }, []);
   // Garante limite pelo total disponível
   const maxIndex = Math.max(0, Math.min(galleryList.length - 1, galleryActiveIndex));
   return (
-    <div className="absolute contents left-0 top-[2510px] z-[20]" data-name="Bloco 04">
+    <div className="absolute contents left-0 z-[20]" style={{ top: `${BASE_TOP}px` }} data-name="Bloco 04">
       {/* Stage clip 1440x970 para impedir sobreposição com o bloco anterior */}
       <div
         className="absolute left-1/2 -translate-x-1/2"
-        style={{ top: '2510px', width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2 }}
+        style={{ top: `${BASE_TOP}px`, width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2 }}
         data-name="stage-clip"
       >
         {/* Imagem grande dentro do clip, posicionada relativamente ao container */}
@@ -724,23 +711,23 @@ function Bloco04() {
           onThumbnailClick={handleGalleryThumbnailClick}
           // ativa posicionamento relativo ao container 1440x970
           relativeContainer
-          onBottomChange={(bottom) => setStripeTop(bottom - 1)}
+          onBottomChange={(bottom) => setStripeTop(Math.floor(bottom) - 1)}
         />
       </div>
       {/* Tarja preta como container com filhos; encostada no rodapé da imagem */}
       <div
-        className="absolute bg-[#13171a] h-[300px] overflow-hidden"
+        className="absolute bg-[#13171a] h-[240px] overflow-hidden"
         data-name="faixa-preta-container"
         style={{ ...fullBleedBackground, top: `${stripeTop}px`, zIndex: 3 }}
       >
         {/* Wrapper centralizado com largura de stage (1440px) */}
         <div className="relative h-full w-[1440px] left-1/2 -translate-x-1/2">
           {/* Títulos e textos com top relativo à tarja (diferenças originais: 53px e 173px do topo da tarja) */}
-          <div className="absolute left-1/2 translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={{ top: '53px' }}>
+          <div className="absolute left-1/2 translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={{ top: '8px' }}>
             <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
             <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
           </div>
-          <div className="absolute left-1/2 translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic" style={{ top: '173px' }}>
+          <div className="absolute left-1/2 translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic" style={{ top: '118px' }}>
             <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
           </div>
         </div>
@@ -1520,7 +1507,7 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
   }, [openAccordion]);
 
   return (
-    <div className="bg-white min-h-screen w-full overflow-x-hidden" data-name="Desktop - 1">
+    <div className="bg-[#0b0d0f] min-h-screen w-full overflow-x-hidden" data-name="Desktop - 1">
       {/* Header fixo via Portal */}
       <CabecalhoPortal 
         onCallClick={handleCallClick}
