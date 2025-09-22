@@ -471,12 +471,10 @@ const ImagemGrande = ({
   activeIndex,
   onThumbnailClick,
   relativeContainer = false,
-  onBottomChange,
 }: {
   activeIndex: number;
   onThumbnailClick?: (index: number) => void;
   relativeContainer?: boolean;
-  onBottomChange?: (bottom: number) => void;
 }) => {
   const fallback = { src: '', mask: localGallery.mask ?? img250127AlmapStillTeraTheTownFrenteV82 } as any;
   const activeImage = galleryList[activeIndex] ?? galleryList[0] ?? fallback;
@@ -505,14 +503,7 @@ const ImagemGrande = ({
     return () => window.removeEventListener('resize', update);
   }, []);
 
-  // Notifica o Bloco04 sobre a posição exata do rodapé da janela (para ancorar a tarja)
-  useEffect(() => {
-    // Quando relativo ao container 1440x970, compensamos a escala global para manter a base encostada na tarja.
-    const bottom = relativeContainer
-      ? 2510 + WINDOW_H // clip 1440x970 é fixo dentro do container
-      : 2510 + WINDOW_H * scale;
-    onBottomChange?.(bottom);
-  }, [scale, onBottomChange, relativeContainer, offsetY]);
+  // Sem callback: tarja é fixa no Bloco04
 
   // Atualiza background-size conforme aspect ratio da imagem ativa
   useEffect(() => {
@@ -704,7 +695,8 @@ const Bloco03 = memo(() => {
 
 function Bloco04() {
   const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
-  const [stripeTop, setStripeTop] = useState<number>(2510 + 970 - 1);
+  // Tarja colada exatamente ao rodapé do clip 1440x970 (com 1px de overlap)
+  const stripeTop = 2510 + 970 - 1;
   const handleGalleryThumbnailClick = useCallback((index: number) => {
     setGalleryActiveIndex(index);
   }, []);
@@ -719,17 +711,16 @@ function Bloco04() {
         data-name="stage-clip"
       >
         {/* Imagem grande dentro do clip, posicionada relativamente ao container */}
-        <ImagemGrande 
+  <ImagemGrande 
           activeIndex={maxIndex}
           onThumbnailClick={handleGalleryThumbnailClick}
           // ativa posicionamento relativo ao container 1440x970
           relativeContainer
-          onBottomChange={(bottom) => setStripeTop(bottom - 1)}
         />
       </div>
       {/* Tarja preta como container com filhos; encostada no rodapé da imagem */}
       <div
-        className="absolute bg-[#13171a] h-[300px] overflow-hidden"
+        className="absolute bg-[#13171a] h-[300px] overflow-hidden border-t border-[#13171a]"
         data-name="faixa-preta-container"
         style={{ ...fullBleedBackground, top: `${stripeTop}px`, zIndex: 3 }}
       >
