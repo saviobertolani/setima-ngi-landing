@@ -467,6 +467,9 @@ const galleryList = (localGallery.images.length
   : []
 );
 
+// Coordenada base onde inicia o Bloco 04 (top do stage-clip)
+const BASE_TOP = 2509;
+
 const ImagemGrande = ({
   activeIndex,
   onThumbnailClick,
@@ -509,8 +512,8 @@ const ImagemGrande = ({
   useEffect(() => {
     // Quando relativo ao container 1440x970, compensamos a escala global para manter a base encostada na tarja.
     const bottom = relativeContainer
-      ? 2510 + WINDOW_H // clip 1440x970 é fixo dentro do container
-      : 2510 + WINDOW_H * scale;
+      ? BASE_TOP + WINDOW_H // clip 1440x970 é fixo dentro do container
+      : BASE_TOP + WINDOW_H * scale;
     onBottomChange?.(bottom);
   }, [scale, onBottomChange, relativeContainer, offsetY]);
 
@@ -539,10 +542,10 @@ const ImagemGrande = ({
         style={{
           // Se relativo ao container 1440x970, não reduzimos escala para evitar "gap" no fundo do stage.
           // Mantemos a janela 1440x970 exatamente encostada ao topo do clip.
-          // Caso contrário, ancora no documento em 2510px e escala com o viewport.
+          // Caso contrário, ancora no documento em BASE_TOP e escala com o viewport.
           top: relativeContainer
             ? `${-292 + deltaFix}px` // sem offset por escala; clip interno fica colado no topo
-            : `${2510 - 292 * scale + deltaFix}px`,
+            : `${BASE_TOP - 292 * scale + deltaFix}px`,
           width: '2122px',
           height: '1262px',
           transform: `translateX(-50%) scale(${relativeContainer ? 1 : scale})`,
@@ -704,18 +707,21 @@ const Bloco03 = memo(() => {
 
 function Bloco04() {
   const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
-  const [stripeTop, setStripeTop] = useState<number>(2510 + 970 - 1);
+  const [stripeTop, setStripeTop] = useState<number>(BASE_TOP + 970 - 1);
   const handleGalleryThumbnailClick = useCallback((index: number) => {
     setGalleryActiveIndex(index);
   }, []);
   // Garante limite pelo total disponível
   const maxIndex = Math.max(0, Math.min(galleryList.length - 1, galleryActiveIndex));
+  // Altura dinâmica da tarja para colar exatamente até o início do Bloco 05 (3780px)
+  const NEXT_BLOCK_05_TOP = 3780;
+  const stripeHeight = Math.max(300, NEXT_BLOCK_05_TOP - stripeTop + 1); // +1 para sobrepor 1px
   return (
-    <div className="absolute contents left-0 top-[2510px] z-[20]" data-name="Bloco 04">
+    <div className="absolute contents left-0 z-[20]" style={{ top: `${BASE_TOP}px` }} data-name="Bloco 04">
       {/* Stage clip 1440x970 para impedir sobreposição com o bloco anterior */}
       <div
         className="absolute left-1/2 -translate-x-1/2"
-        style={{ top: '2509px', width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2, backgroundColor: '#13171a' }}
+        style={{ top: `${BASE_TOP}px`, width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2, backgroundColor: '#13171a' }}
         data-name="stage-clip"
       >
         {/* Imagem grande dentro do clip, posicionada relativamente ao container */}
@@ -724,14 +730,14 @@ function Bloco04() {
           onThumbnailClick={handleGalleryThumbnailClick}
           // ativa posicionamento relativo ao container 1440x970
           relativeContainer
-          onBottomChange={(bottom) => setStripeTop(bottom - 3)}
+          onBottomChange={(bottom) => setStripeTop(Math.floor(bottom) - 1)}
         />
       </div>
       {/* Tarja preta como container com filhos; encostada no rodapé da imagem */}
       <div
-        className="absolute bg-[#13171a] h-[300px] overflow-hidden"
+        className="absolute bg-[#13171a] overflow-hidden"
         data-name="faixa-preta-container"
-        style={{ ...fullBleedBackground, top: `${stripeTop}px`, zIndex: 3 }}
+        style={{ ...fullBleedBackground, top: `${stripeTop}px`, height: `${stripeHeight}px`, zIndex: 3 }}
       >
         {/* Wrapper centralizado com largura de stage (1440px) */}
         <div className="relative h-full w-[1440px] left-1/2 -translate-x-1/2">
