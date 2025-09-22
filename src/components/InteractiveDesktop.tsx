@@ -714,20 +714,20 @@ function Bloco04() {
           onBottomChange={(bottom) => setStripeTop(Math.floor(bottom) - 1)}
         />
       </div>
-      {/* Tarja preta como container com filhos; encostada no rodapé da imagem */}
+      {/* Tarja grafite 1440x300 centralizada; encostada no rodapé da imagem */}
       <div
-        className="absolute bg-[#13171a] h-[240px] overflow-hidden"
+        className="absolute bg-[#13171a] overflow-hidden left-1/2 -translate-x-1/2"
         data-name="faixa-preta-container"
-        style={{ ...fullBleedBackground, top: `${stripeTop}px`, zIndex: 3 }}
+        style={{ top: `${stripeTop}px`, zIndex: 3, width: '1440px', height: '300px' }}
       >
-        {/* Wrapper centralizado com largura de stage (1440px) */}
-        <div className="relative h-full w-[1440px] left-1/2 -translate-x-1/2">
-          {/* Títulos e textos com top relativo à tarja (diferenças originais: 53px e 173px do topo da tarja) */}
-          <div className="absolute left-1/2 translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={{ top: '8px' }}>
+        {/* Wrapper interno usa toda a largura (w-full) */}
+        <div className="relative h-full w-full">
+          {/* Offsets conforme Figma: título ~56px, texto ~136px */}
+          <div className="absolute left-1/2 translate-x-[-50%] top-[56px] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
             <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
             <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
           </div>
-          <div className="absolute left-1/2 translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic" style={{ top: '118px' }}>
+          <div className="absolute left-1/2 translate-x-[-50%] top-[136px] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic">
             <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
           </div>
         </div>
