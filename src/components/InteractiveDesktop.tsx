@@ -715,7 +715,7 @@ function Bloco04() {
       {/* Stage clip 1440x970 para impedir sobreposição com o bloco anterior */}
       <div
         className="absolute left-1/2 -translate-x-1/2"
-        style={{ top: '2510px', width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2, backgroundColor: '#13171a' }}
+        style={{ top: '2509px', width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2, backgroundColor: '#13171a' }}
         data-name="stage-clip"
       >
         {/* Imagem grande dentro do clip, posicionada relativamente ao container */}
@@ -724,7 +724,7 @@ function Bloco04() {
           onThumbnailClick={handleGalleryThumbnailClick}
           // ativa posicionamento relativo ao container 1440x970
           relativeContainer
-          onBottomChange={(bottom) => setStripeTop(bottom - 2)}
+          onBottomChange={(bottom) => setStripeTop(bottom - 3)}
         />
       </div>
       {/* Tarja preta como container com filhos; encostada no rodapé da imagem */}
