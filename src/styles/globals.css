@@ -309,8 +309,8 @@ html, body {
   overscroll-behavior-y: none;
   /* Evita qualquer overflow horizontal e barras laterais indesejadas */
   overflow-x: hidden;
-  /* Fundo do documento igual ao footer para evitar faixa visível após o rodapé */
-  background-color: #000000;
+  /* Fundo do documento seguindo o layout base (Figma). */
+  background-color: #ffffff;
 }
 
 /* Animações para Content-Tech Section */
