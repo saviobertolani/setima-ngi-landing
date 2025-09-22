@@ -727,6 +727,7 @@ function Bloco04() {
     <div className="absolute contents left-0 top-[2510px] z-[20]" data-name="Bloco 04">
       {/* Stage clip 1440x970 para impedir sobreposição com o bloco anterior */}
       <div
+        ref={stageRef}
         className="absolute left-1/2 -translate-x-1/2"
         style={{ top: '2510px', width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2 }}
         data-name="stage-clip"
