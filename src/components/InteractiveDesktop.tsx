@@ -399,7 +399,61 @@ const Bloco07 = memo(({ openAccordion, toggleAccordion }: {
   );
 });
 
-// (Bloco05 será definido após as constantes BASE_TOP e helpers)
+const Bloco06 = memo(() => {
+  const titleParallax = useScrollParallax({ speed: -0.06 });
+  const bulletParallax = useScrollParallax({ speed: -0.04 });
+  const bgParallax = useScrollParallax({ speed: -0.05 });
+  const clampY = (v: number) => Math.max(-30, Math.min(30, v));
+  return (
+    <div className="absolute contents left-[-132px] top-[4380px]" data-name="Bloco 06">
+      <div
+        className="absolute bg-[#13171a] h-[1250px] top-[4380px]"
+        style={{ ...fullBleedBackground, zIndex: 0 }}
+      />
+      <div
+        className="absolute bg-center bg-cover bg-no-repeat h-[852px] left-[-132px] top-[4656px] w-[1515px]"
+        data-name="aquamarine (3) 1"
+        style={{
+          backgroundImage: `url('${imgAquamarine31}')`,
+          backgroundPosition: `50% calc(50% + ${clampY(bgParallax.offsetY).toFixed(2)}px)`,
+        }}
+      />
+      <div className="absolute left-[77px] top-[4530px] w-[987px] fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={titleParallax.tw}>
+        <p className="m-0">O FLUXO NGI: DA ESTRATÉGIA À PRODUÇÃO, CRIATIVIDADE E TÉCNICA ACELERADAS PELA IA.</p>
+      </div>
+      <div className="absolute left-[1082px] top-[5497px] w-[326px] fig-subtitle-32-bold fig-light leading-[0] not-italic" style={bulletParallax.tw}>
+        <p className="leading-[normal]">+ IMPACTANTE</p>
+      </div>
+      <div className="absolute left-[1082px] top-[5455px] w-[288px] fig-subtitle-32-bold fig-light leading-[0] not-italic" style={bulletParallax.tw}>
+        <p className="leading-[normal]">+ ESCALÁVEL</p>
+      </div>
+      <div className="absolute left-[1082px] top-[5412px] w-[256px] fig-subtitle-32-bold fig-light leading-[0] not-italic" style={bulletParallax.tw}>
+        <p className="leading-[normal]">+ RÁPIDO</p>
+      </div>
+    </div>
+  );
+});
+
+const Bloco05 = memo(() => {
+  const titleParallax = useScrollParallax({ speed: -0.06 });
+  const bodyParallax = useScrollParallax({ speed: -0.04 });
+  return (
+    <div className="absolute contents left-0 top-[3780px]" data-name="Bloco 05">
+  <div
+    className="absolute bg-[#f8f8f2] h-[600px] left-0 top-[3780px] w-[1440px]"
+  />
+  <div className="absolute left-[816px] top-[4136px] w-[421px] fig-body-23 fig-dark text-smooth not-italic leading-[26px]" style={bodyParallax.tw}>
+    <p className="m-0 leading-[26px]">Integramos criatividade, estratégia e tecnologia em um só fluxo, criando conteúdos relevantes de maneira mais rápida, escalável e impactante.</p>
+      </div>
+  <div className="absolute left-[181px] top-[3933px] w-[590px] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic leading-[52px]" style={titleParallax.tw}>
+    <p className="mb-0 leading-[52px]">MAIS DE 60 PROJETOS</p>
+    <p className="mb-0 leading-[52px]">EM 2025 QUE AJUDARAM NOSSOS CLIENTES A ECONOMIZAR MILHÕES</p>
+    <p className="mb-0 leading-[52px]">EM COMPARAÇÃO A PRODUÇÕES TRADICIONAIS.</p>
+      </div>
+    </div>
+  );
+});
+
 // Array de imagens da galeria - prefere ativos locais do Figma se existirem
 const localGallery = getGalleryAssets();
 const galleryList = (localGallery.images.length
@@ -416,45 +470,7 @@ const galleryList = (localGallery.images.length
 // Coordenada base onde inicia o Bloco 04 (top do stage-clip)
 const BASE_TOP = 2509;
 // Altura de design da tarja preta (ajustável conforme Figma)
-const DESIGN_STRIPE_HEIGHT = 420;
-
-// Helper para obter a altura efetiva da tarja (com override via query ?stripe=NNN)
-function computeStripeHeight(): number {
-  if (typeof window === 'undefined') return DESIGN_STRIPE_HEIGHT;
-  try {
-    const qs = new URLSearchParams(window.location.search);
-    const v = parseInt(qs.get('stripe') || '');
-    if (!Number.isFinite(v) || v <= 0) return DESIGN_STRIPE_HEIGHT;
-    return Math.min(700, Math.max(200, v));
-  } catch {
-    return DESIGN_STRIPE_HEIGHT;
-  }
-}
-
-const Bloco05 = memo(() => {
-  const titleParallax = useScrollParallax({ speed: -0.06 });
-  const bodyParallax = useScrollParallax({ speed: -0.04 });
-  // Ancora dinamicamente ao final do Bloco 04 (imagem + tarja)
-  const stripeHeight = computeStripeHeight();
-  const bloco05Top = BASE_TOP + 970 - 1 + stripeHeight; // -1 para manter "colado" sem gap
-  return (
-    <div className="absolute contents left-0" style={{ top: `${bloco05Top}px` }} data-name="Bloco 05">
-      {/* Fundo full-bleed e wrapper de 1440px */}
-      <div className="absolute bg-[#f8f8f2] h-[600px] left-0 w-[1440px]" style={{ top: 0 }} />
-      <div className="relative left-1/2 -translate-x-1/2 w-[1440px] h-[600px]">
-        {/* Offsets conforme design dentro do bloco */}
-        <div className="absolute left-[636px] w-[421px] fig-body-23 fig-dark text-smooth not-italic leading-[0]" style={{ top: `356px`, ...bodyParallax.tw }}>
-          <p className="m-0 leading-[26px]">Integramos criatividade, estratégia e tecnologia em um só fluxo, criando conteúdos relevantes de maneira mais rápida, escalável e impactante.</p>
-        </div>
-        <div className="absolute left-[1px] w-[590px] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic leading-[52px]" style={{ top: `153px`, ...titleParallax.tw }}>
-          <p className="mb-0 leading-[52px]">MAIS DE 60 PROJETOS</p>
-          <p className="mb-0 leading-[52px]">EM 2025 QUE AJUDARAM NOSSOS CLIENTES A ECONOMIZAR MILHÕES</p>
-          <p className="mb-0 leading-[52px]">EM COMPARAÇÃO A PRODUÇÕES TRADICIONAIS.</p>
-        </div>
-      </div>
-    </div>
-  );
-});
+const DESIGN_STRIPE_HEIGHT = 240;
 
 const ImagemGrande = ({
   activeIndex,
@@ -700,16 +716,22 @@ function Bloco04() {
   // Garante limite pelo total disponível
   const maxIndex = Math.max(0, Math.min(galleryList.length - 1, galleryActiveIndex));
   // Altura fixa conforme design com override por query (?stripe=NNN)
-  const stripeHeight = useMemo(() => computeStripeHeight(), []);
-  // Posicionamento do conteúdo interno conforme medidas originais do Figma
-  const headingTop = 53; // distância do topo da tarja até o título
-  const bodyTop = 173;   // distância do topo da tarja até o corpo
+  const stripeHeight = useMemo(() => {
+    if (typeof window === 'undefined') return DESIGN_STRIPE_HEIGHT;
+    const qs = new URLSearchParams(window.location.search);
+    const v = parseInt(qs.get('stripe') || '');
+    if (!Number.isFinite(v) || v <= 0) return DESIGN_STRIPE_HEIGHT;
+    return Math.min(700, Math.max(200, v));
+  }, []);
+  // Posicionamento proporcional do conteúdo interno
+  const headingTop = 24; // mais próximo do topo, reduz “barra vazia”
+  const bodyTop = headingTop + 96;
   return (
-    <div className="absolute left-0 z-[20] w-full" style={{ top: `${BASE_TOP}px` }} data-name="Bloco 04">
+    <div className="absolute contents left-0 z-[20]" style={{ top: `${BASE_TOP}px` }} data-name="Bloco 04">
       {/* Stage clip 1440x970 para impedir sobreposição com o bloco anterior */}
       <div
         className="absolute left-1/2 -translate-x-1/2"
-  style={{ top: `${BASE_TOP}px`, width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2, backgroundColor: '#13171a' }}
+        style={{ top: `${BASE_TOP}px`, width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2, backgroundColor: '#13171a' }}
         data-name="stage-clip"
       >
         {/* Imagem grande dentro do clip, posicionada relativamente ao container */}
@@ -1542,6 +1564,7 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
         <Bloco03 />
         <Bloco04 />
         <Bloco05 />
+        <Bloco06 />
         <Bloco07 openAccordion={openAccordion} toggleAccordion={toggleAccordion} />
         <Bloco08 />
       </div>

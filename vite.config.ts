@@ -66,18 +66,30 @@
     },
     server: (() => {
       const isLocal = process.env.LOCAL_DEV === '1' || process.env.VITE_LOCAL_DEV === '1';
+      // Permitir configuração do host do túnel via env, com fallback para o domínio informado
+      const tunnelHost =
+        process.env.CF_TUNNEL_HOST ||
+        process.env.TUNNEL_HOST ||
+        process.env.VITE_TUNNEL_HOST ||
+        'far-confidence-rooms-african.trycloudflare.com';
+
       return {
         port: 5173,
         strictPort: true,
         open: true,
         host: '0.0.0.0',
-        allowedHosts: ['localhost', '127.0.0.1', 'lafayette-yields-antique-tide.trycloudflare.com'],
+        allowedHosts: [
+          'localhost',
+          '127.0.0.1',
+          'lafayette-yields-antique-tide.trycloudflare.com',
+          tunnelHost,
+        ],
         // Em ambiente local, deixa HMR padrão (localhost). Em ambiente remoto, usa WSS custom.
         ...(isLocal
           ? {}
           : {
               hmr: {
-                host: 'lafayette-yields-antique-tide.trycloudflare.com',
+                host: tunnelHost,
                 protocol: 'wss',
                 clientPort: 443,
               },
