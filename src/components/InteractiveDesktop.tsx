@@ -469,6 +469,8 @@ const galleryList = (localGallery.images.length
 
 // Coordenada base onde inicia o Bloco 04 (top do stage-clip)
 const BASE_TOP = 2509;
+// Altura de design da tarja preta (ajustável conforme Figma)
+const DESIGN_STRIPE_HEIGHT = 240;
 
 const ImagemGrande = ({
   activeIndex,
@@ -713,9 +715,17 @@ function Bloco04() {
   }, []);
   // Garante limite pelo total disponível
   const maxIndex = Math.max(0, Math.min(galleryList.length - 1, galleryActiveIndex));
-  // Altura dinâmica da tarja para colar exatamente até o início do Bloco 05 (3780px)
-  const NEXT_BLOCK_05_TOP = 3780;
-  const stripeHeight = Math.max(300, NEXT_BLOCK_05_TOP - stripeTop + 1); // +1 para sobrepor 1px
+  // Altura fixa conforme design com override por query (?stripe=NNN)
+  const stripeHeight = useMemo(() => {
+    if (typeof window === 'undefined') return DESIGN_STRIPE_HEIGHT;
+    const qs = new URLSearchParams(window.location.search);
+    const v = parseInt(qs.get('stripe') || '');
+    if (!Number.isFinite(v) || v <= 0) return DESIGN_STRIPE_HEIGHT;
+    return Math.min(700, Math.max(200, v));
+  }, []);
+  // Posicionamento proporcional do conteúdo interno
+  const headingTop = 24; // mais próximo do topo, reduz “barra vazia”
+  const bodyTop = headingTop + 96;
   return (
     <div className="absolute contents left-0 z-[20]" style={{ top: `${BASE_TOP}px` }} data-name="Bloco 04">
       {/* Stage clip 1440x970 para impedir sobreposição com o bloco anterior */}
@@ -742,11 +752,11 @@ function Bloco04() {
         {/* Wrapper centralizado com largura de stage (1440px) */}
         <div className="relative h-full w-[1440px] left-1/2 -translate-x-1/2">
           {/* Títulos e textos com top relativo à tarja (diferenças originais: 53px e 173px do topo da tarja) */}
-          <div className="absolute left-1/2 translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={{ top: '53px' }}>
+          <div className="absolute left-1/2 translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={{ top: `${headingTop}px` }}>
             <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
             <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
           </div>
-          <div className="absolute left-1/2 translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic" style={{ top: '173px' }}>
+          <div className="absolute left-1/2 translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic" style={{ top: `${bodyTop}px` }}>
             <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
           </div>
         </div>
