@@ -74,7 +74,7 @@ function LogoSetima() {
       onClick={() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }}
-      className="absolute h-[50px] left-[77px] top-[6280px] w-[120px] cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-none p-0" 
+  className="absolute h-[50px] left-[77px] top-[43px] w-[120px] cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-none p-0" 
       data-name="logo setima"
       title="Voltar ao topo"
     >
@@ -157,7 +157,7 @@ function SocialIcons() {
   }, [openInNewTab]);
 
   return (
-    <div className="absolute flex items-center gap-4 left-[1280px] top-[6290px]" data-name="social icons">
+  <div className="absolute flex items-center gap-4 left-[1280px] top-[53px]" data-name="social icons">
       <button
         onClick={handleInstagramClick}
         className="flex items-center justify-center w-10 h-10 rounded-full bg-[#f8f8f2] hover:bg-[#00f5b9] transition-all duration-300 cursor-pointer group"
@@ -178,7 +178,7 @@ function SocialIcons() {
 
 function CopyrightText() {
   return (
-    <div className="absolute left-[77px] top-[6350px] w-[600px]" data-name="copyright text">
+    <div className="absolute left-[77px] top-[113px] w-[600px]" data-name="copyright text">
   <p className="fig-ubuntu-light fig-caption-12 fig-light not-italic whitespace-nowrap">
         © 2025 Setima. Todos os direitos reservados. Todo o conteúdo deste site é protegido por leis de propriedade intelectual.
       </p>
@@ -188,9 +188,9 @@ function CopyrightText() {
 
 const Bloco08 = memo(() => {
   return (
-  <div className="absolute contents left-0 top-[6237px]" data-name="Bloco 08">
+  <div className="absolute left-0 top-[6237px] w-full" data-name="Bloco 08">
       <div
-    className="absolute h-[229px] top-[6237px] bg-black"
+    className="absolute h-[229px] top-0 bg-black"
         style={fullBleedBackground}
       />
       <LogoSetima />
