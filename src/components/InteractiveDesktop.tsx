@@ -1467,8 +1467,6 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
   const [isScrolled, setIsScrolled] = useState(false);
   // CTA do header controlado por rolagem para evitar duplicidade com o CTA do herói
   const [showHeaderCTA, setShowHeaderCTA] = useState(false);
-  // Medição real do fim do conteúdo para evitar espaço abaixo do footer
-  const [minHeightMeasured, setMinHeightMeasured] = useState<number | null>(null);
 
   const toggleAccordion = useCallback((index: number) => {
     setOpenAccordion(prev => prev === index ? null : index);
@@ -1545,32 +1543,6 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
     return FOOTER_BOTTOM + extraHeight;
   }, [openAccordion]);
 
-  // Mede o maior bottom entre os blocos dentro do stage-root
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const measure = () => {
-      const root = document.getElementById('stage-root');
-      if (!root) return;
-      const els = Array.from(root.querySelectorAll('[data-name]')) as HTMLElement[];
-      let maxBottom = 0;
-      const scrollY = window.scrollY || window.pageYOffset || 0;
-      for (const el of els) {
-        const r = el.getBoundingClientRect();
-        const bottom = r.bottom + scrollY;
-        if (Number.isFinite(bottom)) maxBottom = Math.max(maxBottom, bottom);
-      }
-      // fallback ao FOOTER_BOTTOM quando não medido
-      if (maxBottom > 0) setMinHeightMeasured(Math.ceil(maxBottom));
-    };
-    measure();
-    const onResize = () => measure();
-    window.addEventListener('resize', onResize, { passive: true });
-    const t = window.setTimeout(measure, 0);
-    return () => {
-      window.removeEventListener('resize', onResize);
-      window.clearTimeout(t);
-    };
-  }, [openAccordion]);
 
   return (
     <div className="bg-white min-h-screen w-full overflow-x-hidden" data-name="Desktop - 1">
@@ -1590,8 +1562,8 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
           width: '1440px',
           marginLeft: '50%',
           transform: 'translateX(-50%)',
-          // Usa o maior entre o valor dinâmico de design e a medição real do conteúdo
-          minHeight: `${Math.max(dynamicHeight, minHeightMeasured ?? 0)}px`
+          // Altura mínima baseada no fundo do footer (com extra quando o FAQ estiver aberto)
+          minHeight: `${dynamicHeight}px`
         }}
       >
         <Bloco01 
