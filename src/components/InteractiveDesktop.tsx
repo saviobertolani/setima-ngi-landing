@@ -696,7 +696,8 @@ const Bloco03 = memo(() => {
 function Bloco04() {
   const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
   // Tarja colada exatamente ao rodapé do clip 1440x970 (com 1px de overlap)
-  const stripeTop = 2510 + 970 - 1;
+  // ATENÇÃO: este top é RELATIVO ao container de Bloco04 (que já está em top 2510px)
+  const stripeTop = 970 - 1;
   const handleGalleryThumbnailClick = useCallback((index: number) => {
     setGalleryActiveIndex(index);
   }, []);
