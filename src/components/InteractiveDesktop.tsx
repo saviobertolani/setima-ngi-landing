@@ -4,15 +4,15 @@ import type { MouseEvent, CSSProperties } from "react";
 import { Instagram, Linkedin, Volume2, VolumeX } from "lucide-react";
 import { useScrollParallax } from "./hooks/useScrollParallax";
 import svgPaths from "../imports/svg-opxanfmkh6";
-import imgAquamarine31 from "figma:asset/86d3063cb2abbf00887077f00ed48a7f75469ca4.png";
-import img250127AlmapStillTeraTheTownFrenteV081 from "figma:asset/0e4c4fe22e1cb5636a33462c5ac2022a711c0f36.png";
-import imgVwConstelattion313206X4CacambaPsb1 from "figma:asset/982534bd46b9e568691c0e5652a818ec5954a309.png";
-import imgEmbaixo from "figma:asset/8c05f1bb3639a901cae85d722430ef33a62e7d28.png";
-import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D811 from "figma:asset/705cc0dc55d0d5a68388c772e2b6117b6c99cd0f.png";
-import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D813 from "figma:asset/363d73ec33595dde3285b1f284098774998f5dac.png";
-import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D814 from "figma:asset/9a654ce0bbc1b437282de0c696914374ed89f641.png";
-import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D815 from "figma:asset/8fca1f53bb6c91dfa7bb390285d6e25c4fdabb30.png";
-import imgEmCima from "figma:asset/00bd12579795674c4cb2b293530ca5101339ddb5.png";
+import imgAquamarine31 from "@/assets/86d3063cb2abbf00887077f00ed48a7f75469ca4.webp";
+import img250127AlmapStillTeraTheTownFrenteV081 from "@/assets/0e4c4fe22e1cb5636a33462c5ac2022a711c0f36.webp";
+import imgVwConstelattion313206X4CacambaPsb1 from "@/assets/982534bd46b9e568691c0e5652a818ec5954a309.png";
+import imgEmbaixo from "@/assets/8c05f1bb3639a901cae85d722430ef33a62e7d28.webp";
+import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D811 from "@/assets/705cc0dc55d0d5a68388c772e2b6117b6c99cd0f.png";
+import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D813 from "@/assets/363d73ec33595dde3285b1f284098774998f5dac.png";
+import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D814 from "@/assets/9a654ce0bbc1b437282de0c696914374ed89f641.png";
+import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D815 from "@/assets/8fca1f53bb6c91dfa7bb390285d6e25c4fdabb30.png";
+import imgEmCima from "@/assets/00bd12579795674c4cb2b293530ca5101339ddb5.webp";
 import { img250127AlmapStillTeraTheTownFrenteV82, imgVwConstelattion313206X4CacambaPsb2, imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D812 } from "../imports/svg-o73ic";
 import { titles } from "../content/texts";
 import { getGalleryAssets } from "../utils/gallerySources";
@@ -47,7 +47,9 @@ const faqData = [
 const fullBleedBackground: CSSProperties = {
   left: "50%",
   transform: "translateX(-50%)",
-  width: "max(1440px, 100vw)",
+  // +2px para cobrir artefatos de arredondamento; -1px para centralizar
+  width: "calc(max(1440px, 100vw) + 2px)",
+  marginLeft: "-1px",
 };
 
 function IconeSeta() {
@@ -454,118 +456,115 @@ const Bloco05 = memo(() => {
 
 // Array de imagens da galeria - prefere ativos locais do Figma se existirem
 const localGallery = getGalleryAssets();
-const galleryImages = (localGallery.images.length ? localGallery.images.map((src, idx) => ({
-  id: idx,
-  src,
-  mask: localGallery.mask ?? img250127AlmapStillTeraTheTownFrenteV82,
-  thumbnail: src,
-  alt: `figma-local-${idx}`
-})) : [
-  {
-    id: 0,
-    src: "https://images.unsplash.com/photo-1563010501-8dbf76424fb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2b2xrc3dhZ2VuJTIwdGVyYSUyMHNpbHZlciUyMGNhciUyMGZyb250fGVufDF8fHx8MTc1ODEwMDM0N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    mask: img250127AlmapStillTeraTheTownFrenteV82,
-    thumbnail: "https://images.unsplash.com/photo-1754782385916-3efd2d1ae8fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjB0aHVtYiUyMHJlYXIlMjBzaWx2ZXJ8ZW58MXx8fHwxNzU4MTAwMzg0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    alt: "25_0127_Almap_Still_TeraTheTown_Frente_V08"
-  },
-  {
-    id: 1,
-    src: "https://images.unsplash.com/photo-1650535508320-5ab630c0ab09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBpbnRlcmlvciUyMG5hdmlnYXRpb24lMjBzeXN0ZW18ZW58MXx8fHwxNzU4MTAwMzU2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    mask: img250127AlmapStillTeraTheTownFrenteV82,
-    thumbnail: "https://images.unsplash.com/photo-1639060015191-9d83063eab2a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBkZXRhaWwlMjBuYXZpZ2F0aW9uJTIwcHJldmlld3xlbnwxfHx8fDE3NTgxMDAzOTZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    alt: "AFX NAVEG CONFIGURADOR 30seg ARG 3840x1920"
-  },
-  {
-    id: 2,
-    src: "https://images.unsplash.com/photo-1563010501-8dbf76424fb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2b2xrc3dhZ2VuJTIwdGVyYSUyMHNpbHZlciUyMGNhciUyMGZyb250fGVufDF8fHx8MTc1ODEwMDM0N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    mask: img250127AlmapStillTeraTheTownFrenteV82,
-    thumbnail: "https://images.unsplash.com/photo-1716615188690-aea33d1d41f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBzYWZldHklMjBmZWF0dXJlJTIwZGV0YWlsfGVufDF8fHx8MTc1ODEwMDQwMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    alt: "25_0002_STILL_TERA_HG_170TSI_MY26_OUTFIT_THETOWN_3_4_FRENTE_R4A1_PRATA_LUNAR_AMB_NOITE"
-  },
-  {
-    id: 3,
-    src: "https://images.unsplash.com/photo-1643686978526-7ae17c701e30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBkYXNoYm9hcmQlMjBzYWZldHklMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc1ODEwMDM1OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    mask: img250127AlmapStillTeraTheTownFrenteV82,
-    thumbnail: "https://images.unsplash.com/photo-1705237458425-6d560bd4625c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbWVyZ2VuY3klMjBicmFrZSUyMGRldGFpbCUyMGNhcnxlbnwxfHx8fDE3NTgxMDA0MDV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    alt: "AEB Frenagem Autônoma de Emergência v18"
-  },
-  {
-    id: 4,
-    src: "https://images.unsplash.com/photo-1680516125126-e92100cdcbba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjByZWFyJTIwdmlldyUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzU4MTAwMzY3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    mask: img250127AlmapStillTeraTheTownFrenteV82,
-    thumbnail: "https://images.unsplash.com/photo-1675462378901-4fb9ed48591c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjByZWFyJTIwZGV0YWlsJTIwY2xvc2V8ZW58MXx8fHwxNzU4MTAwNDE2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    alt: "25_0002_STILL_AL_TERA_HG_170TSI_MY26_OUTFIT_BADGE_TRASEIRA_R4A1_PRATA_LUNAR_AMB_DIA"
-  },
-  {
-    id: 5,
-    src: "https://images.unsplash.com/photo-1750661941636-7affe0df1fac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYW5lJTIwYXNzaXN0JTIwZHJpdmluZyUyMHNhZmV0eXxlbnwxfHx8fDE3NTgxMDAzNjR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    mask: img250127AlmapStillTeraTheTownFrenteV82,
-    thumbnail: "https://images.unsplash.com/photo-1716615188690-aea33d1d41f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYW5lJTIwYXNzaXN0YW5jZSUyMGNhciUyMGRldGFpbHxlbnwxfHx8fDE3NTgxMDA0MjF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    alt: "Lane Assist Assistente de Permanência na Faixa v21"
-  },
-  {
-    id: 6,
-    src: "https://images.unsplash.com/photo-1752959811093-9ed95c42b16d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjYXIlMjBiYWRnZSUyMGRldGFpbHxlbnwxfHx8fDE3NTgxMDAzNzV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    mask: img250127AlmapStillTeraTheTownFrenteV82,
-    thumbnail: "https://images.unsplash.com/photo-1718465388901-9c628510c01e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBkZXRhaWwlMjBiYWRnZSUyMHZlcnNpb258ZW58MXx8fHwxNzU4MTAwNDI0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    alt: "25_0002_STILL_TERA_HG_170TSI_MY26_OUTFIT_THETOWN_BADGE_VERSAO_R4A1_PRATA_LUNAR_AMB_NOITE"
-  },
-  {
-    id: 7,
-    src: "https://images.unsplash.com/photo-1705617187494-05a0369a6446?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBpbnRlcmlvciUyMHBhbmVsJTIwZGFzaGJvYXJkfGVufDF8fHx8MTc1ODEwMDM3OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    mask: img250127AlmapStillTeraTheTownFrenteV82,
-    thumbnail: "https://images.unsplash.com/photo-1625062294718-827c8a646156?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXIlMjBkYXNoYm9hcmQlMjBwYW5lbCUyMGdyYXl8ZW58MXx8fHwxNzU4MTAwNDI4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    alt: "25_0002_STILL_TERA_COMF_MY26_PAINEL_FRONTAL_TOTAL_2R2R_CINZA_PLATINUM_AMB_DIA"
-  }
-]);
+const galleryList = (localGallery.images.length
+  ? localGallery.images.map((src, idx) => ({
+      id: idx,
+      src,
+      mask: localGallery.mask ?? img250127AlmapStillTeraTheTownFrenteV82,
+      thumbnail: localGallery.thumbs?.[idx] ?? src,
+      alt: `gallery-${String(idx + 1).padStart(2, '0')}`
+    }))
+  : []
+);
 
 function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
-  const activeImage = galleryImages[activeIndex];
-  // Sutil parallax interno via background-position (não move o container)
-  const imgParallax = useScrollParallax({ speed: -0.05 });
-  const clampImg = (v:number) => Math.max(-30, Math.min(30, v));
+  const fallback = { src: '', mask: localGallery.mask ?? img250127AlmapStillTeraTheTownFrenteV82 } as any;
+  const activeImage = galleryList[activeIndex] ?? galleryList[0] ?? fallback;
+  // Parallax interno DESATIVADO temporariamente para validação pixel-perfect
+  // const imgParallax = useScrollParallax({ speed: -0.05 });
+  // const clampImg = (v:number) => Math.max(-30, Math.min(30, v));
+  // Escala responsiva: 1 em >=1440px, diminui proporcionalmente abaixo disso
+  const [scale, setScale] = useState(1);
+  // Fit inteligente por imagem
+  const [bgSize, setBgSize] = useState<'cover' | 'contain'>('cover');
+  const WINDOW_W = 1440;
+  const WINDOW_H = 970;
+  const WINDOW_RATIO = WINDOW_W / WINDOW_H; // ~1.4845
+  const THRESH = 0.06; // 6% de tolerância
+  // Mantemos a janela visível exatamente em top=2510 independente do scale.
+  const deltaFix = 0;
+  useEffect(() => {
+    const update = () => {
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      setScale(Math.min(1, vw / 1440));
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  // Atualiza background-size conforme aspect ratio da imagem ativa
+  useEffect(() => {
+    let cancelled = false;
+    const src = activeImage?.src;
+    if (!src) return;
+    const img = new Image();
+    img.onload = () => {
+      if (cancelled) return;
+      const ratio = img.width / img.height;
+      const diff = Math.abs(ratio - WINDOW_RATIO) / WINDOW_RATIO;
+      // Se a diferença de aspecto for pequena, usamos cover para evitar barras; senão contain para não cortar demais
+      setBgSize(diff <= THRESH ? 'cover' : 'contain');
+    };
+    img.src = src;
+    return () => { cancelled = true; };
+  }, [activeImage?.src]);
 
   return (
-  <div className="absolute contents left-0 top-[2510px]" data-name="imagem grande">
-      {/* Imagem principal com transição suave */}
-      <div 
-  className="absolute bg-center bg-cover bg-no-repeat h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] transition-all duration-700 ease-in-out" 
-        data-name="main gallery image"
-        style={{ 
-          backgroundImage: `url('${activeImage.src}')`, 
-          maskImage: `url('${activeImage.mask}')`,
-          backgroundPosition: `50% calc(50% + ${clampImg(imgParallax.offsetY).toFixed(2)}px)`,
-          transform: 'translateZ(0)', // Força aceleração por hardware
-          backfaceVisibility: 'hidden',
-          width: 'max(2122px, calc(100vw + 534px))', // Garante cobertura total em qualquer resolução
-          minWidth: '2122px' // Mantém largura mínima do design original
-        }} 
-      />
-      
-      {/* Overlay sutil para transições mais suaves */}
-      <div 
-        className="absolute bg-center bg-cover bg-no-repeat h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] w-[2122px] opacity-0 transition-opacity duration-300 pointer-events-none" 
-        data-name="transition overlay"
-        style={{ 
-          backgroundImage: `url('${activeImage.src}')`, 
-          maskImage: `url('${activeImage.mask}')`,
-          transform: 'translateZ(0)',
-          backfaceVisibility: 'hidden'
-        }} 
-      />
+    <div className="absolute contents left-0" data-name="imagem grande">
+      {/* Wrapper centralizado e escalável */}
+      <div
+        className="absolute left-1/2"
+        style={{
+          // Mantém a janela interna (top 292 dentro do wrapper) sempre ancorada em 2510px na página,
+          // independente do scale aplicado ao wrapper.
+          top: `${2510 - 292 * scale + deltaFix}px`,
+          width: '2122px',
+          height: '1274px',
+          transform: `translateX(-50%) scale(${scale})`,
+          transformOrigin: 'top center',
+          willChange: 'transform'
+        }}
+      >
+        {/* Janela centralizada 1440x970 com clipping retangular estável */}
+        <div
+          className="absolute left-1/2 top-[292px] translate-x-[-50%] overflow-hidden"
+          style={{
+            width: '1440px',
+            height: '970px',
+            backgroundColor: '#13171a',
+            borderRadius: '0px'
+          }}
+        >
+          <div
+            className="absolute inset-0 bg-no-repeat"
+            style={{
+              backgroundImage: `url('${activeImage.src}')`,
+              // Parallax desligado — manter centralizado
+              backgroundPosition: '50% 50%',
+              backgroundSize: bgSize,
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden'
+            }}
+          />
+        </div>
+      </div>
     </div>
   );
 }
 
-function ImagensCarrossel({ activeIndex, onThumbnailClick }: { 
+function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0, insideStripe = false }: { 
   activeIndex: number; 
   onThumbnailClick: (index: number) => void; 
+  offsetY?: number;
+  insideStripe?: boolean;
 }) {
   const [showNavHint, setShowNavHint] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
   
   // Posições exatas das miniaturas do design original
-  const thumbnailPositions = [251, 371, 491, 611, 731, 851, 971, 1091];
+  // Conforme Figma (lefts absolutos para botões com w=98)
+  const thumbnailLefts = [289, 398, 507, 616, 725, 834, 943, 1052];
 
   // Animação de dica de navegação após scroll
   useEffect(() => {
@@ -598,40 +597,52 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick }: {
     };
   }, []);
 
+  const count = Math.min(8, galleryList.length);
+  const containerStyle = insideStripe
+    ? { left: 0, top: `24px`, zIndex: 2 as number }
+    : { left: 0, top: `${3370 - offsetY}px`, zIndex: 20 as number };
   return (
-  <div ref={galleryRef} className="absolute contents left-[251px] top-[3342px]" data-name="imagens carrossel">
-      {galleryImages.slice(0, 8).map((image, index) => (
-        <button
-          key={image.id}
-          onClick={() => onThumbnailClick(index)}
-          className={`absolute size-[98px] top-[3342px] cursor-pointer rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu thumbnail-nav-hint ${
-            activeIndex === index 
-              ? 'scale-105 shadow-lg shadow-black/20' 
-              : 'hover:scale-110 hover:shadow-xl hover:shadow-black/25 hover:-translate-y-1'
-          } ${
-            showNavHint && index !== activeIndex ? 'thumbnail-breathing' : ''
-          }`}
-          style={{ 
-            left: `${thumbnailPositions[index]}px`,
-            animationDelay: `${index * 150}ms` // Efeito em cascata
-          }}
-          data-name={`thumbnail-${index}`}
-          title={image.alt}
-        >
-          {/* Miniatura da imagem */}
-          <div 
-            className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-all duration-300"
+    <div
+      ref={galleryRef}
+      className="absolute"
+      style={containerStyle}
+      data-name="imagens carrossel"
+    >
+      {Array.from({ length: count }).map((_, index) => {
+        const image = galleryList[index];
+        return (
+          <button
+            key={image.id}
+            onClick={() => onThumbnailClick(index)}
+            className={`absolute size-[98px] top-0 cursor-pointer rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu thumbnail-nav-hint ${
+              activeIndex === index 
+                ? 'scale-105 shadow-lg shadow-black/20' 
+                : 'hover:scale-110 hover:shadow-xl hover:shadow-black/25 hover:-translate-y-1'
+            } ${
+              showNavHint && index !== activeIndex ? 'thumbnail-breathing' : ''
+            }`}
             style={{ 
-              backgroundImage: `url('${image.src}')`,
-              transform: 'translateZ(0)',
-              backfaceVisibility: 'hidden'
+              left: `${thumbnailLefts[index]}px`,
+              animationDelay: `${index * 150}ms`,
+              boxShadow: activeIndex === index ? '0 0 0 2px #00f5b9' : undefined
             }}
-          />
-          
-          {/* Overlay de hover - apenas efeito lente */}
-          <div className="absolute inset-0 transition-all duration-300 bg-black/0 hover:bg-black/5" />
-        </button>
-      ))}
+            data-name={`thumbnail-${index}`}
+            aria-pressed={activeIndex === index}
+            tabIndex={0}
+            title={image.alt}
+          >
+            <div 
+              className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-all duration-300"
+              style={{ 
+                backgroundImage: `url('${image.thumbnail}')`,
+                transform: 'translateZ(0)',
+                backfaceVisibility: 'hidden'
+              }}
+            />
+            <div className="absolute inset-0 transition-all duration-300 bg-black/0 hover:bg-black/5" />
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -658,29 +669,50 @@ const Bloco03 = memo(() => {
 
 function Bloco04() {
   const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
-
   const handleGalleryThumbnailClick = useCallback((index: number) => {
     setGalleryActiveIndex(index);
   }, []);
-
+  // Garante limite pelo total disponível
+  const maxIndex = Math.max(0, Math.min(galleryList.length - 1, galleryActiveIndex));
+  // Recalcula o scale da janela 1440 para corrigir o encaixe vertical sem gap
+  const [scale, setScale] = useState(1);
+  const offsetY = useMemo(() => 970 * (1 - scale), [scale]);
+  useEffect(() => {
+    const update = () => {
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      setScale(Math.min(1, vw / 1440));
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
   return (
-    <div className="absolute contents left-0 top-[2510px]" data-name="Bloco 04">
+    <div className="absolute contents left-0 top-[2510px] z-[20]" data-name="Bloco 04">
+      {/* Imagem grande */}
+      <ImagemGrande activeIndex={maxIndex} />
+      {/* Tarja preta como container com filhos; encostada no rodapé da imagem */}
       <div
-        className="absolute bg-[#13171a] h-[300px] top-[3479px]"
-        data-name="background"
-        style={fullBleedBackground}
-      />
-      <ImagemGrande activeIndex={galleryActiveIndex} />
-      <ImagensCarrossel 
-        activeIndex={galleryActiveIndex} 
-        onThumbnailClick={handleGalleryThumbnailClick} 
-      />
-    <div className="absolute left-1/2 top-[3653px] translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic">
-        <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
-      </div>
-  <div className="absolute left-1/2 top-[3533px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
-        <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
-        <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
+        className="absolute bg-[#13171a] h-[300px] overflow-hidden"
+        data-name="faixa-preta-container"
+        style={{ ...fullBleedBackground, top: `${3480 - offsetY - 1}px` }}
+      >
+        {/* Wrapper centralizado com largura de stage (1440px) */}
+        <div className="relative h-full w-[1440px] left-1/2 -translate-x-1/2">
+          {/* Thumbs dentro da tarja */}
+          <ImagensCarrossel
+            activeIndex={maxIndex}
+            onThumbnailClick={handleGalleryThumbnailClick}
+            insideStripe
+          />
+          {/* Títulos e textos com top relativo à tarja (diferenças originais: 53px e 173px do topo da tarja) */}
+          <div className="absolute left-1/2 translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={{ top: '53px' }}>
+            <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
+            <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
+          </div>
+          <div className="absolute left-1/2 translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic" style={{ top: '173px' }}>
+            <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
+          </div>
+        </div>
       </div>
     </div>
   );
