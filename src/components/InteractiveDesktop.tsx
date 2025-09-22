@@ -434,21 +434,33 @@ const Bloco06 = memo(() => {
   );
 });
 
-const Bloco05 = memo(() => {
+const Bloco05 = memo(({ topAnchor = 3780 }: { topAnchor?: number }) => {
   const titleParallax = useScrollParallax({ speed: -0.06 });
   const bodyParallax = useScrollParallax({ speed: -0.04 });
+  // Offsets de design relativos ao topo do bloco
+  const BG_HEIGHT = 600;
+  const TITLE_OFFSET = 3933 - 3780; // 153px
+  const BODY_OFFSET = 4136 - 3780;  // 356px
   return (
-    <div className="absolute contents left-0 top-[3780px]" data-name="Bloco 05">
-  <div
-    className="absolute bg-[#f8f8f2] h-[600px] left-0 top-[3780px] w-[1440px]"
-  />
-  <div className="absolute left-[816px] top-[4136px] w-[421px] fig-body-23 fig-dark text-smooth not-italic leading-[26px]" style={bodyParallax.tw}>
-    <p className="m-0 leading-[26px]">Integramos criatividade, estratégia e tecnologia em um só fluxo, criando conteúdos relevantes de maneira mais rápida, escalável e impactante.</p>
+  <div className="absolute contents left-0" style={{ top: `${topAnchor}px` }} data-name="Bloco 05">
+      {/* Fundo full-bleed para cobrir a largura toda */}
+      <div
+    className="absolute bg-[#f8f8f2]"
+    style={{ ...fullBleedBackground, top: 0, height: `${BG_HEIGHT}px` }}
+      />
+      <div
+    className="absolute left-[816px] w-[421px] fig-body-23 fig-dark text-smooth not-italic leading-[26px]"
+    style={{ ...bodyParallax.tw, top: `${BODY_OFFSET}px` }}
+      >
+        <p className="m-0 leading-[26px]">Integramos criatividade, estratégia e tecnologia em um só fluxo, criando conteúdos relevantes de maneira mais rápida, escalável e impactante.</p>
       </div>
-  <div className="absolute left-[181px] top-[3933px] w-[590px] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic leading-[52px]" style={titleParallax.tw}>
-    <p className="mb-0 leading-[52px]">MAIS DE 60 PROJETOS</p>
-    <p className="mb-0 leading-[52px]">EM 2025 QUE AJUDARAM NOSSOS CLIENTES A ECONOMIZAR MILHÕES</p>
-    <p className="mb-0 leading-[52px]">EM COMPARAÇÃO A PRODUÇÕES TRADICIONAIS.</p>
+      <div
+    className="absolute left-[181px] w-[590px] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic leading-[52px]"
+    style={{ ...titleParallax.tw, top: `${TITLE_OFFSET}px` }}
+      >
+        <p className="mb-0 leading-[52px]">MAIS DE 60 PROJETOS</p>
+        <p className="mb-0 leading-[52px]">EM 2025 QUE AJUDARAM NOSSOS CLIENTES A ECONOMIZAR MILHÕES</p>
+        <p className="mb-0 leading-[52px]">EM COMPARAÇÃO A PRODUÇÕES TRADICIONAIS.</p>
       </div>
     </div>
   );
@@ -707,7 +719,7 @@ const Bloco03 = memo(() => {
   );
 });
 
-function Bloco04() {
+function Bloco04({ onStripeBottomChange }: { onStripeBottomChange?: (y: number) => void }) {
   const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
   const [stripeTop, setStripeTop] = useState<number>(BASE_TOP + 970 - 1);
   const handleGalleryThumbnailClick = useCallback((index: number) => {
@@ -726,6 +738,10 @@ function Bloco04() {
   // Posicionamento proporcional do conteúdo interno
   const headingTop = 24; // mais próximo do topo, reduz “barra vazia”
   const bodyTop = headingTop + 96;
+  // Reporta o bottom da tarja para o pai posicionar o Bloco 05 sem gap
+  useEffect(() => {
+    onStripeBottomChange?.(Math.floor(stripeTop + stripeHeight) - 1);
+  }, [stripeTop, stripeHeight, onStripeBottomChange]);
   return (
     <div className="absolute contents left-0 z-[20]" style={{ top: `${BASE_TOP}px` }} data-name="Bloco 04">
       {/* Stage clip 1440x970 para impedir sobreposição com o bloco anterior */}
@@ -735,7 +751,7 @@ function Bloco04() {
         data-name="stage-clip"
       >
         {/* Imagem grande dentro do clip, posicionada relativamente ao container */}
-        <ImagemGrande 
+  <ImagemGrande 
           activeIndex={maxIndex}
           onThumbnailClick={handleGalleryThumbnailClick}
           // ativa posicionamento relativo ao container 1440x970
@@ -1467,6 +1483,8 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
   const [isScrolled, setIsScrolled] = useState(false);
   // CTA do header controlado por rolagem para evitar duplicidade com o CTA do herói
   const [showHeaderCTA, setShowHeaderCTA] = useState(false);
+  // Topo dinâmico do Bloco 05 (colado ao bottom da tarja do Bloco 04)
+  const [bloco05Top, setBloco05Top] = useState<number>(3780);
 
   const toggleAccordion = useCallback((index: number) => {
     setOpenAccordion(prev => prev === index ? null : index);
@@ -1561,9 +1579,9 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
           currentImageIndex={currentImageIndex}
         />
         <Bloco02 />
-        <Bloco03 />
-        <Bloco04 />
-        <Bloco05 />
+  <Bloco03 />
+  <Bloco04 onStripeBottomChange={setBloco05Top} />
+  <Bloco05 topAnchor={bloco05Top} />
         <Bloco06 />
         <Bloco07 openAccordion={openAccordion} toggleAccordion={toggleAccordion} />
         <Bloco08 />
