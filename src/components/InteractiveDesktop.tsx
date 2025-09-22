@@ -509,7 +509,7 @@ const ImagemGrande = ({
   useEffect(() => {
     // Quando relativo ao container 1440x970, compensamos a escala global para manter a base encostada na tarja.
     const bottom = relativeContainer
-      ? 2510 + WINDOW_H - offsetY
+      ? 2510 + WINDOW_H // clip 1440x970 é fixo dentro do container
       : 2510 + WINDOW_H * scale;
     onBottomChange?.(bottom);
   }, [scale, onBottomChange, relativeContainer, offsetY]);
@@ -541,7 +541,7 @@ const ImagemGrande = ({
           // Mantemos a janela 1440x970 exatamente encostada ao topo do clip.
           // Caso contrário, ancora no documento em 2510px e escala com o viewport.
           top: relativeContainer
-            ? `${-292 + offsetY + deltaFix}px`
+            ? `${-292 + deltaFix}px` // sem offset por escala; clip interno fica colado no topo
             : `${2510 - 292 * scale + deltaFix}px`,
           width: '2122px',
           height: '1274px',
