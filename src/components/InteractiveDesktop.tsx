@@ -467,20 +467,32 @@ const galleryList = (localGallery.images.length
   : []
 );
 
-function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
+const ImagemGrande = ({
+  activeIndex,
+  onThumbnailClick,
+  relativeContainer = false,
+  onBottomChange,
+}: {
+  activeIndex: number;
+  onThumbnailClick?: (index: number) => void;
+  relativeContainer?: boolean;
+  onBottomChange?: (bottom: number) => void;
+}) => {
   const fallback = { src: '', mask: localGallery.mask ?? img250127AlmapStillTeraTheTownFrenteV82 } as any;
   const activeImage = galleryList[activeIndex] ?? galleryList[0] ?? fallback;
   // Parallax interno DESATIVADO temporariamente para validação pixel-perfect
   // const imgParallax = useScrollParallax({ speed: -0.05 });
   // const clampImg = (v:number) => Math.max(-30, Math.min(30, v));
-  // Escala responsiva: 1 em >=1440px, diminui proporcionalmente abaixo disso
-  const [scale, setScale] = useState(1);
-  // Fit inteligente por imagem
-  const [bgSize, setBgSize] = useState<'cover' | 'contain'>('cover');
+  // Constantes da janela e thresholds — definidas antes do uso
   const WINDOW_W = 1440;
   const WINDOW_H = 970;
   const WINDOW_RATIO = WINDOW_W / WINDOW_H; // ~1.4845
   const THRESH = 0.06; // 6% de tolerância
+  // Escala responsiva: 1 em >=1440px, diminui proporcionalmente abaixo disso
+  const [scale, setScale] = useState(1);
+  const offsetY = useMemo(() => WINDOW_H * (1 - scale), [scale]);
+  // Fit inteligente por imagem
+  const [bgSize, setBgSize] = useState<'cover' | 'contain'>('cover');
   // Mantemos a janela visível exatamente em top=2510 independente do scale.
   const deltaFix = 0;
   useEffect(() => {
@@ -492,6 +504,15 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
     window.addEventListener('resize', update);
     return () => window.removeEventListener('resize', update);
   }, []);
+
+  // Notifica o Bloco04 sobre a posição exata do rodapé da janela (para ancorar a tarja)
+  useEffect(() => {
+    // Quando relativo ao container 1440x970, compensamos a escala global para manter a base encostada na tarja.
+    const bottom = relativeContainer
+      ? 2510 + WINDOW_H - offsetY
+      : 2510 + WINDOW_H * scale;
+    onBottomChange?.(bottom);
+  }, [scale, onBottomChange, relativeContainer, offsetY]);
 
   // Atualiza background-size conforme aspect ratio da imagem ativa
   useEffect(() => {
@@ -516,12 +537,15 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
       <div
         className="absolute left-1/2"
         style={{
-          // Mantém a janela interna (top 292 dentro do wrapper) sempre ancorada em 2510px na página,
-          // independente do scale aplicado ao wrapper.
-          top: `${2510 - 292 * scale + deltaFix}px`,
+          // Se relativo ao container 1440x970, não reduzimos escala para evitar "gap" no fundo do stage.
+          // Mantemos a janela 1440x970 exatamente encostada ao topo do clip.
+          // Caso contrário, ancora no documento em 2510px e escala com o viewport.
+          top: relativeContainer
+            ? `${-292 + offsetY + deltaFix}px`
+            : `${2510 - 292 * scale + deltaFix}px`,
           width: '2122px',
           height: '1274px',
-          transform: `translateX(-50%) scale(${scale})`,
+          transform: `translateX(-50%) scale(${relativeContainer ? 1 : scale})`,
           transformOrigin: 'top center',
           willChange: 'transform'
         }}
@@ -547,17 +571,26 @@ function ImagemGrande({ activeIndex = 0 }: { activeIndex?: number }) {
               backfaceVisibility: 'hidden'
             }}
           />
+          {/* Miniaturas SOBRE a imagem (dentro da janela 1440x970) */}
+          <ImagensCarrossel
+            activeIndex={activeIndex}
+            onThumbnailClick={(i) => onThumbnailClick?.(i)}
+            relative
+            relativeBottom={24} // 24px acima da base da janela 1440x970
+          />
         </div>
       </div>
     </div>
   );
 }
 
-function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0, insideStripe = false }: { 
+function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0, insideStripe = false, relative = false, relativeBottom }: { 
   activeIndex: number; 
   onThumbnailClick: (index: number) => void; 
   offsetY?: number;
   insideStripe?: boolean;
+  relative?: boolean;
+  relativeBottom?: number; // distância da base quando relativo ao stage 1440x970
 }) {
   const [showNavHint, setShowNavHint] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -598,9 +631,11 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0, insideSt
   }, []);
 
   const count = Math.min(8, galleryList.length);
-  const containerStyle = insideStripe
-    ? { left: 0, top: `24px`, zIndex: 2 as number }
-    : { left: 0, top: `${3370 - offsetY}px`, zIndex: 20 as number };
+  const containerStyle: React.CSSProperties = relative
+    ? { left: 0, right: 0, bottom: `${relativeBottom ?? 24}px`, height: '98px', zIndex: 3 }
+    : insideStripe
+      ? { left: 0, top: `24px`, zIndex: 2 }
+      : { left: 0, top: `${3370 - offsetY}px`, zIndex: 20 };
   return (
     <div
       ref={galleryRef}
@@ -669,41 +704,37 @@ const Bloco03 = memo(() => {
 
 function Bloco04() {
   const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
+  const [stripeTop, setStripeTop] = useState<number>(2510 + 970 - 1);
   const handleGalleryThumbnailClick = useCallback((index: number) => {
     setGalleryActiveIndex(index);
   }, []);
   // Garante limite pelo total disponível
   const maxIndex = Math.max(0, Math.min(galleryList.length - 1, galleryActiveIndex));
-  // Recalcula o scale da janela 1440 para corrigir o encaixe vertical sem gap
-  const [scale, setScale] = useState(1);
-  const offsetY = useMemo(() => 970 * (1 - scale), [scale]);
-  useEffect(() => {
-    const update = () => {
-      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-      setScale(Math.min(1, vw / 1440));
-    };
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
-  }, []);
   return (
     <div className="absolute contents left-0 top-[2510px] z-[20]" data-name="Bloco 04">
-      {/* Imagem grande */}
-      <ImagemGrande activeIndex={maxIndex} />
+      {/* Stage clip 1440x970 para impedir sobreposição com o bloco anterior */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2"
+        style={{ top: '2510px', width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2 }}
+        data-name="stage-clip"
+      >
+        {/* Imagem grande dentro do clip, posicionada relativamente ao container */}
+        <ImagemGrande 
+          activeIndex={maxIndex}
+          onThumbnailClick={handleGalleryThumbnailClick}
+          // ativa posicionamento relativo ao container 1440x970
+          relativeContainer
+          onBottomChange={(bottom) => setStripeTop(bottom - 1)}
+        />
+      </div>
       {/* Tarja preta como container com filhos; encostada no rodapé da imagem */}
       <div
         className="absolute bg-[#13171a] h-[300px] overflow-hidden"
         data-name="faixa-preta-container"
-        style={{ ...fullBleedBackground, top: `${3480 - offsetY - 1}px` }}
+        style={{ ...fullBleedBackground, top: `${stripeTop}px`, zIndex: 3 }}
       >
         {/* Wrapper centralizado com largura de stage (1440px) */}
         <div className="relative h-full w-[1440px] left-1/2 -translate-x-1/2">
-          {/* Thumbs dentro da tarja */}
-          <ImagensCarrossel
-            activeIndex={maxIndex}
-            onThumbnailClick={handleGalleryThumbnailClick}
-            insideStripe
-          />
           {/* Títulos e textos com top relativo à tarja (diferenças originais: 53px e 173px do topo da tarja) */}
           <div className="absolute left-1/2 translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={{ top: '53px' }}>
             <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
@@ -1339,71 +1370,16 @@ function BotaoCall2({ onClick, isVisible }: { onClick?: () => void; isVisible: b
 
 function LogoSetima1() {
   return (
-    <button 
+    <button
       onClick={() => {
-        if (window.scrollY > 0) {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: 'smooth' });
       }}
-      className="absolute h-[55.46px] left-[77px] top-[43px] w-[130.16px] cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-none p-0" 
+      className="absolute h-[55.46px] left-[77px] top-[43px] w-[130.16px] cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-none p-0"
       data-name="logo setima"
       title="Voltar ao topo"
     >
       <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 131 56">
-        <g id="logo setima">
-          <path d="M60.36 0V2.58L61.85 0H60.36Z" fill="var(--fill-0, #F8F8F2)" id="Vector" />
-          <path d={svgPaths.p29b8e400} fill="var(--fill-0, #F8F8F2)" id="Vector_2" />
-          <path d={svgPaths.p1cddd480} fill="var(--fill-0, #F8F8F2)" id="Vector_3" />
-          <path d={svgPaths.p150bb300} fill="var(--fill-0, #F8F8F2)" id="Vector_4" />
-          <path d={svgPaths.pce10580} fill="var(--fill-0, #F8F8F2)" id="Vector_5" />
-          <path d={svgPaths.pc905f70} fill="var(--fill-0, #F8F8F2)" id="Vector_6" />
-          <path d={svgPaths.p3d49680} fill="var(--fill-0, #F8F8F2)" id="Vector_7" />
-          <path d={svgPaths.p30c6aa00} fill="var(--fill-0, #F8F8F2)" id="Vector_8" />
-          <path d={svgPaths.pa05aa00} fill="var(--fill-0, #F8F8F2)" id="Vector_9" />
-          <path d={svgPaths.p51f1a00} fill="var(--fill-0, #F8F8F2)" id="Vector_10" />
-          <path d={svgPaths.p2cb69700} fill="var(--fill-0, #F8F8F2)" id="Vector_11" />
-          <path d={svgPaths.p1fcd5800} fill="var(--fill-0, #F8F8F2)" id="Vector_12" />
-          <path d={svgPaths.p1ded8980} fill="var(--fill-0, #F8F8F2)" id="Vector_13" />
-          <path d={svgPaths.pd5bc600} fill="var(--fill-0, #F8F8F2)" id="Vector_14" />
-          <path d={svgPaths.p1d3a92f0} fill="var(--fill-0, #F8F8F2)" id="Vector_15" />
-          <path d={svgPaths.p13cce480} fill="var(--fill-0, #F8F8F2)" id="Vector_16" />
-          <path d={svgPaths.p1cb04100} fill="var(--fill-0, #F8F8F2)" id="Vector_17" />
-          <path d={svgPaths.p161a1d00} fill="var(--fill-0, #F8F8F2)" id="Vector_18" />
-          <path d={svgPaths.p351136f0} fill="var(--fill-0, #F8F8F2)" id="Vector_19" />
-          <path d={svgPaths.p2e21dd00} fill="var(--fill-0, #F8F8F2)" id="Vector_20" />
-          <path d={svgPaths.p3ed2a500} fill="var(--fill-0, #F8F8F2)" id="Vector_21" />
-          <path d={svgPaths.p27d43c00} fill="var(--fill-0, #F8F8F2)" id="Vector_22" />
-          <path d={svgPaths.p1ffcc000} fill="var(--fill-0, #F8F8F2)" id="Vector_23" />
-          <path d={svgPaths.p3b4e4100} fill="var(--fill-0, #F8F8F2)" id="Vector_24" />
-          <path d={svgPaths.p39d87180} fill="var(--fill-0, #F8F8F2)" id="Vector_25" />
-          <path d={svgPaths.p7a21f00} fill="var(--fill-0, #F8F8F2)" id="Vector_26" />
-          <path d={svgPaths.pb51c280} fill="var(--fill-0, #F8F8F2)" id="Vector_27" />
-          <path d={svgPaths.p26f4df80} fill="var(--fill-0, #F8F8F2)" id="Vector_28" />
-          <path d={svgPaths.p3a1e9980} fill="var(--fill-0, #F8F8F2)" id="Vector_29" />
-          <path d={svgPaths.pa41cf00} fill="var(--fill-0, #F8F8F2)" id="Vector_30" />
-          <path d={svgPaths.p2f02f600} fill="var(--fill-0, #F8F8F2)" id="Vector_31" />
-          <path d={svgPaths.p24de2400} fill="var(--fill-0, #F8F8F2)" id="Vector_32" />
-          <path d={svgPaths.p1e84ff00} fill="var(--fill-0, #F8F8F2)" id="Vector_33" />
-          <path d={svgPaths.p3698e200} fill="var(--fill-0, #F8F8F2)" id="Vector_34" />
-          <path d={svgPaths.p15bfd180} fill="var(--fill-0, #F8F8F2)" id="Vector_35" />
-          <path d={svgPaths.p2a930400} fill="var(--fill-0, #F8F8F2)" id="Vector_36" />
-          <path d={svgPaths.p1871cc80} fill="var(--fill-0, #F8F8F2)" id="Vector_37" />
-          <path d={svgPaths.p24c88680} fill="var(--fill-0, #F8F8F2)" id="Vector_38" />
-          <path d={svgPaths.p32017280} fill="var(--fill-0, #F8F8F2)" id="Vector_39" />
-          <path d={svgPaths.p651500} fill="var(--fill-0, #F8F8F2)" id="Vector_40" />
-          <path d={svgPaths.p2b0b4d80} fill="var(--fill-0, #F8F8F2)" id="Vector_41" />
-          <path d={svgPaths.p8daaf00} fill="var(--fill-0, #F8F8F2)" id="Vector_42" />
-          <path d={svgPaths.p25430600} fill="var(--fill-0, #F8F8F2)" id="Vector_43" />
-          <path d={svgPaths.p31de7f80} fill="var(--fill-0, #F8F8F2)" id="Vector_44" />
-          <path d={svgPaths.p1daeec00} fill="var(--fill-0, #F8F8F2)" id="Vector_45" />
-          <path d={svgPaths.p247a2400} fill="var(--fill-0, #F8F8F2)" id="Vector_46" />
-          <path d={svgPaths.p3b6a4780} fill="var(--fill-0, #F8F8F2)" id="Vector_47" />
-          <path d={svgPaths.p3885300} fill="var(--fill-0, #F8F8F2)" id="Vector_48" />
-          <path d={svgPaths.p3fa00cf2} fill="var(--fill-0, #F8F8F2)" id="Vector_49" />
-          <path d={svgPaths.p20f83700} fill="var(--fill-0, #F8F8F2)" id="Vector_50" />
-          <path d={svgPaths.p25aa34c0} fill="var(--fill-0, #F8F8F2)" id="Vector_51" />
-          <path d={svgPaths.p82d0ba8} fill="var(--fill-0, #F8F8F2)" id="Vector_52" />
-        </g>
+        <rect x="0" y="0" width="131" height="56" fill="transparent" />
       </svg>
     </button>
   );
