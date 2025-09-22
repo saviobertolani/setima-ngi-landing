@@ -309,7 +309,8 @@ html, body {
   overscroll-behavior-y: none;
   /* Evita qualquer overflow horizontal e barras laterais indesejadas */
   overflow-x: hidden;
-  background-color: #0b0d0f; /* cor de borda lateral neutra/dark para estágios escuros */
+  /* Fundo do documento igual ao footer para evitar faixa visível após o rodapé */
+  background-color: #000000;
 }
 
 /* Animações para Content-Tech Section */

@@ -188,9 +188,9 @@ function CopyrightText() {
 
 const Bloco08 = memo(() => {
   return (
-    <div className="absolute contents left-0 top-[6238px]" data-name="Bloco 08">
+  <div className="absolute contents left-0 top-[6237px]" data-name="Bloco 08">
       <div
-        className="absolute h-[228px] top-[6238px] bg-black"
+    className="absolute h-[229px] top-[6237px] bg-black"
         style={fullBleedBackground}
       />
       <LogoSetima />
