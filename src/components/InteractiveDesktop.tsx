@@ -351,45 +351,16 @@ const Bloco07 = memo(({ openAccordion, toggleAccordion }: {
   
   return (
     <div className="absolute contents left-0 top-[5630px]" data-name="Bloco 07">
-      <div 
-        className="absolute bg-[#f8f8f2] top-[5630px] transition-all duration-500 ease-out" 
-        style={{ ...fullBleedBackground, height: `${608 + extraHeight}px` }}
-      >
-        {/* Efeitos visuais sutis para indicar interatividade */}
-        
-        {/* Pontos decorativos que "pulsam" sutilmente para indicar interatividade */}
-        <div className="absolute right-16 top-20">
-          <div className="w-2 h-2 bg-[#00f5b9]/30 rounded-full animate-pulse" 
-               style={{ animationDelay: '0s', animationDuration: '3s' }} />
-        </div>
-        <div className="absolute right-20 top-32">
-          <div className="w-1.5 h-1.5 bg-[#00f5b9]/20 rounded-full animate-pulse" 
-               style={{ animationDelay: '1s', animationDuration: '3s' }} />
-        </div>
-        <div className="absolute right-12 top-44">
-          <div className="w-1 h-1 bg-[#00f5b9]/25 rounded-full animate-pulse" 
-               style={{ animationDelay: '2s', animationDuration: '3s' }} />
-        </div>
-        
-        {/* Linha decorativa sutil que "se move" para chamar atenção */}
-        <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-[#00f5b9]/20 to-transparent opacity-60">
-          <div className="relative h-full">
-            <div className="absolute top-0 right-0 w-full h-8 bg-[#00f5b9]/40 animate-pulse" 
-                 style={{ 
-                   animation: 'float 4s ease-in-out infinite',
-                   animationDelay: '0.5s' 
-                 }} />
-          </div>
-        </div>
-        
-        {/* Sombra interna sutil para dar profundidade */}
-        <div className="absolute inset-0 shadow-inner opacity-20 pointer-events-none" 
-             style={{ 
-               boxShadow: 'inset 0 2px 8px rgba(0, 245, 185, 0.1)' 
-             }} />
-        
-
-      </div>
+      {/* Fundo do bloco FAQ conforme Figma (preenche até o início do footer) */}
+      <div
+        className="absolute bg-[#f8f8f2] top-[5630px]"
+        style={{
+          ...fullBleedBackground,
+          height: `${608 + extraHeight}px`, // 1px de sobreposição contra artefatos de subpixel
+          zIndex: 0,
+        }}
+        aria-hidden
+      />
       {/* Título da seção (posicionado absoluto como no design) */}
       <div className="absolute left-[63px] top-[5764px] w-[1314px] z-[10] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic">
         <p className="m-0">DÚVIDAS FREQUENTES</p>
