@@ -64,6 +64,9 @@
   "preview": "vite preview --port 4173",
   "ship": "git add -A && git commit -m 'chore: update' || true && git push",
         "figma:pull": "node tools/figma-pull.mjs",
-        "assets:optimize": "node tools/optimize-assets.mjs"
+      "assets:optimize": "node tools/optimize-assets.mjs",
+      "gallery:organize": "node tools/organize-gallery.mjs"
+  ,
+  "gallery:place": "node tools/gallery-place-one.mjs"
       }
   }

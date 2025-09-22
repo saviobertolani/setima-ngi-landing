@@ -41,7 +41,18 @@ export function getGalleryAssets(): GalleryAssets {
   const thumbKeys = Object.keys(thumbModules);
 
   if (!bigKeys.length) {
-    return { images: [], mask: Object.values(maskModules)[0] };
+    // Fallback: usa até 8 imagens gerais existentes em /src/assets (excluindo subpastas gallery/)
+    const fallbackModules = import.meta.glob('/src/assets/*.{png,jpg,jpeg,webp}', {
+      eager: true,
+      query: '?url',
+      import: 'default',
+    }) as Record<string, string>;
+
+    const allKeys = Object.keys(fallbackModules).filter((k) => !k.includes('/gallery/'));
+    const sorted = sortByNumericKey(allKeys);
+    const images = sorted.slice(0, 8).map((k) => fallbackModules[k]);
+    const mask = Object.values(maskModules)[0];
+    return { images, thumbs: images, mask };
   }
 
   const sortedBig = sortByNumericKey(bigKeys);
