@@ -1530,9 +1530,17 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
 
   // Calcula altura dinâmica baseada no accordion aberto
   const dynamicHeight = useMemo(() => {
-    const baseHeight = 6466; // Altura original do design
-    const extraHeight = openAccordion !== null ? 200 : 0; // Espaço extra para accordion expandido
-    return baseHeight + extraHeight;
+    // Baseia-se no fundo real do Bloco 08 (footer)
+    const B08_TOP = 6238;
+    const B08_HEIGHT = 228; // tarja preta do footer
+    const FOOTER_BOTTOM = B08_TOP + B08_HEIGHT; // 6466
+
+    // Espaço extra quando o accordion (FAQ) estiver aberto
+    const extraHeight = openAccordion !== null ? 200 : 0;
+
+    // Garante que a página termine exatamente no rodapé quando fechado,
+    // e tenha folga controlada quando houver expansão do accordion.
+    return FOOTER_BOTTOM + extraHeight;
   }, [openAccordion]);
 
   return (
