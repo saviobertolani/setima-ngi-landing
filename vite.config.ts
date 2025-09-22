@@ -82,6 +82,7 @@
           'localhost',
           '127.0.0.1',
           'lafayette-yields-antique-tide.trycloudflare.com',
+          'tongue-cards-sound-grad.trycloudflare.com',
           tunnelHost,
         ],
         // Em ambiente local, deixa HMR padrão (localhost). Em ambiente remoto, usa WSS custom.
