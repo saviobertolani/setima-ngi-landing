@@ -438,9 +438,9 @@ const Bloco05 = memo(() => {
   const titleParallax = useScrollParallax({ speed: -0.06 });
   const bodyParallax = useScrollParallax({ speed: -0.04 });
   return (
-    <div className="absolute contents left-0 top-[3779px]" data-name="Bloco 05">
+  <div className="absolute contents left-0 top-[3778px]" data-name="Bloco 05">
   <div
-    className="absolute bg-[#f8f8f2] h-[600px] left-0 top-[3779px] w-[1440px]"
+  className="absolute bg-[#f8f8f2] h-[600px] left-0 top-[3778px] w-[1440px]"
   />
   <div className="absolute left-[816px] top-[4135px] w-[421px] fig-body-23 fig-dark text-smooth not-italic leading-[26px]" style={bodyParallax.tw}>
     <p className="m-0 leading-[26px]">Integramos criatividade, estratégia e tecnologia em um só fluxo, criando conteúdos relevantes de maneira mais rápida, escalável e impactante.</p>
@@ -696,7 +696,7 @@ const Bloco03 = memo(() => {
 function Bloco04() {
   const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
   const stageRef = useRef<HTMLDivElement | null>(null);
-  const [stripeTop, setStripeTop] = useState<number>(2510 + 970 - 1);
+  const [stripeTop, setStripeTop] = useState<number>(970 - 1);
   // Mede o bottom do stage-clip em coordenada de página e encosta a tarja
   useLayoutEffect(() => {
     const update = () => {
@@ -704,7 +704,9 @@ function Bloco04() {
       if (!el) return;
       const r = el.getBoundingClientRect();
       const pageTop = Math.round((window.scrollY || window.pageYOffset || 0) + r.top);
-      setStripeTop(pageTop + Math.round(r.height) - 1);
+  const containerTopPage = 2509; // Bloco04 container top em coordenada de página (com -1px de overlap)
+      // Converte para coordenada RELATIVA ao container
+      setStripeTop(pageTop - containerTopPage + Math.round(r.height) - 1);
     };
     update();
     window.addEventListener('resize', update);
@@ -724,12 +726,12 @@ function Bloco04() {
   // Garante limite pelo total disponível
   const maxIndex = Math.max(0, Math.min(galleryList.length - 1, galleryActiveIndex));
   return (
-    <div className="absolute contents left-0 top-[2510px] z-[20]" data-name="Bloco 04">
+  <div className="absolute contents left-0 top-[2509px] z-[20]" data-name="Bloco 04">
       {/* Stage clip 1440x970 para impedir sobreposição com o bloco anterior */}
       <div
         ref={stageRef}
         className="absolute left-1/2 -translate-x-1/2"
-        style={{ top: '2510px', width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2 }}
+  style={{ top: 0, width: '1440px', height: '970px', overflow: 'hidden', zIndex: 2 }}
         data-name="stage-clip"
       >
         {/* Imagem grande dentro do clip, posicionada relativamente ao container */}
