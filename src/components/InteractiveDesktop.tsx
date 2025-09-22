@@ -1,6 +1,6 @@
-import React, { CSSProperties, memo, useCallback, useEffect, useMemo, useRef, useState, useLayoutEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo, memo, useRef } from "react";
 import { createPortal } from "react-dom";
-import type { MouseEvent } from "react";
+import type { MouseEvent, CSSProperties } from "react";
 import { Instagram, Linkedin, Volume2, VolumeX } from "lucide-react";
 import { useScrollParallax } from "./hooks/useScrollParallax";
 import svgPaths from "../imports/svg-opxanfmkh6";
@@ -438,14 +438,14 @@ const Bloco05 = memo(() => {
   const titleParallax = useScrollParallax({ speed: -0.06 });
   const bodyParallax = useScrollParallax({ speed: -0.04 });
   return (
-    <div className="absolute contents left-0 top-[3779px]" data-name="Bloco 05">
+    <div className="absolute contents left-0 top-[3780px]" data-name="Bloco 05">
   <div
-    className="absolute bg-[#f8f8f2] h-[600px] left-0 top-[3779px] w-[1440px]"
+    className="absolute bg-[#f8f8f2] h-[600px] left-0 top-[3780px] w-[1440px]"
   />
-  <div className="absolute left-[816px] top-[4135px] w-[421px] fig-body-23 fig-dark text-smooth not-italic leading-[26px]" style={bodyParallax.tw}>
+  <div className="absolute left-[816px] top-[4136px] w-[421px] fig-body-23 fig-dark text-smooth not-italic leading-[26px]" style={bodyParallax.tw}>
     <p className="m-0 leading-[26px]">Integramos criatividade, estratégia e tecnologia em um só fluxo, criando conteúdos relevantes de maneira mais rápida, escalável e impactante.</p>
       </div>
-  <div className="absolute left-[181px] top-[3932px] w-[590px] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic leading-[52px]" style={titleParallax.tw}>
+  <div className="absolute left-[181px] top-[3933px] w-[590px] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic leading-[52px]" style={titleParallax.tw}>
     <p className="mb-0 leading-[52px]">MAIS DE 60 PROJETOS</p>
     <p className="mb-0 leading-[52px]">EM 2025 QUE AJUDARAM NOSSOS CLIENTES A ECONOMIZAR MILHÕES</p>
     <p className="mb-0 leading-[52px]">EM COMPARAÇÃO A PRODUÇÕES TRADICIONAIS.</p>
@@ -471,10 +471,12 @@ const ImagemGrande = ({
   activeIndex,
   onThumbnailClick,
   relativeContainer = false,
+  onBottomChange,
 }: {
   activeIndex: number;
   onThumbnailClick?: (index: number) => void;
   relativeContainer?: boolean;
+  onBottomChange?: (bottom: number) => void;
 }) => {
   const fallback = { src: '', mask: localGallery.mask ?? img250127AlmapStillTeraTheTownFrenteV82 } as any;
   const activeImage = galleryList[activeIndex] ?? galleryList[0] ?? fallback;
@@ -503,7 +505,14 @@ const ImagemGrande = ({
     return () => window.removeEventListener('resize', update);
   }, []);
 
-  // Sem callback: tarja é fixa no Bloco04
+  // Notifica o Bloco04 sobre a posição exata do rodapé da janela (para ancorar a tarja)
+  useEffect(() => {
+    // Quando relativo ao container 1440x970, compensamos a escala global para manter a base encostada na tarja.
+    const bottom = relativeContainer
+      ? 2510 + WINDOW_H // clip 1440x970 é fixo dentro do container
+      : 2510 + WINDOW_H * scale;
+    onBottomChange?.(bottom);
+  }, [scale, onBottomChange, relativeContainer, offsetY]);
 
   // Atualiza background-size conforme aspect ratio da imagem ativa
   useEffect(() => {
@@ -535,7 +544,7 @@ const ImagemGrande = ({
             ? `${-292 + deltaFix}px` // sem offset por escala; clip interno fica colado no topo
             : `${2510 - 292 * scale + deltaFix}px`,
           width: '2122px',
-          height: '1274px',
+          height: '1262px',
           transform: `translateX(-50%) scale(${relativeContainer ? 1 : scale})`,
           transformOrigin: 'top center',
           willChange: 'transform'
@@ -677,7 +686,7 @@ const Bloco03 = memo(() => {
   return (
     <div className="absolute contents left-0 top-[1540px]" data-name="Bloco 03">
       <div
-  className="absolute bg-[#f8f8f2] h-[971px] top-[1540px]"
+        className="absolute bg-[#f8f8f2] h-[970px] top-[1540px]"
         data-name="background"
         style={fullBleedBackground}
       />
@@ -695,31 +704,7 @@ const Bloco03 = memo(() => {
 
 function Bloco04() {
   const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
-  const stageRef = useRef<HTMLDivElement | null>(null);
   const [stripeTop, setStripeTop] = useState<number>(2510 + 970 - 1);
-  const STRIPE_OVERLAP = 2; // sobreposição para eliminar hairlines
-  // Mede o bottom do stage-clip em coordenada de página e encosta a tarja
-  useLayoutEffect(() => {
-    const update = () => {
-      const el = stageRef.current;
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      const pageTop = Math.floor((window.scrollY || window.pageYOffset || 0) + r.top);
-      // posiciona a tarja 2px acima do bottom do stage e aumenta a altura para manter o bottom alinhado
-      setStripeTop(pageTop + Math.floor(r.height) - STRIPE_OVERLAP);
-    };
-    update();
-    window.addEventListener('resize', update);
-    window.addEventListener('orientationchange', update);
-    // Algumas UIs podem alterar fontes/zoom: observar o elemento
-    const ro = new ResizeObserver(() => update());
-    if (stageRef.current) ro.observe(stageRef.current);
-    return () => {
-      window.removeEventListener('resize', update);
-      window.removeEventListener('orientationchange', update);
-      ro.disconnect();
-    };
-  }, []);
   const handleGalleryThumbnailClick = useCallback((index: number) => {
     setGalleryActiveIndex(index);
   }, []);
@@ -729,24 +714,24 @@ function Bloco04() {
     <div className="absolute contents left-0 top-[2510px] z-[20]" data-name="Bloco 04">
       {/* Stage clip 1440x970 para impedir sobreposição com o bloco anterior */}
       <div
-        ref={stageRef}
         className="absolute left-1/2 -translate-x-1/2"
-        style={{ top: '2510px', width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2 }}
+        style={{ top: '2510px', width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2, backgroundColor: '#13171a' }}
         data-name="stage-clip"
       >
         {/* Imagem grande dentro do clip, posicionada relativamente ao container */}
-  <ImagemGrande 
+        <ImagemGrande 
           activeIndex={maxIndex}
           onThumbnailClick={handleGalleryThumbnailClick}
           // ativa posicionamento relativo ao container 1440x970
           relativeContainer
+          onBottomChange={(bottom) => setStripeTop(bottom - 2)}
         />
       </div>
       {/* Tarja preta como container com filhos; encostada no rodapé da imagem */}
       <div
-        className="absolute bg-[#13171a] overflow-hidden border-t border-[#13171a]"
+        className="absolute bg-[#13171a] h-[300px] overflow-hidden"
         data-name="faixa-preta-container"
-        style={{ ...fullBleedBackground, top: `${stripeTop}px`, height: `${300 + STRIPE_OVERLAP}px`, zIndex: 3 }}
+        style={{ ...fullBleedBackground, top: `${stripeTop}px`, zIndex: 3 }}
       >
         {/* Wrapper centralizado com largura de stage (1440px) */}
         <div className="relative h-full w-[1440px] left-1/2 -translate-x-1/2">
