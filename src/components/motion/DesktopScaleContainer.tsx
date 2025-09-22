@@ -88,11 +88,11 @@ export default function DesktopScaleContainer({
   return (
     <div
       className="responsive-design smooth-scaling w-full flex justify-center"
-      style={{ minHeight: outerHeight || "100vh" }}
+      style={{ minHeight: outerHeight && outerHeight > 0 ? outerHeight : "100vh" }}
     >
       {/* Wrapper que define a altura de scroll correta */}
       <div
-        style={{ height: outerHeight || undefined }}
+        style={{ minHeight: outerHeight && outerHeight > 0 ? outerHeight : "100vh" }}
         className="w-full flex justify-center"
       >
         {/* Conteúdo com largura base e escala aplicada */}

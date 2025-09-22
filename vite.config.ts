@@ -64,16 +64,24 @@
       target: 'esnext',
       outDir: 'build',
     },
-  server: {
-    port: 5173,
-    strictPort: true,
-    open: true,
-    host: '0.0.0.0',
-    allowedHosts: ['localhost', '127.0.0.1', 'lafayette-yields-antique-tide.trycloudflare.com'],
-    hmr: {
-      host: 'lafayette-yields-antique-tide.trycloudflare.com',
-      protocol: 'wss',
-      clientPort: 443,
-    },
-  },
+    server: (() => {
+      const isLocal = process.env.LOCAL_DEV === '1' || process.env.VITE_LOCAL_DEV === '1';
+      return {
+        port: 5173,
+        strictPort: true,
+        open: true,
+        host: '0.0.0.0',
+        allowedHosts: ['localhost', '127.0.0.1', 'lafayette-yields-antique-tide.trycloudflare.com'],
+        // Em ambiente local, deixa HMR padrão (localhost). Em ambiente remoto, usa WSS custom.
+        ...(isLocal
+          ? {}
+          : {
+              hmr: {
+                host: 'lafayette-yields-antique-tide.trycloudflare.com',
+                protocol: 'wss',
+                clientPort: 443,
+              },
+            }),
+      };
+    })(),
 });

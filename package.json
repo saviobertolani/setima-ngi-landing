@@ -59,7 +59,8 @@
         "sharp": "^0.33.4"
       },
       "scripts": {
-          "dev": "vite",
+              "dev": "vite",
+              "dev:local": "cross-env LOCAL_DEV=1 VITE_LOCAL_DEV=1 vite",
           "build": "vite build",
   "preview": "vite preview --port 4173",
   "ship": "git add -A && git commit -m 'chore: update' || true && git push",
