@@ -1,6 +1,7 @@
 import React from "react";
 import InteractiveDesktop from "./components/InteractiveDesktop";
 import InteractiveMobile from "./components/InteractiveMobile";
+import MobileFigma from "./components/figma/MobileFigma";
 import DesktopScaleContainer from "./components/motion/DesktopScaleContainer";
 import { useMemo } from "react";
 
@@ -24,6 +25,11 @@ export default function App() {
   }, []);
 
   const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined);
+  const useGetCode = React.useMemo(() => {
+    if (typeof window === "undefined") return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.has("get_code");
+  }, []);
   React.useEffect(() => {
     const compute = () => {
       if (forceDesktop) return false;
@@ -39,7 +45,7 @@ export default function App() {
   if (isMobile === undefined) return null;
 
   if (isMobile) {
-    return <InteractiveMobile />;
+    return useGetCode ? <MobileFigma /> : <InteractiveMobile />;
   }
 
   return (
