@@ -1,6 +1,7 @@
 import InteractiveDesktop from "./components/InteractiveDesktop";
 import DesktopScaleContainer from "./components/motion/DesktopScaleContainer";
 import MobileFigma from "./components/figma/MobileFigma";
+import MobileFigmaDebug from "./components/figma/MobileFigmaDebug";
 import { useMemo } from "react";
 
 export default function App() {

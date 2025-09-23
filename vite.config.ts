@@ -71,7 +71,7 @@
         strictPort: true,
         open: true,
         host: '0.0.0.0',
-        allowedHosts: ['localhost', '127.0.0.1', 'lafayette-yields-antique-tide.trycloudflare.com'],
+        allowedHosts: ['localhost', '127.0.0.1', 'lafayette-yields-antique-tide.trycloudflare.com', 'euros-ensure-springer-highest.trycloudflare.com'],
         // Garante que o diretório atual esteja explicitamente permitido para servir arquivos estáticos
         fs: {
           strict: true,

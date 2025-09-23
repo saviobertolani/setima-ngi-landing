@@ -100,16 +100,16 @@ interface AcordeonProps {
 
 function Acordeon({ propriedade1 = "Retraido" }: AcordeonProps) {
 	return (
-		<button className="relative size-full" data-name="Propriedade 1=Retraido" data-node-id="1:401">
+		<div className="relative size-full" data-name="Propriedade 1=Retraido" data-node-id="1:401">
 			<div className="content-stretch flex flex-col items-center relative size-full">
-				<div className="box-border content-stretch flex items-center justify-between px-0 py-[12px] relative shrink-0 w-full" data-name="header" data-node-id="1:402">
+				<button className="box-border content-stretch flex items-center justify-between px-0 py-[12px] relative shrink-0 w-full cursor-pointer" data-name="header" data-node-id="1:402">
 					<div className="font-['Ubuntu:Bold',_sans-serif] h-[25px] leading-[0] not-italic relative shrink-0 text-[#13171a] text-[20px] w-[297px]" data-node-id="1:403">
 						<p className="leading-[normal]">O que é uma content-tech?</p>
 					</div>
 					<div className="relative shrink-0 size-[18px]" data-name="botao +" data-node-id="1:404">
 						<img alt="" className="block max-w-none size-full" src={imgBotao} />
 					</div>
-				</div>
+				</button>
 				<div className="box-border content-stretch flex gap-[10px] items-center justify-center px-0 py-[0.12px] relative shrink-0" data-name="panel" data-node-id="1:407">
 					<div className="font-['Ubuntu:Light',_sans-serif] leading-[normal] not-italic relative shrink-0 text-[#13171a] text-[23px] w-[354px]" data-node-id="1:408">
 						<p className="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus arcu turpis, efficitur in pulvinar eget, volutpat et odio. Quisque sed diam nulla. In eget neque vel nisi iaculis aliquet. Proin sodales molestie quam molestie malesuada. Quisque eu diam risus. Phasellus augue erat, condimentum ut tempus ac, dignissim ac erat. Nulla facilisi.</p>
@@ -118,7 +118,7 @@ function Acordeon({ propriedade1 = "Retraido" }: AcordeonProps) {
 				</div>
 			</div>
 			<div aria-hidden="true" className="absolute border-[0px_0px_1px] border-black border-solid inset-0 pointer-events-none" />
-		</button>
+		</div>
 	);
 }
 
@@ -134,7 +134,7 @@ export default function Mobile() {
 					<img alt="" className="block max-w-none size-full" src={imgLogoSetima} />
 				</div>
 			</div>
-			<div className="absolute left-0 top-[5514px]" data-name="Bloco 08" data-node-id="1:575">
+			<div id="bloco8" className="absolute left-0 top-[5514px]" data-name="Bloco 08" data-node-id="1:575">
 				<div className="absolute bg-[#13171a] h-[200px] left-0 top-[0px] w-[402px]" data-node-id="1:467" />
 				<div className="absolute font-['Ubuntu:Regular',_sans-serif] h-[27px] leading-[0] not-italic text-[#f8f8f2] text-[12px] text-center top-[121.62px] translate-x-[-50%] w-[351px]" data-node-id="17:77" style={{ left: "calc(50% + 0.5px)" }}>
 					<p className="leading-[normal]">@2025 Setima. Todos os direitos reservados. Todo o conteúdo deste site é protegido por leis de propriedade intelectual.</p>
@@ -153,33 +153,33 @@ export default function Mobile() {
 					</div>
 				</div>
 			</div>
-			<div className="absolute h-[576px] left-[-10px] top-[4732px] w-[422px]" data-name="Bloco 07" data-node-id="1:340">
+			<div id="faq" className="absolute h-[576px] left-[-10px] top-[4732px] w-[422px]" data-name="Bloco 07" data-node-id="1:340">
 				<div className="absolute bg-[#f8f8f2] h-[772px] left-[10px] top-[10px] w-[402px]" data-node-id="1:341" />
 				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[209px] not-italic text-[#13171a] text-[30px] text-center top-[88px] translate-x-[-50%] w-[354px]" data-node-id="1:349">
 					<p className="leading-[normal]">DÚVIDAS FREQUENTES</p>
 				</div>
-				<div className="absolute content-stretch cursor-pointer flex flex-col items-start left-[32px] top-[168px] w-[356px]" data-node-id="1:464">
-					<button className="h-[49px] relative shrink-0 w-full" data-name="Acordeon" data-node-id="1:416">
+				<div className="absolute content-stretch flex flex-col items-start left-[32px] top-[168px] w-[356px]" data-node-id="1:464">
+					<div className="h-[49px] relative shrink-0 w-full" data-name="Acordeon" data-node-id="1:416">
 						<Acordeon />
-					</button>
-					<button className="h-[49px] relative shrink-0 w-full" data-name="Acordeon" data-node-id="1:424">
+					</div>
+					<div className="h-[49px] relative shrink-0 w-full" data-name="Acordeon" data-node-id="1:424">
 						<Acordeon />
-					</button>
-					<button className="h-[49px] relative shrink-0 w-full" data-name="Acordeon" data-node-id="1:432">
+					</div>
+					<div className="h-[49px] relative shrink-0 w-full" data-name="Acordeon" data-node-id="1:432">
 						<Acordeon />
-					</button>
-					<button className="h-[49px] relative shrink-0 w-full" data-name="Acordeon" data-node-id="1:440">
+					</div>
+					<div className="h-[49px] relative shrink-0 w-full" data-name="Acordeon" data-node-id="1:440">
 						<Acordeon />
-					</button>
-					<button className="h-[49px] relative shrink-0 w-full" data-name="Acordeon" data-node-id="1:448">
+					</div>
+					<div className="h-[49px] relative shrink-0 w-full" data-name="Acordeon" data-node-id="1:448">
 						<Acordeon />
-					</button>
-					<button className="h-[49px] relative shrink-0 w-full" data-name="Acordeon" data-node-id="1:456">
+					</div>
+					<div className="h-[49px] relative shrink-0 w-full" data-name="Acordeon" data-node-id="1:456">
 						<Acordeon />
-					</button>
+					</div>
 				</div>
 			</div>
-			<div className="absolute left-[-248px] top-[3906px]" data-name="Bloco 06" data-node-id="1:331">
+			<div id="bloco6" className="absolute left-[-248px] top-[3906px]" data-name="Bloco 06" data-node-id="1:331">
 				<div className="absolute bg-[#13171a] h-[836px] left-0 top-[0px] w-[402px]" data-node-id="1:332" />
 				<div className="absolute bg-center bg-cover bg-no-repeat h-[506px] left-[-248px] top-[250px] w-[898px]" data-name="aquamarine (4) 1" data-node-id="1:339" style={{ backgroundImage: `url('${imgAquamarine41}')` }} />
 				<div className="absolute font-['Ubuntu:Bold',_sans-serif] leading-[0] not-italic text-[18px] text-center text-white top-[704px]" data-node-id="1:338" style={{ left: "calc(33.333% + 1px)" }}>
@@ -197,7 +197,7 @@ export default function Mobile() {
 					<p className="leading-[normal]">O FLUXO NGI: DA ESTRATÉGIA À PRODUÇÃO, CRIATIVIDADE E TÉCNICA ACELERADAS PELA IA.</p>
 				</div>
 			</div>
-			<div className="absolute left-0 top-[3458px]" data-name="Bloco 05" data-node-id="1:327">
+			<div id="bloco5" className="absolute left-0 top-[3458px]" data-name="Bloco 05" data-node-id="1:327">
 				<div className="absolute bg-[#f8f8f2] h-[448px] left-0 top-[0px] w-[402px]" data-node-id="1:328" />
 				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[201px] not-italic text-[#13171a] text-[20px] text-center top-[303px] translate-x-[-50%] w-[352px]" data-node-id="1:329">
 					<p className="leading-[normal]">Integramos criatividade, estratégia e tecnologia em um só fluxo, criando conteúdos relevantes de maneira mais rápida, escalável e impactante.</p>
@@ -208,7 +208,7 @@ export default function Mobile() {
 					<p>EM COMPARAÇÃO A PRODUÇÕES TRADICIONAIS.</p>
 				</div>
 			</div>
-			<div className="absolute left-0 top-[2322px]" data-name="Bloco 04" data-node-id="1:311">
+			<div id="bloco4" className="absolute left-0 top-[2322px]" data-name="Bloco 04" data-node-id="1:311">
 				<div className="absolute bg-[#13171a] h-[600px] left-0 top-[536px] w-[402px]" data-name="background" data-node-id="1:312" />
 			<div className="absolute left-0 top-[0px]" data-name="imagem grande" data-node-id="1:313">
 					<div
@@ -236,7 +236,7 @@ export default function Mobile() {
 					<p className="font-['Ubuntu:Bold',_sans-serif]">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
 				</div>
 			</div>
-			<div className="absolute left-0 top-[1648px]" data-name="Bloco 03" data-node-id="1:306">
+			<div id="bloco3" className="absolute left-0 top-[1648px]" data-name="Bloco 03" data-node-id="1:306">
 				<div className="absolute bg-[#f8f8f2] h-[674px] left-0 top-[0px] w-[402px]" data-name="background" data-node-id="1:307" />
 				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[200px] not-italic text-[#13171a] text-[20px] text-center top-[523px] translate-x-[-50%] w-[352px]" data-node-id="1:309">
 					<p className="leading-[normal]">O 3D já trascende o universo de stills e CGI: tornou-se linguagem, experiência e presença digital que é capaz de capturar e converter.</p>
@@ -247,7 +247,7 @@ export default function Mobile() {
 					<p className="font-['Ubuntu:Bold',_sans-serif]">+66% DE ENGAJAMENTO, +9% EM VENDAS.</p>
 				</div>
 			</div>
-			<div className="absolute left-0 top-[874px]" data-name="Bloco 02" data-node-id="1:297">
+			<div id="bloco2" className="absolute left-0 top-[874px]" data-name="Bloco 02" data-node-id="1:297">
 				<div className="absolute bg-[#13171a] h-[774px] left-0 top-[0px] w-[402px]" data-name="background" data-node-id="1:298" />
 				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[201px] not-italic text-[20px] text-center text-white top-[525px] translate-x-[-50%] w-[354px]" data-node-id="1:299">
 					<p className="leading-[normal]">Como uma content-tech, podemos atuar desde o conceito criativo até a distribuição multicanal e a análise de desempenho. Um fluxo sustentado por um stack tecnológico integrado que vai de IA à automação, do CMS/DAM ao analytics e além.</p>
@@ -271,7 +271,7 @@ export default function Mobile() {
 					<p className="leading-[normal]">vídeo</p>
 				</div>
 			</div>
-			<div className="absolute left-0 top-0" data-name="Bloco 01" data-node-id="1:172">
+			<div id="hero" className="absolute left-0 top-0" data-name="Bloco 01" data-node-id="1:172">
 				<div className="absolute h-[874px] left-0 overflow-clip top-0 w-[402px]" data-name="back mobile" data-node-id="1:280">
 					<BackMobile />
 				</div>
@@ -298,4 +298,3 @@ export default function Mobile() {
 		</div>
 	);
 }
-
