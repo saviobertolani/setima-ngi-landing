@@ -142,8 +142,8 @@ export default function Mobile() {
 				<div className="absolute inset-[97.34%_52.31%_1.64%_13.68%]" data-name="logo setima" data-node-id="17:78">
 					<img alt="" className="block max-w-none size-full" src={imgLogoSetima1} />
 				</div>
-				<div className="absolute contents inset-[97.41%_13.64%_1.73%_57.46%]" data-name="redes" data-node-id="17:131">
-					<div className="absolute contents inset-[97.41%_30.23%_1.73%_57.46%]" data-name="instagram" data-node-id="17:132">
+				<div className="absolute inset-[97.41%_13.64%_1.73%_57.46%]" data-name="redes" data-node-id="17:131">
+					<div className="absolute inset-[97.41%_30.23%_1.73%_57.46%]" data-name="instagram" data-node-id="17:132">
 						<div className="absolute inset-[97.41%_30.23%_1.73%_57.46%]" data-name="Group" data-node-id="17:133">
 							<img alt="" className="block max-w-none size-full" src={imgGroup} />
 						</div>
@@ -182,7 +182,7 @@ export default function Mobile() {
 			<div className="absolute left-[-248px] top-[3906px]" data-name="Bloco 06" data-node-id="1:331">
 				<div className="absolute bg-[#13171a] h-[836px] left-0 top-[3906px] w-[402px]" data-node-id="1:332" />
 				<div className="absolute bg-center bg-cover bg-no-repeat h-[506px] left-[-248px] top-[4156px] w-[898px]" data-name="aquamarine (4) 1" data-node-id="1:339" style={{ backgroundImage: `url('${imgAquamarine41}')` }} />
-				<div className="absolute contents font-['Ubuntu:Bold',_sans-serif] leading-[0] not-italic text-[18px] text-center text-white top-[4610px]" data-node-id="1:338" style={{ left: "calc(33.333% + 1px)" }}>
+				<div className="absolute font-['Ubuntu:Bold',_sans-serif] leading-[0] not-italic text-[18px] text-center text-white top-[4610px]" data-node-id="1:338" style={{ left: "calc(33.333% + 1px)" }}>
 					<div className="absolute h-[20px] top-[4650px] translate-x-[-50%] w-[132px]" data-node-id="1:335" style={{ left: "calc(33.333% + 67px)" }}>
 						<p className="leading-[normal]">+ IMPACTANTE</p>
 					</div>
@@ -259,7 +259,7 @@ export default function Mobile() {
 					<p className="mb-0">O CGI AGORA É NGI:</p>
 					<p>NEXT-GEN IMAGERY.</p>
 				</div>
-				<div className="absolute contents left-[24px] top-[1168px]" data-name="video aqui" data-node-id="1:302">
+				<div className="absolute left-[24px] top-[1168px]" data-name="video aqui" data-node-id="1:302">
 					<div
 						className="absolute bg-center bg-cover bg-no-repeat h-[291.572px] left-[-68.64px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[92.641px_40.762px] mask-size-[355px_199.363px] rounded-[12px] top-[1127.24px] w-[520.382px]"
 						data-name="VW_CONSTELATTION_31.320_6x4+CAÇAMBA_PSB 1"
