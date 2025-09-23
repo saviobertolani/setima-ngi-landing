@@ -442,13 +442,13 @@ const Bloco05 = memo(() => {
   <div
     className="absolute bg-[#f8f8f2] h-[600px] left-0 top-[3780px] w-[1440px]"
   />
-  <div className="absolute left-[816px] top-[4136px] w-[421px] fig-body-23 fig-dark text-smooth not-italic leading-[26px]" style={bodyParallax.tw}>
-    <p className="m-0 leading-[26px]">Integramos criatividade, estratégia e tecnologia em um só fluxo, criando conteúdos relevantes de maneira mais rápida, escalável e impactante.</p>
+  <div className="absolute left-[816px] top-[4136px] w-[421px] fig-ubuntu-light fig-body-23 fig-dark text-smooth not-italic leading-[0]" style={bodyParallax.tw}>
+    <p className="m-0 leading-[normal]">Integramos criatividade, estratégia e tecnologia em um só fluxo, criando conteúdos relevantes de maneira mais rápida, escalável e impactante.</p>
       </div>
-  <div className="absolute left-[181px] top-[3933px] w-[590px] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic leading-[52px]" style={titleParallax.tw}>
-    <p className="mb-0 leading-[52px]">MAIS DE 60 PROJETOS</p>
-    <p className="mb-0 leading-[52px]">EM 2025 QUE AJUDARAM NOSSOS CLIENTES A ECONOMIZAR MILHÕES</p>
-    <p className="mb-0 leading-[52px]">EM COMPARAÇÃO A PRODUÇÕES TRADICIONAIS.</p>
+  <div className="absolute left-[181px] top-[3933px] w-[590px] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic leading-[normal]" style={titleParallax.tw}>
+    <p className="mb-0">MAIS DE 60 PROJETOS</p>
+    <p className="mb-0">EM 2025 QUE AJUDARAM NOSSOS CLIENTES A ECONOMIZAR MILHÕES</p>
+    <p>EM COMPARAÇÃO A PRODUÇÕES TRADICIONAIS.</p>
       </div>
     </div>
   );

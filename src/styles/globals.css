@@ -529,6 +529,28 @@ html, body {
   pointer-events: none;
 }
 
+/* Estilos para overlay de teste de parallax */
+.parallax-test-overlay {
+  /* Força aceleração GPU para transições suaves */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  /* Otimiza animações de teste */
+  will-change: transform, opacity;
+  /* Containment para performance */
+  contain: layout style paint;
+}
+
+/* Estilos para controles de debug */
+.parallax-debug-controls {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Transições suaves para elementos de teste */
+.parallax-test-transition {
+  transition: transform 0.1s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
 /* Suavização geral para todas as animações Motion */
 * {
   /* Melhora renderização de texto durante animações */
