@@ -88,7 +88,7 @@ function LogoSetima() {
           <path d={svgPaths.pc905f70} fill="#F8F8F2" id="Vector_6" />
           <path d={svgPaths.p3d49680} fill="#F8F8F2" id="Vector_7" />
           <path d={svgPaths.p30c6aa00} fill="#F8F8F2" id="Vector_8" />
-          <path d={svgPaths.pa05aa00} fill="#F8F8F2" id="Vector_9" />
+  // Parallax interno DESATIVADO temporariamente para validação pixel-perfect.
           <path d={svgPaths.p51f1a00} fill="#F8F8F2" id="Vector_10" />
           <path d={svgPaths.p2cb69700} fill="#F8F8F2" id="Vector_11" />
           <path d={svgPaths.p1fcd5800} fill="#F8F8F2" id="Vector_12" />
@@ -508,8 +508,11 @@ const ImagemGrande = ({
   // Notifica o Bloco04 sobre a posição exata do rodapé da janela (para ancorar a tarja)
   useEffect(() => {
     // Quando relativo ao container 1440x970, compensamos a escala global para manter a base encostada na tarja.
+    // FIX: no modo relativo ao container, o stage-clip tem altura fixa (970px) e não escala.
+    // Portanto, o rodapé visual da janela é sempre em 2510 + 970 (doc coords),
+    // independente do scale global. Isso evita faixa/gap entre o herói e a tarja preta.
     const bottom = relativeContainer
-      ? 2510 + WINDOW_H - offsetY
+      ? 2510 + WINDOW_H
       : 2510 + WINDOW_H * scale;
     onBottomChange?.(bottom);
   }, [scale, onBottomChange, relativeContainer, offsetY]);
@@ -576,7 +579,7 @@ const ImagemGrande = ({
             activeIndex={activeIndex}
             onThumbnailClick={(i) => onThumbnailClick?.(i)}
             relative
-            relativeBottom={24} // 24px acima da base da janela 1440x970
+            relativeBottom={40}
           />
         </div>
       </div>
@@ -597,7 +600,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0, insideSt
   
   // Posições exatas das miniaturas do design original
   // Conforme Figma (lefts absolutos para botões com w=98)
-  const thumbnailLefts = [289, 398, 507, 616, 725, 834, 943, 1052];
+  const thumbnailLefts = [251, 371, 491, 611, 731, 851, 971, 1091];
 
   // Animação de dica de navegação após scroll
   useEffect(() => {
@@ -703,47 +706,27 @@ const Bloco03 = memo(() => {
 });
 
 function Bloco04() {
-  const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
-  const [stripeTop, setStripeTop] = useState<number>(2510 + 970 - 1);
-  const handleGalleryThumbnailClick = useCallback((index: number) => {
-    setGalleryActiveIndex(index);
-  }, []);
-  // Garante limite pelo total disponível
-  const maxIndex = Math.max(0, Math.min(galleryList.length - 1, galleryActiveIndex));
+  // Versão interativa preservando o layout idêntico ao Figma
+  const [activeIndex, setActiveIndex] = useState(0);
   return (
     <div className="absolute contents left-0 top-[2510px] z-[20]" data-name="Bloco 04">
-      {/* Stage clip 1440x970 para impedir sobreposição com o bloco anterior */}
-      <div
-        className="absolute left-1/2 -translate-x-1/2"
-        style={{ top: '2510px', width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2 }}
-        data-name="stage-clip"
-      >
-        {/* Imagem grande dentro do clip, posicionada relativamente ao container */}
-        <ImagemGrande 
-          activeIndex={maxIndex}
-          onThumbnailClick={handleGalleryThumbnailClick}
-          // ativa posicionamento relativo ao container 1440x970
-          relativeContainer
-          onBottomChange={(bottom) => setStripeTop(bottom - 1)}
-        />
+      {/* Tarja preta no exato encontro com a base da janela 1440x970 (2510 + 970 = 3480) */}
+      <div className="absolute bg-[#13171a] h-[300px] left-0 top-[3480px] w-[1440px]" data-name="background" />
+
+      {/* Imagem grande dentro da janela 1440x970 com thumbnails reais clicáveis */}
+      <ImagemGrande
+        activeIndex={activeIndex}
+        onThumbnailClick={(i) => setActiveIndex(i)}
+        relativeContainer
+      />
+
+      {/* Textos exatamente posicionados */}
+      <div className="absolute left-[718.5px] top-[3653px] translate-x-[-50%] w-[905px] text-center fig-ubuntu-light fig-body-23 fig-light text-smooth not-italic">
+        <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
       </div>
-      {/* Tarja preta como container com filhos; encostada no rodapé da imagem */}
-      <div
-        className="absolute bg-[#13171a] h-[300px] overflow-hidden"
-        data-name="faixa-preta-container"
-        style={{ ...fullBleedBackground, top: `${stripeTop}px`, zIndex: 3 }}
-      >
-        {/* Wrapper centralizado com largura de stage (1440px) */}
-        <div className="relative h-full w-[1440px] left-1/2 -translate-x-1/2">
-          {/* Títulos e textos com top relativo à tarja (diferenças originais: 53px e 173px do topo da tarja) */}
-          <div className="absolute left-1/2 translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={{ top: '53px' }}>
-            <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
-            <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
-          </div>
-          <div className="absolute left-1/2 translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic" style={{ top: '173px' }}>
-            <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
-          </div>
-        </div>
+      <div className="absolute left-[718.5px] top-[3533px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
+        <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
+        <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
       </div>
     </div>
   );
