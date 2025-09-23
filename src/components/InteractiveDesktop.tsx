@@ -74,7 +74,7 @@ function LogoSetima() {
       onClick={() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }}
-  className="absolute h-[50px] left-[77px] top-[43px] w-[120px] cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-none p-0" 
+      className="absolute h-[50px] left-[77px] top-[6280px] w-[120px] cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-none p-0" 
       data-name="logo setima"
       title="Voltar ao topo"
     >
@@ -157,7 +157,7 @@ function SocialIcons() {
   }, [openInNewTab]);
 
   return (
-  <div className="absolute flex items-center gap-4 left-[1280px] top-[53px]" data-name="social icons">
+    <div className="absolute flex items-center gap-4 left-[1280px] top-[6290px]" data-name="social icons">
       <button
         onClick={handleInstagramClick}
         className="flex items-center justify-center w-10 h-10 rounded-full bg-[#f8f8f2] hover:bg-[#00f5b9] transition-all duration-300 cursor-pointer group"
@@ -178,7 +178,7 @@ function SocialIcons() {
 
 function CopyrightText() {
   return (
-    <div className="absolute left-[77px] top-[113px] w-[600px]" data-name="copyright text">
+    <div className="absolute left-[77px] top-[6350px] w-[600px]" data-name="copyright text">
   <p className="fig-ubuntu-light fig-caption-12 fig-light not-italic whitespace-nowrap">
         © 2025 Setima. Todos os direitos reservados. Todo o conteúdo deste site é protegido por leis de propriedade intelectual.
       </p>
@@ -188,9 +188,9 @@ function CopyrightText() {
 
 const Bloco08 = memo(() => {
   return (
-  <div className="absolute left-0 top-[6237px] w-full" data-name="Bloco 08">
+    <div className="absolute contents left-0 top-[6238px]" data-name="Bloco 08">
       <div
-    className="absolute h-[229px] top-0 bg-black"
+        className="absolute h-[228px] top-[6238px] bg-black"
         style={fullBleedBackground}
       />
       <LogoSetima />
@@ -351,16 +351,45 @@ const Bloco07 = memo(({ openAccordion, toggleAccordion }: {
   
   return (
     <div className="absolute contents left-0 top-[5630px]" data-name="Bloco 07">
-      {/* Fundo do bloco FAQ conforme Figma (preenche até o início do footer) */}
-      <div
-        className="absolute bg-[#f8f8f2] top-[5630px]"
-        style={{
-          ...fullBleedBackground,
-          height: `${608 + extraHeight}px`, // 1px de sobreposição contra artefatos de subpixel
-          zIndex: 0,
-        }}
-        aria-hidden
-      />
+      <div 
+        className="absolute bg-[#f8f8f2] top-[5630px] transition-all duration-500 ease-out" 
+        style={{ ...fullBleedBackground, height: `${608 + extraHeight}px` }}
+      >
+        {/* Efeitos visuais sutis para indicar interatividade */}
+        
+        {/* Pontos decorativos que "pulsam" sutilmente para indicar interatividade */}
+        <div className="absolute right-16 top-20">
+          <div className="w-2 h-2 bg-[#00f5b9]/30 rounded-full animate-pulse" 
+               style={{ animationDelay: '0s', animationDuration: '3s' }} />
+        </div>
+        <div className="absolute right-20 top-32">
+          <div className="w-1.5 h-1.5 bg-[#00f5b9]/20 rounded-full animate-pulse" 
+               style={{ animationDelay: '1s', animationDuration: '3s' }} />
+        </div>
+        <div className="absolute right-12 top-44">
+          <div className="w-1 h-1 bg-[#00f5b9]/25 rounded-full animate-pulse" 
+               style={{ animationDelay: '2s', animationDuration: '3s' }} />
+        </div>
+        
+        {/* Linha decorativa sutil que "se move" para chamar atenção */}
+        <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-[#00f5b9]/20 to-transparent opacity-60">
+          <div className="relative h-full">
+            <div className="absolute top-0 right-0 w-full h-8 bg-[#00f5b9]/40 animate-pulse" 
+                 style={{ 
+                   animation: 'float 4s ease-in-out infinite',
+                   animationDelay: '0.5s' 
+                 }} />
+          </div>
+        </div>
+        
+        {/* Sombra interna sutil para dar profundidade */}
+        <div className="absolute inset-0 shadow-inner opacity-20 pointer-events-none" 
+             style={{ 
+               boxShadow: 'inset 0 2px 8px rgba(0, 245, 185, 0.1)' 
+             }} />
+        
+
+      </div>
       {/* Título da seção (posicionado absoluto como no design) */}
       <div className="absolute left-[63px] top-[5764px] w-[1314px] z-[10] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic">
         <p className="m-0">DÚVIDAS FREQUENTES</p>
@@ -440,7 +469,7 @@ const galleryList = (localGallery.images.length
 
 // Coordenada base onde inicia o Bloco 04 (top do stage-clip)
 const BASE_TOP = 2509;
-// Altura de design da tarja preta (ajustável conforme Figma)
+// Altura de design da tarja grafite (ajustável conforme Figma)
 const DESIGN_STRIPE_HEIGHT = 240;
 
 const ImagemGrande = ({
@@ -462,13 +491,11 @@ const ImagemGrande = ({
   // Constantes da janela e thresholds — definidas antes do uso
   const WINDOW_W = 1440;
   const WINDOW_H = 970;
-  const WINDOW_RATIO = WINDOW_W / WINDOW_H; // ~1.4845
-  const THRESH = 0.06; // 6% de tolerância
   // Escala responsiva: 1 em >=1440px, diminui proporcionalmente abaixo disso
   const [scale, setScale] = useState(1);
   const offsetY = useMemo(() => WINDOW_H * (1 - scale), [scale]);
-  // Fit inteligente por imagem
-  const [bgSize, setBgSize] = useState<'cover' | 'contain'>('cover');
+  // Fit fixo: sempre faz crop para 1440x970 (cover)
+  const bgSize: 'cover' = 'cover';
   // Mantemos a janela visível exatamente em top=2510 independente do scale.
   const deltaFix = 0;
   useEffect(() => {
@@ -490,22 +517,7 @@ const ImagemGrande = ({
     onBottomChange?.(bottom);
   }, [scale, onBottomChange, relativeContainer, offsetY]);
 
-  // Atualiza background-size conforme aspect ratio da imagem ativa
-  useEffect(() => {
-    let cancelled = false;
-    const src = activeImage?.src;
-    if (!src) return;
-    const img = new Image();
-    img.onload = () => {
-      if (cancelled) return;
-      const ratio = img.width / img.height;
-      const diff = Math.abs(ratio - WINDOW_RATIO) / WINDOW_RATIO;
-      // Se a diferença de aspecto for pequena, usamos cover para evitar barras; senão contain para não cortar demais
-      setBgSize(diff <= THRESH ? 'cover' : 'contain');
-    };
-    img.src = src;
-    return () => { cancelled = true; };
-  }, [activeImage?.src]);
+  // Sem cálculo de aspecto: sempre 'cover' para garantir recorte 1440x970
 
   return (
     <div className="absolute contents left-0" data-name="imagem grande">
@@ -694,15 +706,64 @@ function Bloco04() {
     if (!Number.isFinite(v) || v <= 0) return DESIGN_STRIPE_HEIGHT;
     return Math.min(700, Math.max(200, v));
   }, []);
-  // Posicionamento proporcional do conteúdo interno
-  const headingTop = 24; // mais próximo do topo, reduz “barra vazia”
-  const bodyTop = headingTop + 96;
+  // Debug da tarja: desabilitado em produção; habilita via ?stripeDebug apenas em dev
+  const stripeDebug = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    const isProd = (import.meta as any)?.env?.PROD === true;
+    if (isProd) return false;
+    const qs = new URLSearchParams(window.location.search);
+    return Array.from(qs.keys()).some(k => k.toLowerCase() === 'stripedebug');
+  }, []);
+  const stripeOverlayUrl = useMemo(() => {
+    if (!stripeDebug || typeof window === 'undefined') return null as string | null;
+    const qs = new URLSearchParams(window.location.search);
+    return qs.get('stripeOverlay');
+  }, [stripeDebug]);
+  const stripeOverlayOpacity = useMemo(() => {
+    if (!stripeDebug || typeof window === 'undefined') return 0.35;
+    const qs = new URLSearchParams(window.location.search);
+    const raw = qs.get('stripeOverlayOpacity');
+    const v = raw ? parseFloat(raw) : NaN;
+    return Number.isFinite(v) ? Math.max(0, Math.min(1, v)) : 0.35;
+  }, [stripeDebug]);
+  // Gap fixo conforme padrão visual — sem leitura por query em produção
+  const stripeGap = 16;
+  // Medição de título e corpo para conferência
+  const titleRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const [titleSize, setTitleSize] = useState<{ w: number; h: number } | null>(null);
+  const [bodySize, setBodySize] = useState<{ w: number; h: number } | null>(null);
+  // Título sempre encostado no topo da tarja (sem respiro)
+  const defaultTitleH = 56; // fallback alinhado
+  const titleTopApplied = 0;
+  const computedBodyTop = useMemo(() => {
+    const h = titleSize?.h ?? defaultTitleH;
+    // Espaço = topo aplicado do título + altura medida + gap configurável
+    const top = titleTopApplied + h + stripeGap;
+    return Math.max(titleTopApplied, Math.round(top));
+  }, [titleSize?.h, stripeGap]);
+  useEffect(() => {
+    if (!stripeDebug) return;
+    const measure = () => {
+      const tr = titleRef.current?.getBoundingClientRect();
+      const br = bodyRef.current?.getBoundingClientRect();
+      if (tr) setTitleSize({ w: Math.round(tr.width), h: Math.round(tr.height) });
+      if (br) setBodySize({ w: Math.round(br.width), h: Math.round(br.height) });
+    };
+    const t1 = window.setTimeout(measure, 0);
+    window.addEventListener('resize', measure);
+    document.fonts?.ready?.then(measure).catch(() => {});
+    return () => {
+      window.clearTimeout(t1);
+      window.removeEventListener('resize', measure);
+    };
+  }, [stripeDebug]);
   return (
-    <div className="absolute contents left-0 z-[20]" style={{ top: `${BASE_TOP}px` }} data-name="Bloco 04">
+    <div className="absolute left-0 z-[20]" style={{ top: `${BASE_TOP}px` }} data-name="Bloco 04">
       {/* Stage clip 1440x970 para impedir sobreposição com o bloco anterior */}
       <div
         className="absolute left-1/2 -translate-x-1/2"
-        style={{ top: `${BASE_TOP}px`, width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2, backgroundColor: '#13171a' }}
+  style={{ top: '0px', width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2, backgroundColor: '#13171a' }}
         data-name="stage-clip"
       >
         {/* Imagem grande dentro do clip, posicionada relativamente ao container */}
@@ -714,22 +775,52 @@ function Bloco04() {
           onBottomChange={(bottom) => setStripeTop(Math.floor(bottom) - 1)}
         />
       </div>
-      {/* Tarja preta como container com filhos; encostada no rodapé da imagem */}
+      {/* Tarja grafite 1440x300 centralizada; encostada no rodapé da imagem (largura exata 1440px) */}
       <div
-        className="absolute bg-[#13171a] overflow-hidden"
+        className="absolute bg-[#13171a] overflow-hidden left-1/2 -translate-x-1/2"
         data-name="faixa-preta-container"
-        style={{ ...fullBleedBackground, top: `${stripeTop}px`, height: `${stripeHeight}px`, zIndex: 3 }}
+  style={{ top: `${Math.max(0, Math.round(stripeTop - BASE_TOP) - 2)}px`, height: `${stripeHeight}px`, zIndex: 3, width: '1440px' }}
       >
-        {/* Wrapper centralizado com largura de stage (1440px) */}
-        <div className="relative h-full w-[1440px] left-1/2 -translate-x-1/2">
-          {/* Títulos e textos com top relativo à tarja (diferenças originais: 53px e 173px do topo da tarja) */}
-          <div className="absolute left-1/2 translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={{ top: `${headingTop}px` }}>
-            <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
-            <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
+        {/* Sobreposição opcional do Figma para inspeção pixel-perfect */}
+        {stripeDebug && stripeOverlayUrl && (
+          <img
+            src={stripeOverlayUrl}
+            alt="stripe-overlay"
+            className="absolute left-0 top-0 h-full w-full pointer-events-none"
+            style={{ objectFit: 'cover', opacity: stripeOverlayOpacity, mixBlendMode: 'normal' }}
+          />
+        )}
+        {/* Moldura da área para debug */}
+  {stripeDebug && (
+          <div className="absolute inset-0 pointer-events-none" style={{ outline: '1px dashed rgba(0,245,185,0.6)', outlineOffset: '-1px' }} />
+        )}
+        {/* Wrapper interno usa toda a largura (w-full) */}
+        <div className="relative h-full w-full">
+          {/* Regras horizontais de referência de top (56px e 136px) */}
+      {stripeDebug && (
+            <>
+              <div className="absolute left-0 right-0" style={{ top: `0px`, height: 1, background: 'rgba(0,245,185,0.6)' }} />
+              <div className="absolute left-0 right-0" style={{ top: `${computedBodyTop}px`, height: 1, background: 'rgba(0,245,185,0.6)' }} />
+            </>
+          )}
+          {/* Offsets conforme Figma: título ~56px, texto ~136px */}
+          <div ref={titleRef} className="absolute left-1/2 translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={{ top: `0px` }}>
+            {/* Zera margens para evitar espaço fantasma no topo causado por margin-top padrão de <p> */}
+            <p className="m-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
+            <p className="m-0 fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
           </div>
-          <div className="absolute left-1/2 translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic" style={{ top: `${bodyTop}px` }}>
+      <div ref={bodyRef} className="absolute left-1/2 translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic" style={{ top: `${computedBodyTop}px` }}>
             <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
           </div>
+          {/* HUD de debug com medidas */}
+      {stripeDebug && (
+            <div className="absolute right-2 top-2 z-[5] rounded bg-[rgba(0,0,0,0.65)] px-2 py-1 text-[11px] leading-[14px] text-[#e5fff6] pointer-events-none">
+              <div>Stripe: 1440x{stripeHeight}px | top: {Math.round(stripeTop)}</div>
+              <div>Título: {titleSize ? `${titleSize.w}x${titleSize.h}px` : '—'}</div>
+        <div>Texto: {bodySize ? `${bodySize.w}x${bodySize.h}px` : '—'}</div>
+  <div>Offsets: titleTop=0, bodyTop={computedBodyTop} (gap={stripeGap})</div>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -1514,7 +1605,6 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
     return FOOTER_BOTTOM + extraHeight;
   }, [openAccordion]);
 
-
   return (
     <div className="bg-white min-h-screen w-full overflow-x-hidden" data-name="Desktop - 1">
       {/* Header fixo via Portal */}
@@ -1533,7 +1623,6 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
           width: '1440px',
           marginLeft: '50%',
           transform: 'translateX(-50%)',
-          // Altura mínima baseada no fundo do footer (com extra quando o FAQ estiver aberto)
           minHeight: `${dynamicHeight}px`
         }}
       >
