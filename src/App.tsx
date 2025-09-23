@@ -1,4 +1,6 @@
+import React from "react";
 import InteractiveDesktop from "./components/InteractiveDesktop";
+import InteractiveMobile from "./components/InteractiveMobile";
 import DesktopScaleContainer from "./components/motion/DesktopScaleContainer";
 import { useMemo } from "react";
 
@@ -8,6 +10,20 @@ export default function App() {
     const p = new URLSearchParams(window.location.search);
     return p.has("debugui") || p.has("debugUI");
   }, []);
+
+  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined);
+  React.useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 480);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  if (isMobile === undefined) return null;
+
+  if (isMobile) {
+    return <InteractiveMobile />;
+  }
 
   return (
     <>
