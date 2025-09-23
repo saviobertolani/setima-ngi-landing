@@ -72,6 +72,11 @@
         open: true,
         host: '0.0.0.0',
         allowedHosts: ['localhost', '127.0.0.1', 'lafayette-yields-antique-tide.trycloudflare.com'],
+        // Garante que o diretório atual esteja explicitamente permitido para servir arquivos estáticos
+        fs: {
+          strict: true,
+          allow: [path.resolve(__dirname, './')],
+        },
         // Em ambiente local, deixa HMR padrão (localhost). Em ambiente remoto, usa WSS custom.
         ...(isLocal
           ? {}
