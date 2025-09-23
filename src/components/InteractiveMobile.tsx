@@ -119,13 +119,13 @@ function Bloco03() {
 function Bloco04() {
   const [active, setActive] = useState(0);
   const current = galleryListMobile[active] ?? galleryListMobile[0];
-  const [overlay, setOverlay] = useState<string | null>(null);
+  const [overlay, setOverlay] = useState<null | { src: string; alt: string }>(null);
 
   const change = (i: number) => {
     if (i === active) return;
     const next = galleryListMobile[i];
     if (!next) return;
-    setOverlay(next.mobileSrc);
+    setOverlay({ src: next.mobileSrc, alt: next.alt });
     setTimeout(() => {
       setActive(i);
       setOverlay(null);
@@ -147,13 +147,13 @@ function Bloco04() {
             backgroundPosition: current ? (galleryCropHints[current.alt] ?? '50% 50%') : '50% 50%',
           }}
         />
-        {overlay && (
+    {overlay && (
           <div
             className="absolute inset-0 bg-no-repeat opacity-0 animate-[fadeIn_0.3s_ease_forwards]"
             style={{
-              backgroundImage: `url('${overlay}')`,
-              backgroundSize: 'cover',
-              backgroundPosition: current ? (galleryCropHints[current.alt] ?? '50% 50%') : '50% 50%',
+      backgroundImage: `url('${overlay.src}')`,
+      backgroundSize: 'cover',
+      backgroundPosition: galleryCropHints[overlay.alt] ?? '50% 50%',
             }}
           />
         )}
@@ -168,6 +168,7 @@ function Bloco04() {
                 key={i}
                 aria-label={`Imagem ${i + 1}`}
                 onClick={() => change(i)}
+                aria-pressed={isActive}
                 className={`relative w-[74px] h-[74px] rounded-lg overflow-hidden transition-transform ${isActive ? 'scale-105' : 'hover:scale-105'}`}
                 style={{ outline: isActive ? '2px solid #00F5B9' : 'none', outlineOffset: '2px' }}
               >

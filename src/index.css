@@ -380,6 +380,12 @@
     color: var(--foreground);
   }
 
+  /* Keyframes para animações utilitárias usadas no mobile */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
   :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) h1 {
     font-size: var(--text-2xl);
     font-weight: var(--font-weight-medium);
