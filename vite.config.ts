@@ -6,7 +6,7 @@
   export default defineConfig({
   // Base dinâmico: usa BASE_PATH (GitHub Pages) ou raiz
   base: process.env.BASE_PATH || '/',
-    plugins: [react()],
+  plugins: [react()],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {
@@ -64,19 +64,20 @@
       target: 'esnext',
       outDir: 'build',
     },
-    server: (() => {
+  server: (() => {
       const isLocal = process.env.LOCAL_DEV === '1' || process.env.VITE_LOCAL_DEV === '1';
       return {
-        port: 5173,
+    port: 3002,
         strictPort: true,
-        open: true,
+    open: true,
         host: '0.0.0.0',
-        allowedHosts: ['localhost', '127.0.0.1', 'lafayette-yields-antique-tide.trycloudflare.com', 'euros-ensure-springer-highest.trycloudflare.com'],
-        // Garante que o diretório atual esteja explicitamente permitido para servir arquivos estáticos
-        fs: {
-          strict: true,
-          allow: [path.resolve(__dirname, './')],
-        },
+        allowedHosts: [
+          'localhost',
+          '127.0.0.1',
+          'lafayette-yields-antique-tide.trycloudflare.com',
+          'euros-ensure-springer-highest.trycloudflare.com',
+          'burning-ultimately-leg-perry.trycloudflare.com',
+        ],
         // Em ambiente local, deixa HMR padrão (localhost). Em ambiente remoto, usa WSS custom.
         ...(isLocal
           ? {}

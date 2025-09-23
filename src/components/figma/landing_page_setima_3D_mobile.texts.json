@@ -1,0 +1,569 @@
+[
+  {
+    "name": "@2025 Setima. Todos os direitos reservados. Todo o conteúdo deste site é protegido por leis de propriedade intelectual.",
+    "characters": "@2025 Setima. Todos os direitos reservados. Todo o conteúdo deste site é protegido por leis de propriedade intelectual.",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Regular",
+      "fontStyle": "Regular",
+      "fontWeight": 400,
+      "fontSize": 12,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 13.788000106811523,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "DÚVIDAS FREQUENTES",
+    "characters": "DÚVIDAS FREQUENTES",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 30,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 34.470001220703125,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "O que é uma content-tech?",
+    "characters": "O que é uma content-tech?",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Bold",
+      "fontStyle": "Bold",
+      "fontWeight": 700,
+      "fontSize": 20,
+      "textAlignHorizontal": "LEFT",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 22.98000144958496,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus arcu turpis, efficitur in pulvinar eget, volutpat et odio. Quisque sed diam nulla. In eget neque vel nisi iaculis aliquet. Proin sodales molestie quam molestie malesuada. Quisque eu diam risus. Phasellus augue erat, condimentum ut tempus ac, dignissim ac erat. Nulla facilisi.",
+    "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus arcu turpis, efficitur in pulvinar eget, volutpat et odio. Quisque sed diam nulla. In eget neque vel nisi iaculis aliquet. Proin sodales molestie quam molestie malesuada. Quisque eu diam risus. Phasellus augue erat, condimentum ut tempus ac, dignissim ac erat. Nulla facilisi.\n",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 23,
+      "textAlignHorizontal": "LEFT",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 26.427001953125,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "O que é uma content-tech?",
+    "characters": "O que é uma content-tech?",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Bold",
+      "fontStyle": "Bold",
+      "fontWeight": 700,
+      "fontSize": 20,
+      "textAlignHorizontal": "LEFT",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 22.98000144958496,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus arcu turpis, efficitur in pulvinar eget, volutpat et odio. Quisque sed diam nulla. In eget neque vel nisi iaculis aliquet. Proin sodales molestie quam molestie malesuada. Quisque eu diam risus. Phasellus augue erat, condimentum ut tempus ac, dignissim ac erat. Nulla facilisi.",
+    "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus arcu turpis, efficitur in pulvinar eget, volutpat et odio. Quisque sed diam nulla. In eget neque vel nisi iaculis aliquet. Proin sodales molestie quam molestie malesuada. Quisque eu diam risus. Phasellus augue erat, condimentum ut tempus ac, dignissim ac erat. Nulla facilisi.\n",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 23,
+      "textAlignHorizontal": "LEFT",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 26.427001953125,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "O que é uma content-tech?",
+    "characters": "O que é uma content-tech?",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Bold",
+      "fontStyle": "Bold",
+      "fontWeight": 700,
+      "fontSize": 20,
+      "textAlignHorizontal": "LEFT",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 22.98000144958496,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus arcu turpis, efficitur in pulvinar eget, volutpat et odio. Quisque sed diam nulla. In eget neque vel nisi iaculis aliquet. Proin sodales molestie quam molestie malesuada. Quisque eu diam risus. Phasellus augue erat, condimentum ut tempus ac, dignissim ac erat. Nulla facilisi.",
+    "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus arcu turpis, efficitur in pulvinar eget, volutpat et odio. Quisque sed diam nulla. In eget neque vel nisi iaculis aliquet. Proin sodales molestie quam molestie malesuada. Quisque eu diam risus. Phasellus augue erat, condimentum ut tempus ac, dignissim ac erat. Nulla facilisi.\n",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 23,
+      "textAlignHorizontal": "LEFT",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 26.427001953125,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "O que é uma content-tech?",
+    "characters": "O que é uma content-tech?",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Bold",
+      "fontStyle": "Bold",
+      "fontWeight": 700,
+      "fontSize": 20,
+      "textAlignHorizontal": "LEFT",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 22.98000144958496,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus arcu turpis, efficitur in pulvinar eget, volutpat et odio. Quisque sed diam nulla. In eget neque vel nisi iaculis aliquet. Proin sodales molestie quam molestie malesuada. Quisque eu diam risus. Phasellus augue erat, condimentum ut tempus ac, dignissim ac erat. Nulla facilisi.",
+    "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus arcu turpis, efficitur in pulvinar eget, volutpat et odio. Quisque sed diam nulla. In eget neque vel nisi iaculis aliquet. Proin sodales molestie quam molestie malesuada. Quisque eu diam risus. Phasellus augue erat, condimentum ut tempus ac, dignissim ac erat. Nulla facilisi.\n",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 23,
+      "textAlignHorizontal": "LEFT",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 26.427001953125,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "O que é uma content-tech?",
+    "characters": "O que é uma content-tech?",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Bold",
+      "fontStyle": "Bold",
+      "fontWeight": 700,
+      "fontSize": 20,
+      "textAlignHorizontal": "LEFT",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 22.98000144958496,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus arcu turpis, efficitur in pulvinar eget, volutpat et odio. Quisque sed diam nulla. In eget neque vel nisi iaculis aliquet. Proin sodales molestie quam molestie malesuada. Quisque eu diam risus. Phasellus augue erat, condimentum ut tempus ac, dignissim ac erat. Nulla facilisi.",
+    "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus arcu turpis, efficitur in pulvinar eget, volutpat et odio. Quisque sed diam nulla. In eget neque vel nisi iaculis aliquet. Proin sodales molestie quam molestie malesuada. Quisque eu diam risus. Phasellus augue erat, condimentum ut tempus ac, dignissim ac erat. Nulla facilisi.\n",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 23,
+      "textAlignHorizontal": "LEFT",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 26.427001953125,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "O que é uma content-tech?",
+    "characters": "O que é uma content-tech?",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Bold",
+      "fontStyle": "Bold",
+      "fontWeight": 700,
+      "fontSize": 20,
+      "textAlignHorizontal": "LEFT",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 22.98000144958496,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus arcu turpis, efficitur in pulvinar eget, volutpat et odio. Quisque sed diam nulla. In eget neque vel nisi iaculis aliquet. Proin sodales molestie quam molestie malesuada. Quisque eu diam risus. Phasellus augue erat, condimentum ut tempus ac, dignissim ac erat. Nulla facilisi.",
+    "characters": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus arcu turpis, efficitur in pulvinar eget, volutpat et odio. Quisque sed diam nulla. In eget neque vel nisi iaculis aliquet. Proin sodales molestie quam molestie malesuada. Quisque eu diam risus. Phasellus augue erat, condimentum ut tempus ac, dignissim ac erat. Nulla facilisi.\n",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 23,
+      "textAlignHorizontal": "LEFT",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 26.427001953125,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "+ IMPACTANTE",
+    "characters": "+ IMPACTANTE",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Bold",
+      "fontStyle": "Bold",
+      "fontWeight": 700,
+      "fontSize": 18,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 20.6820011138916,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "+ ESCALÁVEL",
+    "characters": "+ ESCALÁVEL",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Bold",
+      "fontStyle": "Bold",
+      "fontWeight": 700,
+      "fontSize": 18,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 20.6820011138916,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "+ RÁPIDO",
+    "characters": "+ RÁPIDO",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Bold",
+      "fontStyle": "Bold",
+      "fontWeight": 700,
+      "fontSize": 18,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 20.6820011138916,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "O FLUXO NGI: DA ESTRATÉGIA À PRODUÇÃO, CRIATIVIDADE E TÉCNICA ACELERADAS PELA IA.",
+    "characters": "O FLUXO NGI: DA ESTRATÉGIA À PRODUÇÃO, CRIATIVIDADE E TÉCNICA ACELERADAS PELA IA.",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 30,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 34.470001220703125,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "Integramos criatividade, estratégia e tecnologia em um só fluxo, criando conteúdos relevantes de maneira mais rápida, escalável e impactante.",
+    "characters": "Integramos criatividade, estratégia e tecnologia em um só fluxo, criando conteúdos relevantes de maneira mais rápida, escalável e impactante.",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 20,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 22.98000144958496,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "MAIS DE 60 PROJETOS EM 2025 QUE AJUDARAM NOSSOS CLIENTES A ECONOMIZAR MILHÕES EM COMPARAÇÃO A PRODUÇÕES TRADICIONAIS.",
+    "characters": "MAIS DE 60 PROJETOS\nEM 2025 QUE AJUDARAM NOSSOS CLIENTES A ECONOMIZAR MILHÕES\nEM COMPARAÇÃO A PRODUÇÕES TRADICIONAIS.",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 30,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 34.470001220703125,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.",
+    "characters": "Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 20,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 22.98000144958496,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "UM ASSET, INFINITAS POSSIBILIDADES. SEU BUDGET OTIMIZADO AO MÁXIMO.",
+    "characters": "UM ASSET, INFINITAS POSSIBILIDADES.\nSEU BUDGET OTIMIZADO AO MÁXIMO.",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 30,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 34.470001220703125,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "O 3D já trascende o universo de stills e CGI: tornou-se linguagem, experiência e presença digital que é capaz de capturar e converter.",
+    "characters": "O 3D já trascende o universo de stills e CGI: tornou-se linguagem, experiência e presença digital que é capaz de capturar e converter.",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 20,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 22.98000144958496,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "O PODER DAS EXPERIÊNCIAS INTERATIVAS EM 3D: +66% DE ENGAJAMENTO, +9% EM VENDAS.",
+    "characters": "O PODER DAS EXPERIÊNCIAS INTERATIVAS EM 3D:\n+66% DE ENGAJAMENTO, +9% EM VENDAS.",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 30,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 34.470001220703125,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "Como uma content-tech, podemos atuar desde o conceito criativo até a distribuição multicanal e a análise de desempenho. Um fluxo sustentado por um stack tecnológico integrado que vai de IA à automação, do CMS/DAM ao analytics e além.",
+    "characters": "Como uma content-tech, podemos atuar desde o conceito criativo até a distribuição multicanal e a análise de desempenho. Um fluxo sustentado por um stack tecnológico integrado que vai de IA à automação, do CMS/DAM ao analytics e além.",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 20,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 22.98000144958496,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "Um novo fluxo de produção aonde 3D, IA e outras tecnologias trabalham juntas para escalar conteúdo com impacto e consistência.",
+    "characters": "Um novo fluxo de produção aonde 3D, IA e outras tecnologias trabalham juntas para escalar conteúdo com impacto e consistência.",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 20,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 22.98000144958496,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "O CGI AGORA É NGI: NEXT-GEN IMAGERY.",
+    "characters": "O CGI AGORA É NGI:\nNEXT-GEN IMAGERY.",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 30,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 34.470001220703125,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "vídeo",
+    "characters": "vídeo",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Bold",
+      "fontStyle": "Bold",
+      "fontWeight": 700,
+      "textAutoResize": "HEIGHT",
+      "fontSize": 45,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 51.70500183105469,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "MARQUE UM CALL E SAIBA COMO FUNCIONA",
+    "characters": "MARQUE UM CALL E SAIBA COMO FUNCIONA",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Regular",
+      "fontStyle": "Regular",
+      "fontWeight": 400,
+      "textAutoResize": "WIDTH_AND_HEIGHT",
+      "fontSize": 12,
+      "textAlignHorizontal": "LEFT",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 13.788000106811523,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "A NOVA MATEMÁTICA DO MARKETING: MENOS CUSTO, MAIS IMPACTO.",
+    "characters": "A NOVA MATEMÁTICA\nDO MARKETING:\nMENOS CUSTO,\nMAIS IMPACTO.",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Light",
+      "fontStyle": "Light",
+      "fontWeight": 300,
+      "textAutoResize": "WIDTH_AND_HEIGHT",
+      "fontSize": 30,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 32.31217956542969,
+      "lineHeightPercent": 93.73999786376953,
+      "lineHeightPercentFontSize": 107.70726013183594,
+      "lineHeightUnit": "FONT_SIZE_%"
+    }
+  },
+  {
+    "name": "SOMOS UMA CONTENT-TECH",
+    "characters": "SOMOS UMA CONTENT-TECH",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Medium",
+      "fontStyle": "Medium",
+      "fontWeight": 500,
+      "textAutoResize": "WIDTH_AND_HEIGHT",
+      "fontSize": 15,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 17.235000610351562,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  },
+  {
+    "name": "MARQUE UM CALL E SAIBA COMO FUNCIONA",
+    "characters": "MARQUE UM CALL E SAIBA COMO FUNCIONA",
+    "style": {
+      "fontFamily": "Ubuntu",
+      "fontPostScriptName": "Ubuntu-Regular",
+      "fontStyle": "Regular",
+      "fontWeight": 400,
+      "textAutoResize": "WIDTH_AND_HEIGHT",
+      "fontSize": 12,
+      "textAlignHorizontal": "LEFT",
+      "textAlignVertical": "TOP",
+      "letterSpacing": 0,
+      "lineHeightPx": 13.788000106811523,
+      "lineHeightPercent": 100,
+      "lineHeightUnit": "INTRINSIC_%"
+    }
+  }
+]

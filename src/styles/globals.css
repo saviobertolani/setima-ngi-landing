@@ -598,3 +598,86 @@ html {
   /* Otimiza durante animações */
   will-change: transform, opacity;
 }
+
+/* Classes CSS customizadas para suporte ao código gerado pelo Figma */
+.mask-alpha {
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.mask-intersect {
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.mask-no-clip {
+  -webkit-mask-clip: padding-box;
+  mask-clip: padding-box;
+}
+
+.mask-no-repeat {
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.content-stretch {
+  align-content: stretch;
+}
+
+/* Suporte para classes mask-position dinâmicas */
+.mask-position-\[0px_0px\] {
+  -webkit-mask-position: 0px 0px;
+  mask-position: 0px 0px;
+}
+
+.mask-position-\[center\] {
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.mask-position-\[0\%_0\%\] {
+  -webkit-mask-position: 0% 0%;
+  mask-position: 0% 0%;
+}
+
+.mask-position-\[50\%_50\%\] {
+  -webkit-mask-position: 50% 50%;
+  mask-position: 50% 50%;
+}
+
+/* Suporte para classes mask-size dinâmicas */
+.mask-size-\[100\%_100\%\] {
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.mask-size-\[cover\] {
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+
+.mask-size-\[contain\] {
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.mask-size-\[auto\] {
+  -webkit-mask-size: auto;
+  mask-size: auto;
+}
+
+/* Suporte adicional para valores comuns de mask-position e mask-size */
+.mask-position-\[0_0\] {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+}
+
+.mask-size-\[100\%\] {
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+}
+
+.mask-size-\[200\%\] {
+  -webkit-mask-size: 200%;
+  mask-size: 200%;
+}

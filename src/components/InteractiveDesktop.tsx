@@ -1,17 +1,21 @@
-import { useState, useEffect, useCallback, useMemo, memo, useRef } from "react";
+import { useState, useEffect, useCallback, useMemo, memo, useRef, forwardRef } from "react";
 import { createPortal } from "react-dom";
 import type { MouseEvent, CSSProperties } from "react";
 import { Instagram, Linkedin, Volume2, VolumeX } from "lucide-react";
+import VolumeIcon from "./icons/VolumeIcon";
 import { useScrollParallax } from "./hooks/useScrollParallax";
 import svgPaths from "../imports/svg-opxanfmkh6";
 import imgAquamarine31 from "@/assets/86d3063cb2abbf00887077f00ed48a7f75469ca4.webp";
 import img250127AlmapStillTeraTheTownFrenteV081 from "@/assets/0e4c4fe22e1cb5636a33462c5ac2022a711c0f36.webp";
 import imgVwConstelattion313206X4CacambaPsb1 from "@/assets/982534bd46b9e568691c0e5652a818ec5954a309.png";
 import imgEmbaixo from "@/assets/8c05f1bb3639a901cae85d722430ef33a62e7d28.webp";
-import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D811 from "@/assets/705cc0dc55d0d5a68388c772e2b6117b6c99cd0f.png";
-import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D813 from "@/assets/363d73ec33595dde3285b1f284098774998f5dac.png";
-import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D814 from "@/assets/9a654ce0bbc1b437282de0c696914374ed89f641.png";
-import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D815 from "@/assets/8fca1f53bb6c91dfa7bb390285d6e25c4fdabb30.png";
+// Hero images - suas imagens PNG reais
+import heroImage1 from "@/assets/hero-image-1.png"; // Ônibus transparente
+import heroImage2 from "@/assets/hero-image-2.png"; // Mulher com óculos
+import heroImage3 from "@/assets/hero-image-3.png"; // Evento ifood MOVE
+import heroImage4 from "@/assets/hero-image-4.png"; // Caminhões de construção
+import heroImage5 from "@/assets/hero-image-5.png"; // Carro VW no lago
+import heroImage6 from "@/assets/hero-image-6.png"; // Fundo escuro texturizado
 import imgEmCima from "@/assets/00bd12579795674c4cb2b293530ca5101339ddb5.webp";
 import { img250127AlmapStillTeraTheTownFrenteV82, imgVwConstelattion313206X4CacambaPsb2, imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D812 } from "../imports/svg-o73ic";
 import { titles } from "../content/texts";
@@ -186,57 +190,118 @@ function CopyrightText() {
   );
 }
 
-const Bloco08 = memo(() => {
+// Versões próprias para o footer (sem coordenadas absolutas globais do Figma)
+const FooterLogo = memo(() => (
+  <button 
+    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+    className="block cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-none p-0"
+    style={{ width: '140px', height: '59.65px' }}
+    title="Voltar ao topo"
+  >
+    <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 131 56">
+      <g id="logo setima">
+        <path d="M60.36 0V2.58L61.85 0H60.36Z" fill="#F8F8F2" id="Vector" />
+        <path d={svgPaths.p29b8e400} fill="#F8F8F2" id="Vector_2" />
+        <path d={svgPaths.p1cddd480} fill="#F8F8F2" id="Vector_3" />
+        <path d={svgPaths.p150bb300} fill="#F8F8F2" id="Vector_4" />
+        <path d={svgPaths.pce10580} fill="#F8F8F2" id="Vector_5" />
+        <path d={svgPaths.pc905f70} fill="#F8F8F2" id="Vector_6" />
+        <path d={svgPaths.p3d49680} fill="#F8F8F2" id="Vector_7" />
+        <path d={svgPaths.p30c6aa00} fill="#F8F8F2" id="Vector_8" />
+        <path d={svgPaths.p51f1a00} fill="#F8F8F2" id="Vector_10" />
+        <path d={svgPaths.p2cb69700} fill="#F8F8F2" id="Vector_11" />
+        <path d={svgPaths.p1fcd5800} fill="#F8F8F2" id="Vector_12" />
+        <path d={svgPaths.p1ded8980} fill="#F8F8F2" id="Vector_13" />
+        <path d={svgPaths.pd5bc600} fill="#F8F8F2" id="Vector_14" />
+        <path d={svgPaths.p1d3a92f0} fill="#F8F8F2" id="Vector_15" />
+        <path d={svgPaths.p13cce480} fill="#F8F8F2" id="Vector_16" />
+        <path d={svgPaths.p1cb04100} fill="#F8F8F2" id="Vector_17" />
+        <path d={svgPaths.p161a1d00} fill="#F8F8F2" id="Vector_18" />
+        <path d={svgPaths.p351136f0} fill="#F8F8F2" id="Vector_19" />
+        <path d={svgPaths.p2e21dd00} fill="#F8F8F2" id="Vector_20" />
+        <path d={svgPaths.p3ed2a500} fill="#F8F8F2" id="Vector_21" />
+        <path d={svgPaths.p27d43c00} fill="#F8F8F2" id="Vector_22" />
+        <path d={svgPaths.p1ffcc000} fill="#F8F8F2" id="Vector_23" />
+        <path d={svgPaths.p3b4e4100} fill="#F8F8F2" id="Vector_24" />
+        <path d={svgPaths.p39d87180} fill="#F8F8F2" id="Vector_25" />
+        <path d={svgPaths.p7a21f00} fill="#F8F8F2" id="Vector_26" />
+        <path d={svgPaths.pb51c280} fill="#F8F8F2" id="Vector_27" />
+        <path d={svgPaths.p26f4df80} fill="#F8F8F2" id="Vector_28" />
+        <path d={svgPaths.p3a1e9980} fill="#F8F8F2" id="Vector_29" />
+        <path d={svgPaths.pa41cf00} fill="#F8F8F2" id="Vector_30" />
+        <path d={svgPaths.p2f02f600} fill="#F8F8F2" id="Vector_31" />
+        <path d={svgPaths.p24de2400} fill="#F8F8F2" id="Vector_32" />
+        <path d={svgPaths.p1e84ff00} fill="#F8F8F2" id="Vector_33" />
+        <path d={svgPaths.p3698e200} fill="#F8F8F2" id="Vector_34" />
+        <path d={svgPaths.p15bfd180} fill="#F8F8F2" id="Vector_35" />
+        <path d={svgPaths.p2a930400} fill="#F8F8F2" id="Vector_36" />
+        <path d={svgPaths.p1871cc80} fill="#F8F8F2" id="Vector_37" />
+        <path d={svgPaths.p24c88680} fill="#F8F8F2" id="Vector_38" />
+        <path d={svgPaths.p32017280} fill="#F8F8F2" id="Vector_39" />
+        <path d={svgPaths.p651500} fill="#F8F8F2" id="Vector_40" />
+        <path d={svgPaths.p2b0b4d80} fill="#F8F8F2" id="Vector_41" />
+        <path d={svgPaths.p8daaf00} fill="#F8F8F2" id="Vector_42" />
+        <path d={svgPaths.p25430600} fill="#F8F8F2" id="Vector_43" />
+        <path d={svgPaths.p31de7f80} fill="#F8F8F2" id="Vector_44" />
+        <path d={svgPaths.p1daeec00} fill="#F8F8F2" id="Vector_45" />
+        <path d={svgPaths.p247a2400} fill="#F8F8F2" id="Vector_46" />
+        <path d={svgPaths.p3b6a4780} fill="#F8F8F2" id="Vector_47" />
+        <path d={svgPaths.p3885300} fill="#F8F8F2" id="Vector_48" />
+        <path d={svgPaths.p3fa00cf2} fill="#F8F8F2" id="Vector_49" />
+        <path d={svgPaths.p20f83700} fill="#F8F8F2" id="Vector_50" />
+        <path d={svgPaths.p25aa34c0} fill="#F8F8F2" id="Vector_51" />
+        <path d={svgPaths.p82d0ba8} fill="#F8F8F2" id="Vector_52" />
+      </g>
+    </svg>
+  </button>
+));
+
+  const FooterSocial = memo(() => (
+    <div className="flex items-center" style={{ gap: '4px', width: '80px', height: '37.87px' }}>
+      <button
+        onClick={() => window.open('https://instagram.com/setima', '_blank', 'noopener,noreferrer')}
+        className="flex items-center justify-center rounded-full bg-[#f8f8f2] hover:bg-[#00f5b9] transition-all duration-300 cursor-pointer"
+        aria-label="Instagram"
+        style={{ width: '37.87px', height: '37.87px' }}
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const thumbnailLefts = [251, 371, 491, 611, 731, 851, 971, 1091];
+  const count = Math.min(8, Math.max(galleryList.length, 8));
+  const containerStyle: React.CSSProperties = relative
+    ? { left: 0, right: 0, bottom: `${relativeBottom ?? 32}px`, height: '98px', zIndex: 30 }
+    : insideStripe
+      ? { left: 0, top: `24px`, zIndex: 22 }
+      : { left: 0, top: `${3370 - offsetY}px`, zIndex: 20 };
   return (
-    <div className="absolute contents left-0 top-[6238px]" data-name="Bloco 08">
-      <div
-        className="absolute h-[228px] top-[6238px] bg-black"
-        style={fullBleedBackground}
-      />
-      <LogoSetima />
-      <SocialIcons />
-      <CopyrightText />
+    <div
+      ref={galleryRef}
+      className="absolute"
+      style={containerStyle}
+      data-name="imagens carrossel"
+    >
+      {Array.from({ length: count }).map((_, index) => {
+        const image = galleryList[index] ?? galleryList[galleryList.length - 1];
+        return (
+          <button
+            key={`thumb-${index}`}
+            onClick={() => onThumbnailClick(index)}
+            className={`absolute size-[98px] top-0 cursor-pointer rounded-lg overflow-hidden transition-transform duration-200 ease-out transform-gpu ${
+              activeIndex === index 
+                ? 'ring-2 ring-[#00f5b9]' 
+                : 'hover:scale-110'
+            }`}
+            style={{ left: `${thumbnailLefts[index]}px` }}
+            data-name={`thumbnail-${index}`}
+          >
+            <div
+              className="absolute inset-0 bg-center bg-cover bg-no-repeat transform-gpu transition-transform duration-200 ease-out"
+              style={{ backgroundImage: `url('${image.thumbnail ?? image.src}')` }}
+            />
+            <div className="absolute inset-0 bg-black/0 transition-colors pointer-events-none group-hover:bg-black/5" />
+          </button>
+        );
+      })}
     </div>
   );
-});
-
-function Botao({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) {
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation(); // Previne propagação para o header
-    onClick();
-  };
-
-  return (
-    <button 
-      onClick={handleClick}
-      className="relative shrink-0 size-[18px] cursor-pointer transition-all duration-300 hover:scale-110 group" 
-      data-name="botao +"
-      aria-label={isOpen ? "Fechar resposta" : "Abrir resposta"}
-    >
-      <div className={`transform transition-transform duration-500 ease-out ${isOpen ? 'rotate-45' : 'rotate-0'}`}>
-        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 18 18">
-          <g id="botao +">
-            {/* Linha vertical - desaparece quando aberto */}
-            <line 
-              id="Line 9" 
-              stroke="var(--stroke-0, black)" 
-              strokeWidth="2" 
-              x1="9" 
-              x2="9" 
-              y1="4.37114e-08" 
-              y2="18" 
-              className={`transition-all duration-300 ease-out ${
-                isOpen ? 'opacity-0 scale-75' : 'opacity-100 scale-100'
-              }`}
-            />
-            {/* Linha horizontal - sempre visível, rotaciona para formar X */}
-            <line 
-              id="Line 10" 
-              stroke="var(--stroke-0, black)" 
-              strokeWidth="2" 
-              x1="18" 
-              x2="-4.37114e-08" 
-              y1="9" 
               y2="9" 
               className="transition-all duration-300 ease-out"
             />
@@ -323,12 +388,23 @@ const Acordeon = memo(({ question, answer, isOpen, onToggle }: {
   );
 });
 
-const Frame1 = memo(({ openAccordion, toggleAccordion }: { 
+const Frame1 = memo(({ openAccordion, toggleAccordion, onHeightChange }: { 
   openAccordion: number | null; 
   toggleAccordion: (index: number) => void;
+  onHeightChange?: (h: number) => void;
 }) => {
+  const listRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = listRef.current;
+    if (!el) return;
+    const update = () => onHeightChange?.(el.scrollHeight);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [onHeightChange]);
   return (
-    <div className="absolute content-stretch flex flex-col items-start justify-start left-[63px] top-[5843px] w-[1280px]">
+    <div ref={listRef} className="absolute content-stretch flex flex-col items-start justify-start left-[63px] top-[5843px] w-[1280px]">
       {faqData.map((item, i) => (
         <Acordeon 
           key={`faq-${i}`}
@@ -342,18 +418,31 @@ const Frame1 = memo(({ openAccordion, toggleAccordion }: {
   );
 });
 
-const Bloco07 = memo(({ openAccordion, toggleAccordion }: { 
+const Bloco07 = memo(({ openAccordion, toggleAccordion, onBottomChange }: { 
   openAccordion: number | null; 
   toggleAccordion: (index: number) => void;
+  onBottomChange?: (bottom: number) => void;
 }) => {
-  // Calcula altura adicional baseada no accordion aberto
-  const extraHeight = openAccordion !== null ? 200 : 0; // Estimativa de altura extra quando expandido
+  // Base do FAQ na página
+  const baseTop = 5630;
+  // Top do container de itens (Frame1) no layout
+  const listTop = 5843;
+  const [listHeight, setListHeight] = useState<number>(608);
+  // Notifica o bottom real (baseTop + altura medida do container dos itens)
+  useEffect(() => {
+    // Bottom correto = topo do container de itens + altura medida
+    onBottomChange?.(listTop + listHeight);
+  }, [listHeight, onBottomChange]);
   
   return (
     <div className="absolute contents left-0 top-[5630px]" data-name="Bloco 07">
       <div 
         className="absolute bg-[#f8f8f2] top-[5630px] transition-all duration-500 ease-out" 
-        style={{ ...fullBleedBackground, height: `${608 + extraHeight}px` }}
+        style={{ 
+          ...fullBleedBackground, 
+          // Altura do fundo claro precisa cobrir o espaço até o início da lista (+213px) + a altura da lista
+          height: `${(listTop - baseTop) + listHeight}px` 
+        }}
       >
         {/* Efeitos visuais sutis para indicar interatividade */}
         
@@ -377,105 +466,27 @@ const Bloco07 = memo(({ openAccordion, toggleAccordion }: {
             <div className="absolute top-0 right-0 w-full h-8 bg-[#00f5b9]/40 animate-pulse" 
                  style={{ 
                    animation: 'float 4s ease-in-out infinite',
-                   animationDelay: '0.5s' 
-                 }} />
-          </div>
-        </div>
-        
-        {/* Sombra interna sutil para dar profundidade */}
-        <div className="absolute inset-0 shadow-inner opacity-20 pointer-events-none" 
-             style={{ 
-               boxShadow: 'inset 0 2px 8px rgba(0, 245, 185, 0.1)' 
-             }} />
-        
-
-      </div>
-      {/* Título da seção (posicionado absoluto como no design) */}
-      <div className="absolute left-[63px] top-[5764px] w-[1314px] z-[10] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic">
-        <p className="m-0">DÚVIDAS FREQUENTES</p>
-      </div>
-      <Frame1 openAccordion={openAccordion} toggleAccordion={toggleAccordion} />
-    </div>
-  );
-});
-
-const Bloco06 = memo(() => {
-  const titleParallax = useScrollParallax({ speed: -0.06 });
-  const bulletParallax = useScrollParallax({ speed: -0.04 });
-  const bgParallax = useScrollParallax({ speed: -0.05 });
-  const clampY = (v: number) => Math.max(-30, Math.min(30, v));
-  return (
-    <div className="absolute contents left-[-132px] top-[4380px]" data-name="Bloco 06">
-      <div
-        className="absolute bg-[#13171a] h-[1250px] top-[4380px]"
-        style={{ ...fullBleedBackground, zIndex: 0 }}
-      />
-      <div
-        className="absolute bg-center bg-cover bg-no-repeat h-[852px] left-[-132px] top-[4656px] w-[1515px]"
-        data-name="aquamarine (3) 1"
-        style={{
-          backgroundImage: `url('${imgAquamarine31}')`,
-          backgroundPosition: `50% calc(50% + ${clampY(bgParallax.offsetY).toFixed(2)}px)`,
-        }}
-      />
-      <div className="absolute left-[77px] top-[4530px] w-[987px] fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={titleParallax.tw}>
-        <p className="m-0">O FLUXO NGI: DA ESTRATÉGIA À PRODUÇÃO, CRIATIVIDADE E TÉCNICA ACELERADAS PELA IA.</p>
-      </div>
-      <div className="absolute left-[1082px] top-[5497px] w-[326px] fig-subtitle-32-bold fig-light leading-[0] not-italic" style={bulletParallax.tw}>
-        <p className="leading-[normal]">+ IMPACTANTE</p>
-      </div>
-      <div className="absolute left-[1082px] top-[5455px] w-[288px] fig-subtitle-32-bold fig-light leading-[0] not-italic" style={bulletParallax.tw}>
-        <p className="leading-[normal]">+ ESCALÁVEL</p>
-      </div>
-      <div className="absolute left-[1082px] top-[5412px] w-[256px] fig-subtitle-32-bold fig-light leading-[0] not-italic" style={bulletParallax.tw}>
-        <p className="leading-[normal]">+ RÁPIDO</p>
-      </div>
-    </div>
-  );
-});
-
-const Bloco05 = memo(() => {
-  const titleParallax = useScrollParallax({ speed: -0.06 });
-  const bodyParallax = useScrollParallax({ speed: -0.04 });
-  return (
-    <div className="absolute contents left-0 top-[3780px]" data-name="Bloco 05">
-  <div
-    className="absolute bg-[#f8f8f2] h-[600px] left-0 top-[3780px] w-[1440px]"
-  />
-  <div className="absolute left-[816px] top-[4136px] w-[421px] fig-ubuntu-light fig-body-23 fig-dark text-smooth not-italic leading-[0]" style={bodyParallax.tw}>
-    <p className="m-0 leading-[normal]">Integramos criatividade, estratégia e tecnologia em um só fluxo, criando conteúdos relevantes de maneira mais rápida, escalável e impactante.</p>
-      </div>
-  <div className="absolute left-[181px] top-[3933px] w-[590px] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic leading-[normal]" style={titleParallax.tw}>
-    <p className="mb-0">MAIS DE 60 PROJETOS</p>
-    <p className="mb-0">EM 2025 QUE AJUDARAM NOSSOS CLIENTES A ECONOMIZAR MILHÕES</p>
-    <p>EM COMPARAÇÃO A PRODUÇÕES TRADICIONAIS.</p>
-      </div>
-    </div>
-  );
-});
-
-// Array de imagens da galeria - prefere ativos locais do Figma se existirem
-const localGallery = getGalleryAssets();
-const galleryList = (localGallery.images.length
-  ? localGallery.images.map((src, idx) => ({
-      id: idx,
-      src,
-      mask: localGallery.mask ?? img250127AlmapStillTeraTheTownFrenteV82,
-      thumbnail: localGallery.thumbs?.[idx] ?? src,
-      alt: `gallery-${String(idx + 1).padStart(2, '0')}`
-    }))
-  : []
-);
-
-const ImagemGrande = ({
-  activeIndex,
-  onThumbnailClick,
-  relativeContainer = false,
-  onBottomChange,
-}: {
-  activeIndex: number;
-  onThumbnailClick?: (index: number) => void;
-  relativeContainer?: boolean;
+            const [activeIndex, setActiveIndex] = useState(0);
+            return (
+              <div className="absolute left-0 top-[2510px] z-[20]" data-name="Bloco 04">
+                {/* Janela principal com thumbnails internas (sem animações de dica) */}
+                <ImagemGrande
+                  activeIndex={activeIndex}
+                  onThumbnailClick={(i) => setActiveIndex(i)}
+                  relativeContainer
+                />
+                {/* Tarja preta de fundo */}
+                <div className="absolute bg-[#13171a] h-[300px] left-0 top-[970px] w-[1440px] z-[5]" data-name="background" />
+                {/* Textos — 1023 e 1143 relativos ao bloco */}
+                <div className="absolute left-[718.5px] top-[1023px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic z-[30]">
+                  <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
+                  <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
+                </div>
+                <div className="absolute left-[718.5px] top-[1143px] translate-x-[-50%] w-[905px] text-center fig-ubuntu-light fig-body-23 fig-light text-smooth not-italic z-[30]">
+                  <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
+                </div>
+              </div>
+            );
   onBottomChange?: (bottom: number) => void;
 }) => {
   const fallback = { src: '', mask: localGallery.mask ?? img250127AlmapStillTeraTheTownFrenteV82 } as any;
@@ -538,13 +549,13 @@ const ImagemGrande = ({
     <div className="absolute contents left-0" data-name="imagem grande">
       {/* Wrapper centralizado e escalável */}
       <div
-        className="absolute left-1/2"
+  className="absolute left-1/2 z-[15]"
         style={{
           // Se relativo ao container 1440x970, não reduzimos escala para evitar "gap" no fundo do stage.
           // Mantemos a janela 1440x970 exatamente encostada ao topo do clip.
           // Caso contrário, ancora no documento em 2510px e escala com o viewport.
           top: relativeContainer
-            ? `${-292 + offsetY + deltaFix}px`
+            ? `-292px`
             : `${2510 - 292 * scale + deltaFix}px`,
           width: '2122px',
           height: '1274px',
@@ -554,7 +565,7 @@ const ImagemGrande = ({
         }}
       >
         {/* Janela centralizada 1440x970 com clipping retangular estável */}
-        <div
+  <div
           className="absolute left-1/2 top-[292px] translate-x-[-50%] overflow-hidden"
           style={{
             width: '1440px',
@@ -633,11 +644,11 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0, insideSt
     };
   }, []);
 
-  const count = Math.min(8, galleryList.length);
+  const count = Math.min(8, Math.max(galleryList.length, 8));
   const containerStyle: React.CSSProperties = relative
-    ? { left: 0, right: 0, bottom: `${relativeBottom ?? 24}px`, height: '98px', zIndex: 3 }
+    ? { left: 0, right: 0, bottom: `${relativeBottom ?? 32}px`, height: '98px', zIndex: 30 }
     : insideStripe
-      ? { left: 0, top: `24px`, zIndex: 2 }
+      ? { left: 0, top: `24px`, zIndex: 22 }
       : { left: 0, top: `${3370 - offsetY}px`, zIndex: 20 };
   return (
     <div
@@ -706,14 +717,15 @@ const Bloco03 = memo(() => {
 });
 
 function Bloco04() {
-  // Versão interativa com layout 100% fixo (coordenadas do Figma)
+  // Layout fixo 100% fiel ao Figma
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeImage = galleryList[activeIndex] ?? galleryList[0] ?? {
+  const activeImage = galleryList[activeIndex] ?? galleryList[0] ?? ({
     src: img250127AlmapStillTeraTheTownFrenteV081,
     mask: img250127AlmapStillTeraTheTownFrenteV82,
     thumbnail: img250127AlmapStillTeraTheTownFrenteV081,
-  } as any;
-  // Cross-fade entre imagens (200ms) sem mexer no layout
+  } as any);
+
+  // Cross-fade entre imagens (200ms)
   const [baseSrc, setBaseSrc] = useState<string>(() => activeImage.src);
   const [overlaySrc, setOverlaySrc] = useState<string | null>(null);
   const [overlayOpacity, setOverlayOpacity] = useState(0);
@@ -721,15 +733,12 @@ function Bloco04() {
   useEffect(() => {
     const nextSrc = activeImage.src;
     if (!nextSrc || nextSrc === baseSrc) return;
-    // Cancela fade anterior se existir
     if (fadeTimerRef.current) {
       window.clearTimeout(fadeTimerRef.current);
       fadeTimerRef.current = null;
     }
     setOverlaySrc(nextSrc);
-    // Próximo frame para iniciar animação
     requestAnimationFrame(() => setOverlayOpacity(1));
-    // Conclui fade e fixa nova base
     fadeTimerRef.current = window.setTimeout(() => {
       setBaseSrc(nextSrc);
       setOverlaySrc(null);
@@ -743,56 +752,53 @@ function Bloco04() {
       }
     };
   }, [activeImage.src, baseSrc]);
+
+  // Coordenadas estáveis (pré-validadas) para miniaturas — evitam drift visual
   const thumbLefts = [251, 371, 491, 611, 731, 851, 971, 1091];
-  const count = Math.min(8, galleryList.length || 8);
+  // Renderiza sempre 8 pontos (repete última imagem se necessário)
+  const count = 8;
 
   return (
-    <div className="absolute contents left-0 top-[2510px] z-[20]" data-name="Bloco 04">
-      {/* Tarja preta no exato encontro com a base da janela 1440x970 (2510 + 970 = 3480) */}
-      <div className="absolute bg-[#13171a] h-[300px] left-0 top-[3480px] w-[1440px]" data-name="background" />
+    <div className="absolute left-0 top-[2510px] z-[20]" data-name="Bloco 04">
+  {/* Tarja preta (background) — full-bleed para cobrir laterais */}
+  <div className="absolute bg-[#13171a] h-[300px] top-[970px] z-[5] full-bleed" data-name="background" />
 
-      {/* Imagem grande fixa com máscara (exatamente como Figma) + cross-fade */}
-      <div
-        className="absolute h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] w-[2122px] overflow-hidden"
+      {/* Imagem grande com máscara — altura 1274, top -292, centralizada */}
+    <div
+        className="absolute h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[-292px] w-[2122px] overflow-hidden"
         data-name="25_0127_Almap_Still_TeraTheTown_Frente_V08 1"
         style={{
-          // Máscara aplicada ao container para também afetar as camadas internas
           maskImage: `url('${activeImage.mask ?? img250127AlmapStillTeraTheTownFrenteV82}')`,
-          zIndex: 10
+      zIndex: 10
         }}
       >
-        {/* Camada base visível */}
+        {/* Base */}
         <div
           className="absolute inset-0 bg-center bg-cover bg-no-repeat"
           style={{ backgroundImage: `url('${baseSrc}')` }}
         />
-        {/* Camada de overlay que faz o fade-in */}
+        {/* Overlay para fade */}
         {overlaySrc && (
           <div
             className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-opacity duration-200 ease-out"
-            style={{ 
-              backgroundImage: `url('${overlaySrc}')`, 
-              opacity: overlayOpacity,
-              willChange: 'opacity',
-              pointerEvents: 'none'
-            }}
+            style={{ backgroundImage: `url('${overlaySrc}')`, opacity: overlayOpacity, willChange: 'opacity', pointerEvents: 'none' }}
           />
         )}
       </div>
 
-      {/* Thumbnails absolutas nas coordenadas do Figma (3342px), com imagens reais e interação */}
-      {Array.from({ length: count }).map((_, i) => {
-        const img = galleryList[i] ?? activeImage;
+      {/* Miniaturas — posição estável: top 832, 8 itens espaçados pelo Figma */}
+  {Array.from({ length: count }).map((_, i) => {
+        const img = galleryList[i] ?? galleryList[galleryList.length - 1] ?? activeImage;
         return (
           <button
             key={i}
             onClick={() => setActiveIndex(i)}
-            className={`group absolute size-[98px] top-[3342px] cursor-pointer rounded-lg overflow-hidden transform-gpu transition-transform duration-200 ease-out hover:scale-110 ${
+            className={`group absolute w-[98px] h-[98px] top-[832px] cursor-pointer rounded-lg overflow-hidden transform-gpu transition-transform duration-200 ease-out hover:scale-110 ${
               activeIndex === i ? 'ring-2 ring-[#00f5b9] ring-offset-2 ring-offset-transparent' : ''
             }`}
-            style={{ left: `${thumbLefts[i]}px`, zIndex: 25 }}
+            style={{ left: `${thumbLefts[i]}px`, zIndex: 30 }}
             aria-pressed={activeIndex === i}
-            title={img.alt ?? `thumb-${i+1}`}
+            title={img.alt ?? `thumb-${i + 1}`}
           >
             <div
               className="absolute inset-0 bg-center bg-cover bg-no-repeat transform-gpu transition-transform duration-200 ease-out group-hover:scale-110"
@@ -803,13 +809,13 @@ function Bloco04() {
         );
       })}
 
-      {/* Textos exatamente posicionados */}
-      <div className="absolute left-[718.5px] top-[3653px] translate-x-[-50%] w-[905px] text-center fig-ubuntu-light fig-body-23 fig-light text-smooth not-italic">
-        <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
-      </div>
-      <div className="absolute left-[718.5px] top-[3533px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
+      {/* Textos — 1023 e 1143 relativos ao bloco */}
+  <div className="absolute left-[718.5px] top-[1023px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic z-[30]">
         <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
         <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
+      </div>
+  <div className="absolute left-[718.5px] top-[1143px] translate-x-[-50%] w-[905px] text-center fig-ubuntu-light fig-body-23 fig-light text-smooth not-italic z-[30]">
+        <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
       </div>
     </div>
   );
@@ -829,7 +835,7 @@ const VideoAqui = memo(() => {
   const [rect, setRect] = useState<{ left: number; top: number; width: number; height: number } | null>(null);
   const [debugHighlight, setDebugHighlight] = useState(false);
   const isDebug = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('videoDebug');
-  const primaryId = 'I9Wcs3Q3d4U';
+  const primaryId = 'kiZ6vtT3cjs';
   const fallbackId = 'M7lc1UVf-VE';
   const [videoId, setVideoId] = useState<string>(primaryId);
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://example.com';
@@ -1062,14 +1068,39 @@ const VideoAqui = memo(() => {
             </svg>
           )}
         </button>
+        {/* Botão de volume conforme especificações do Figma */}
         <button
           type="button"
           onClick={toggleMute}
           aria-label={muted ? 'Ativar som' : 'Mutar vídeo'}
-          className="absolute right-[24px] bottom-[24px] z-[120] w-10 h-10 rounded-full bg-[rgba(0,0,0,0.55)] flex items-center justify-center text-white hover:bg-[rgba(0,0,0,0.75)] transition-colors cursor-pointer"
-          style={{ pointerEvents: 'auto' }}
+          className="absolute z-[120] rounded-full transition-all duration-200 cursor-pointer hover:scale-110"
+          style={{ 
+            left: '93.42%',
+            right: '2.09%',
+            top: '88.31%',
+            bottom: '3.71%',
+            pointerEvents: 'auto'
+          }}
         >
-          {muted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+          {/* Círculo verde do Figma */}
+          <div 
+            className="absolute inset-0 rounded-full"
+            style={{ 
+              backgroundColor: '#00F5B9'
+            }}
+          />
+          {/* Ícone de volume conforme Figma */}
+          <div
+            className="absolute"
+            style={{
+              left: '16.28%',
+              right: '13.95%',
+              top: '20.93%',
+              bottom: '18.6%'
+            }}
+          >
+            <VolumeIcon width="100%" height="100%" color="#13171A" muted={muted} />
+          </div>
         </button>
       </div>
     </div>
@@ -1107,8 +1138,9 @@ const VideoTera3D = memo(() => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [muted, setMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://example.com';
-  const src = `https://www.youtube.com/embed/sRxnxzG2UzM?autoplay=1&mute=1&loop=1&playlist=sRxnxzG2UzM&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1&origin=${encodeURIComponent(origin)}`;
+  const src = `https://www.youtube.com/embed/_9ZzNlJ9-FQ?autoplay=1&mute=1&loop=1&playlist=_9ZzNlJ9-FQ&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1&origin=${encodeURIComponent(origin)}`;
 
   const sendCommand = useCallback((func: string, args: any[] = []) => {
     const win = iframeRef.current?.contentWindow;
@@ -1137,20 +1169,43 @@ const VideoTera3D = memo(() => {
     }
   }, [isPlaying, sendCommand]);
 
+  // Mute garantido e handler de mensagens
   useEffect(() => {
-    const t = setTimeout(() => sendCommand('mute'), 500);
-    return () => clearTimeout(t);
+    const muteTimer = window.setTimeout(() => sendCommand('mute'), 500);
+    return () => window.clearTimeout(muteTimer);
   }, [sendCommand]);
+
+  // Handler de mensagens do player
+  useEffect(() => {
+    const onMessage = (evt: MessageEvent) => {
+      try {
+        const allowed = typeof evt.origin === 'string' && (evt.origin.includes('youtube.com') || evt.origin.includes('youtube-nocookie.com'));
+        if (!allowed) return;
+        const data = typeof evt.data === 'string' ? JSON.parse(evt.data) : evt.data;
+        if (!data) return;
+        if (data.event === 'infoDelivery' && !loaded) {
+          setLoaded(true);
+        }
+      } catch {}
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, [loaded]);
 
   return (
     <div className="absolute block cursor-pointer h-[538px] left-1/2 object-cover top-[1823px] translate-x-[-50%] w-[1076px] rounded-lg overflow-hidden" data-name="video tera 3d exp argentina">
       <iframe
         ref={iframeRef}
-        className="absolute inset-0 w-full h-full object-cover youtube-iframe"
+        className="absolute youtube-iframe"
         style={{ 
-          transform: 'translateZ(0)',
+          transform: 'translateZ(0) scale(1.2)',
+          transformOrigin: 'center center',
           backfaceVisibility: 'hidden',
-          pointerEvents: 'none'
+          pointerEvents: 'none',
+          width: '100%',
+          height: '100%',
+          left: '0',
+          top: '0'
         }}
         src={src}
         title="Sétima Tera 3D Experiência Argentina"
@@ -1175,13 +1230,39 @@ const VideoTera3D = memo(() => {
           </svg>
         )}
       </button>
+      {/* Botão de volume conforme especificações do Figma */}
       <button
         type="button"
         onClick={toggleMute}
         aria-label={muted ? 'Ativar som' : 'Mutar vídeo'}
-        className="absolute right-[16px] bottom-[16px] z-[10] w-10 h-10 rounded-full bg-[rgba(0,0,0,0.55)] flex items-center justify-center text-white hover:bg-[rgba(0,0,0,0.75)] transition-colors cursor-pointer"
+        className="absolute z-[10] rounded-full transition-all duration-200 cursor-pointer hover:scale-110"
+        style={{ 
+          left: '94.14%',
+          right: '1.86%',
+          top: '83.48%',
+          bottom: '8.96%',
+          pointerEvents: 'auto'
+        }}
       >
-        {muted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+        {/* Círculo verde do Figma */}
+        <div 
+          className="absolute inset-0 rounded-full"
+          style={{ 
+            backgroundColor: '#00F5B9'
+          }}
+        />
+        {/* Ícone de volume conforme Figma */}
+        <div
+          className="absolute"
+          style={{
+            left: '16.28%',
+            right: '13.95%',
+            top: '20.93%',
+            bottom: '18.6%'
+          }}
+        >
+          <VolumeIcon width="100%" height="100%" color="#13171A" muted={muted} />
+        </div>
       </button>
     </div>
   );
@@ -1235,9 +1316,10 @@ function Bloco02() {
 function Transparencias() {
   return (
     <div className="absolute contents left-0 top-[527px]" data-name="Transparências">
-      <div className="absolute flex h-[173px] items-center justify-center left-0 top-[527px] w-[1440px]">
-        <div className="flex-none scale-y-[-100%]">
-          <div className="bg-center bg-cover bg-no-repeat h-[173px] w-[1440px]" data-name="embaixo" style={{ 
+      {/* Full-bleed stripe to avoid lateral bars */}
+      <div className="absolute h-[173px] top-[527px] full-bleed">
+        <div className="flex-none scale-y-[-100%] h-full">
+          <div className="bg-cover-center h-full w-full" data-name="embaixo" style={{ 
             backgroundImage: `url('${imgEmbaixo}')`,
             transform: 'translateZ(0) scaleY(-1)',
             backfaceVisibility: 'hidden',
@@ -1250,31 +1332,43 @@ function Transparencias() {
 }
 
 // Array com as imagens do carrossel com valores exatos do Figma
+// Array com as imagens do carrossel - agora com 6 imagens PNG
 const carouselImages = [
   {
-    src: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D811,
+    src: heroImage1,
     mask: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D812,
-    className: "absolute bg-center bg-cover bg-no-repeat h-[1116px] left-[-124px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[124px_120px] mask-size-[1440px_700px] top-[-120px] w-[1744px]"
+    className: "absolute bg-center bg-cover bg-no-repeat h-[1116px] left-[-124px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[124px_120px] mask-size-[1440px_700px] top-[-120px] w-[1744px]",
+    alt: "Ônibus transparente com componentes internos visíveis"
   },
   {
-    src: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D813,
+    src: heroImage2,
     mask: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D812,
-    className: "absolute bg-center bg-cover bg-no-repeat h-[1116px] left-[-124px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[124px_120px] mask-size-[1440px_700px] top-[-120px] w-[1744px]"
+    className: "absolute bg-center bg-cover bg-no-repeat h-[1116px] left-[-124px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[124px_120px] mask-size-[1440px_700px] top-[-120px] w-[1744px]",
+    alt: "Mulher profissional com óculos sorrindo"
   },
   {
-    src: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D814,
+    src: heroImage3,
     mask: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D812,
-    className: "absolute bg-center bg-cover bg-no-repeat h-[980px] left-[-10px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[10px_254px] mask-size-[1440px_700px] top-[-254px] w-[1531.47px]"
+    className: "absolute bg-center bg-cover bg-no-repeat h-[980px] left-[-10px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[10px_254px] mask-size-[1440px_700px] top-[-254px] w-[1531.47px]",
+    alt: "Evento ifood MOVE com tapete vermelho"
   },
   {
-    src: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D815,
+    src: heroImage4,
     mask: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D812,
-    className: "absolute bg-center bg-cover bg-no-repeat h-[1007.22px] left-[-44px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[44px_74px] mask-size-[1440px_700px] top-[-74px] w-[1574px]"
+    className: "absolute bg-center bg-cover bg-no-repeat h-[1007.22px] left-[-44px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[44px_74px] mask-size-[1440px_700px] top-[-74px] w-[1574px]",
+    alt: "Caminhões VW de construção com betoneiras"
   },
   {
-    src: imgVwConstelattion313206X4CacambaPsb1,
+    src: heroImage5,
     mask: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D812,
-    className: "absolute bg-center bg-cover bg-no-repeat h-[936.894px] left-[-2.11px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[2.107px_138.894px] mask-size-[1440px_700px] top-[-138.89px] w-[1464.11px]"
+    className: "absolute bg-center bg-cover bg-no-repeat h-[936.894px] left-[-2.11px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[2.107px_138.894px] mask-size-[1440px_700px] top-[-138.89px] w-[1464.11px]",
+    alt: "Carro VW T-Cross estacionado próximo ao lago"
+  },
+  {
+    src: heroImage6,
+    mask: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D812,
+    className: "absolute bg-center bg-cover bg-no-repeat h-[1116px] left-[-124px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[124px_120px] mask-size-[1440px_700px] top-[-120px] w-[1744px]",
+    alt: "Fundo escuro texturizado com elementos sutis"
   }
 ];
 
@@ -1503,11 +1597,14 @@ function LogoSetima1() {
   );
 }
 
-const Cabecalho = memo(({ onCallClick, isScrolled, showCTA, scale }: { 
+const Cabecalho = memo(({ onCallClick, isScrolled, showCTA, scale, stageLeft, stageWidth, qa }: { 
   onCallClick: () => void; 
   isScrolled: boolean; 
   showCTA: boolean; 
   scale: number;
+  stageLeft?: number;
+  stageWidth?: number;
+  qa?: boolean;
 }) => {
   const backgroundStyle = useMemo(() => ({
     // Gradiente forte para contraste; opacidade será controlada separadamente
@@ -1515,27 +1612,31 @@ const Cabecalho = memo(({ onCallClick, isScrolled, showCTA, scale }: {
   }), []);
 
   // Largura do header baseada no scale para alinhar com o stage visível
-  const headerWidth = typeof window !== 'undefined'
-    ? Math.min(1440 * Math.max(0, Math.min(1, scale || 1)), window.innerWidth)
-    : 1440 * Math.max(0, Math.min(1, scale || 1));
+  const headerWidth = stageWidth ?? (1440 * Math.max(0, Math.min(1, scale || 1)));
 
   return (
     <div 
       className="fixed h-[124px] top-0 z-[9999] transition-all duration-300 ease-out header-container"
       style={{
-        left: '50%',
+        left: stageLeft ?? '50%',
         width: `${headerWidth}px`,
-        transform: 'translateX(-50%)',
+        transform: stageLeft !== undefined ? 'none' : 'translateX(-50%)',
         transformOrigin: 'top center',
-        maxWidth: '100vw',
         boxShadow: isScrolled ? '0 6px 16px rgba(0,0,0,0.20)' : 'none',
-        borderBottom: isScrolled ? '1px solid rgba(255,255,255,0.08)' : 'transparent'
+        borderBottom: isScrolled ? '1px solid rgba(255,255,255,0.08)' : 'transparent',
+        outline: qa ? '1px dashed rgba(0,255,0,0.6)' : 'none',
+        outlineOffset: qa ? -1 : 0
       }}
       data-name="cabecalho"
     >
       <div 
         className="relative h-[124px] transition-all duration-300 ease-in-out"
-  style={{ width: '1440px' }}
+        style={{
+          width: '1440px',
+          transform: `scale(${headerWidth / 1440})`,
+          transformOrigin: 'top left',
+          outline: qa ? '1px dashed rgba(255,0,0,0.6)' : 'none'
+        }}
         data-name="em cima" 
       >
         {/* Overlay/Máscara de contraste - aparece apenas ao rolar */}
@@ -1558,7 +1659,7 @@ const Cabecalho = memo(({ onCallClick, isScrolled, showCTA, scale }: {
 });
 
 // Renderiza o header fora do container transformado para garantir position: fixed real
-const CabecalhoPortal = (props: { onCallClick: () => void; isScrolled: boolean; showCTA: boolean; scale: number; }) => {
+const CabecalhoPortal = (props: { onCallClick: () => void; isScrolled: boolean; showCTA: boolean; scale: number; stageLeft?: number; stageWidth?: number; qa?: boolean; }) => {
   if (typeof document === 'undefined') return null;
   return createPortal(<Cabecalho {...props} />, document.body);
 };
@@ -1569,6 +1670,33 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
   const [isScrolled, setIsScrolled] = useState(false);
   // CTA do header controlado por rolagem para evitar duplicidade com o CTA do herói
   const [showHeaderCTA, setShowHeaderCTA] = useState(false);
+  // Top do footer (após FAQ); default = 5630 + 608
+  const [footerTop, setFooterTop] = useState<number>(6238);
+  // Flag de QA opcional para fixar o top do footer exatamente como no Figma (6294)
+  const footerFixed = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.get('footerFixed') === '1';
+  }, []);
+  useEffect(() => {
+    if (footerFixed) setFooterTop(6294);
+  }, [footerFixed]);
+  // Ref para evitar flicker e permitir histerese sem recriar listeners
+  const showCTARef = useRef(showHeaderCTA);
+  useEffect(() => { showCTARef.current = showHeaderCTA; }, [showHeaderCTA]);
+  // Flag opcional para forçar CTA sempre visível (debug/QA): use ?ctaAlways na URL
+  const ctaAlways = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.has('ctaAlways') || p.get('cta') === '1';
+  }, []);
+
+  // QA overlay visual simples: ?qa=1
+  const qa = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.get('qa') === '1' || p.has('qa');
+  }, []);
 
   const toggleAccordion = useCallback((index: number) => {
     setOpenAccordion(prev => prev === index ? null : index);
@@ -1584,16 +1712,15 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
     }
   }, []);
 
-  // Carrossel simplificado
+  // Carrossel automático do herói (avanço a cada 3s)
   useEffect(() => {
-    const interval = setInterval(() => {
+    const interval = window.setInterval(() => {
       setCurrentImageIndex(prev => (prev + 1) % carouselImages.length);
     }, 3000);
-
-    return () => clearInterval(interval);
+    return () => window.clearInterval(interval);
   }, []);
 
-  // Sistema de scroll
+  // Sistema de scroll com histerese no CTA do header
   useEffect(() => {
     let ticking = false;
 
@@ -1603,9 +1730,21 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
       // Scroll tracking
       const scrollY = window.scrollY;
       setIsScrolled(scrollY > 10);
-      // Threshold baseado no design (~560px de 700px de altura do herói) ajustado pela escala visível
-      const threshold = Math.max(200, 560 * (headerScale || 1));
-      setShowHeaderCTA(scrollY > threshold);
+      // Permite forçar CTA sempre visível via query param (QA/debug)
+      if (ctaAlways) {
+        if (!showCTARef.current) setShowHeaderCTA(true);
+        ticking = false;
+        return;
+      }
+      // Threshold baseado no design (~560px de 700px do herói), ajustado pela escala visível
+      const scale = Math.max(0, Math.min(1, headerScale || 1));
+      const showThreshold = Math.max(200, 560 * scale);
+      // Histerese: esconde só bem acima do topo para evitar piscar em pequenas rolagens
+      const hideThreshold = Math.max(120, showThreshold - 140);
+      let nextVisible = showCTARef.current;
+      if (scrollY > showThreshold) nextVisible = true;
+      else if (scrollY < hideThreshold) nextVisible = false;
+      if (nextVisible !== showCTARef.current) setShowHeaderCTA(nextVisible);
       
       ticking = false;
     };
@@ -1628,14 +1767,34 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
       window.removeEventListener('scroll', onEvent);
       window.removeEventListener('resize', onEvent);
     };
-  }, [headerScale]);
+  }, [headerScale, ctaAlways]);
 
-  // Calcula altura dinâmica baseada no accordion aberto
+  // Altura dinâmica: fim real do conteúdo (topo do footer + altura do footer)
   const dynamicHeight = useMemo(() => {
-    const baseHeight = 6466; // Altura original do design
-    const extraHeight = openAccordion !== null ? 200 : 0; // Espaço extra para accordion expandido
-    return baseHeight + extraHeight;
-  }, [openAccordion]);
+    const FOOTER_H = 172;
+    const computed = footerTop + FOOTER_H;
+    return Math.max(computed, (typeof window !== 'undefined' ? window.innerHeight : 0));
+  }, [footerTop]);
+
+  // Medição do stage para alinhar o header exatamente ao canvas visível
+  const [stageRect, setStageRect] = useState<{ left: number; width: number } | null>(null);
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const el = document.getElementById('stage-root');
+    if (!el) return;
+    const update = () => {
+      const r = el.getBoundingClientRect();
+      setStageRect({ left: Math.round(r.left), width: Math.round(r.width) });
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    window.addEventListener('resize', update, { passive: true });
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', update as any);
+    };
+  }, []);
 
   return (
     <div className="bg-white min-h-screen w-full overflow-x-hidden" data-name="Desktop - 1">
@@ -1644,20 +1803,48 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
         onCallClick={handleCallClick}
         isScrolled={isScrolled}
         showCTA={showHeaderCTA}
-        scale={headerScale}
+  scale={headerScale}
+  stageLeft={stageRect?.left}
+  stageWidth={stageRect?.width}
+  qa={qa}
       />
 
       {/* Container interno centralizado - largura base 1440px */}
-      <div 
+    <div 
         id="stage-root"
         className="relative"
         style={{
           width: '1440px',
           marginLeft: '50%',
           transform: 'translateX(-50%)',
-          minHeight: `${dynamicHeight}px`
+      minHeight: `${dynamicHeight}px`,
+      outline: qa ? '1px dashed rgba(0,128,255,0.6)' : 'none'
         }}
       >
+        {qa && (
+          <div
+            style={{
+              position: 'fixed',
+              top: 8,
+              right: 8,
+              zIndex: 100000,
+              background: 'rgba(0,0,0,0.65)',
+              color: '#fff',
+              padding: '8px 10px',
+              borderRadius: 8,
+              fontSize: 12,
+              lineHeight: '16px',
+              pointerEvents: 'none'
+            }}
+          >
+            <div>QA: ON</div>
+            <div>stageLeft: {stageRect?.left ?? '—'}</div>
+            <div>stageWidth: {stageRect?.width ?? '—'}</div>
+            <div>headerWidth: {stageRect?.width ?? Math.round(1440 * Math.max(0, Math.min(1, headerScale || 1)))}</div>
+            <div>footerTop: {footerTop}</div>
+            <div>dynamicHeight: {dynamicHeight}</div>
+          </div>
+        )}
         <Bloco01 
           onCallClick={handleCallClick} 
           currentImageIndex={currentImageIndex}
@@ -1666,9 +1853,10 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
         <Bloco03 />
         <Bloco04 />
         <Bloco05 />
-        <Bloco06 />
-        <Bloco07 openAccordion={openAccordion} toggleAccordion={toggleAccordion} />
-        <Bloco08 />
+  <Bloco06 />
+  <Bloco07 openAccordion={openAccordion} toggleAccordion={toggleAccordion} onBottomChange={footerFixed ? undefined : setFooterTop} />
+  {/* Footer imediatamente após o FAQ */}
+  <Bloco08 top={footerTop} />
       </div>
     </div>
   );

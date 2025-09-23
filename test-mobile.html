@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Detection Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .info {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .mobile { background: #e8f5e8; }
+        .desktop { background: #ffe8e8; }
+    </style>
+</head>
+<body>
+    <h1>Teste de Detecção Mobile</h1>
+    
+    <div class="info" id="userAgentInfo">
+        <h3>User Agent:</h3>
+        <p id="userAgent"></p>
+    </div>
+    
+    <div class="info" id="screenInfo">
+        <h3>Informações da Tela:</h3>
+        <p id="screenSize"></p>
+        <p id="windowSize"></p>
+    </div>
+    
+    <div class="info" id="detectionResult">
+        <h3>Resultado da Detecção:</h3>
+        <p id="result"></p>
+    </div>
+    
+    <div class="info">
+        <h3>Links de Teste:</h3>
+        <p><a href="http://localhost:5173/">Versão Normal</a></p>
+        <p><a href="http://localhost:5173/?desktop">Forçar Desktop</a></p>
+        <p><a href="http://localhost:5173/?debugui">Debug UI</a></p>
+    </div>
+
+    <script>
+        function updateInfo() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const mobileKeywords = ['mobile', 'android', 'iphone', 'ipad', 'ipod', 'blackberry', 'windows phone'];
+            const isMobileUserAgent = mobileKeywords.some(keyword => userAgent.includes(keyword));
+            const isSmallScreen = window.innerWidth <= 768;
+            const isMobile = isMobileUserAgent || isSmallScreen;
+
+            document.getElementById('userAgent').textContent = navigator.userAgent;
+            document.getElementById('screenSize').textContent = `Screen: ${screen.width}x${screen.height}`;
+            document.getElementById('windowSize').textContent = `Window: ${window.innerWidth}x${window.innerHeight}`;
+            
+            const resultEl = document.getElementById('result');
+            const detectionEl = document.getElementById('detectionResult');
+            
+            if (isMobile) {
+                resultEl.textContent = `MOBILE DETECTADO (UserAgent: ${isMobileUserAgent}, SmallScreen: ${isSmallScreen})`;
+                detectionEl.className = 'info mobile';
+            } else {
+                resultEl.textContent = `DESKTOP DETECTADO (UserAgent: ${isMobileUserAgent}, SmallScreen: ${isSmallScreen})`;
+                detectionEl.className = 'info desktop';
+            }
+        }
+
+        updateInfo();
+        window.addEventListener('resize', updateInfo);
+    </script>
+</body>
+</html>

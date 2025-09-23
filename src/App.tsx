@@ -1,32 +1,86 @@
 import InteractiveDesktop from "./components/InteractiveDesktop";
+import InteractiveMobile from "./components/InteractiveMobile";
 import DesktopScaleContainer from "./components/motion/DesktopScaleContainer";
-import MobileFigma from "./components/figma/MobileFigma";
 import MobileFigmaDebug from "./components/figma/MobileFigmaDebug";
-import { useMemo } from "react";
+import MobileFigmaFixed from "./components/figma/MobileFigmaFixed";
+import { useMemo, useState, useEffect } from "react";
 
 export default function App() {
+  const [isMobile, setIsMobile] = useState(false);
+  
   const showDebug = useMemo(() => {
     if (typeof window === "undefined") return false;
     const p = new URLSearchParams(window.location.search);
     return p.has("debugui") || p.has("debugUI");
   }, []);
 
-  const mode = useMemo(() => {
-    if (typeof window === "undefined") return { mobileGetCode: false, desktop: true };
+  const forceDesktop = useMemo(() => {
+    if (typeof window === "undefined") return false;
     const p = new URLSearchParams(window.location.search);
-    return {
-      mobileGetCode: p.has("mobileGetCode") || p.has("mobile_get_code") || p.has("mobile-getcode"),
-      desktop: !p.has("mobile") && !p.has("mobileGetCode") && !p.has("mobile_get_code") && !p.has("mobile-getcode"),
-    } as const;
+    return p.has("desktop");
   }, []);
 
-  if (mode.mobileGetCode) {
+  const forceMobile = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.has("mobile");
+  }, []);
+
+  // Flags para visualizar diretamente as variantes geradas pelo get_code
+  const mobileGetCode = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.has("mobileGetCode");
+  }, []);
+
+  const mobileDebug = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.has("mobileDebug");
+  }, []);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      const isSmallScreen = window.innerWidth < 768; // usa apenas largura
+      setIsMobile(forceMobile || (!forceDesktop && isSmallScreen));
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, [forceDesktop, forceMobile]);
+
+  if (isMobile) {
     return (
-      <div style={{ display: "flex", justifyContent: "center", background: "#111", minHeight: "100vh" }}>
-        <div style={{ width: 402, position: "relative", background: "#fff", minHeight: "100vh" }}>
-          <MobileFigma />
-        </div>
-      </div>
+      <>
+        {showDebug && (
+          <div
+            style={{
+              position: "fixed",
+              left: 8,
+              bottom: 8,
+              zIndex: 100000,
+              background: "rgba(0,0,0,0.7)",
+              color: "#fff",
+              padding: "6px 10px",
+              borderRadius: 6,
+              fontSize: 12,
+              lineHeight: "16px",
+              pointerEvents: "none",
+            }}
+          >
+            Mobile render OK — try ?desktop para forçar modo desktop
+          </div>
+        )}
+        {mobileGetCode ? (
+          <MobileFigmaFixed />
+        ) : mobileDebug ? (
+          <MobileFigmaDebug />
+        ) : (
+          <InteractiveMobile />
+        )}
+      </>
     );
   }
 
@@ -48,7 +102,7 @@ export default function App() {
             pointerEvents: "none",
           }}
         >
-          React render OK — try ?desktop para forçar modo desktop
+          Desktop render OK — try ?desktop para forçar modo desktop
         </div>
       )}
       <DesktopScaleContainer>

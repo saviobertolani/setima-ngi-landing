@@ -48,6 +48,25 @@ const getNode = async (nodeId) => {
 
 const sanitize = (s) => s.replace(/[^a-z0-9-_]/gi, '-');
 
+// Export image URLs from Figma Images API for given node ids
+const getImages = async (ids, { format = 'svg', scale = 1 } = {}) => {
+  if (!ids.length) return {};
+  const url = new URL(`https://api.figma.com/v1/images/${fileKey}`);
+  url.searchParams.set('ids', ids.join(','));
+  url.searchParams.set('format', format);
+  if (scale && format !== 'svg') url.searchParams.set('scale', String(scale));
+  const res = await api(url.toString());
+  const json = await res.json();
+  return json.images || {};
+};
+
+const downloadTo = async (url, destPath) => {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to download ${url}: ${res.status}`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  fs.writeFileSync(destPath, buf);
+};
+
 const main = async () => {
   for (const item of manifest.items || []) {
     const { name, nodeId } = item;
@@ -62,7 +81,7 @@ const main = async () => {
       continue;
     }
 
-    // Save raw node JSON for inspection
+  // Save raw node JSON for inspection
     fs.writeFileSync(path.join(outCode, `${safe}.node.json`), JSON.stringify(node, null, 2));
 
     // Basic text styles extraction
@@ -90,6 +109,41 @@ export default function ${safe.replace(/^[^a-zA-Z_$]|[^\w$]/g, '_')}() {
 }
 `;
     fs.writeFileSync(path.join(outCode, `${safe}.tsx`), tsx);
+
+    // Optional assets export
+    const shouldExportAssets = (item.export || []).includes('assets');
+    if (shouldExportAssets) {
+      // Walk the node tree to find notable assets by name
+      const targets = [];
+      const patterns = [/logo/i, /icone\s*seta/i, /arrow/i, /cta/i];
+      const walkFind = (n) => {
+        if (!n) return;
+        if (n.name && patterns.some((re) => re.test(n.name))) {
+          targets.push({ id: n.id, name: n.name });
+        }
+        if (n.children) n.children.forEach(walkFind);
+      };
+      walkFind(node);
+
+      // Always include the node root if asset export only
+      if (!targets.length) targets.push({ id: nodeId, name });
+
+      // Export SVGs first
+      const ids = targets.map((t) => t.id);
+      const images = await getImages(ids, { format: 'svg' });
+      for (const t of targets) {
+        const url = images[t.id];
+        if (!url) continue;
+        const base = sanitize(`${safe}-${t.name || t.id}`);
+        const out = path.join(outAssets, `${base}.svg`);
+        try {
+          await downloadTo(url, out);
+          console.log(`  asset: ${path.relative(root, out)}`);
+        } catch (e) {
+          console.warn(`  failed svg download for ${t.name}:`, e.message);
+        }
+      }
+    }
   }
 
   console.log('Done. Files in src/components/figma and assets in src/assets/figma');

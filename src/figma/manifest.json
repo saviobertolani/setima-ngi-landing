@@ -1,10 +1,15 @@
 {
-  "file": "ymdskPJsdCuYCw0ArQntqY",
+  "file": "LvffsOvDMFp7Ynk5ICcA5O",
   "items": [
     {
-      "name": "Landing-Container",
-      "nodeId": "0:1",
+      "name": "landing_page_setima_3D_mobile",
+      "nodeId": "1:75",
       "export": ["code", "assets"]
+    },
+    {
+      "name": "hero_animated_images",
+      "nodeId": "1:271",
+      "export": ["assets"]
     }
   ]
 }

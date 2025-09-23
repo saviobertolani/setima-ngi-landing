@@ -14,7 +14,7 @@ type DesktopScaleContainerProps = {
 export default function DesktopScaleContainer({
   children,
   baseWidth = 1440,
-  minDesktopWidth = 1024,
+  minDesktopWidth = 768,
 }: DesktopScaleContainerProps) {
   const innerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
@@ -33,12 +33,17 @@ export default function DesktopScaleContainer({
     const newScale = Math.min(width / baseWidth, 1);
     setScale(newScale);
 
-    // Medir conteúdo interno e ajustar a altura externa escalada.
+    // Medir conteúdo interno sem aplicar escala duas vezes.
     if (innerRef.current) {
       const node = innerRef.current;
-      // scrollHeight é mais confiável com conteúdos absolutos; getBoundingClientRect também ajuda após layout.
-      const h = Math.max(node.scrollHeight, node.getBoundingClientRect().height);
-      setOuterHeight(Math.ceil(h * newScale));
+      // Usa métricas não escaladas (offsetTop/offsetHeight)
+      let maxBottom = node.scrollHeight || 0;
+      node.querySelectorAll<HTMLElement>(":scope *").forEach((el) => {
+        const bottom = (el.offsetTop || 0) + (el.offsetHeight || 0);
+        if (!Number.isNaN(bottom)) maxBottom = Math.max(maxBottom, bottom);
+      });
+      const effectiveHeight = Math.max(node.scrollHeight, maxBottom);
+      setOuterHeight(Math.ceil(effectiveHeight * newScale));
     }
   }, [baseWidth, minDesktopWidth]);
 
@@ -69,26 +74,19 @@ export default function DesktopScaleContainer({
     };
   }, [recompute]);
 
-  if (isMobileWidth) {
-    return (
-      <div className="min-h-screen w-full flex items-center justify-center bg-white">
-        <div className="text-center px-6 py-10 max-w-[560px]">
-          <h2 className="text-[24px] font-['Ubuntu:Bold',_sans-serif] leading-[normal] mb-3">Versão mobile em construção</h2>
-          <p className="text-[16px] leading-[1.5] text-[#13171a] opacity-80">
-            Esta experiência está otimizada para telas desktop no momento. 
-            Em breve liberaremos a versão mobile. Acesse em um computador para visualizar a página completa.
-          </p>
-        </div>
-      </div>
-    );
-  }
+  // Em telas menores, não bloqueia: apenas permite escala automática do conteúdo desktop.
+  // Mantemos isMobileWidth apenas para eventual telemetria/ajustes visuais, sem bloquear render.
 
   const content = typeof children === 'function' ? children({ scale }) : children;
 
   return (
     <div
       className="responsive-design smooth-scaling w-full flex justify-center"
-      style={{ minHeight: outerHeight && outerHeight > 0 ? outerHeight : "100vh" }}
+      style={{
+        minHeight: outerHeight && outerHeight > 0 ? outerHeight : "100vh",
+        /* Evita que transforms no ancestral influenciem elementos fixed do portal */
+        transform: 'none'
+      }}
     >
       {/* Wrapper que define a altura de scroll correta */}
       <div
@@ -96,7 +94,7 @@ export default function DesktopScaleContainer({
         className="w-full flex justify-center"
       >
         {/* Conteúdo com largura base e escala aplicada */}
-        <div
+  <div
           ref={innerRef}
           style={{
             width: baseWidth,
