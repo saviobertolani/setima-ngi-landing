@@ -111,7 +111,7 @@ function Acordeon({ propriedade1 = "Retraido" }: AcordeonProps) {
 					</div>
 				</div>
 				<div className="box-border content-stretch flex gap-[10px] items-center justify-center px-0 py-[0.12px] relative shrink-0" data-name="panel" data-node-id="1:407">
-					<div className="font-['Ubuntu:Light',_sans-serif] leading-[normal] not-italic relative shrink-0 text-[#13171a] text-[23px] w-[1270px]" data-node-id="1:408">
+					<div className="font-['Ubuntu:Light',_sans-serif] leading-[normal] not-italic relative shrink-0 text-[#13171a] text-[23px] w-[354px]" data-node-id="1:408">
 						<p className="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus arcu turpis, efficitur in pulvinar eget, volutpat et odio. Quisque sed diam nulla. In eget neque vel nisi iaculis aliquet. Proin sodales molestie quam molestie malesuada. Quisque eu diam risus. Phasellus augue erat, condimentum ut tempus ac, dignissim ac erat. Nulla facilisi.</p>
 						<p>&nbsp;</p>
 					</div>
@@ -124,7 +124,7 @@ function Acordeon({ propriedade1 = "Retraido" }: AcordeonProps) {
 
 export default function Mobile() {
 	return (
-		<div className="bg-white relative w-full" style={{ height: 5750 }} data-name="Mobile" data-node-id="1:75">
+		<div className="bg-white relative w-[402px] mx-auto" style={{ height: 5750 }} data-name="Mobile" data-node-id="1:75">
 			<div className="absolute left-0 top-0" data-name="cabecalho" data-node-id="1:76">
 				<div className="absolute bg-center bg-cover bg-no-repeat h-[87px] left-0 top-0 w-[402px]" data-name="em cima" data-node-id="1:77" style={{ backgroundImage: `url('${imgEmCima}')` }} />
 				<div className="absolute h-[36px] top-[18px] w-[315px]" data-name="Botao call" data-node-id="1:138" style={{ left: "calc(8.333% + 29.5px)" }}>
@@ -135,8 +135,8 @@ export default function Mobile() {
 				</div>
 			</div>
 			<div className="absolute left-0 top-[5514px]" data-name="Bloco 08" data-node-id="1:575">
-				<div className="absolute bg-[#13171a] h-[200px] left-0 top-[5514px] w-[402px]" data-node-id="1:467" />
-				<div className="absolute font-['Ubuntu:Regular',_sans-serif] h-[27px] leading-[0] not-italic text-[#f8f8f2] text-[12px] text-center top-[5635.62px] translate-x-[-50%] w-[351px]" data-node-id="17:77" style={{ left: "calc(50% + 0.5px)" }}>
+				<div className="absolute bg-[#13171a] h-[200px] left-0 top-[0px] w-[402px]" data-node-id="1:467" />
+				<div className="absolute font-['Ubuntu:Regular',_sans-serif] h-[27px] leading-[0] not-italic text-[#f8f8f2] text-[12px] text-center top-[121.62px] translate-x-[-50%] w-[351px]" data-node-id="17:77" style={{ left: "calc(50% + 0.5px)" }}>
 					<p className="leading-[normal]">@2025 Setima. Todos os direitos reservados. Todo o conteúdo deste site é protegido por leis de propriedade intelectual.</p>
 				</div>
 				<div className="absolute inset-[97.34%_52.31%_1.64%_13.68%]" data-name="logo setima" data-node-id="17:78">
@@ -180,94 +180,94 @@ export default function Mobile() {
 				</div>
 			</div>
 			<div className="absolute left-[-248px] top-[3906px]" data-name="Bloco 06" data-node-id="1:331">
-				<div className="absolute bg-[#13171a] h-[836px] left-0 top-[3906px] w-[402px]" data-node-id="1:332" />
-				<div className="absolute bg-center bg-cover bg-no-repeat h-[506px] left-[-248px] top-[4156px] w-[898px]" data-name="aquamarine (4) 1" data-node-id="1:339" style={{ backgroundImage: `url('${imgAquamarine41}')` }} />
-				<div className="absolute font-['Ubuntu:Bold',_sans-serif] leading-[0] not-italic text-[18px] text-center text-white top-[4610px]" data-node-id="1:338" style={{ left: "calc(33.333% + 1px)" }}>
-					<div className="absolute h-[20px] top-[4650px] translate-x-[-50%] w-[132px]" data-node-id="1:335" style={{ left: "calc(33.333% + 67px)" }}>
+				<div className="absolute bg-[#13171a] h-[836px] left-0 top-[0px] w-[402px]" data-node-id="1:332" />
+				<div className="absolute bg-center bg-cover bg-no-repeat h-[506px] left-[-248px] top-[250px] w-[898px]" data-name="aquamarine (4) 1" data-node-id="1:339" style={{ backgroundImage: `url('${imgAquamarine41}')` }} />
+				<div className="absolute font-['Ubuntu:Bold',_sans-serif] leading-[0] not-italic text-[18px] text-center text-white top-[704px]" data-node-id="1:338" style={{ left: "calc(33.333% + 1px)" }}>
+					<div className="absolute h-[20px] top-[40px] translate-x-[-50%] w-[132px]" data-node-id="1:335" style={{ left: "calc(33.333% + 67px)" }}>
 						<p className="leading-[normal]">+ IMPACTANTE</p>
 					</div>
-					<div className="absolute h-[20px] top-[4630px] translate-x-[-50%] w-[123px]" data-node-id="1:336" style={{ left: "calc(33.333% + 67.5px)" }}>
+					<div className="absolute h-[20px] top-[20px] translate-x-[-50%] w-[123px]" data-node-id="1:336" style={{ left: "calc(33.333% + 67.5px)" }}>
 						<p className="leading-[normal]">+ ESCALÁVEL</p>
 					</div>
-					<div className="absolute h-[20px] top-[4610px] translate-x-[-50%] w-[123px]" data-node-id="1:337" style={{ left: "calc(33.333% + 67.5px)" }}>
+					<div className="absolute h-[20px] top-[0px] translate-x-[-50%] w-[123px]" data-node-id="1:337" style={{ left: "calc(33.333% + 67.5px)" }}>
 						<p className="leading-[normal]">+ RÁPIDO</p>
 					</div>
 				</div>
-				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[201px] not-italic text-[30px] text-center text-white top-[3977px] translate-x-[-50%] w-[354px]" data-node-id="1:334">
+				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[201px] not-italic text-[30px] text-center text-white top-[71px] translate-x-[-50%] w-[354px]" data-node-id="1:334">
 					<p className="leading-[normal]">O FLUXO NGI: DA ESTRATÉGIA À PRODUÇÃO, CRIATIVIDADE E TÉCNICA ACELERADAS PELA IA.</p>
 				</div>
 			</div>
 			<div className="absolute left-0 top-[3458px]" data-name="Bloco 05" data-node-id="1:327">
-				<div className="absolute bg-[#f8f8f2] h-[448px] left-0 top-[3458px] w-[402px]" data-node-id="1:328" />
-				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[201px] not-italic text-[#13171a] text-[20px] text-center top-[3761px] translate-x-[-50%] w-[352px]" data-node-id="1:329">
+				<div className="absolute bg-[#f8f8f2] h-[448px] left-0 top-[0px] w-[402px]" data-node-id="1:328" />
+				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[201px] not-italic text-[#13171a] text-[20px] text-center top-[303px] translate-x-[-50%] w-[352px]" data-node-id="1:329">
 					<p className="leading-[normal]">Integramos criatividade, estratégia e tecnologia em um só fluxo, criando conteúdos relevantes de maneira mais rápida, escalável e impactante.</p>
 				</div>
-				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[normal] left-[200.5px] not-italic text-[#13171a] text-[30px] text-center top-[3501px] translate-x-[-50%] w-[353px]" data-node-id="1:330">
+				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[normal] left-[200.5px] not-italic text-[#13171a] text-[30px] text-center top-[43px] translate-x-[-50%] w-[353px]" data-node-id="1:330">
 					<p className="mb-0">MAIS DE 60 PROJETOS</p>
 					<p className="mb-0">EM 2025 QUE AJUDARAM NOSSOS CLIENTES A ECONOMIZAR MILHÕES</p>
 					<p>EM COMPARAÇÃO A PRODUÇÕES TRADICIONAIS.</p>
 				</div>
 			</div>
 			<div className="absolute left-0 top-[2322px]" data-name="Bloco 04" data-node-id="1:311">
-				<div className="absolute bg-[#13171a] h-[600px] left-0 top-[2858px] w-[402px]" data-name="background" data-node-id="1:312" />
-			<div className="absolute left-0 top-[2322px]" data-name="imagem grande" data-node-id="1:313">
+				<div className="absolute bg-[#13171a] h-[600px] left-0 top-[536px] w-[402px]" data-name="background" data-node-id="1:312" />
+			<div className="absolute left-0 top-[0px]" data-name="imagem grande" data-node-id="1:313">
 					<div
-						className="absolute bg-center bg-cover bg-no-repeat h-[547px] left-[-234px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[234px_10px] mask-size-[402px_536px] top-[2312px] w-[912px]"
+						className="absolute bg-center bg-cover bg-no-repeat h-[547px] left-[-234px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[234px_10px] mask-size-[402px_536px] top-[-10px] w-[912px]"
 						data-name="25_0127_Almap_Still_TeraTheTown_Frente_V08 1"
 						data-node-id="1:315"
 						style={{ backgroundImage: `url('${img250127AlmapStillTeraTheTownFrenteV081}')`, maskImage: `url('${img250127AlmapStillTeraTheTownFrenteV82}')` }}
 					/>
 				</div>
-			<div className="absolute left-[24px] top-[2889px]" data-name="imagens carrossel" data-node-id="1:316">
-					<div className="absolute bg-[#d9d9d9] left-[24px] size-[74px] top-[2889px]" data-node-id="1:317" />
-					<div className="absolute bg-[#d9d9d9] size-[74px] top-[2889px]" data-node-id="1:318" style={{ left: "calc(25% + 16.5px)" }} />
-					<div className="absolute bg-[#d9d9d9] size-[74px] top-[2889px]" data-node-id="1:319" style={{ left: "calc(50% + 9px)" }} />
-					<div className="absolute bg-[#d9d9d9] size-[74px] top-[2889px]" data-node-id="1:320" style={{ left: "calc(75% + 1.5px)" }} />
-					<div className="absolute bg-[#d9d9d9] left-[24px] size-[74px] top-[2982px]" data-node-id="1:321" />
-					<div className="absolute bg-[#d9d9d9] size-[74px] top-[2982px]" data-node-id="1:322" style={{ left: "calc(25% + 16.5px)" }} />
-					<div className="absolute bg-[#d9d9d9] size-[74px] top-[2982px]" data-node-id="1:323" style={{ left: "calc(50% + 9px)" }} />
-					<div className="absolute bg-[#d9d9d9] size-[74px] top-[2982px]" data-node-id="1:324" style={{ left: "calc(75% + 1.5px)" }} />
+			<div className="absolute left-[24px] top-[567px]" data-name="imagens carrossel" data-node-id="1:316">
+					<div className="absolute bg-[#d9d9d9] left-[24px] size-[74px] top-[0px]" data-node-id="1:317" />
+					<div className="absolute bg-[#d9d9d9] size-[74px] top-[0px]" data-node-id="1:318" style={{ left: "calc(25% + 16.5px)" }} />
+					<div className="absolute bg-[#d9d9d9] size-[74px] top-[0px]" data-node-id="1:319" style={{ left: "calc(50% + 9px)" }} />
+					<div className="absolute bg-[#d9d9d9] size-[74px] top-[0px]" data-node-id="1:320" style={{ left: "calc(75% + 1.5px)" }} />
+					<div className="absolute bg-[#d9d9d9] left-[24px] size-[74px] top-[93px]" data-node-id="1:321" />
+					<div className="absolute bg-[#d9d9d9] size-[74px] top-[93px]" data-node-id="1:322" style={{ left: "calc(25% + 16.5px)" }} />
+					<div className="absolute bg-[#d9d9d9] size-[74px] top-[93px]" data-node-id="1:323" style={{ left: "calc(50% + 9px)" }} />
+					<div className="absolute bg-[#d9d9d9] size-[74px] top-[93px]" data-node-id="1:324" style={{ left: "calc(75% + 1.5px)" }} />
 				</div>
-				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[200px] not-italic text-[#f8f8f2] text-[20px] text-center top-[3289px] translate-x-[-50%] w-[350px]" data-node-id="1:325">
+				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[200px] not-italic text-[#f8f8f2] text-[20px] text-center top-[967px] translate-x-[-50%] w-[350px]" data-node-id="1:325">
 					<p className="leading-[normal]">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
 				</div>
-			<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[normal] left-[200.5px] not-italic text-[#f8f8f2] text-[30px] text-center top-[3096px] translate-x-[-50%] w-[353px]" data-node-id="1:326">
+			<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[normal] left-[200.5px] not-italic text-[#f8f8f2] text-[30px] text-center top-[774px] translate-x-[-50%] w-[353px]" data-node-id="1:326">
 					<p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
 					<p className="font-['Ubuntu:Bold',_sans-serif]">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
 				</div>
 			</div>
 			<div className="absolute left-0 top-[1648px]" data-name="Bloco 03" data-node-id="1:306">
-				<div className="absolute bg-[#f8f8f2] h-[674px] left-0 top-[1648px] w-[402px]" data-name="background" data-node-id="1:307" />
-				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[200px] not-italic text-[#13171a] text-[20px] text-center top-[2171px] translate-x-[-50%] w-[352px]" data-node-id="1:309">
+				<div className="absolute bg-[#f8f8f2] h-[674px] left-0 top-[0px] w-[402px]" data-name="background" data-node-id="1:307" />
+				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[200px] not-italic text-[#13171a] text-[20px] text-center top-[523px] translate-x-[-50%] w-[352px]" data-node-id="1:309">
 					<p className="leading-[normal]">O 3D já trascende o universo de stills e CGI: tornou-se linguagem, experiência e presença digital que é capaz de capturar e converter.</p>
 				</div>
-				<button className="absolute block cursor-pointer h-[176px] object-cover rounded-[12px] top-[1968px] translate-x-[-50%] w-[352px]" data-name="AFX_NAVEG_CONFIGURADOR_30seg_ARG_3840x1920_20250805-10h (1) 1" data-node-id="1:308" style={{ left: "calc(50% - 1px)" }} />
-			<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[normal] left-[200px] not-italic text-[#13171a] text-[30px] text-center top-[1734px] translate-x-[-50%] w-[352px]" data-node-id="1:310">
+				<button className="absolute block cursor-pointer h-[176px] object-cover rounded-[12px] top-[320px] translate-x-[-50%] w-[352px]" data-name="AFX_NAVEG_CONFIGURADOR_30seg_ARG_3840x1920_20250805-10h (1) 1" data-node-id="1:308" style={{ left: "calc(50% - 1px)" }} />
+			<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[normal] left-[200px] not-italic text-[#13171a] text-[30px] text-center top-[86px] translate-x-[-50%] w-[352px]" data-node-id="1:310">
 					<p className="mb-0">O PODER DAS EXPERIÊNCIAS INTERATIVAS EM 3D:</p>
 					<p className="font-['Ubuntu:Bold',_sans-serif]">+66% DE ENGAJAMENTO, +9% EM VENDAS.</p>
 				</div>
 			</div>
 			<div className="absolute left-0 top-[874px]" data-name="Bloco 02" data-node-id="1:297">
-				<div className="absolute bg-[#13171a] h-[774px] left-0 top-[874px] w-[402px]" data-name="background" data-node-id="1:298" />
-				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[201px] not-italic text-[20px] text-center text-white top-[1399px] translate-x-[-50%] w-[354px]" data-node-id="1:299">
+				<div className="absolute bg-[#13171a] h-[774px] left-0 top-[0px] w-[402px]" data-name="background" data-node-id="1:298" />
+				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[201px] not-italic text-[20px] text-center text-white top-[525px] translate-x-[-50%] w-[354px]" data-node-id="1:299">
 					<p className="leading-[normal]">Como uma content-tech, podemos atuar desde o conceito criativo até a distribuição multicanal e a análise de desempenho. Um fluxo sustentado por um stack tecnológico integrado que vai de IA à automação, do CMS/DAM ao analytics e além.</p>
 				</div>
-				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[201px] not-italic text-[20px] text-center text-white top-[1044px] translate-x-[-50%] w-[354px]" data-node-id="1:300">
+				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] left-[201px] not-italic text-[20px] text-center text-white top-[170px] translate-x-[-50%] w-[354px]" data-node-id="1:300">
 					<p className="leading-[normal]">Um novo fluxo de produção aonde 3D, IA e outras tecnologias trabalham juntas para escalar conteúdo com impacto e consistência.</p>
 				</div>
-				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[normal] not-italic text-[30px] text-center text-white top-[962px] translate-x-[-50%] w-[297px]" data-node-id="1:301" style={{ left: "calc(8.333% + 167px)" }}>
+				<div className="absolute font-['Ubuntu:Light',_sans-serif] leading-[0] not-italic text-[30px] text-center text-white top-[88px] translate-x-[-50%] w-[297px]" data-node-id="1:301" style={{ left: "calc(8.333% + 167px)" }}>
 					<p className="mb-0">O CGI AGORA É NGI:</p>
 					<p>NEXT-GEN IMAGERY.</p>
 				</div>
-				<div className="absolute left-[24px] top-[1168px]" data-name="video aqui" data-node-id="1:302">
+				<div className="absolute left-[24px] top-[294px]" data-name="video aqui" data-node-id="1:302">
 					<div
-						className="absolute bg-center bg-cover bg-no-repeat h-[291.572px] left-[-68.64px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[92.641px_40.762px] mask-size-[355px_199.363px] rounded-[12px] top-[1127.24px] w-[520.382px]"
+						className="absolute bg-center bg-cover bg-no-repeat h-[291.572px] left-[-68.64px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[92.641px_40.762px] mask-size-[355px_199.363px] rounded-[12px] top-[-40.762px] w-[520.382px]"
 						data-name="VW_CONSTELATTION_31.320_6x4+CAÇAMBA_PSB 1"
 						data-node-id="1:304"
 						style={{ backgroundImage: `url('${imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D817}')`, maskImage: `url('${imgVwConstelattion313206X4CacambaPsb1}')` }}
 					/>
 				</div>
-				<div className="absolute font-['Ubuntu:Bold',_sans-serif] leading-[0] not-italic text-[#ee0f0f] text-[45px] text-center top-[1242px] translate-x-[-50%] w-[271px]" data-node-id="1:305" style={{ left: "calc(16.667% + 134.5px)" }}>
+				<div className="absolute font-['Ubuntu:Bold',_sans-serif] leading-[0] not-italic text-[#ee0f0f] text-[45px] text-center top-[368px] translate-x-[-50%] w-[271px]" data-node-id="1:305" style={{ left: "calc(16.667% + 134.5px)" }}>
 					<p className="leading-[normal]">vídeo</p>
 				</div>
 			</div>
@@ -276,7 +276,7 @@ export default function Mobile() {
 					<BackMobile />
 				</div>
 			<div className="absolute left-0 top-[701px]" data-name="Transparências" data-node-id="1:145">
-					<div className="absolute flex h-[173px] items-center justify-center left-0 top-[701px] w-[402px]">
+					<div className="absolute flex h-[173px] items-center justify-center left-0 top-[0px] w-[402px]">
 						<div className="flex-none scale-y-[-100%]">
 							<div className="bg-center bg-cover bg-no-repeat h-[173px] w-[402px]" data-name="embaixo" data-node-id="1:146" style={{ backgroundImage: `url('${imgEmbaixo}')` }} />
 						</div>
