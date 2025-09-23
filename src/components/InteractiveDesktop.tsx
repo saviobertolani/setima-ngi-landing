@@ -700,8 +700,8 @@ function Bloco04() {
   const maxIndex = Math.max(0, Math.min(galleryList.length - 1, galleryActiveIndex));
   // Altura fixa conforme design (sem overrides por query)
   const stripeHeight = DESIGN_STRIPE_HEIGHT;
-  // Gap fixo conforme padrão visual — sem leitura por query em produção
-  const stripeGap = 16;
+  // Gap ajustado para coincidir com o espaçamento do Figma - reduzindo drasticamente o espaço
+  const stripeGap = -120; // Valor negativo para aproximar muito mais o texto das miniaturas
   // Medição de título e corpo para conferência
   const titleRef = useRef<HTMLDivElement>(null);
   const [titleSize, setTitleSize] = useState<{ w: number; h: number } | null>(null);
@@ -744,7 +744,7 @@ function Bloco04() {
           onBottomChange={(bottom) => setStripeTop(Math.floor(bottom) - 1)}
         />
       </div>
-      {/* Tarja grafite 1440x300 centralizada; encostada no rodapé da imagem (largura exata 1440px) */}
+      {/* Tarja grafite 1440x300 centralizada; posicionada muito mais próxima das miniaturas */}
       <div
         className="absolute bg-[#13171a] overflow-hidden left-1/2 -translate-x-1/2"
         data-name="faixa-preta-container"
