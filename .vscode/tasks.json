@@ -7,9 +7,15 @@
 			"command": "npm run dev",
 			"args": [],
 			"isBackground": true,
-			"problemMatcher": [
-				"$tsc"
-			],
+			"problemMatcher": {
+				"owner": "vite",
+				"pattern": { "regexp": "^$" },
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": "VITE v\\d+\\.\\d+\\.\\d+\\s+ready in",
+					"endsPattern": "Local:\\s+http://.*:5173/"
+				}
+			},
 			"group": "build"
 		}
 	]

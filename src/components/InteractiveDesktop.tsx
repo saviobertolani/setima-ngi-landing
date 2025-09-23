@@ -698,41 +698,13 @@ function Bloco04() {
   }, []);
   // Garante limite pelo total disponível
   const maxIndex = Math.max(0, Math.min(galleryList.length - 1, galleryActiveIndex));
-  // Altura fixa conforme design com override por query (?stripe=NNN)
-  const stripeHeight = useMemo(() => {
-    if (typeof window === 'undefined') return DESIGN_STRIPE_HEIGHT;
-    const qs = new URLSearchParams(window.location.search);
-    const v = parseInt(qs.get('stripe') || '');
-    if (!Number.isFinite(v) || v <= 0) return DESIGN_STRIPE_HEIGHT;
-    return Math.min(700, Math.max(200, v));
-  }, []);
-  // Debug da tarja: desabilitado em produção; habilita via ?stripeDebug apenas em dev
-  const stripeDebug = useMemo(() => {
-    if (typeof window === 'undefined') return false;
-    const isProd = (import.meta as any)?.env?.PROD === true;
-    if (isProd) return false;
-    const qs = new URLSearchParams(window.location.search);
-    return Array.from(qs.keys()).some(k => k.toLowerCase() === 'stripedebug');
-  }, []);
-  const stripeOverlayUrl = useMemo(() => {
-    if (!stripeDebug || typeof window === 'undefined') return null as string | null;
-    const qs = new URLSearchParams(window.location.search);
-    return qs.get('stripeOverlay');
-  }, [stripeDebug]);
-  const stripeOverlayOpacity = useMemo(() => {
-    if (!stripeDebug || typeof window === 'undefined') return 0.35;
-    const qs = new URLSearchParams(window.location.search);
-    const raw = qs.get('stripeOverlayOpacity');
-    const v = raw ? parseFloat(raw) : NaN;
-    return Number.isFinite(v) ? Math.max(0, Math.min(1, v)) : 0.35;
-  }, [stripeDebug]);
+  // Altura fixa conforme design (sem overrides por query)
+  const stripeHeight = DESIGN_STRIPE_HEIGHT;
   // Gap fixo conforme padrão visual — sem leitura por query em produção
   const stripeGap = 16;
   // Medição de título e corpo para conferência
   const titleRef = useRef<HTMLDivElement>(null);
-  const bodyRef = useRef<HTMLDivElement>(null);
   const [titleSize, setTitleSize] = useState<{ w: number; h: number } | null>(null);
-  const [bodySize, setBodySize] = useState<{ w: number; h: number } | null>(null);
   // Título sempre encostado no topo da tarja (sem respiro)
   const defaultTitleH = 56; // fallback alinhado
   const titleTopApplied = 0;
@@ -743,12 +715,9 @@ function Bloco04() {
     return Math.max(titleTopApplied, Math.round(top));
   }, [titleSize?.h, stripeGap]);
   useEffect(() => {
-    if (!stripeDebug) return;
     const measure = () => {
       const tr = titleRef.current?.getBoundingClientRect();
-      const br = bodyRef.current?.getBoundingClientRect();
       if (tr) setTitleSize({ w: Math.round(tr.width), h: Math.round(tr.height) });
-      if (br) setBodySize({ w: Math.round(br.width), h: Math.round(br.height) });
     };
     const t1 = window.setTimeout(measure, 0);
     window.addEventListener('resize', measure);
@@ -757,7 +726,7 @@ function Bloco04() {
       window.clearTimeout(t1);
       window.removeEventListener('resize', measure);
     };
-  }, [stripeDebug]);
+  }, []);
   return (
     <div className="absolute left-0 z-[20]" style={{ top: `${BASE_TOP}px` }} data-name="Bloco 04">
       {/* Stage clip 1440x970 para impedir sobreposição com o bloco anterior */}
@@ -781,46 +750,17 @@ function Bloco04() {
         data-name="faixa-preta-container"
   style={{ top: `${Math.max(0, Math.round(stripeTop - BASE_TOP) - 2)}px`, height: `${stripeHeight}px`, zIndex: 3, width: '1440px' }}
       >
-        {/* Sobreposição opcional do Figma para inspeção pixel-perfect */}
-        {stripeDebug && stripeOverlayUrl && (
-          <img
-            src={stripeOverlayUrl}
-            alt="stripe-overlay"
-            className="absolute left-0 top-0 h-full w-full pointer-events-none"
-            style={{ objectFit: 'cover', opacity: stripeOverlayOpacity, mixBlendMode: 'normal' }}
-          />
-        )}
-        {/* Moldura da área para debug */}
-  {stripeDebug && (
-          <div className="absolute inset-0 pointer-events-none" style={{ outline: '1px dashed rgba(0,245,185,0.6)', outlineOffset: '-1px' }} />
-        )}
         {/* Wrapper interno usa toda a largura (w-full) */}
         <div className="relative h-full w-full">
-          {/* Regras horizontais de referência de top (56px e 136px) */}
-      {stripeDebug && (
-            <>
-              <div className="absolute left-0 right-0" style={{ top: `0px`, height: 1, background: 'rgba(0,245,185,0.6)' }} />
-              <div className="absolute left-0 right-0" style={{ top: `${computedBodyTop}px`, height: 1, background: 'rgba(0,245,185,0.6)' }} />
-            </>
-          )}
           {/* Offsets conforme Figma: título ~56px, texto ~136px */}
           <div ref={titleRef} className="absolute left-1/2 translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={{ top: `0px` }}>
             {/* Zera margens para evitar espaço fantasma no topo causado por margin-top padrão de <p> */}
             <p className="m-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
             <p className="m-0 fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
           </div>
-      <div ref={bodyRef} className="absolute left-1/2 translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic" style={{ top: `${computedBodyTop}px` }}>
+  <div className="absolute left-1/2 translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic" style={{ top: `${computedBodyTop}px` }}>
             <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
           </div>
-          {/* HUD de debug com medidas */}
-      {stripeDebug && (
-            <div className="absolute right-2 top-2 z-[5] rounded bg-[rgba(0,0,0,0.65)] px-2 py-1 text-[11px] leading-[14px] text-[#e5fff6] pointer-events-none">
-              <div>Stripe: 1440x{stripeHeight}px | top: {Math.round(stripeTop)}</div>
-              <div>Título: {titleSize ? `${titleSize.w}x${titleSize.h}px` : '—'}</div>
-        <div>Texto: {bodySize ? `${bodySize.w}x${bodySize.h}px` : '—'}</div>
-  <div>Offsets: titleTop=0, bodyTop={computedBodyTop} (gap={stripeGap})</div>
-            </div>
-          )}
         </div>
       </div>
     </div>
