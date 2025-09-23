@@ -1,8 +1,6 @@
-import React from "react";
 import InteractiveDesktop from "./components/InteractiveDesktop";
-import InteractiveMobile from "./components/InteractiveMobile";
-import MobileFigma from "./components/figma/MobileFigma";
 import DesktopScaleContainer from "./components/motion/DesktopScaleContainer";
+import MobileFigma from "./components/figma/MobileFigma";
 import { useMemo } from "react";
 
 export default function App() {
@@ -12,40 +10,23 @@ export default function App() {
     return p.has("debugui") || p.has("debugUI");
   }, []);
 
-  const forceDesktop = useMemo(() => {
-    if (typeof window === "undefined") return false;
+  const mode = useMemo(() => {
+    if (typeof window === "undefined") return { mobileGetCode: false, desktop: true };
     const p = new URLSearchParams(window.location.search);
-    return p.has("desktop");
+    return {
+      mobileGetCode: p.has("mobileGetCode") || p.has("mobile_get_code") || p.has("mobile-getcode"),
+      desktop: !p.has("mobile") && !p.has("mobileGetCode") && !p.has("mobile_get_code") && !p.has("mobile-getcode"),
+    } as const;
   }, []);
 
-  const forceMobile = useMemo(() => {
-    if (typeof window === "undefined") return false;
-    const p = new URLSearchParams(window.location.search);
-    return p.has("mobile");
-  }, []);
-
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined);
-  const useGetCode = React.useMemo(() => {
-    if (typeof window === "undefined") return false;
-    const p = new URLSearchParams(window.location.search);
-    return p.has("get_code");
-  }, []);
-  React.useEffect(() => {
-    const compute = () => {
-      if (forceDesktop) return false;
-      if (forceMobile) return true;
-      return window.innerWidth <= 480;
-    };
-    const check = () => setIsMobile(compute());
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, [forceDesktop, forceMobile]);
-
-  if (isMobile === undefined) return null;
-
-  if (isMobile) {
-    return useGetCode ? <MobileFigma /> : <InteractiveMobile />;
+  if (mode.mobileGetCode) {
+    return (
+      <div style={{ display: "flex", justifyContent: "center", background: "#111", minHeight: "100vh" }}>
+        <div style={{ width: 402, position: "relative", background: "#fff", minHeight: "100vh" }}>
+          <MobileFigma />
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -66,7 +47,7 @@ export default function App() {
             pointerEvents: "none",
           }}
         >
-          React render OK — use ?mobile para forçar mobile ou ?desktop para forçar desktop
+          React render OK — try ?desktop para forçar modo desktop
         </div>
       )}
       <DesktopScaleContainer>
