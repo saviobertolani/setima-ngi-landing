@@ -88,7 +88,7 @@ function LogoSetima() {
           <path d={svgPaths.pc905f70} fill="#F8F8F2" id="Vector_6" />
           <path d={svgPaths.p3d49680} fill="#F8F8F2" id="Vector_7" />
           <path d={svgPaths.p30c6aa00} fill="#F8F8F2" id="Vector_8" />
-          <path d={svgPaths.pa05aa00} fill="#F8F8F2" id="Vector_9" />
+  // Parallax interno DESATIVADO temporariamente para validação pixel-perfect.
           <path d={svgPaths.p51f1a00} fill="#F8F8F2" id="Vector_10" />
           <path d={svgPaths.p2cb69700} fill="#F8F8F2" id="Vector_11" />
           <path d={svgPaths.p1fcd5800} fill="#F8F8F2" id="Vector_12" />
@@ -508,8 +508,11 @@ const ImagemGrande = ({
   // Notifica o Bloco04 sobre a posição exata do rodapé da janela (para ancorar a tarja)
   useEffect(() => {
     // Quando relativo ao container 1440x970, compensamos a escala global para manter a base encostada na tarja.
+    // FIX: no modo relativo ao container, o stage-clip tem altura fixa (970px) e não escala.
+    // Portanto, o rodapé visual da janela é sempre em 2510 + 970 (doc coords),
+    // independente do scale global. Isso evita faixa/gap entre o herói e a tarja preta.
     const bottom = relativeContainer
-      ? 2510 + WINDOW_H - offsetY
+      ? 2510 + WINDOW_H
       : 2510 + WINDOW_H * scale;
     onBottomChange?.(bottom);
   }, [scale, onBottomChange, relativeContainer, offsetY]);
@@ -576,7 +579,7 @@ const ImagemGrande = ({
             activeIndex={activeIndex}
             onThumbnailClick={(i) => onThumbnailClick?.(i)}
             relative
-            relativeBottom={24} // 24px acima da base da janela 1440x970
+            relativeBottom={40}
           />
         </div>
       </div>
@@ -597,7 +600,7 @@ function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0, insideSt
   
   // Posições exatas das miniaturas do design original
   // Conforme Figma (lefts absolutos para botões com w=98)
-  const thumbnailLefts = [289, 398, 507, 616, 725, 834, 943, 1052];
+  const thumbnailLefts = [251, 371, 491, 611, 731, 851, 971, 1091];
 
   // Animação de dica de navegação após scroll
   useEffect(() => {
@@ -703,47 +706,110 @@ const Bloco03 = memo(() => {
 });
 
 function Bloco04() {
-  const [galleryActiveIndex, setGalleryActiveIndex] = useState(0);
-  const [stripeTop, setStripeTop] = useState<number>(2510 + 970 - 1);
-  const handleGalleryThumbnailClick = useCallback((index: number) => {
-    setGalleryActiveIndex(index);
-  }, []);
-  // Garante limite pelo total disponível
-  const maxIndex = Math.max(0, Math.min(galleryList.length - 1, galleryActiveIndex));
+  // Versão interativa com layout 100% fixo (coordenadas do Figma)
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeImage = galleryList[activeIndex] ?? galleryList[0] ?? {
+    src: img250127AlmapStillTeraTheTownFrenteV081,
+    mask: img250127AlmapStillTeraTheTownFrenteV82,
+    thumbnail: img250127AlmapStillTeraTheTownFrenteV081,
+  } as any;
+  // Cross-fade entre imagens (200ms) sem mexer no layout
+  const [baseSrc, setBaseSrc] = useState<string>(() => activeImage.src);
+  const [overlaySrc, setOverlaySrc] = useState<string | null>(null);
+  const [overlayOpacity, setOverlayOpacity] = useState(0);
+  const fadeTimerRef = useRef<number | null>(null);
+  useEffect(() => {
+    const nextSrc = activeImage.src;
+    if (!nextSrc || nextSrc === baseSrc) return;
+    // Cancela fade anterior se existir
+    if (fadeTimerRef.current) {
+      window.clearTimeout(fadeTimerRef.current);
+      fadeTimerRef.current = null;
+    }
+    setOverlaySrc(nextSrc);
+    // Próximo frame para iniciar animação
+    requestAnimationFrame(() => setOverlayOpacity(1));
+    // Conclui fade e fixa nova base
+    fadeTimerRef.current = window.setTimeout(() => {
+      setBaseSrc(nextSrc);
+      setOverlaySrc(null);
+      setOverlayOpacity(0);
+      fadeTimerRef.current = null;
+    }, 200);
+    return () => {
+      if (fadeTimerRef.current) {
+        window.clearTimeout(fadeTimerRef.current);
+        fadeTimerRef.current = null;
+      }
+    };
+  }, [activeImage.src, baseSrc]);
+  const thumbLefts = [251, 371, 491, 611, 731, 851, 971, 1091];
+  const count = Math.min(8, galleryList.length || 8);
+
   return (
     <div className="absolute contents left-0 top-[2510px] z-[20]" data-name="Bloco 04">
-      {/* Stage clip 1440x970 para impedir sobreposição com o bloco anterior */}
+      {/* Tarja preta no exato encontro com a base da janela 1440x970 (2510 + 970 = 3480) */}
+      <div className="absolute bg-[#13171a] h-[300px] left-0 top-[3480px] w-[1440px]" data-name="background" />
+
+      {/* Imagem grande fixa com máscara (exatamente como Figma) + cross-fade */}
       <div
-        className="absolute left-1/2 -translate-x-1/2"
-        style={{ top: '2510px', width: '1440px', height: '970px', overflow: 'hidden', position: 'relative', zIndex: 2 }}
-        data-name="stage-clip"
+        className="absolute h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] w-[2122px] overflow-hidden"
+        data-name="25_0127_Almap_Still_TeraTheTown_Frente_V08 1"
+        style={{
+          // Máscara aplicada ao container para também afetar as camadas internas
+          maskImage: `url('${activeImage.mask ?? img250127AlmapStillTeraTheTownFrenteV82}')`,
+          zIndex: 10
+        }}
       >
-        {/* Imagem grande dentro do clip, posicionada relativamente ao container */}
-        <ImagemGrande 
-          activeIndex={maxIndex}
-          onThumbnailClick={handleGalleryThumbnailClick}
-          // ativa posicionamento relativo ao container 1440x970
-          relativeContainer
-          onBottomChange={(bottom) => setStripeTop(bottom - 1)}
+        {/* Camada base visível */}
+        <div
+          className="absolute inset-0 bg-center bg-cover bg-no-repeat"
+          style={{ backgroundImage: `url('${baseSrc}')` }}
         />
+        {/* Camada de overlay que faz o fade-in */}
+        {overlaySrc && (
+          <div
+            className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-opacity duration-200 ease-out"
+            style={{ 
+              backgroundImage: `url('${overlaySrc}')`, 
+              opacity: overlayOpacity,
+              willChange: 'opacity',
+              pointerEvents: 'none'
+            }}
+          />
+        )}
       </div>
-      {/* Tarja preta como container com filhos; encostada no rodapé da imagem */}
-      <div
-        className="absolute bg-[#13171a] h-[300px] overflow-hidden"
-        data-name="faixa-preta-container"
-        style={{ ...fullBleedBackground, top: `${stripeTop}px`, zIndex: 3 }}
-      >
-        {/* Wrapper centralizado com largura de stage (1440px) */}
-        <div className="relative h-full w-[1440px] left-1/2 -translate-x-1/2">
-          {/* Títulos e textos com top relativo à tarja (diferenças originais: 53px e 173px do topo da tarja) */}
-          <div className="absolute left-1/2 translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={{ top: '53px' }}>
-            <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
-            <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
-          </div>
-          <div className="absolute left-1/2 translate-x-[-50%] w-[905px] text-center fig-body-23 fig-light text-smooth not-italic" style={{ top: '173px' }}>
-            <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
-          </div>
-        </div>
+
+      {/* Thumbnails absolutas nas coordenadas do Figma (3342px), com imagens reais e interação */}
+      {Array.from({ length: count }).map((_, i) => {
+        const img = galleryList[i] ?? activeImage;
+        return (
+          <button
+            key={i}
+            onClick={() => setActiveIndex(i)}
+            className={`group absolute size-[98px] top-[3342px] cursor-pointer rounded-lg overflow-hidden transform-gpu transition-transform duration-200 ease-out hover:scale-110 ${
+              activeIndex === i ? 'ring-2 ring-[#00f5b9] ring-offset-2 ring-offset-transparent' : ''
+            }`}
+            style={{ left: `${thumbLefts[i]}px`, zIndex: 25 }}
+            aria-pressed={activeIndex === i}
+            title={img.alt ?? `thumb-${i+1}`}
+          >
+            <div
+              className="absolute inset-0 bg-center bg-cover bg-no-repeat transform-gpu transition-transform duration-200 ease-out group-hover:scale-110"
+              style={{ backgroundImage: `url('${img.thumbnail ?? img.src}')` }}
+            />
+            <div className="absolute inset-0 bg-black/0 transition-colors pointer-events-none group-hover:bg-black/5" />
+          </button>
+        );
+      })}
+
+      {/* Textos exatamente posicionados */}
+      <div className="absolute left-[718.5px] top-[3653px] translate-x-[-50%] w-[905px] text-center fig-ubuntu-light fig-body-23 fig-light text-smooth not-italic">
+        <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
+      </div>
+      <div className="absolute left-[718.5px] top-[3533px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
+        <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
+        <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
       </div>
     </div>
   );
@@ -1379,7 +1445,59 @@ function LogoSetima1() {
       title="Voltar ao topo"
     >
       <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 131 56">
-        <rect x="0" y="0" width="131" height="56" fill="transparent" />
+        <g id="logo setima">
+          <path d="M60.36 0V2.58L61.85 0H60.36Z" fill="#F8F8F2" id="Vector" />
+          <path d={svgPaths.p29b8e400} fill="#F8F8F2" id="Vector_2" />
+          <path d={svgPaths.p1cddd480} fill="#F8F8F2" id="Vector_3" />
+          <path d={svgPaths.p150bb300} fill="#F8F8F2" id="Vector_4" />
+          <path d={svgPaths.pce10580} fill="#F8F8F2" id="Vector_5" />
+          <path d={svgPaths.pc905f70} fill="#F8F8F2" id="Vector_6" />
+          <path d={svgPaths.p3d49680} fill="#F8F8F2" id="Vector_7" />
+          <path d={svgPaths.p30c6aa00} fill="#F8F8F2" id="Vector_8" />
+          <path d={svgPaths.p51f1a00} fill="#F8F8F2" id="Vector_10" />
+          <path d={svgPaths.p2cb69700} fill="#F8F8F2" id="Vector_11" />
+          <path d={svgPaths.p1fcd5800} fill="#F8F8F2" id="Vector_12" />
+          <path d={svgPaths.p1ded8980} fill="#F8F8F2" id="Vector_13" />
+          <path d={svgPaths.pd5bc600} fill="#F8F8F2" id="Vector_14" />
+          <path d={svgPaths.p1d3a92f0} fill="#F8F8F2" id="Vector_15" />
+          <path d={svgPaths.p13cce480} fill="#F8F8F2" id="Vector_16" />
+          <path d={svgPaths.p1cb04100} fill="#F8F8F2" id="Vector_17" />
+          <path d={svgPaths.p161a1d00} fill="#F8F8F2" id="Vector_18" />
+          <path d={svgPaths.p351136f0} fill="#F8F8F2" id="Vector_19" />
+          <path d={svgPaths.p2e21dd00} fill="#F8F8F2" id="Vector_20" />
+          <path d={svgPaths.p3ed2a500} fill="#F8F8F2" id="Vector_21" />
+          <path d={svgPaths.p27d43c00} fill="#F8F8F2" id="Vector_22" />
+          <path d={svgPaths.p1ffcc000} fill="#F8F8F2" id="Vector_23" />
+          <path d={svgPaths.p3b4e4100} fill="#F8F8F2" id="Vector_24" />
+          <path d={svgPaths.p39d87180} fill="#F8F8F2" id="Vector_25" />
+          <path d={svgPaths.p7a21f00} fill="#F8F8F2" id="Vector_26" />
+          <path d={svgPaths.pb51c280} fill="#F8F8F2" id="Vector_27" />
+          <path d={svgPaths.p26f4df80} fill="#F8F8F2" id="Vector_28" />
+          <path d={svgPaths.p3a1e9980} fill="#F8F8F2" id="Vector_29" />
+          <path d={svgPaths.pa41cf00} fill="#F8F8F2" id="Vector_30" />
+          <path d={svgPaths.p2f02f600} fill="#F8F8F2" id="Vector_31" />
+          <path d={svgPaths.p24de2400} fill="#F8F8F2" id="Vector_32" />
+          <path d={svgPaths.p1e84ff00} fill="#F8F8F2" id="Vector_33" />
+          <path d={svgPaths.p3698e200} fill="#F8F8F2" id="Vector_34" />
+          <path d={svgPaths.p15bfd180} fill="#F8F8F2" id="Vector_35" />
+          <path d={svgPaths.p2a930400} fill="#F8F8F2" id="Vector_36" />
+          <path d={svgPaths.p1871cc80} fill="#F8F8F2" id="Vector_37" />
+          <path d={svgPaths.p24c88680} fill="#F8F8F2" id="Vector_38" />
+          <path d={svgPaths.p32017280} fill="#F8F8F2" id="Vector_39" />
+          <path d={svgPaths.p651500} fill="#F8F8F2" id="Vector_40" />
+          <path d={svgPaths.p2b0b4d80} fill="#F8F8F2" id="Vector_41" />
+          <path d={svgPaths.p8daaf00} fill="#F8F8F2" id="Vector_42" />
+          <path d={svgPaths.p25430600} fill="#F8F8F2" id="Vector_43" />
+          <path d={svgPaths.p31de7f80} fill="#F8F8F2" id="Vector_44" />
+          <path d={svgPaths.p1daeec00} fill="#F8F8F2" id="Vector_45" />
+          <path d={svgPaths.p247a2400} fill="#F8F8F2" id="Vector_46" />
+          <path d={svgPaths.p3b6a4780} fill="#F8F8F2" id="Vector_47" />
+          <path d={svgPaths.p3885300} fill="#F8F8F2" id="Vector_48" />
+          <path d={svgPaths.p3fa00cf2} fill="#F8F8F2" id="Vector_49" />
+          <path d={svgPaths.p20f83700} fill="#F8F8F2" id="Vector_50" />
+          <path d={svgPaths.p25aa34c0} fill="#F8F8F2" id="Vector_51" />
+          <path d={svgPaths.p82d0ba8} fill="#F8F8F2" id="Vector_52" />
+        </g>
       </svg>
     </button>
   );
