@@ -1,9 +1,11 @@
-import InteractiveDesktop from "./components/InteractiveDesktop";
 import InteractiveMobile from "./components/InteractiveMobile";
-import DesktopScaleContainer from "./components/motion/DesktopScaleContainer";
 import MobileFigmaDebug from "./components/figma/MobileFigmaDebug";
 import MobileFigmaFixed from "./components/figma/MobileFigmaFixed";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, Suspense, lazy } from "react";
+
+// Lazy-load dos componentes de Desktop para evitar parse em tempo de inicialização
+const InteractiveDesktop = lazy(() => import("./components/InteractiveDesktop"));
+const DesktopScaleContainer = lazy(() => import("./components/motion/DesktopScaleContainer"));
 
 export default function App() {
   const [isMobile, setIsMobile] = useState(false);
@@ -105,9 +107,11 @@ export default function App() {
           Desktop render OK — try ?desktop para forçar modo desktop
         </div>
       )}
-      <DesktopScaleContainer>
-        {({ scale }) => <InteractiveDesktop headerScale={scale} />}
-      </DesktopScaleContainer>
+      <Suspense fallback={null}>
+        <DesktopScaleContainer>
+          {({ scale }) => <InteractiveDesktop headerScale={scale} />}
+        </DesktopScaleContainer>
+      </Suspense>
     </>
   );
 }

@@ -7,17 +7,6 @@ import heroImg3 from '../../assets/012759f13f56517f1097b1fc4887ce210daa0750.png'
 import heroImg4 from '../../assets/8fca1f53bb6c91dfa7bb390285d6e25c4fdabb30.png';
 import heroImg5 from '../../assets/982534bd46b9e568691c0e5652a818ec5954a309.png';
 
-// Importando os ícones do Figma
-import LogoSetimaIcon from '../icons/LogoSetimaIcon';
-import ArrowRightIcon from '../icons/ArrowRightIcon';
-import PlusIcon from '../icons/PlusIcon';
-import SocialMediaIcon from '../icons/SocialMediaIcon';
-import ImageGridIcon from '../icons/ImageGridIcon';
-
-// Importando componentes
-import FluxoNGISection from '../FluxoNGISection';
-import { getFullBleedStyles, getResponsiveContainer, getResponsivePadding } from '../ResponsiveUtils';
-
 export default function LandingPageSetima3DMobile() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const heroImages = [heroImg1, heroImg2, heroImg3, heroImg4, heroImg5];
@@ -34,7 +23,7 @@ export default function LandingPageSetima3DMobile() {
     <div 
       data-figma-node="1:75" 
       style={{
-        ...getResponsiveContainer('402px'),
+        width: '402px',
         minHeight: '5714px',
         backgroundColor: '#FFFFFF',
         position: 'relative',
@@ -42,176 +31,143 @@ export default function LandingPageSetima3DMobile() {
       }}
     >
       {/* Header Fixo */}
-    <div style={{
+      <div style={{
         position: 'fixed',
         top: 0,
         left: 0,
-        width: '100%',
+        width: '402px',
         height: '87px',
+        background: 'linear-gradient(180deg, rgba(19, 23, 26, 0.4) 0%, rgba(19, 23, 26, 0) 100%)',
         zIndex: 1000,
         display: 'flex',
-        justifyContent: 'center',
-        background: 'linear-gradient(180deg, rgba(19, 23, 26, 0.4) 0%, rgba(19, 23, 26, 0) 100%)'
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '0 24px'
       }}>
+        {/* Logo Sétima */}
         <div style={{
-          width: '100%',
-          maxWidth: '402px',
+          color: '#F8F8F2',
+          fontSize: '16px',
+          fontWeight: 700,
+          letterSpacing: '2px'
+        }}>
+          SÉTIMA
+        </div>
+
+        {/* CTA Button */}
+        <div style={{
+          backgroundColor: '#00F5B9',
+          borderRadius: '30px',
+          padding: '8px 16px',
+          fontSize: '10px',
+          fontWeight: 400,
+          color: '#000',
+          cursor: 'pointer',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
-      padding: '0 clamp(16px, 6vw, 24px)'
+          gap: '6px'
         }}>
-          {/* Logo Sétima */}
-          <LogoSetimaIcon width={39} height={35} color="#FFFFFF" />
-
-          {/* CTA Button */}
-          <div style={{
-            backgroundColor: '#00F5B9',
-            borderRadius: '30px',
-            padding: '8px 16px',
-            fontSize: '10px',
-            fontWeight: 400,
-            color: '#000',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px'
-          }}>
-            MARQUE UM CALL
-            <ArrowRightIcon width={15} height={8} color="#000000" />
-          </div>
+          MARQUE UM CALL
+          <svg width="12" height="6" viewBox="0 0 16 8" fill="none">
+            <path d="M12.01 3.5L8.5 0M12.01 3.5L8.5 7M12.01 3.5H0" stroke="#131A1A"/>
+          </svg>
         </div>
       </div>
 
-      {/* Bloco 01 - Hero (full-bleed, sem barras laterais) */}
-      <div
-        style={{
-          ...getFullBleedStyles(),
-          height: '874px',
-          position: 'relative'
-        }}
-      >
+      {/* Bloco 01 - Hero */}
+      <div style={{
+        width: '402px',
+        height: '874px',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
         {/* Background Hero com animação */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: `url(${heroImages[currentImageIndex]})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            transition: 'opacity 400ms ease-in-out'
-          }}
-        />
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: `url(${heroImages[currentImageIndex]})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          transition: 'background-image 0.5s ease-in-out'
+        }} />
 
-        {/* Top gradient (Figma) */}
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '175px',
-            background:
-              'linear-gradient(180deg, rgba(19, 23, 26, 0.4) 0%, rgba(19, 23, 26, 0) 100%)'
-          }}
-        />
+        {/* Gradient overlay */}
+        <div style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          height: '173px',
+          background: 'linear-gradient(180deg, rgba(19, 23, 26, 0) 0%, rgba(19, 23, 26, 0.4) 100%)'
+        }} />
 
-        {/* Bottom gradient (Figma) */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            width: '100%',
-            height: '173px',
-            background:
-              'linear-gradient(180deg, rgba(19, 23, 26, 0) 0%, rgba(19, 23, 26, 0.4) 100%)'
-          }}
-        />
-
-        {/* Content (Figma spacing/line-height) */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '80px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            color: '#FFFFFF',
-            zIndex: 2,
-            width: '100%',
-            maxWidth: '402px',
-            padding: `0 ${getResponsivePadding()}`
-          }}
-        >
-          <div
-            style={{
-              fontSize: '15px',
-              fontWeight: 500,
-              lineHeight: '17.235px',
-              letterSpacing: '0px',
-              marginBottom: '20px',
-              textAlign: 'left'
-            }}
-          >
+        {/* Content */}
+        <div style={{
+          position: 'absolute',
+          bottom: '80px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          textAlign: 'center',
+          color: '#FFFFFF',
+          zIndex: 2
+        }}>
+          <div style={{
+            fontSize: '15px',
+            fontWeight: 500,
+            marginBottom: '20px',
+            letterSpacing: '0px',
+            lineHeight: '17.2px'
+          }}>
             SOMOS UMA CONTENT-TECH
           </div>
-
-          <h1
-            style={{
-              fontSize: '30px',
-              fontWeight: 300,
-              lineHeight: '32.312px',
-              letterSpacing: '0px',
-              margin: '0 0 30px 0',
-              maxWidth: '296px',
-              textAlign: 'left'
-            }}
-          >
+          
+          <h1 style={{
+            fontSize: '30px',
+            fontWeight: 300,
+            lineHeight: '32.3px',
+            margin: '0 0 40px 0',
+            maxWidth: '296px'
+          }}>
             A NOVA MATEMÁTICA<br />
             DO MARKETING:<br />
             MENOS CUSTO,<br />
             MAIS IMPACTO.
           </h1>
 
-          <div
-            style={{
-              backgroundColor: '#00F5B9',
-              borderRadius: '30px',
-              padding: '12px 32px',
-              fontSize: '12px',
-              lineHeight: '13.788px',
-              fontWeight: 400,
-              color: '#000',
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '12px'
-            }}
-          >
+          <div style={{
+            backgroundColor: '#00F5B9',
+            borderRadius: '30px',
+            padding: '12px 32px',
+            fontSize: '12px',
+            fontWeight: 400,
+            color: '#000',
+            cursor: 'pointer',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px'
+          }}>
             MARQUE UM CALL E SAIBA COMO FUNCIONA
-            <ArrowRightIcon width={16} height={8} color="#000000" />
+            <svg width="16" height="8" viewBox="0 0 16 8" fill="none">
+              <path d="M12.01 3.5L8.5 0M12.01 3.5L8.5 7M12.01 3.5H0" stroke="#131A1A"/>
+            </svg>
           </div>
         </div>
       </div>
 
       {/* Bloco 02 - O CGI AGORA É NGI */}
       <div style={{
-        position: 'relative',
-        width: '100%',
+        width: '402px',
         minHeight: '774px',
+        backgroundColor: '#131A1A',
         padding: '88px 24px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         textAlign: 'center'
       }}>
-        {/* full-bleed background color */}
-        <div aria-hidden style={{
-          ...getFullBleedStyles(),
-          position: 'absolute',
-          inset: 0,
-          backgroundColor: '#131A1A'
-        }} />
         <h2 style={{
           color: '#FFFFFF',
           fontSize: '30px',
@@ -237,8 +193,7 @@ export default function LandingPageSetima3DMobile() {
 
         {/* Video placeholder */}
         <div style={{
-          width: '100%',
-          maxWidth: '355px',
+          width: '355px',
           height: '199px',
           backgroundColor: '#D9D9D9',
           borderRadius: '12px',
@@ -274,22 +229,15 @@ export default function LandingPageSetima3DMobile() {
 
       {/* Bloco 03 - O PODER DAS EXPERIÊNCIAS INTERATIVAS EM 3D */}
       <div style={{
-        position: 'relative',
-        width: '100%',
+        width: '402px',
         minHeight: '674px',
+        backgroundColor: '#F8F8F2',
         padding: '86px 24px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         textAlign: 'center'
       }}>
-        {/* full-bleed background color */}
-        <div aria-hidden style={{
-          ...getFullBleedStyles(),
-          position: 'absolute',
-          inset: 0,
-          backgroundColor: '#F8F8F2'
-        }} />
         <h2 style={{
           color: '#131A1A',
           fontSize: '30px',
@@ -304,8 +252,7 @@ export default function LandingPageSetima3DMobile() {
 
         {/* Interactive 3D demo */}
         <div style={{
-          width: '100%',
-          maxWidth: '352px',
+          width: '352px',
           height: '176px',
           backgroundColor: '#D9D9D9',
           borderRadius: '12px',
@@ -335,25 +282,18 @@ export default function LandingPageSetima3DMobile() {
 
       {/* Bloco 04 - UM ASSET, INFINITAS POSSIBILIDADES */}
       <div style={{
-        position: 'relative',
-        width: '100%',
+        width: '402px',
         minHeight: '1136px',
+        backgroundColor: '#131A1A',
         padding: '88px 24px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         textAlign: 'center'
       }}>
-        {/* full-bleed background color */}
-        <div aria-hidden style={{
-          ...getFullBleedStyles(),
-          position: 'absolute',
-          inset: 0,
-          backgroundColor: '#131A1A'
-        }} />
         {/* Main hero image */}
         <div style={{
-          width: '100%',
+          width: '402px',
           height: '536px',
           backgroundImage: `url(${heroImg2})`,
           backgroundSize: 'cover',
@@ -378,12 +318,19 @@ export default function LandingPageSetima3DMobile() {
 
         {/* Gallery grid */}
         <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          marginBottom: '40px',
-          width: '100%'
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 74px)',
+          gap: '19px',
+          marginBottom: '40px'
         }}>
-          <ImageGridIcon width={353} height={167} color="#D9D9D9" />
+          {[...Array(8)].map((_, i) => (
+            <div key={i} style={{
+              width: '74px',
+              height: '74px',
+              backgroundColor: '#D9D9D9',
+              borderRadius: '4px'
+            }} />
+          ))}
         </div>
 
         <p style={{
@@ -400,22 +347,15 @@ export default function LandingPageSetima3DMobile() {
 
       {/* Bloco 05 - MAIS DE 60 PROJETOS EM 2025 */}
       <div style={{
-        position: 'relative',
-        width: '100%',
+        width: '402px',
         minHeight: '448px',
+        backgroundColor: '#F8F8F2',
         padding: '43px 24px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         textAlign: 'center'
       }}>
-        {/* full-bleed background color */}
-        <div aria-hidden style={{
-          ...getFullBleedStyles(),
-          position: 'absolute',
-          inset: 0,
-          backgroundColor: '#F8F8F2'
-        }} />
         <h2 style={{
           color: '#131A1A',
           fontSize: '30px',
@@ -442,22 +382,77 @@ export default function LandingPageSetima3DMobile() {
       </div>
 
       {/* Bloco 06 - O FLUXO NGI */}
-      <FluxoNGISection />
+      <div style={{
+        width: '402px',
+        minHeight: '836px',
+        backgroundColor: '#131A1A',
+        padding: '71px 24px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+        position: 'relative'
+      }}>
+        {/* Background image */}
+        <div style={{
+          position: 'absolute',
+          top: '250px',
+          left: '-183px',
+          width: '898px',
+          height: '506px',
+          backgroundImage: 'linear-gradient(135deg, #00F5B9 0%, #131A1A 100%)',
+          opacity: 0.3
+        }} />
+
+        <h2 style={{
+          color: '#FFFFFF',
+          fontSize: '30px',
+          fontWeight: 300,
+          lineHeight: '34.5px',
+          margin: '0 0 40px 0',
+          maxWidth: '354px',
+          position: 'relative',
+          zIndex: 2
+        }}>
+          O FLUXO NGI: DA ESTRATÉGIA À PRODUÇÃO, CRIATIVIDADE E TÉCNICA ACELERADAS PELA IA.
+        </h2>
+
+        <div style={{
+          position: 'relative',
+          zIndex: 2,
+          marginTop: '200px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '20px'
+        }}>
+          <div style={{
+            color: '#FFFFFF',
+            fontSize: '18px',
+            fontWeight: 700,
+            textAlign: 'center'
+          }}>+ RÁPIDO</div>
+          <div style={{
+            color: '#FFFFFF',
+            fontSize: '18px',
+            fontWeight: 700,
+            textAlign: 'center'
+          }}>+ ESCALÁVEL</div>
+          <div style={{
+            color: '#FFFFFF',
+            fontSize: '18px',
+            fontWeight: 700,
+            textAlign: 'center'
+          }}>+ IMPACTANTE</div>
+        </div>
+      </div>
 
       {/* Bloco 07 - DÚVIDAS FREQUENTES */}
       <div style={{
-        position: 'relative',
-        width: '100%',
+        width: '402px',
         minHeight: '782px',
+        backgroundColor: '#F8F8F2',
         padding: '78px 22px 10px 22px'
       }}>
-        {/* full-bleed background color */}
-        <div aria-hidden style={{
-          ...getFullBleedStyles(),
-          position: 'absolute',
-          inset: 0,
-          backgroundColor: '#F8F8F2'
-        }} />
         <h2 style={{
           color: '#131A1A',
           fontSize: '30px',
@@ -475,14 +470,7 @@ export default function LandingPageSetima3DMobile() {
           flexDirection: 'column',
           gap: '0'
         }}>
-          {[
-            'O que é uma content-tech?',
-            'Como a IA pode ajudar na produção de conteúdo?',
-            'Qual é a diferença entre CGI e NGI?',
-            'Como vocês garantem a qualidade do conteúdo produzido?',
-            'Quais tipos de projeto vocês atendem?',
-            'Como funciona o processo de trabalho?'
-          ].map((question, i) => (
+          {[...Array(6)].map((_, i) => (
             <div key={i} style={{
               borderBottom: '1px solid #000',
               padding: '12px 0'
@@ -498,9 +486,30 @@ export default function LandingPageSetima3DMobile() {
                   fontWeight: 700,
                   lineHeight: '23px'
                 }}>
-                  {question}
+                  O que é uma content-tech?
                 </span>
-                <PlusIcon width={18} height={18} color="#000000" />
+                <div style={{
+                  width: '18px',
+                  height: '18px',
+                  position: 'relative'
+                }}>
+                  <div style={{
+                    position: 'absolute',
+                    top: '8px',
+                    left: '0',
+                    width: '18px',
+                    height: '2px',
+                    backgroundColor: '#000'
+                  }} />
+                  <div style={{
+                    position: 'absolute',
+                    top: '0',
+                    left: '8px',
+                    width: '2px',
+                    height: '18px',
+                    backgroundColor: '#000'
+                  }} />
+                </div>
               </div>
             </div>
           ))}
@@ -509,9 +518,9 @@ export default function LandingPageSetima3DMobile() {
 
       {/* Bloco 08 - Footer */}
       <div style={{
-        position: 'relative',
-        width: '100%',
+        width: '402px',
         height: '200px',
+        backgroundColor: '#131A1A',
         padding: '24px',
         display: 'flex',
         flexDirection: 'column',
@@ -519,23 +528,63 @@ export default function LandingPageSetima3DMobile() {
         justifyContent: 'center',
         textAlign: 'center'
       }}>
-        {/* full-bleed background color */}
-        <div aria-hidden style={{
-          ...getFullBleedStyles(),
-          position: 'absolute',
-          inset: 0,
-          backgroundColor: '#131A1A'
-        }} />
-        {/* Logo Sétima */}
-        <LogoSetimaIcon width={137} height={58} color="#F8F8F2" style={{ marginBottom: '20px' }} />
+        {/* Logo Sétima Real */}
+        <div style={{
+          width: '137px',
+          height: '58px',
+          marginBottom: '20px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <svg width="137" height="58" viewBox="0 0 137 58" fill="none">
+            <path d="M31 0C31 12.344 31 12.344 31 12.344" fill="#F8F8F2"/>
+            <path d="M32 0C32 12.344 32 12.344 32 12.344" fill="#F8F8F2"/>
+            <path d="M33 0C33 12.344 33 12.344 33 12.344" fill="#F8F8F2"/>
+            <path d="M34 0C34 12.344 34 12.344 34 12.344" fill="#F8F8F2"/>
+            <path d="M35 0C35 12.344 35 12.344 35 12.344" fill="#F8F8F2"/>
+            <path d="M60 20C60 25.401 60 25.401 60 25.401" fill="#F8F8F2"/>
+            <text x="10" y="35" fill="#F8F8F2" fontSize="12" fontFamily="Ubuntu">SÉTIMA</text>
+          </svg>
+        </div>
 
         {/* Redes sociais */}
         <div style={{
           display: 'flex',
-          justifyContent: 'center',
+          gap: '67px',
           marginBottom: '20px'
         }}>
-          <SocialMediaIcon width={116} height={49} color="#F8F8F2" />
+          <div style={{
+            width: '49px',
+            height: '49px',
+            borderRadius: '12px',
+            backgroundColor: 'rgba(248, 248, 242, 0.1)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <path d="M7.5 2.5h11c2.75 0 5 2.25 5 5v11c0 2.75-2.25 5-5 5h-11c-2.75 0-5-2.25-5-5v-11c0-2.75 2.25-5 5-5z" stroke="#F8F8F2" strokeWidth="2"/>
+              <circle cx="13" cy="13" r="4" stroke="#F8F8F2" strokeWidth="2"/>
+              <circle cx="19" cy="7" r="1" fill="#F8F8F2"/>
+            </svg>
+          </div>
+          
+          <div style={{
+            width: '49px',
+            height: '49px',
+            borderRadius: '12px',
+            backgroundColor: 'rgba(248, 248, 242, 0.1)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+              <path d="M20.5 7.5h-15v11h15v-11z" stroke="#F8F8F2" strokeWidth="2"/>
+              <path d="M7.5 10.5v-3h4v13h-4v-10z" fill="#F8F8F2"/>
+              <path d="M14.5 10.5c0-1 0.8-2 2-2s2 1 2 2v7h-4v-7z" fill="#F8F8F2"/>
+            </svg>
+          </div>
         </div>
 
         {/* Copyright */}

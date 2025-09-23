@@ -3,22 +3,30 @@ import React from 'react';
 export default function FluxoNGISection() {
   return (
     <div style={{
+      position: 'relative',
       width: '100%',
       minHeight: '836px',
-      backgroundColor: '#131A1A',
       padding: '71px 24px',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
-      position: 'relative'
+      alignItems: 'center'
     }}>
+      {/* full-bleed background color */}
+      <div aria-hidden style={{
+        position: 'absolute',
+        inset: 0,
+        width: '100vw',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        backgroundColor: '#131A1A'
+      }} />
       {/* Background gradient effect */}
       <div style={{
         position: 'absolute',
         top: '250px',
         left: '50%',
         transform: 'translateX(-50%)',
-        width: '200%',
+        width: '120vw',
         height: '506px',
         background: 'linear-gradient(135deg, #00F5B9 0%, #131A1A 100%)',
         opacity: 0.1,
