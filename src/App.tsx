@@ -11,13 +11,30 @@ export default function App() {
     return p.has("debugui") || p.has("debugUI");
   }, []);
 
+  const forceDesktop = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.has("desktop");
+  }, []);
+
+  const forceMobile = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.has("mobile");
+  }, []);
+
   const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined);
   React.useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 480);
+    const compute = () => {
+      if (forceDesktop) return false;
+      if (forceMobile) return true;
+      return window.innerWidth <= 480;
+    };
+    const check = () => setIsMobile(compute());
     check();
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);
-  }, []);
+  }, [forceDesktop, forceMobile]);
 
   if (isMobile === undefined) return null;
 
@@ -43,7 +60,7 @@ export default function App() {
             pointerEvents: "none",
           }}
         >
-          React render OK — try ?desktop para forçar modo desktop
+          React render OK — use ?mobile para forçar mobile ou ?desktop para forçar desktop
         </div>
       )}
       <DesktopScaleContainer>
