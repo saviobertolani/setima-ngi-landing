@@ -4,7 +4,7 @@ import MobileFigmaFixed from "./components/figma/MobileFigmaFixed";
 import { useMemo, useState, useEffect, Suspense, lazy } from "react";
 
 // Lazy-load dos componentes de Desktop para evitar parse em tempo de inicialização
-const InteractiveDesktop = lazy(() => import("./components/InteractiveDesktop"));
+const InteractiveDesktop = lazy(() => import("./components/InteractiveDesktop.stub"));
 const DesktopScaleContainer = lazy(() => import("./components/motion/DesktopScaleContainer"));
 
 export default function App() {
