@@ -1,10 +1,16 @@
 node_modules
 
+<<<<<<< HEAD
 # macOS system files
 .DS_Store
 
+# Ignore build artifacts
+/build
+/build
+=======
 # Ignore heavy chatmodes
 .github/chatmodes/
 
-# Ignore build artifacts (local only; CI publica via Actions)
-/build
+# macOS system files
+.DS_Store
+>>>>>>> wip/2025-09-23-mobile-ngi-fixes
