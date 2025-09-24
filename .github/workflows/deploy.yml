@@ -20,15 +20,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Histórico completo evita falhas quando alguma etapa usa git (exit 128 em clones rasos)
+          fetch-depth: 0
+          # Não há submódulos neste projeto; mantém simples
+          submodules: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
+          # Garante que o cache use apenas o lockfile da raiz
+          cache-dependency-path: package-lock.json
+
+      - name: Git diagnostic
+        run: |
+          git --version
+          git rev-parse --is-inside-work-tree || true
+          git status --porcelain || true
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --no-audit --no-fund
 
       - name: Build
         run: |
