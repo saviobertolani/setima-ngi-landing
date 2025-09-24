@@ -9,3 +9,8 @@ html, body {
   /* Avoid any accidental horizontal scroll */
   overflow-x: hidden;
 }
+
+/* Header safety: never clip CTA or absolute children */
+.header-container {
+  overflow: visible !important;
+}

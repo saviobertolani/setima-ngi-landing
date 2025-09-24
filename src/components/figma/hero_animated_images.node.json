@@ -1,0 +1,3319 @@
+{
+  "id": "1:271",
+  "name": "back mobile",
+  "type": "COMPONENT_SET",
+  "scrollBehavior": "SCROLLS",
+  "componentPropertyDefinitions": {
+    "Propriedade 1": {
+      "type": "VARIANT",
+      "defaultValue": "Frame 2",
+      "variantOptions": [
+        "Frame 2",
+        "Frame 3",
+        "Frame 4",
+        "Frame 5",
+        "Frame 6"
+      ]
+    }
+  },
+  "children": [
+    {
+      "id": "1:270",
+      "name": "Propriedade 1=Frame 2",
+      "type": "COMPONENT",
+      "scrollBehavior": "SCROLLS",
+      "children": [
+        {
+          "id": "1:196",
+          "name": "Group 3",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "1:177",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:175",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 5989,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:176",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "705cc0dc55d0d5a68388c772e2b6117b6c99cd0f"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 5430,
+                    "y": 3524,
+                    "width": 1577,
+                    "height": 1008
+                  },
+                  "absoluteRenderBounds": {
+                    "x": 5989,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 2752,
+                    "y": 1760
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 5989,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": {
+                "x": 5989,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:178",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:179",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6421,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:180",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "363d73ec33595dde3285b1f284098774998f5dac"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 5861,
+                    "y": 3569,
+                    "width": 1425,
+                    "height": 910.8433837890625
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1425,
+                    "y": 910.8433837890625
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 6421,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:181",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:182",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6853,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:183",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "012759f13f56517f1097b1fc4887ce210daa0750"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6272,
+                    "y": 3564,
+                    "width": 1418.999755859375,
+                    "height": 907.0081176757812
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1418.999755859375,
+                    "y": 907.0081176757812
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 6853,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:190",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:191",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7285,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:192",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "8fca1f53bb6c91dfa7bb390285d6e25c4fdabb30"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7004,
+                    "y": 3564,
+                    "width": 1418.999755859375,
+                    "height": 907.0081176757812
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1418.999755859375,
+                    "y": 907.0081176757812
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 7285,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:193",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:194",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7717,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:195",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "982534bd46b9e568691c0e5652a818ec5954a309"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7088,
+                    "y": 3564,
+                    "width": 1418.999755859375,
+                    "height": 907.0081176757812
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1418.999755859375,
+                    "y": 907.0081176757812
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 7717,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+          },
+          "absoluteBoundingBox": {
+            "x": 5989,
+            "y": 3582,
+            "width": 2130,
+            "height": 874
+          },
+          "absoluteRenderBounds": {
+            "x": 5989,
+            "y": 3582,
+            "width": 402,
+            "height": 874
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        }
+      ],
+      "blendMode": "PASS_THROUGH",
+      "clipsContent": true,
+      "background": [],
+      "fills": [],
+      "strokes": [],
+      "strokeWeight": 1,
+      "strokeAlign": "INSIDE",
+      "backgroundColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      },
+      "absoluteBoundingBox": {
+        "x": 5989,
+        "y": 3582,
+        "width": 402,
+        "height": 874
+      },
+      "absoluteRenderBounds": {
+        "x": 5989,
+        "y": 3582,
+        "width": 402,
+        "height": 874
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "effects": [],
+      "transitionNodeID": "1:269",
+      "transitionDuration": 500,
+      "transitionEasing": "EASE_OUT",
+      "interactions": [
+        {
+          "trigger": {
+            "type": "AFTER_TIMEOUT",
+            "timeout": 10
+          },
+          "actions": [
+            {
+              "type": "NODE",
+              "destinationId": "1:269",
+              "navigation": "CHANGE_TO",
+              "transition": {
+                "type": "SMART_ANIMATE",
+                "easing": {
+                  "type": "EASE_OUT"
+                },
+                "duration": 0.5
+              },
+              "resetVideoPosition": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1:269",
+      "name": "Propriedade 1=Frame 3",
+      "type": "COMPONENT",
+      "scrollBehavior": "SCROLLS",
+      "children": [
+        {
+          "id": "1:199",
+          "name": "Group 3",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "1:200",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:201",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 5981,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:202",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "705cc0dc55d0d5a68388c772e2b6117b6c99cd0f"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 5422,
+                    "y": 3524,
+                    "width": 1577,
+                    "height": 1008
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 2752,
+                    "y": 1760
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 5981,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:203",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:204",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6413,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:205",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "363d73ec33595dde3285b1f284098774998f5dac"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 5853,
+                    "y": 3569,
+                    "width": 1425,
+                    "height": 910.8433837890625
+                  },
+                  "absoluteRenderBounds": {
+                    "x": 6413,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1425,
+                    "y": 910.8433837890625
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 6413,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": {
+                "x": 6413,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:206",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:207",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6845,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:208",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "012759f13f56517f1097b1fc4887ce210daa0750"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6264,
+                    "y": 3564,
+                    "width": 1418.999755859375,
+                    "height": 907.0081176757812
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1418.999755859375,
+                    "y": 907.0081176757812
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 6845,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:209",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:210",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7277,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:211",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "8fca1f53bb6c91dfa7bb390285d6e25c4fdabb30"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6996,
+                    "y": 3564,
+                    "width": 1418.999755859375,
+                    "height": 907.0081176757812
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1418.999755859375,
+                    "y": 907.0081176757812
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 7277,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:212",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:213",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7709,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:214",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "982534bd46b9e568691c0e5652a818ec5954a309"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7080,
+                    "y": 3564,
+                    "width": 1418.999755859375,
+                    "height": 907.0081176757812
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1418.999755859375,
+                    "y": 907.0081176757812
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 7709,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+          },
+          "absoluteBoundingBox": {
+            "x": 5981,
+            "y": 3582,
+            "width": 2130,
+            "height": 874
+          },
+          "absoluteRenderBounds": {
+            "x": 6413,
+            "y": 3582,
+            "width": 402,
+            "height": 874
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        }
+      ],
+      "blendMode": "PASS_THROUGH",
+      "clipsContent": true,
+      "background": [],
+      "fills": [],
+      "strokes": [],
+      "strokeWeight": 1,
+      "strokeAlign": "INSIDE",
+      "backgroundColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      },
+      "absoluteBoundingBox": {
+        "x": 6413,
+        "y": 3582,
+        "width": 402,
+        "height": 874
+      },
+      "absoluteRenderBounds": {
+        "x": 6413,
+        "y": 3582,
+        "width": 402,
+        "height": 874
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "effects": [],
+      "transitionNodeID": "1:268",
+      "transitionDuration": 500,
+      "transitionEasing": "EASE_OUT",
+      "interactions": [
+        {
+          "trigger": {
+            "type": "AFTER_TIMEOUT",
+            "timeout": 10
+          },
+          "actions": [
+            {
+              "type": "NODE",
+              "destinationId": "1:268",
+              "navigation": "CHANGE_TO",
+              "transition": {
+                "type": "SMART_ANIMATE",
+                "easing": {
+                  "type": "EASE_OUT"
+                },
+                "duration": 0.5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1:268",
+      "name": "Propriedade 1=Frame 4",
+      "type": "COMPONENT",
+      "scrollBehavior": "SCROLLS",
+      "children": [
+        {
+          "id": "1:216",
+          "name": "Group 3",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "1:217",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:218",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 5973,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:219",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "705cc0dc55d0d5a68388c772e2b6117b6c99cd0f"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 5414,
+                    "y": 3524,
+                    "width": 1577,
+                    "height": 1008
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 2752,
+                    "y": 1760
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 5973,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:220",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:221",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6405,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:222",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "363d73ec33595dde3285b1f284098774998f5dac"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 5845,
+                    "y": 3569,
+                    "width": 1425,
+                    "height": 910.8433837890625
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1425,
+                    "y": 910.8433837890625
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 6405,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:223",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:224",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6837,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:225",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "012759f13f56517f1097b1fc4887ce210daa0750"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6256,
+                    "y": 3564,
+                    "width": 1418.999755859375,
+                    "height": 907.0081176757812
+                  },
+                  "absoluteRenderBounds": {
+                    "x": 6837,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1418.999755859375,
+                    "y": 907.0081176757812
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 6837,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": {
+                "x": 6837,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:226",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:227",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7269,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:228",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "8fca1f53bb6c91dfa7bb390285d6e25c4fdabb30"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6988,
+                    "y": 3564,
+                    "width": 1418.999755859375,
+                    "height": 907.0081176757812
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1418.999755859375,
+                    "y": 907.0081176757812
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 7269,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:229",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:230",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7701,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:231",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "982534bd46b9e568691c0e5652a818ec5954a309"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7072,
+                    "y": 3564,
+                    "width": 1418.999755859375,
+                    "height": 907.0081176757812
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1418.999755859375,
+                    "y": 907.0081176757812
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 7701,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+          },
+          "absoluteBoundingBox": {
+            "x": 5973,
+            "y": 3582,
+            "width": 2130,
+            "height": 874
+          },
+          "absoluteRenderBounds": {
+            "x": 6837,
+            "y": 3582,
+            "width": 402,
+            "height": 874
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        }
+      ],
+      "blendMode": "PASS_THROUGH",
+      "clipsContent": true,
+      "background": [],
+      "fills": [],
+      "strokes": [],
+      "strokeWeight": 1,
+      "strokeAlign": "INSIDE",
+      "backgroundColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      },
+      "absoluteBoundingBox": {
+        "x": 6837,
+        "y": 3582,
+        "width": 402,
+        "height": 874
+      },
+      "absoluteRenderBounds": {
+        "x": 6837,
+        "y": 3582,
+        "width": 402,
+        "height": 874
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "effects": [],
+      "transitionNodeID": "1:266",
+      "transitionDuration": 500,
+      "transitionEasing": "EASE_OUT",
+      "interactions": [
+        {
+          "trigger": {
+            "type": "AFTER_TIMEOUT",
+            "timeout": 10
+          },
+          "actions": [
+            {
+              "type": "NODE",
+              "destinationId": "1:266",
+              "navigation": "CHANGE_TO",
+              "transition": {
+                "type": "SMART_ANIMATE",
+                "easing": {
+                  "type": "EASE_OUT"
+                },
+                "duration": 0.5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1:266",
+      "name": "Propriedade 1=Frame 5",
+      "type": "COMPONENT",
+      "scrollBehavior": "SCROLLS",
+      "children": [
+        {
+          "id": "1:233",
+          "name": "Group 3",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "1:234",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:235",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 5965,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:236",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "705cc0dc55d0d5a68388c772e2b6117b6c99cd0f"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 5406,
+                    "y": 3524,
+                    "width": 1577,
+                    "height": 1008
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 2752,
+                    "y": 1760
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 5965,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:237",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:238",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6397,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:239",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "363d73ec33595dde3285b1f284098774998f5dac"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 5837,
+                    "y": 3569,
+                    "width": 1425,
+                    "height": 910.8433837890625
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1425,
+                    "y": 910.8433837890625
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 6397,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:240",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:241",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6829,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:242",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "012759f13f56517f1097b1fc4887ce210daa0750"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6248,
+                    "y": 3564,
+                    "width": 1418.999755859375,
+                    "height": 907.0081176757812
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1418.999755859375,
+                    "y": 907.0081176757812
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 6829,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:243",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:244",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7261,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:245",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "8fca1f53bb6c91dfa7bb390285d6e25c4fdabb30"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6980,
+                    "y": 3564,
+                    "width": 1418.999755859375,
+                    "height": 907.0081176757812
+                  },
+                  "absoluteRenderBounds": {
+                    "x": 7261,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1418.999755859375,
+                    "y": 907.0081176757812
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 7261,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": {
+                "x": 7261,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:246",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:247",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7693,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:248",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "982534bd46b9e568691c0e5652a818ec5954a309"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7064,
+                    "y": 3564,
+                    "width": 1418.999755859375,
+                    "height": 907.0081176757812
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1418.999755859375,
+                    "y": 907.0081176757812
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 7693,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+          },
+          "absoluteBoundingBox": {
+            "x": 5965,
+            "y": 3582,
+            "width": 2130,
+            "height": 874
+          },
+          "absoluteRenderBounds": {
+            "x": 7261,
+            "y": 3582,
+            "width": 402,
+            "height": 874
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        }
+      ],
+      "blendMode": "PASS_THROUGH",
+      "clipsContent": true,
+      "background": [],
+      "fills": [],
+      "strokes": [],
+      "strokeWeight": 1,
+      "strokeAlign": "INSIDE",
+      "backgroundColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      },
+      "absoluteBoundingBox": {
+        "x": 7261,
+        "y": 3582,
+        "width": 402,
+        "height": 874
+      },
+      "absoluteRenderBounds": {
+        "x": 7261,
+        "y": 3582,
+        "width": 402,
+        "height": 874
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "effects": [],
+      "transitionNodeID": "1:267",
+      "transitionDuration": 500,
+      "transitionEasing": "EASE_OUT",
+      "interactions": [
+        {
+          "trigger": {
+            "type": "AFTER_TIMEOUT",
+            "timeout": 10
+          },
+          "actions": [
+            {
+              "type": "NODE",
+              "destinationId": "1:267",
+              "navigation": "CHANGE_TO",
+              "transition": {
+                "type": "SMART_ANIMATE",
+                "easing": {
+                  "type": "EASE_OUT"
+                },
+                "duration": 0.5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1:267",
+      "name": "Propriedade 1=Frame 6",
+      "type": "COMPONENT",
+      "scrollBehavior": "SCROLLS",
+      "children": [
+        {
+          "id": "1:250",
+          "name": "Group 3",
+          "type": "GROUP",
+          "scrollBehavior": "SCROLLS",
+          "children": [
+            {
+              "id": "1:251",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:252",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 5957,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:253",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "705cc0dc55d0d5a68388c772e2b6117b6c99cd0f"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 5398,
+                    "y": 3524,
+                    "width": 1577,
+                    "height": 1008
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 2752,
+                    "y": 1760
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 5957,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:254",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:255",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6389,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:256",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "363d73ec33595dde3285b1f284098774998f5dac"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 5829,
+                    "y": 3569,
+                    "width": 1425,
+                    "height": 910.8433837890625
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1425,
+                    "y": 910.8433837890625
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 6389,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:257",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:258",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6821,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:259",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "012759f13f56517f1097b1fc4887ce210daa0750"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6240,
+                    "y": 3564,
+                    "width": 1418.999755859375,
+                    "height": 907.0081176757812
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1418.999755859375,
+                    "y": 907.0081176757812
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 6821,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:260",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:261",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7253,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:262",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "8fca1f53bb6c91dfa7bb390285d6e25c4fdabb30"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 6972,
+                    "y": 3564,
+                    "width": 1418.999755859375,
+                    "height": 907.0081176757812
+                  },
+                  "absoluteRenderBounds": null,
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1418.999755859375,
+                    "y": 907.0081176757812
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 7253,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": null,
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            },
+            {
+              "id": "1:263",
+              "name": "Mask group",
+              "type": "GROUP",
+              "scrollBehavior": "SCROLLS",
+              "children": [
+                {
+                  "id": "1:264",
+                  "name": "Rectangle 18",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.8509804010391235,
+                        "g": 0.8509804010391235,
+                        "b": 0.8509804010391235,
+                        "a": 1
+                      }
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7685,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "absoluteRenderBounds": null,
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "isMask": true,
+                  "maskType": "ALPHA",
+                  "interactions": []
+                },
+                {
+                  "id": "1:265",
+                  "name": "ai_tools._Waist-up_portrait_American_shot_of_a_smiling_person_w_47b472c7-205a-4d66-bacf-38f70faa6d81 2",
+                  "type": "RECTANGLE",
+                  "scrollBehavior": "SCROLLS",
+                  "blendMode": "PASS_THROUGH",
+                  "fills": [
+                    {
+                      "blendMode": "NORMAL",
+                      "type": "IMAGE",
+                      "scaleMode": "FILL",
+                      "imageRef": "982534bd46b9e568691c0e5652a818ec5954a309"
+                    }
+                  ],
+                  "strokes": [],
+                  "strokeWeight": 1,
+                  "strokeAlign": "INSIDE",
+                  "absoluteBoundingBox": {
+                    "x": 7056,
+                    "y": 3564,
+                    "width": 1418.999755859375,
+                    "height": 907.0081176757812
+                  },
+                  "absoluteRenderBounds": {
+                    "x": 7685,
+                    "y": 3582,
+                    "width": 402,
+                    "height": 874
+                  },
+                  "preserveRatio": true,
+                  "targetAspectRatio": {
+                    "x": 1418.999755859375,
+                    "y": 907.0081176757812
+                  },
+                  "constraints": {
+                    "vertical": "TOP",
+                    "horizontal": "LEFT"
+                  },
+                  "effects": [],
+                  "interactions": []
+                }
+              ],
+              "blendMode": "PASS_THROUGH",
+              "clipsContent": false,
+              "background": [],
+              "fills": [],
+              "strokes": [],
+              "strokeWeight": 1,
+              "strokeAlign": "INSIDE",
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "absoluteBoundingBox": {
+                "x": 7685,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "absoluteRenderBounds": {
+                "x": 7685,
+                "y": 3582,
+                "width": 402,
+                "height": 874
+              },
+              "constraints": {
+                "vertical": "TOP",
+                "horizontal": "LEFT"
+              },
+              "effects": [],
+              "interactions": []
+            }
+          ],
+          "blendMode": "PASS_THROUGH",
+          "clipsContent": false,
+          "background": [],
+          "fills": [],
+          "strokes": [],
+          "strokeWeight": 1,
+          "strokeAlign": "INSIDE",
+          "backgroundColor": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+          },
+          "absoluteBoundingBox": {
+            "x": 5957,
+            "y": 3582,
+            "width": 2130,
+            "height": 874
+          },
+          "absoluteRenderBounds": {
+            "x": 7685,
+            "y": 3582,
+            "width": 402,
+            "height": 874
+          },
+          "constraints": {
+            "vertical": "TOP",
+            "horizontal": "LEFT"
+          },
+          "effects": [],
+          "interactions": []
+        }
+      ],
+      "blendMode": "PASS_THROUGH",
+      "clipsContent": true,
+      "background": [],
+      "fills": [],
+      "strokes": [],
+      "strokeWeight": 1,
+      "strokeAlign": "INSIDE",
+      "backgroundColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      },
+      "absoluteBoundingBox": {
+        "x": 7685,
+        "y": 3582,
+        "width": 402,
+        "height": 874
+      },
+      "absoluteRenderBounds": {
+        "x": 7685,
+        "y": 3582,
+        "width": 402,
+        "height": 874
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "effects": [],
+      "transitionNodeID": "1:270",
+      "transitionDuration": 500,
+      "transitionEasing": "EASE_OUT",
+      "interactions": [
+        {
+          "trigger": {
+            "type": "AFTER_TIMEOUT",
+            "timeout": 10
+          },
+          "actions": [
+            {
+              "type": "NODE",
+              "destinationId": "1:270",
+              "navigation": "CHANGE_TO",
+              "transition": {
+                "type": "SMART_ANIMATE",
+                "easing": {
+                  "type": "EASE_OUT"
+                },
+                "duration": 0.5
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "blendMode": "PASS_THROUGH",
+  "clipsContent": true,
+  "background": [],
+  "fills": [],
+  "strokes": [
+    {
+      "blendMode": "NORMAL",
+      "type": "SOLID",
+      "color": {
+        "r": 0.5921568870544434,
+        "g": 0.27843138575553894,
+        "b": 1,
+        "a": 1
+      }
+    }
+  ],
+  "cornerRadius": 5,
+  "cornerSmoothing": 0,
+  "strokeWeight": 1,
+  "strokeAlign": "INSIDE",
+  "devStatus": {
+    "type": "READY_FOR_DEV",
+    "description": ""
+  },
+  "backgroundColor": {
+    "r": 0,
+    "g": 0,
+    "b": 0,
+    "a": 0
+  },
+  "strokeDashes": [
+    10,
+    5
+  ],
+  "absoluteBoundingBox": {
+    "x": 5969,
+    "y": 3562,
+    "width": 2138,
+    "height": 914
+  },
+  "absoluteRenderBounds": {
+    "x": 5969,
+    "y": 3562,
+    "width": 2138,
+    "height": 914
+  },
+  "constraints": {
+    "vertical": "TOP",
+    "horizontal": "LEFT"
+  },
+  "exportSettings": [
+    {
+      "suffix": "",
+      "format": "PNG",
+      "constraint": {
+        "type": "SCALE",
+        "value": 1
+      }
+    }
+  ],
+  "effects": [],
+  "interactions": []
+}

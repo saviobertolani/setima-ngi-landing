@@ -3,6 +3,8 @@ node_modules
 # macOS system files
 .DS_Store
 
-# Ignore build artifacts
-/build
+# Ignore heavy chatmodes
+.github/chatmodes/
+
+# Ignore build artifacts (local only; CI publica via Actions)
 /build

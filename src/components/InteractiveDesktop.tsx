@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useMemo, memo, useRef } from "react";
 import { createPortal } from "react-dom";
 import type { MouseEvent, CSSProperties } from "react";
 import { Instagram, Linkedin, Volume2, VolumeX } from "lucide-react";
+import VolumeIcon from "./icons/VolumeIcon";
 import { useScrollParallax } from "./hooks/useScrollParallax";
 import svgPaths from "../imports/svg-opxanfmkh6";
 import imgAquamarine31 from "@/assets/86d3063cb2abbf00887077f00ed48a7f75469ca4.webp";
@@ -52,6 +53,21 @@ const fullBleedBackground: CSSProperties = {
   marginLeft: "-1px",
 };
 
+// Função helper para criar fundos responsivos
+function createResponsiveBackground(backgroundColor: string, height?: number): CSSProperties {
+  return {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    width: "100%",
+    height: height ? `${height}px` : undefined,
+    backgroundColor,
+    zIndex: -1,
+    transform: "translateZ(0)",
+    backfaceVisibility: "hidden" as const
+  };
+}
+
 function IconeSeta() {
   return (
     <div className="absolute inset-[39.86%_88.44%_38.19%_6.67%]" data-name="icone seta">
@@ -74,11 +90,11 @@ function LogoSetima() {
       onClick={() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }}
-      className="absolute h-[50px] left-[77px] top-[6280px] w-[120px] cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-none p-0" 
+  className="block h-[59.65px] w-[140px] cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-none p-0" 
       data-name="logo setima"
       title="Voltar ao topo"
     >
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 131 56">
+  <svg className="block size-full" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 131 56">
         <g id="logo setima">
           <path d="M60.36 0V2.58L61.85 0H60.36Z" fill="#F8F8F2" id="Vector" />
           <path d={svgPaths.p29b8e400} fill="#F8F8F2" id="Vector_2" />
@@ -157,17 +173,17 @@ function SocialIcons() {
   }, [openInNewTab]);
 
   return (
-    <div className="absolute flex items-center gap-4 left-[1280px] top-[6290px]" data-name="social icons">
+    <div className="flex items-center gap-4" data-name="social icons" style={{ height: 38 }}>
       <button
         onClick={handleInstagramClick}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-[#f8f8f2] hover:bg-[#00f5b9] transition-all duration-300 cursor-pointer group"
+        className="flex items-center justify-center w-[38px] h-[38px] rounded-full bg-[#f8f8f2] hover:bg-[#00f5b9] transition-all duration-300 cursor-pointer group"
         data-name="instagram button"
       >
         <Instagram size={20} className="text-black group-hover:text-black transition-colors duration-300" />
       </button>
       <button
         onClick={handleLinkedInClick}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-[#f8f8f2] hover:bg-[#00f5b9] transition-all duration-300 cursor-pointer group"
+        className="flex items-center justify-center w-[38px] h-[38px] rounded-full bg-[#f8f8f2] hover:bg-[#00f5b9] transition-all duration-300 cursor-pointer group"
         data-name="linkedin button"
       >
         <Linkedin size={20} className="text-black group-hover:text-black transition-colors duration-300" />
@@ -178,25 +194,165 @@ function SocialIcons() {
 
 function CopyrightText() {
   return (
-    <div className="absolute left-[77px] top-[6350px] w-[600px]" data-name="copyright text">
-  <p className="fig-ubuntu-light fig-caption-12 fig-light not-italic whitespace-nowrap">
+    <div className="w-[653px]" data-name="copyright text">
+      <p className="fig-ubuntu-light fig-caption-12 fig-light not-italic whitespace-nowrap">
         © 2025 Setima. Todos os direitos reservados. Todo o conteúdo deste site é protegido por leis de propriedade intelectual.
       </p>
     </div>
   );
 }
 
-const Bloco08 = memo(() => {
+const Bloco08 = memo(({ footerFixed, stageLeft, stageWidth, top, scale }: { 
+  footerFixed?: boolean; 
+  stageLeft?: number; 
+  stageWidth?: number; 
+  top: number;
+  scale: number;
+}) => {
+  // Assets pixel-perfect do Figma
+  const imgLogoSetima = "/src/assets/4fe54139087c1cc44e37d97797114fd5d1f83ab2.svg";
+  const imgGroup = "/src/assets/67cc4b42b75f27284335fb9e3131a9ff19202bf2.svg";
+  const imgLinkedin = "/src/assets/253f7b390e092c436b2cd88a5335e25f5b559c14.svg";
+
+  // Estado para escala responsiva
+  const [responsiveScale, setResponsiveScale] = useState(scale);
+  
+  // Calcular escala responsiva baseada no viewport (igual ao header)
+  useEffect(() => {
+    const calculateScale = () => {
+      if (typeof window === 'undefined') return scale;
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      const calculatedScale = Math.min(1, vw / 1440);
+      setResponsiveScale(footerFixed ? scale : calculatedScale);
+    };
+    
+    calculateScale(); // Calcular na inicialização
+    
+    const handleResize = () => calculateScale();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [scale, footerFixed]);
+
+  // Quando fixo, o wrapper é full-viewport e o conteúdo é escalado
+  const wrapperStyle: React.CSSProperties = footerFixed
+    ? { 
+        position: 'fixed', 
+        bottom: 0, 
+        left: 0, 
+        width: '100%',
+        height: Math.ceil(172 * scale),
+        zIndex: 10,
+        overflow: 'hidden'
+      }
+    : { 
+        position: 'absolute', 
+        left: 0, 
+        top, 
+        width: '100%',
+        height: Math.ceil(172 * responsiveScale), // Usar escala responsiva
+        zIndex: 10
+      };
+
+  // Container do conteúdo sempre escalado responsivamente
+  const contentStyle: React.CSSProperties = {
+    position: 'relative',
+    width: `${1440 * responsiveScale}px`,
+    height: '100%',
+    margin: '0 auto',
+    transform: `scale(${responsiveScale})`,
+    transformOrigin: 'top center'
+  };
+
   return (
-    <div className="absolute contents left-0 top-[6238px]" data-name="Bloco 08">
-      <div
-        className="absolute h-[228px] top-[6238px] bg-black"
-        style={fullBleedBackground}
-      />
-      <LogoSetima />
-      <SocialIcons />
-      <CopyrightText />
-    </div>
+    <footer style={wrapperStyle} data-name="Bloco 08" data-node-id="7:249" role="contentinfo" aria-label="Rodapé">
+      {/* Background preto - fill do container */}
+      <div className="absolute inset-0 bg-black" data-node-id="7:188" />
+      
+      <div style={contentStyle}>
+        {/* Copyright text - posicionamento exato do Figma */}
+        <div 
+          className="absolute font-['Ubuntu:Regular',_sans-serif] leading-[0] not-italic text-[#f8f8f2] text-[12px] text-nowrap" 
+          style={{ left: 63, top: 130 }}
+          data-node-id="43:75"
+        >
+          <p className="leading-[normal] whitespace-pre">©2025 Setima. Todos os direitos reservados. Todo o conteúdo deste site é protegido por leis de propriedade intelectual.</p>
+        </div>
+        
+        {/* Logo Setima - posicionamento exato do Figma */}
+        <div 
+          className="absolute"
+          style={{ 
+            left: 63,
+            top: 49,
+            width: 140,
+            height: 59.65
+          }}
+          data-name="logo setima" 
+          data-node-id="7:190"
+        >
+          <img alt="Logo Setima" className="block max-w-none size-full" src={imgLogoSetima} />
+        </div>
+        
+        {/* Social Icons - posicionamento exato do Figma */}
+        <div className="absolute" style={{ right: 77, top: 63 }} data-node-id="43:85">
+          {/* Instagram - primeiro ícone (mais à esquerda) */}
+          <div 
+            className="absolute" 
+            style={{ 
+              right: 42, // 38px width + 4px gap
+              top: 0,
+              width: 38,
+              height: 38
+            }}
+            data-name="instagram" 
+            data-node-id="43:77"
+          >
+            <button
+              onClick={() => {
+                try {
+                  const w = window.open('https://instagram.com/setima', '_blank', 'noopener,noreferrer');
+                  if (!w) window.location.assign('https://instagram.com/setima');
+                } catch {
+                  window.location.href = 'https://instagram.com/setima';
+                }
+              }}
+              className="block size-full cursor-pointer hover:opacity-80 transition-opacity duration-200"
+              data-name="Group" 
+              data-node-id="43:78"
+            >
+              <img alt="Instagram" className="block max-w-none size-full" src={imgGroup} />
+            </button>
+          </div>
+          
+          {/* LinkedIn - segundo ícone (mais à direita) */}
+          <div 
+            className="absolute" 
+            style={{ 
+              right: 0,
+              top: 0,
+              width: 38,
+              height: 38
+            }}
+            data-name="linkedin" 
+            data-node-id="43:82"
+          >
+            <button
+              onClick={() => {
+                try {
+                  const w = window.open('https://linkedin.com/company/setima', '_blank', 'noopener,noreferrer');
+                  if (!w) window.location.assign('https://linkedin.com/company/setima');
+                } catch {
+                  window.location.href = 'https://linkedin.com/company/setima';
+                }
+              }}
+              className="block size-full cursor-pointer hover:opacity-80 transition-opacity duration-200"
+            >
+              <img alt="LinkedIn" className="block max-w-none size-full" src={imgLinkedin} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 });
 
@@ -323,12 +479,23 @@ const Acordeon = memo(({ question, answer, isOpen, onToggle }: {
   );
 });
 
-const Frame1 = memo(({ openAccordion, toggleAccordion }: { 
+const Frame1 = memo(({ openAccordion, toggleAccordion, onHeightChange }: { 
   openAccordion: number | null; 
   toggleAccordion: (index: number) => void;
+  onHeightChange?: (h: number) => void;
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => onHeightChange?.(el.scrollHeight || el.offsetHeight || 0);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [openAccordion, onHeightChange]);
   return (
-    <div className="absolute content-stretch flex flex-col items-start justify-start left-[63px] top-[5843px] w-[1280px]">
+    <div ref={containerRef} className="absolute content-stretch flex flex-col items-start justify-start left-[63px] top-[5843px] w-[1280px]">
       {faqData.map((item, i) => (
         <Acordeon 
           key={`faq-${i}`}
@@ -342,18 +509,27 @@ const Frame1 = memo(({ openAccordion, toggleAccordion }: {
   );
 });
 
-const Bloco07 = memo(({ openAccordion, toggleAccordion }: { 
+const Bloco07 = memo(({ openAccordion, toggleAccordion, onBgHeightChange }: { 
   openAccordion: number | null; 
   toggleAccordion: (index: number) => void;
+  onBgHeightChange?: (h: number) => void;
 }) => {
-  // Calcula altura adicional baseada no accordion aberto
-  const extraHeight = openAccordion !== null ? 200 : 0; // Estimativa de altura extra quando expandido
+  // Medição real da lista do FAQ para ajustar a altura do background
+  // Fórmula: bgHeight = (LIST_TOP - FAQ_TOP) + measuredListH
+  // No Figma: LIST_TOP=5843, FAQ_TOP=5630 => offset=213
+  const LIST_TOP = 5843;
+  const FAQ_TOP = 5630;
+  const listOffsetInBlock = LIST_TOP - FAQ_TOP; // 213px
+  const [measuredListH, setMeasuredListH] = useState<number>(0);
+  const onListHeight = useCallback((h: number) => { setMeasuredListH(h); }, []);
+  const bgHeight = Math.max(0, listOffsetInBlock + measuredListH);
+  useEffect(() => { onBgHeightChange?.(bgHeight); }, [bgHeight, onBgHeightChange]);
   
   return (
     <div className="absolute contents left-0 top-[5630px]" data-name="Bloco 07">
       <div 
-        className="absolute bg-[#f8f8f2] top-[5630px] transition-all duration-500 ease-out" 
-        style={{ ...fullBleedBackground, height: `${608 + extraHeight}px` }}
+        className="absolute bg-[#f8f8f2] top-[5630px] transition-all duration-300 ease-out" 
+        style={{ ...fullBleedBackground, height: `${bgHeight}px` }}
       >
         {/* Efeitos visuais sutis para indicar interatividade */}
         
@@ -394,7 +570,7 @@ const Bloco07 = memo(({ openAccordion, toggleAccordion }: {
       <div className="absolute left-[63px] top-[5764px] w-[1314px] z-[10] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic">
         <p className="m-0">DÚVIDAS FREQUENTES</p>
       </div>
-      <Frame1 openAccordion={openAccordion} toggleAccordion={toggleAccordion} />
+  <Frame1 openAccordion={openAccordion} toggleAccordion={toggleAccordion} onHeightChange={onListHeight} />
     </div>
   );
 });
@@ -678,10 +854,10 @@ const Bloco03 = memo(() => {
         style={fullBleedBackground}
       />
       <VideoTera3D />
-  <div className="absolute left-1/2 top-[2390px] translate-x-[-50%] w-[715px] text-center fig-body-23 fig-dark text-smooth not-italic">
+      <div className="absolute left-1/2 top-[2390px] translate-x-[-50%] w-[715px] text-center fig-body-23 fig-dark text-smooth not-italic">
         <p className="m-0">O 3D já trascende o universo de stills e CGI: tornou-se linguagem, experiência e presença digital que é capaz de capturar e converter.</p>
       </div>
-  <div className="absolute left-1/2 top-[1692px] translate-x-[-50%] w-[1121px] text-center fig-title-45 fig-dark text-smooth not-italic">
+      <div className="absolute left-1/2 top-[1692px] translate-x-[-50%] w-[1121px] text-center fig-title-45 fig-dark text-smooth not-italic">
         <p className="mb-0 fig-ubuntu-light">{titles.section3.line1}</p>
         <p className="fig-ubuntu-bold">{titles.section3.line2}</p>
       </div>
@@ -750,7 +926,7 @@ const VideoAqui = memo(() => {
   const [rect, setRect] = useState<{ left: number; top: number; width: number; height: number } | null>(null);
   const [debugHighlight, setDebugHighlight] = useState(false);
   const isDebug = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('videoDebug');
-  const primaryId = 'I9Wcs3Q3d4U';
+  const primaryId = 'kiZ6vtT3cjs';
   const fallbackId = 'M7lc1UVf-VE';
   const [videoId, setVideoId] = useState<string>(primaryId);
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://example.com';
@@ -983,14 +1159,39 @@ const VideoAqui = memo(() => {
             </svg>
           )}
         </button>
+        {/* Botão de volume conforme especificações do Figma */}
         <button
           type="button"
           onClick={toggleMute}
           aria-label={muted ? 'Ativar som' : 'Mutar vídeo'}
-          className="absolute right-[24px] bottom-[24px] z-[120] w-10 h-10 rounded-full bg-[rgba(0,0,0,0.55)] flex items-center justify-center text-white hover:bg-[rgba(0,0,0,0.75)] transition-colors cursor-pointer"
-          style={{ pointerEvents: 'auto' }}
+          className="absolute z-[120] rounded-full transition-all duration-200 cursor-pointer hover:scale-110"
+          style={{ 
+            left: '93.42%',
+            right: '2.09%',
+            top: '88.31%',
+            bottom: '3.71%',
+            pointerEvents: 'auto'
+          }}
         >
-          {muted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+          {/* Círculo verde do Figma */}
+          <div 
+            className="absolute inset-0 rounded-full"
+            style={{ 
+              backgroundColor: '#00F5B9'
+            }}
+          />
+          {/* Ícone de volume conforme Figma */}
+          <div
+            className="absolute"
+            style={{
+              left: '16.28%',
+              right: '13.95%',
+              top: '20.93%',
+              bottom: '18.6%'
+            }}
+          >
+            <VolumeIcon width="100%" height="100%" color="#13171A" muted={muted} />
+          </div>
         </button>
       </div>
     </div>
@@ -1028,8 +1229,9 @@ const VideoTera3D = memo(() => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [muted, setMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://example.com';
-  const src = `https://www.youtube.com/embed/sRxnxzG2UzM?autoplay=1&mute=1&loop=1&playlist=sRxnxzG2UzM&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1&origin=${encodeURIComponent(origin)}`;
+  const src = `https://www.youtube.com/embed/_9ZzNlJ9-FQ?autoplay=1&mute=1&loop=1&playlist=_9ZzNlJ9-FQ&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1&origin=${encodeURIComponent(origin)}`;
 
   const sendCommand = useCallback((func: string, args: any[] = []) => {
     const win = iframeRef.current?.contentWindow;
@@ -1058,20 +1260,43 @@ const VideoTera3D = memo(() => {
     }
   }, [isPlaying, sendCommand]);
 
+  // Mute garantido e handler de mensagens
   useEffect(() => {
-    const t = setTimeout(() => sendCommand('mute'), 500);
-    return () => clearTimeout(t);
+    const muteTimer = window.setTimeout(() => sendCommand('mute'), 500);
+    return () => window.clearTimeout(muteTimer);
   }, [sendCommand]);
+
+  // Handler de mensagens do player
+  useEffect(() => {
+    const onMessage = (evt: MessageEvent) => {
+      try {
+        const allowed = typeof evt.origin === 'string' && (evt.origin.includes('youtube.com') || evt.origin.includes('youtube-nocookie.com'));
+        if (!allowed) return;
+        const data = typeof evt.data === 'string' ? JSON.parse(evt.data) : evt.data;
+        if (!data) return;
+        if (data.event === 'infoDelivery' && !loaded) {
+          setLoaded(true);
+        }
+      } catch {}
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, [loaded]);
 
   return (
     <div className="absolute block cursor-pointer h-[538px] left-1/2 object-cover top-[1823px] translate-x-[-50%] w-[1076px] rounded-lg overflow-hidden" data-name="video tera 3d exp argentina">
       <iframe
         ref={iframeRef}
-        className="absolute inset-0 w-full h-full object-cover youtube-iframe"
+        className="absolute youtube-iframe"
         style={{ 
-          transform: 'translateZ(0)',
+          transform: 'translateZ(0) scale(1.2)',
+          transformOrigin: 'center center',
           backfaceVisibility: 'hidden',
-          pointerEvents: 'none'
+          pointerEvents: 'none',
+          width: '100%',
+          height: '100%',
+          left: '0',
+          top: '0'
         }}
         src={src}
         title="Sétima Tera 3D Experiência Argentina"
@@ -1096,13 +1321,39 @@ const VideoTera3D = memo(() => {
           </svg>
         )}
       </button>
+      {/* Botão de volume conforme especificações do Figma */}
       <button
         type="button"
         onClick={toggleMute}
         aria-label={muted ? 'Ativar som' : 'Mutar vídeo'}
-        className="absolute right-[16px] bottom-[16px] z-[10] w-10 h-10 rounded-full bg-[rgba(0,0,0,0.55)] flex items-center justify-center text-white hover:bg-[rgba(0,0,0,0.75)] transition-colors cursor-pointer"
+        className="absolute z-[10] rounded-full transition-all duration-200 cursor-pointer hover:scale-110"
+        style={{ 
+          left: '94.14%',
+          right: '1.86%',
+          top: '83.48%',
+          bottom: '8.96%',
+          pointerEvents: 'auto'
+        }}
       >
-        {muted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+        {/* Círculo verde do Figma */}
+        <div 
+          className="absolute inset-0 rounded-full"
+          style={{ 
+            backgroundColor: '#00F5B9'
+          }}
+        />
+        {/* Ícone de volume conforme Figma */}
+        <div
+          className="absolute"
+          style={{
+            left: '16.28%',
+            right: '13.95%',
+            top: '20.93%',
+            bottom: '18.6%'
+          }}
+        >
+          <VolumeIcon width="100%" height="100%" color="#13171A" muted={muted} />
+        </div>
       </button>
     </div>
   );
@@ -1124,7 +1375,7 @@ function Bloco02() {
       {/* Âncora invisível usada para posicionar o vídeo via portal (position: fixed) */}
       <div
         id="video1-anchor"
-  className="absolute left-[404px] top-[836px] w-[958px] h-[538px] z-[10]"
+        className="absolute left-[404px] top-[836px] w-[958px] h-[538px] z-[10]"
         aria-hidden="false"
         style={{ 
           pointerEvents: debug ? 'auto' : 'none', 
@@ -1135,16 +1386,16 @@ function Bloco02() {
         }}
       />
       
-  <div className="absolute fig-ubuntu-light fig-title-45 fig-white text-smooth left-[77px] not-italic top-[887px] w-[271px]" style={h1Parallax.tw}>
+      <div className="absolute fig-ubuntu-light fig-title-45 fig-white text-smooth left-[77px] not-italic top-[887px] w-[271px]" style={h1Parallax.tw}>
         <p className="mb-0">O CGI AGORA É NGI:</p>
         <p>NEXT-GEN IMAGERY.</p>
       </div>
       
-  <div className="absolute fig-ubuntu-light fig-body-23 fig-white text-smooth left-[77px] not-italic top-[1180px] w-[271px]" style={p1Parallax.tw}>
+      <div className="absolute fig-ubuntu-light fig-body-23 fig-white text-smooth left-[77px] not-italic top-[1180px] w-[271px]" style={p1Parallax.tw}>
         <p className="m-0">Um novo fluxo de produção aonde 3D, IA e outras tecnologias trabalham juntas para escalar conteúdo com impacto e consistência.</p>
       </div>
       
-  <div className="absolute fig-ubuntu-light fig-body-23 fig-white text-smooth left-[77px] not-italic top-[1396px] w-[1285px]" style={p2Parallax.tw}>
+      <div className="absolute fig-ubuntu-light fig-body-23 fig-white text-smooth left-[77px] not-italic top-[1396px] w-[1285px]" style={p2Parallax.tw}>
         <p className="m-0">Como uma content-tech, podemos atuar desde o conceito criativo até a distribuição multicanal e a análise de desempenho. Um fluxo sustentado por um stack tecnológico integrado que vai de IA à automação, do CMS/DAM ao analytics e além.</p>
       </div>
       
@@ -1372,39 +1623,46 @@ function LogoSetima1() {
   );
 }
 
-const Cabecalho = memo(({ onCallClick, isScrolled, showCTA, scale }: { 
+const Cabecalho = memo(({ onCallClick, isScrolled, showCTA, scale, stageLeft, stageWidth, qa }: { 
   onCallClick: () => void; 
   isScrolled: boolean; 
   showCTA: boolean; 
   scale: number;
+  stageLeft?: number;
+  stageWidth?: number;
+  qa?: boolean;
 }) => {
   const backgroundStyle = useMemo(() => ({
     // Gradiente forte para contraste; opacidade será controlada separadamente
     background: 'linear-gradient(360deg, rgba(19, 23, 26, 0.72) 0%, rgba(19, 23, 26, 0.88) 100%)'
   }), []);
 
-  // Largura do header baseada no scale para alinhar com o stage visível
-  const headerWidth = typeof window !== 'undefined'
-    ? Math.min(1440 * Math.max(0, Math.min(1, scale || 1)), window.innerWidth)
-    : 1440 * Math.max(0, Math.min(1, scale || 1));
+  // Largura do header baseada no stage visível
+  const headerWidth = stageWidth ?? (1440 * Math.max(0, Math.min(1, scale || 1)));
 
   return (
     <div 
-      className="fixed h-[124px] top-0 z-[9999] transition-all duration-300 ease-out header-container"
+      className="fixed h-[124px] top-0 z-[10000] transition-all duration-300 ease-out header-container"
       style={{
-        left: '50%',
+        left: stageLeft ?? '50%',
         width: `${headerWidth}px`,
-        transform: 'translateX(-50%)',
+        transform: stageLeft !== undefined ? 'none' : 'translateX(-50%)',
         transformOrigin: 'top center',
-        maxWidth: '100vw',
         boxShadow: isScrolled ? '0 6px 16px rgba(0,0,0,0.20)' : 'none',
-        borderBottom: isScrolled ? '1px solid rgba(255,255,255,0.08)' : 'transparent'
+        borderBottom: isScrolled ? '1px solid rgba(255,255,255,0.08)' : 'transparent',
+        outline: qa ? '1px dashed rgba(0,255,0,0.6)' : 'none',
+        outlineOffset: qa ? -1 : 0
       }}
       data-name="cabecalho"
     >
       <div 
         className="relative h-[124px] transition-all duration-300 ease-in-out"
-  style={{ width: '1440px' }}
+        style={{
+          width: '1440px',
+          transform: `scale(${headerWidth / 1440})`,
+          transformOrigin: 'top left',
+          outline: qa ? '1px dashed rgba(255,0,0,0.6)' : 'none'
+        }}
         data-name="em cima" 
       >
         {/* Overlay/Máscara de contraste - aparece apenas ao rolar */}
@@ -1427,42 +1685,165 @@ const Cabecalho = memo(({ onCallClick, isScrolled, showCTA, scale }: {
 });
 
 // Renderiza o header fora do container transformado para garantir position: fixed real
-const CabecalhoPortal = (props: { onCallClick: () => void; isScrolled: boolean; showCTA: boolean; scale: number; }) => {
+const CabecalhoPortal = (props: { onCallClick: () => void; isScrolled: boolean; showCTA: boolean; scale: number; stageLeft?: number; stageWidth?: number; qa?: boolean; }) => {
   if (typeof document === 'undefined') return null;
   return createPortal(<Cabecalho {...props} />, document.body);
 };
 
-export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: number }) {
+// Overlay de grid para QA: ativar com ?grid=1
+const GridOverlay = memo(({ stageLeft, stageWidth, height }: { stageLeft?: number; stageWidth?: number; height: number; }) => {
+  const style: React.CSSProperties = {
+    position: 'absolute',
+    top: 0,
+    left: stageLeft ?? 0,
+    width: stageWidth ?? '100vw',
+    height,
+    pointerEvents: 'none',
+    zIndex: 11000,
+    backgroundImage: [
+      'repeating-linear-gradient(0deg, rgba(255,0,0,0.08) 0, rgba(255,0,0,0.08) 1px, transparent 1px, transparent 8px)',
+      'repeating-linear-gradient(90deg, rgba(255,0,0,0.08) 0, rgba(255,0,0,0.08) 1px, transparent 1px, transparent 8px)',
+      'repeating-linear-gradient(0deg, rgba(255,0,0,0.18) 0, rgba(255,0,0,0.18) 1px, transparent 1px, transparent 100px)',
+      'repeating-linear-gradient(90deg, rgba(255,0,0,0.18) 0, rgba(255,0,0,0.18) 1px, transparent 1px, transparent 100px)'
+    ].join(', '),
+    mixBlendMode: 'normal',
+  };
+  return <div style={style} aria-hidden />;
+});
+
+const GridOverlayPortal = ({ stageLeft, stageWidth, height }: { stageLeft?: number; stageWidth?: number; height: number; }) => {
+  if (typeof document === 'undefined') return null;
+  return createPortal(
+    <GridOverlay stageLeft={stageLeft} stageWidth={stageWidth} height={height} />,
+    document.body
+  );
+};
+
+export default function InteractiveDesktop({ scale = 1 }: { scale?: number }) {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   // CTA do header controlado por rolagem para evitar duplicidade com o CTA do herói
   const [showHeaderCTA, setShowHeaderCTA] = useState(false);
-
-  const toggleAccordion = useCallback((index: number) => {
-    setOpenAccordion(prev => prev === index ? null : index);
+  // Ref para evitar flicker e permitir histerese sem recriar listeners
+  const showCTARef = useRef(showHeaderCTA);
+  useEffect(() => { showCTARef.current = showHeaderCTA; }, [showHeaderCTA]);
+  // Flag opcional para forçar CTA sempre visível (debug/QA): use ?ctaAlways na URL
+  const ctaAlways = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.has('ctaAlways') || p.get('cta') === '1';
   }, []);
 
+  // Flag QA via querystring
+  const qa = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.has('qa');
+  }, []);
+
+  // Flag para fixar o footer no rodapé durante QA
+  const footerFixed = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.has('footerFixed');
+  }, []);
+
+  // Grid QA (?grid=1)
+  const showGrid = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.has('grid') || p.get('grid') === '1';
+  }, []);
+
+  // Alterna acordeon (FAQ)
+  const toggleAccordion = useCallback((index: number) => {
+    setOpenAccordion(prev => (prev === index ? null : index));
+  }, []);
+
+  // CTA: abrir WhatsApp em nova aba
   const handleCallClick = useCallback(() => {
+    const url = 'https://api.whatsapp.com/send/?phone=5511949528682&text&type=phone_number&app_absent=0';
     try {
-      const url = 'https://api.whatsapp.com/send/?phone=5511949528682&text&type=phone_number&app_absent=0';
       const w = window.open(url, '_blank', 'noopener,noreferrer');
       if (!w) window.location.assign(url);
     } catch {
-      window.location.href = 'https://api.whatsapp.com/send/?phone=5511949528682&text&type=phone_number&app_absent=0';
+      window.location.href = url;
     }
   }, []);
 
-  // Carrossel simplificado
+  // Auto-rotação da imagem do herói
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex(prev => (prev + 1) % carouselImages.length);
+    const id = window.setInterval(() => {
+      setCurrentImageIndex(prev => (prev + 1) % Math.max(1, carouselImages.length));
     }, 3000);
-
-    return () => clearInterval(interval);
+    return () => window.clearInterval(id);
   }, []);
 
-  // Sistema de scroll
+  // Previne rolagem além do footer
+  useEffect(() => {
+    const handleScroll = () => {
+      const footerElement = document.querySelector('[data-name="Bloco 08"]');
+      if (!footerElement) return;
+      
+      const footerRect = footerElement.getBoundingClientRect();
+      const footerTop = footerRect.top;
+      const viewportHeight = window.innerHeight;
+      
+      // Se o topo do footer está visível ou abaixo da viewport
+      if (footerTop <= viewportHeight) {
+        // Calcular quanto do footer deveria estar visível
+        const visibleFooterPart = Math.min(footerRect.height, viewportHeight - footerTop);
+        
+        // Se estamos tentando mostrar mais do que deveria ser visível
+        if (footerTop < viewportHeight - visibleFooterPart) {
+          // Ajustar a posição do scroll suavemente
+          const adjustment = viewportHeight - visibleFooterPart - footerTop;
+          if (Math.abs(adjustment) > 2) { // Só ajustar se a diferença for significativa
+            window.scrollBy(0, -adjustment);
+          }
+        }
+      }
+    };
+    
+    // Throttle para performance
+    let ticking = false;
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', throttledHandleScroll);
+  }, []);
+
+  // Medição do stage para alinhar header
+  const [stageRect, setStageRect] = useState<{ left: number; width: number } | null>(null);
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const update = () => {
+      const el = document.getElementById('stage-root');
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      setStageRect({ left: r.left, width: r.width });
+    };
+    update();
+    window.addEventListener('resize', update, { passive: true } as any);
+    const el = document.getElementById('stage-root');
+    const ro = new ResizeObserver(() => update());
+    if (el) ro.observe(el);
+    return () => {
+      window.removeEventListener('resize', update as any);
+      ro.disconnect();
+    };
+  }, []);
+
+  // Sistema de scroll com histerese no CTA do header
   useEffect(() => {
     let ticking = false;
 
@@ -1472,9 +1853,21 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
       // Scroll tracking
       const scrollY = window.scrollY;
       setIsScrolled(scrollY > 10);
-      // Threshold baseado no design (~560px de 700px de altura do herói) ajustado pela escala visível
-      const threshold = Math.max(200, 560 * (headerScale || 1));
-      setShowHeaderCTA(scrollY > threshold);
+      // Permite forçar CTA sempre visível via query param (QA/debug)
+      if (ctaAlways) {
+        if (!showCTARef.current) setShowHeaderCTA(true);
+        ticking = false;
+        return;
+      }
+      // Threshold baseado no design (~560px de 700px do herói), ajustado pela escala visível
+      const scaleValue = Math.max(0, Math.min(1, scale || 1));
+      const showThreshold = Math.max(200, 560 * scale);
+      // Histerese: esconde só bem acima do topo para evitar piscar em pequenas rolagens
+      const hideThreshold = Math.max(120, showThreshold - 140);
+      let nextVisible = showCTARef.current;
+      if (scrollY > showThreshold) nextVisible = true;
+      else if (scrollY < hideThreshold) nextVisible = false;
+      if (nextVisible !== showCTARef.current) setShowHeaderCTA(nextVisible);
       
       ticking = false;
     };
@@ -1497,36 +1890,81 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
       window.removeEventListener('scroll', onEvent);
       window.removeEventListener('resize', onEvent);
     };
-  }, [headerScale]);
+  }, [scale, ctaAlways]);
 
-  // Calcula altura dinâmica baseada no accordion aberto
+  // Recebe a altura real do fundo do FAQ (Bloco07)
+  const [faqBgHeight, setFaqBgHeight] = useState<number>(608);
+
+  // Topo do footer no stage (px): 5630 + altura real do bloco 07
+  const footerTop = useMemo(() => 5630 + (faqBgHeight || 608), [faqBgHeight]);
+
+  // Altura dinâmica baseada no footerTop + altura escalada do footer
   const dynamicHeight = useMemo(() => {
-    const baseHeight = 6466; // Altura original do design
-    const extraHeight = openAccordion !== null ? 200 : 0; // Espaço extra para accordion expandido
-    return baseHeight + extraHeight;
-  }, [openAccordion]);
+    const footerHeight = Math.ceil(172 * scale);
+    const total = footerTop + footerHeight;
+    return Math.max(total, (typeof window !== 'undefined' ? window.innerHeight : 0));
+  }, [footerTop, scale]);
+
+  // Container principal - garante que não há overflow horizontal
+  const mainStyle: React.CSSProperties = {
+    backgroundColor: 'white',
+    minHeight: '100vh',
+    width: '100%',
+    overflow: 'hidden',
+    position: 'relative'
+  };
+
+  // Stage interno - escalado mas mantém posicionamento correto
+  const stageStyle: React.CSSProperties = {
+    position: 'relative',
+    width: '1440px',
+    marginLeft: '50%',
+    transform: 'translateX(-50%)',
+    minHeight: `${dynamicHeight}px`
+  };
+
+  // Debug panel para QA
+  const debugPanel = qa && (
+    <div style={{
+      position: 'fixed',
+      top: 8,
+      right: 8,
+      padding: '8px 12px',
+      background: 'rgba(0,0,0,0.8)',
+      color: '#fff',
+      fontSize: '12px',
+      fontFamily: 'monospace',
+      lineHeight: '1.4',
+      borderRadius: '4px',
+      zIndex: 100000
+    }}>
+      scale: {scale.toFixed(3)}<br />
+      footer top: {footerTop}px<br />
+      dynamic h: {dynamicHeight}px<br />
+      viewport: {typeof window !== 'undefined' ? `${window.innerWidth}×${window.innerHeight}` : 'SSR'}
+    </div>
+  );
 
   return (
-    <div className="bg-[#0b0d0f] min-h-screen w-full overflow-x-hidden" data-name="Desktop - 1">
-      {/* Header fixo via Portal */}
+    <div style={mainStyle} data-name="Desktop - 1">
       <CabecalhoPortal 
         onCallClick={handleCallClick}
         isScrolled={isScrolled}
         showCTA={showHeaderCTA}
-        scale={headerScale}
+        scale={scale}
+        stageLeft={stageRect?.left}
+        stageWidth={stageRect?.width}
+        qa={qa}
       />
-
-      {/* Container interno centralizado - largura base 1440px */}
-      <div 
-        id="stage-root"
-        className="relative"
-        style={{
-          width: '1440px',
-          marginLeft: '50%',
-          transform: 'translateX(-50%)',
-          minHeight: `${dynamicHeight}px`
-        }}
-      >
+      {showGrid && (
+        <GridOverlayPortal 
+          stageLeft={stageRect?.left} 
+          stageWidth={stageRect?.width} 
+          height={dynamicHeight} 
+        />
+      )}
+      {debugPanel}
+      <div id="stage-root" style={stageStyle}>
         <Bloco01 
           onCallClick={handleCallClick} 
           currentImageIndex={currentImageIndex}
@@ -1536,8 +1974,19 @@ export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: 
         <Bloco04 />
         <Bloco05 />
         <Bloco06 />
-        <Bloco07 openAccordion={openAccordion} toggleAccordion={toggleAccordion} />
-        <Bloco08 />
+        <Bloco07 
+          openAccordion={openAccordion} 
+          toggleAccordion={toggleAccordion} 
+          onBgHeightChange={setFaqBgHeight}
+        />
+  {/* Footer no final do fluxo para evitar gaps de rolagem desnecessários */}
+  <Bloco08 
+    footerFixed={footerFixed} 
+    stageLeft={stageRect?.left} 
+    stageWidth={stageRect?.width} 
+    top={footerTop}
+    scale={scale}
+  />
       </div>
     </div>
   );
