@@ -63,3 +63,169 @@ html, body {
   overflow: visible;
   contain: layout style;
 }
+
+/* Footer fixo - abordagem melhorada sem tremida */
+body:has([data-name="Bloco 08"][style*="position: fixed"]) {
+  /* Evita completamente qualquer scroll quando o footer está visível */
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  touch-action: none !important; /* Impede qualquer interação de touch que cause scroll */
+}
+
+/* Ajustar altura do container quando footer estiver fixo */
+body:has([data-name="Bloco 08"][style*="position: fixed"]) .responsive-design {
+  max-height: calc(100vh - 172px);
+}
+
+/* Garantir que o footer fixo não cause overflow */
+body:has([data-name="Bloco 08"][style*="position: fixed"]) .smooth-scaling {
+  max-height: calc(100vh - 172px) !important;
+}
+
+/* Controle adicional para viewports menores */
+@media (max-width: 1439px) {
+  /* Limita a altura do documento para evitar rolagem extra */
+  html {
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+  
+  /* Garante que o footer seja o último elemento */
+  [data-name="Bloco 08"] {
+    position: relative !important;
+    bottom: auto !important;
+  }
+}
+
+/* Garantir visibilidade do texto do footer em viewports pequenos */
+[data-name="Bloco 08"] {
+  /* Garantir que o conteúdo seja sempre visível */
+  min-height: 100px !important;
+}
+
+[data-name="Bloco 08"] p {
+  /* Quebrar texto longo se necessário */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Ajuste específico para o texto de copyright em telas pequenas */
+@media (max-width: 800px) {
+  [data-node-id="43:75"] p {
+    white-space: normal !important;
+    line-height: 1.2 !important;
+    font-size: 10px !important;
+  }
+}
+
+/* Layout interno do footer responsivo - preserva posicionamento externo */
+@media (max-width: 1439px) {
+  /* Container interno do footer com flexbox */
+  [data-name="Bloco 08"] > div:last-child {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+    min-height: 60px !important;
+  }
+
+  /* Logo sempre à esquerda, alinhado com header */
+  [data-name="Bloco 08"] [data-name="logo setima"] {
+    position: static !important;
+    flex: 0 0 auto !important;
+    order: 1 !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
+  }
+
+  /* Copyright centralizado horizontalmente no espaço restante */
+  [data-node-id="43:75"] {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    text-align: center !important;
+    max-width: 50% !important;
+    order: 2 !important;
+    z-index: 1 !important;
+  }
+
+  /* Ícones sociais sempre à direita */
+  [data-node-id="43:85"] {
+    position: static !important;
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+    order: 3 !important;
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
+    display: flex !important;
+    gap: 8px !important;
+  }
+  
+  /* Ícones individuais mantêm tamanho */
+  [data-node-id="43:85"] > div {
+    position: static !important;
+    flex: 0 0 auto !important;
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 640px) {
+  /* Mantém layout com logo à esquerda, copyright centro, ícones direita */
+  [data-name="Bloco 08"] > div:last-child {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    position: relative !important;
+    gap: 0 !important;
+    padding: 8px 15px !important;
+    min-height: 50px !important;
+  }
+  
+  /* Logo menor mas sempre na esquerda, alinhado com header */
+  [data-name="Bloco 08"] [data-name="logo setima"] {
+    flex: 0 0 auto !important;
+    max-width: 80px !important;
+    margin: 0 !important;
+    order: 1 !important;
+  }
+  
+  /* Copyright absolutamente centralizado */
+  [data-node-id="43:75"] {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    text-align: center !important;
+    max-width: 40% !important;
+    order: 2 !important;
+    z-index: 1 !important;
+  }
+  
+  /* Texto de copyright otimizado */
+  [data-node-id="43:75"] p {
+    font-size: 7px !important;
+    line-height: 1.0 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  
+  /* Ícones sociais na direita */
+  [data-node-id="43:85"] {
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    order: 3 !important;
+    gap: 6px !important;
+    max-width: 70px !important;
+  }
+}

@@ -4,6 +4,7 @@ type DesktopScaleContainerProps = {
   children: React.ReactNode | ((ctx: { scale: number }) => React.ReactNode);
   baseWidth?: number; // largura original do design (px)
   minDesktopWidth?: number; // largura mínima para considerar desktop
+  footerFixed?: boolean; // se o footer deve ser fixado na parte inferior
 };
 
 /**
@@ -15,6 +16,7 @@ export default function DesktopScaleContainer({
   children,
   baseWidth = 1440,
   minDesktopWidth = 768,
+  footerFixed = false,
 }: DesktopScaleContainerProps) {
   const innerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
@@ -24,28 +26,59 @@ export default function DesktopScaleContainer({
   const recompute = useCallback(() => {
     const vv = (window as any).visualViewport as VisualViewport | undefined;
     const width = vv?.width ?? window.innerWidth;
-  const params = new URLSearchParams(window.location.search);
-  const forceDesktop = params.has('desktop');
-  const isMobile = width < minDesktopWidth && !forceDesktop;
+    const params = new URLSearchParams(window.location.search);
+    const forceDesktop = params.has('desktop');
+    const isMobile = width < minDesktopWidth && !forceDesktop;
     setIsMobileWidth(isMobile);
 
     // Escala baseada apenas na largura para manter a proporção vertical e permitir scroll.
     const newScale = Math.min(width / baseWidth, 1);
     setScale(newScale);
 
-    // Medir conteúdo interno sem aplicar escala duas vezes.
+    // Medir conteúdo interno e ajustar a altura externa escalada.
     if (innerRef.current) {
       const node = innerRef.current;
-      // Usa métricas não escaladas (offsetTop/offsetHeight)
-      let maxBottom = node.scrollHeight || 0;
-      node.querySelectorAll<HTMLElement>(":scope *").forEach((el) => {
-        const bottom = (el.offsetTop || 0) + (el.offsetHeight || 0);
-        if (!Number.isNaN(bottom)) maxBottom = Math.max(maxBottom, bottom);
+      // Base rect do container interno (não escalado)
+      const baseRect = node.getBoundingClientRect();
+      let maxBottom = baseRect.bottom;
+      // Captura a maior borda inferior entre filhos (inclui elementos absolutos)
+      node.querySelectorAll<HTMLElement>(":scope > *").forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (!Number.isNaN(r.bottom)) {
+          maxBottom = Math.max(maxBottom, r.bottom);
+        }
       });
-      const effectiveHeight = Math.max(node.scrollHeight, maxBottom);
+      // Altura efetiva não escalada
+      let effectiveHeight = Math.max(node.scrollHeight, maxBottom - baseRect.top);
+      
+      // Verificar se footerFixed está presente via props ou URL
+      const params = new URLSearchParams(window.location.search);
+      const isFooterFixed = footerFixed || params.has('footerFixed');
+      
+      // Se o footer estiver fixo, limitar a altura efetiva para não ultrapassar o espaço disponível
+      if (isFooterFixed) {
+        // Buscar footer real para medição precisa
+        const footerElement = document.querySelector('footer') || 
+                             document.querySelector('[data-name="Bloco 08"]');
+        
+        // Usar altura real do footer se disponível
+        let footerHeight = 172 * newScale; // valor padrão
+        
+        if (footerElement) {
+          const footerRect = footerElement.getBoundingClientRect();
+          footerHeight = footerRect.height;
+        }
+        
+        const viewportHeight = window.innerHeight;
+        const maxContentHeight = viewportHeight - footerHeight;
+        
+        // Garantir que o conteúdo não ultrapasse o espaço disponível
+        effectiveHeight = Math.min(effectiveHeight, maxContentHeight / newScale);
+      }
+      
       setOuterHeight(Math.ceil(effectiveHeight * newScale));
     }
-  }, [baseWidth, minDesktopWidth]);
+  }, [baseWidth, minDesktopWidth, footerFixed]);
 
   useLayoutEffect(() => {
     recompute();

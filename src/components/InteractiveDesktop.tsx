@@ -1,12 +1,4 @@
-import React from "react";
-
-// Stub temporário para desbloquear o build. TODO: restaurar versão completa após correção.
-export default function InteractiveDesktop({ headerScale }: { headerScale: number }) {
-  return null;
-}
-
-/*
-import { useState, useEffect, useCallback, useMemo, memo, useRef, forwardRef } from "react";
+import { useState, useEffect, useCallback, useMemo, memo, useRef } from "react";
 import { createPortal } from "react-dom";
 import type { MouseEvent, CSSProperties } from "react";
 import { Instagram, Linkedin, Volume2, VolumeX } from "lucide-react";
@@ -17,13 +9,10 @@ import imgAquamarine31 from "@/assets/86d3063cb2abbf00887077f00ed48a7f75469ca4.w
 import img250127AlmapStillTeraTheTownFrenteV081 from "@/assets/0e4c4fe22e1cb5636a33462c5ac2022a711c0f36.webp";
 import imgVwConstelattion313206X4CacambaPsb1 from "@/assets/982534bd46b9e568691c0e5652a818ec5954a309.png";
 import imgEmbaixo from "@/assets/8c05f1bb3639a901cae85d722430ef33a62e7d28.webp";
-// Hero images - suas imagens PNG reais
-import heroImage1 from "@/assets/hero-image-1.png"; // Ônibus transparente
-import heroImage2 from "@/assets/hero-image-2.png"; // Mulher com óculos
-import heroImage3 from "@/assets/hero-image-3.png"; // Evento ifood MOVE
-import heroImage4 from "@/assets/hero-image-4.png"; // Caminhões de construção
-import heroImage5 from "@/assets/hero-image-5.png"; // Carro VW no lago
-import heroImage6 from "@/assets/hero-image-6.png"; // Fundo escuro texturizado
+import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D811 from "@/assets/705cc0dc55d0d5a68388c772e2b6117b6c99cd0f.png";
+import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D813 from "@/assets/363d73ec33595dde3285b1f284098774998f5dac.png";
+import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D814 from "@/assets/9a654ce0bbc1b437282de0c696914374ed89f641.png";
+import imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D815 from "@/assets/8fca1f53bb6c91dfa7bb390285d6e25c4fdabb30.png";
 import imgEmCima from "@/assets/00bd12579795674c4cb2b293530ca5101339ddb5.webp";
 import { img250127AlmapStillTeraTheTownFrenteV82, imgVwConstelattion313206X4CacambaPsb2, imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D812 } from "../imports/svg-o73ic";
 import { titles } from "../content/texts";
@@ -59,10 +48,979 @@ const faqData = [
 const fullBleedBackground: CSSProperties = {
   left: "50%",
   transform: "translateX(-50%)",
-  // Componente temporário para desbloquear o build enquanto corrigimos o arquivo original corrompido.
-  // TODO: restaurar a versão completa do InteractiveDesktop a partir do commit WIP anterior.
-  export default function InteractiveDesktop({ headerScale }: { headerScale: number }) {
-    return null;
+  // +2px para cobrir artefatos de arredondamento; -1px para centralizar
+  width: "calc(max(1440px, 100vw) + 2px)",
+  marginLeft: "-1px",
+};
+
+// Função helper para criar fundos responsivos
+function createResponsiveBackground(backgroundColor: string, height?: number): CSSProperties {
+  return {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    width: "100%",
+    height: height ? `${height}px` : undefined,
+    backgroundColor,
+    zIndex: -1,
+    transform: "translateZ(0)",
+    backfaceVisibility: "hidden" as const
+  };
+}
+
+function IconeSeta() {
+  return (
+    <div className="absolute inset-[39.86%_88.44%_38.19%_6.67%]" data-name="icone seta">
+      <div className="absolute bottom-[-4.47%] left-0 right-[-4.59%] top-[-4.47%]">
+        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17 10">
+          <g id="icone seta">
+            <path d="M11.46 1L15.4 4.95L11.46 8.9" id="Vector" stroke="var(--stroke-0, #13171A)" strokeMiterlimit="10" />
+            <path d="M15.4 4.95H0" id="Vector_2" stroke="var(--stroke-0, #13171A)" strokeMiterlimit="10" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+
+function LogoSetima() {
+  return (
+    <button 
+      onClick={() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }}
+  className="block h-[59.65px] w-[140px] cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-none p-0" 
+      data-name="logo setima"
+      title="Voltar ao topo"
+    >
+  <svg className="block size-full" fill="none" preserveAspectRatio="xMidYMid meet" viewBox="0 0 131 56">
+        <g id="logo setima">
+          <path d="M60.36 0V2.58L61.85 0H60.36Z" fill="#F8F8F2" id="Vector" />
+          <path d={svgPaths.p29b8e400} fill="#F8F8F2" id="Vector_2" />
+          <path d={svgPaths.p1cddd480} fill="#F8F8F2" id="Vector_3" />
+          <path d={svgPaths.p150bb300} fill="#F8F8F2" id="Vector_4" />
+          <path d={svgPaths.pce10580} fill="#F8F8F2" id="Vector_5" />
+          <path d={svgPaths.pc905f70} fill="#F8F8F2" id="Vector_6" />
+          <path d={svgPaths.p3d49680} fill="#F8F8F2" id="Vector_7" />
+          <path d={svgPaths.p30c6aa00} fill="#F8F8F2" id="Vector_8" />
+          {/* Parallax interno DESATIVADO temporariamente para validação pixel-perfect. */}
+          <path d={svgPaths.p51f1a00} fill="#F8F8F2" id="Vector_10" />
+          <path d={svgPaths.p2cb69700} fill="#F8F8F2" id="Vector_11" />
+          <path d={svgPaths.p1fcd5800} fill="#F8F8F2" id="Vector_12" />
+          <path d={svgPaths.p1ded8980} fill="#F8F8F2" id="Vector_13" />
+          <path d={svgPaths.pd5bc600} fill="#F8F8F2" id="Vector_14" />
+          <path d={svgPaths.p1d3a92f0} fill="#F8F8F2" id="Vector_15" />
+          <path d={svgPaths.p13cce480} fill="#F8F8F2" id="Vector_16" />
+          <path d={svgPaths.p1cb04100} fill="#F8F8F2" id="Vector_17" />
+          <path d={svgPaths.p161a1d00} fill="#F8F8F2" id="Vector_18" />
+          <path d={svgPaths.p351136f0} fill="#F8F8F2" id="Vector_19" />
+          <path d={svgPaths.p2e21dd00} fill="#F8F8F2" id="Vector_20" />
+          <path d={svgPaths.p3ed2a500} fill="#F8F8F2" id="Vector_21" />
+          <path d={svgPaths.p27d43c00} fill="#F8F8F2" id="Vector_22" />
+          <path d={svgPaths.p1ffcc000} fill="#F8F8F2" id="Vector_23" />
+          <path d={svgPaths.p3b4e4100} fill="#F8F8F2" id="Vector_24" />
+          <path d={svgPaths.p39d87180} fill="#F8F8F2" id="Vector_25" />
+          <path d={svgPaths.p7a21f00} fill="#F8F8F2" id="Vector_26" />
+          <path d={svgPaths.pb51c280} fill="#F8F8F2" id="Vector_27" />
+          <path d={svgPaths.p26f4df80} fill="#F8F8F2" id="Vector_28" />
+          <path d={svgPaths.p3a1e9980} fill="#F8F8F2" id="Vector_29" />
+          <path d={svgPaths.pa41cf00} fill="#F8F8F2" id="Vector_30" />
+          <path d={svgPaths.p2f02f600} fill="#F8F8F2" id="Vector_31" />
+          <path d={svgPaths.p24de2400} fill="#F8F8F2" id="Vector_32" />
+          <path d={svgPaths.p1e84ff00} fill="#F8F8F2" id="Vector_33" />
+          <path d={svgPaths.p3698e200} fill="#F8F8F2" id="Vector_34" />
+          <path d={svgPaths.p15bfd180} fill="#F8F8F2" id="Vector_35" />
+          <path d={svgPaths.p2a930400} fill="#F8F8F2" id="Vector_36" />
+          <path d={svgPaths.p1871cc80} fill="#F8F8F2" id="Vector_37" />
+          <path d={svgPaths.p24c88680} fill="#F8F8F2" id="Vector_38" />
+          <path d={svgPaths.p32017280} fill="#F8F8F2" id="Vector_39" />
+          <path d={svgPaths.p651500} fill="#F8F8F2" id="Vector_40" />
+          <path d={svgPaths.p2b0b4d80} fill="#F8F8F2" id="Vector_41" />
+          <path d={svgPaths.p8daaf00} fill="#F8F8F2" id="Vector_42" />
+          <path d={svgPaths.p25430600} fill="#F8F8F2" id="Vector_43" />
+          <path d={svgPaths.p31de7f80} fill="#F8F8F2" id="Vector_44" />
+          <path d={svgPaths.p1daeec00} fill="#F8F8F2" id="Vector_45" />
+          <path d={svgPaths.p247a2400} fill="#F8F8F2" id="Vector_46" />
+          <path d={svgPaths.p3b6a4780} fill="#F8F8F2" id="Vector_47" />
+          <path d={svgPaths.p3885300} fill="#F8F8F2" id="Vector_48" />
+          <path d={svgPaths.p3fa00cf2} fill="#F8F8F2" id="Vector_49" />
+          <path d={svgPaths.p20f83700} fill="#F8F8F2" id="Vector_50" />
+          <path d={svgPaths.p25aa34c0} fill="#F8F8F2" id="Vector_51" />
+          <path d={svgPaths.p82d0ba8} fill="#F8F8F2" id="Vector_52" />
+        </g>
+      </svg>
+    </button>
+  );
+}
+
+function SocialIcons() {
+  const openInNewTab = useCallback((url: string) => {
+    try {
+      const w = window.open(url, '_blank', 'noopener,noreferrer');
+      if (!w) window.location.assign(url);
+    } catch {
+      window.location.href = url;
+    }
+  }, []);
+
+  const handleInstagramClick = useCallback(() => {
+    openInNewTab('https://instagram.com/setima');
+  }, [openInNewTab]);
+
+  const handleLinkedInClick = useCallback(() => {
+    openInNewTab('https://linkedin.com/company/setima');
+  }, [openInNewTab]);
+
+  return (
+    <div className="flex items-center gap-4" data-name="social icons" style={{ height: 38 }}>
+      <button
+        onClick={handleInstagramClick}
+        className="flex items-center justify-center w-[38px] h-[38px] rounded-full bg-[#f8f8f2] hover:bg-[#00f5b9] transition-all duration-300 cursor-pointer group"
+        data-name="instagram button"
+      >
+        <Instagram size={20} className="text-black group-hover:text-black transition-colors duration-300" />
+      </button>
+      <button
+        onClick={handleLinkedInClick}
+        className="flex items-center justify-center w-[38px] h-[38px] rounded-full bg-[#f8f8f2] hover:bg-[#00f5b9] transition-all duration-300 cursor-pointer group"
+        data-name="linkedin button"
+      >
+        <Linkedin size={20} className="text-black group-hover:text-black transition-colors duration-300" />
+      </button>
+    </div>
+  );
+}
+
+function CopyrightText() {
+  return (
+    <div className="w-[653px]" data-name="copyright text">
+      <p className="fig-ubuntu-light fig-caption-12 fig-light not-italic whitespace-nowrap">
+        © 2025 Setima. Todos os direitos reservados. Todo o conteúdo deste site é protegido por leis de propriedade intelectual.
+      </p>
+    </div>
+  );
+}
+
+const Bloco08 = memo(({ footerFixed, stageLeft, stageWidth, top, scale }: { 
+  footerFixed?: boolean; 
+  stageLeft?: number; 
+  stageWidth?: number; 
+  top: number;
+  scale: number;
+}) => {
+  // Assets pixel-perfect do Figma
+  const imgLogoSetima = "/src/assets/4fe54139087c1cc44e37d97797114fd5d1f83ab2.svg";
+  const imgGroup = "/src/assets/67cc4b42b75f27284335fb9e3131a9ff19202bf2.svg";
+  const imgLinkedin = "/src/assets/253f7b390e092c436b2cd88a5335e25f5b559c14.svg";
+
+  // Estado para escala responsiva
+  const [responsiveScale, setResponsiveScale] = useState(scale);
+  
+  // Calcular escala responsiva baseada no viewport (igual ao header)
+  useEffect(() => {
+    const calculateScale = () => {
+      if (typeof window === 'undefined') return scale;
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      const calculatedScale = Math.min(1, vw / 1440);
+      setResponsiveScale(footerFixed ? scale : calculatedScale);
+    };
+    
+    calculateScale(); // Calcular na inicialização
+    
+    const handleResize = () => calculateScale();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [scale, footerFixed]);
+
+  // Quando fixo, o wrapper é full-viewport e o conteúdo é escalado
+  const wrapperStyle: React.CSSProperties = footerFixed
+    ? { 
+        position: 'fixed', 
+        bottom: 0, 
+        left: 0, 
+        width: '100%',
+        height: Math.ceil(172 * scale),
+        zIndex: 10,
+        overflow: 'hidden'
+      }
+    : { 
+        position: 'absolute', 
+        left: 0, 
+        top, 
+        width: '100%',
+        height: Math.ceil(172 * responsiveScale), // Usar escala responsiva
+        zIndex: 10
+      };
+
+  // Container do conteúdo sempre escalado responsivamente
+  const contentStyle: React.CSSProperties = {
+    position: 'relative',
+    width: `${1440 * responsiveScale}px`,
+    height: '100%',
+    margin: '0 auto',
+    transform: `scale(${responsiveScale})`,
+    transformOrigin: 'top center'
+  };
+
+  return (
+    <footer style={wrapperStyle} data-name="Bloco 08" data-node-id="7:249" role="contentinfo" aria-label="Rodapé">
+      {/* Background preto - fill do container */}
+      <div className="absolute inset-0 bg-black" data-node-id="7:188" />
+      
+      <div style={contentStyle}>
+        {/* Copyright text - posicionamento exato do Figma */}
+        <div 
+          className="absolute font-['Ubuntu:Regular',_sans-serif] leading-[0] not-italic text-[#f8f8f2] text-[12px] text-nowrap" 
+          style={{ left: 63, top: 130 }}
+          data-node-id="43:75"
+        >
+          <p className="leading-[normal] whitespace-pre">©2025 Setima. Todos os direitos reservados. Todo o conteúdo deste site é protegido por leis de propriedade intelectual.</p>
+        </div>
+        
+        {/* Logo Setima - posicionamento exato do Figma */}
+        <button 
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          className="absolute cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-none p-0"
+          style={{ 
+            left: 63,
+            top: 49,
+            width: 140,
+            height: 59.65
+          }}
+          data-name="logo setima" 
+          data-node-id="7:190"
+          title="Voltar ao topo"
+        >
+          <img alt="Logo Setima" className="block max-w-none size-full" src={imgLogoSetima} />
+        </button>
+        
+        {/* Social Icons - posicionamento exato do Figma */}
+        <div className="absolute" style={{ right: 77, top: 63 }} data-node-id="43:85">
+          {/* Instagram - primeiro ícone (mais à esquerda) */}
+          <div 
+            className="absolute" 
+            style={{ 
+              right: 42, // 38px width + 4px gap
+              top: 0,
+              width: 38,
+              height: 38
+            }}
+            data-name="instagram" 
+            data-node-id="43:77"
+          >
+            <button
+              onClick={() => {
+                try {
+                  const w = window.open('https://instagram.com/setima', '_blank', 'noopener,noreferrer');
+                  if (!w) window.location.assign('https://instagram.com/setima');
+                } catch {
+                  window.location.href = 'https://instagram.com/setima';
+                }
+              }}
+              className="block size-full cursor-pointer hover:opacity-80 transition-opacity duration-200"
+              data-name="Group" 
+              data-node-id="43:78"
+            >
+              <img alt="Instagram" className="block max-w-none size-full" src={imgGroup} />
+            </button>
+          </div>
+          
+          {/* LinkedIn - segundo ícone (mais à direita) */}
+          <div 
+            className="absolute" 
+            style={{ 
+              right: 0,
+              top: 0,
+              width: 38,
+              height: 38
+            }}
+            data-name="linkedin" 
+            data-node-id="43:82"
+          >
+            <button
+              onClick={() => {
+                try {
+                  const w = window.open('https://linkedin.com/company/setima', '_blank', 'noopener,noreferrer');
+                  if (!w) window.location.assign('https://linkedin.com/company/setima');
+                } catch {
+                  window.location.href = 'https://linkedin.com/company/setima';
+                }
+              }}
+              className="block size-full cursor-pointer hover:opacity-80 transition-opacity duration-200"
+            >
+              <img alt="LinkedIn" className="block max-w-none size-full" src={imgLinkedin} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+});
+
+function Botao({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) {
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation(); // Previne propagação para o header
+    onClick();
+  };
+
+  return (
+    <button 
+      onClick={handleClick}
+      className="relative shrink-0 size-[18px] cursor-pointer transition-all duration-300 hover:scale-110 group" 
+      data-name="botao +"
+      aria-label={isOpen ? "Fechar resposta" : "Abrir resposta"}
+    >
+      <div className={`transform transition-transform duration-500 ease-out ${isOpen ? 'rotate-45' : 'rotate-0'}`}>
+        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 18 18">
+          <g id="botao +">
+            {/* Linha vertical - desaparece quando aberto */}
+            <line 
+              id="Line 9" 
+              stroke="var(--stroke-0, black)" 
+              strokeWidth="2" 
+              x1="9" 
+              x2="9" 
+              y1="4.37114e-08" 
+              y2="18" 
+              className={`transition-all duration-300 ease-out ${
+                isOpen ? 'opacity-0 scale-75' : 'opacity-100 scale-100'
+              }`}
+            />
+            {/* Linha horizontal - sempre visível, rotaciona para formar X */}
+            <line 
+              id="Line 10" 
+              stroke="var(--stroke-0, black)" 
+              strokeWidth="2" 
+              x1="18" 
+              x2="-4.37114e-08" 
+              y1="9" 
+              y2="9" 
+              className="transition-all duration-300 ease-out"
+            />
+          </g>
+        </svg>
+      </div>
+      
+      {/* Indicador visual sutil para interatividade */}
+      <div className={`absolute inset-0 rounded-full transition-all duration-300 ${
+        isOpen 
+          ? 'bg-black/5 scale-125' 
+          : 'bg-black/0 scale-100 group-hover:bg-black/5 group-hover:scale-125'
+      }`} />
+    </button>
+  );
+}
+
+const Header = memo(({ question, isOpen, onToggle }: { question: string; isOpen: boolean; onToggle: () => void }) => {
+  return (
+    <div className={`box-border content-stretch flex items-start justify-between px-0 py-[12px] relative shrink-0 w-full cursor-pointer group transition-all duration-200 ${
+      isOpen ? 'pb-2' : ''
+    }`} data-name="header" onClick={onToggle}>
+      <div className={`fig-ubuntu-bold fig-body-23 leading-[normal] not-italic relative flex-1 fig-dark pr-4 transition-colors duration-200 ${
+        isOpen ? 'text-[#13171a]' : 'group-hover:text-[#13171a]'
+      }`}>
+        <p className="leading-[normal] m-0" dangerouslySetInnerHTML={{ __html: question }} />
+      </div>
+      <div className="flex-none pt-1">
+        <Botao isOpen={isOpen} onClick={onToggle} />
+      </div>
+    </div>
+  );
+});
+
+const Panel = memo(({ answer, isOpen }: { answer: string; isOpen: boolean }) => {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const [contentHeight, setContentHeight] = useState<number>(0);
+
+  useEffect(() => {
+    if (panelRef.current) {
+      // Mede a altura real do conteúdo
+      const scrollHeight = panelRef.current.scrollHeight;
+      setContentHeight(scrollHeight);
+    }
+  }, [answer]);
+
+  return (
+    <div 
+      ref={panelRef}
+      className="accordion-panel overflow-hidden transition-all duration-500 ease-out"
+      style={{
+        maxHeight: isOpen ? `${contentHeight + 20}px` : '0px', // +20px para padding
+        opacity: isOpen ? 1 : 0,
+        paddingBottom: isOpen ? '12px' : '0px'
+      }}
+      data-name="panel"
+    >
+  <div className={`fig-ubuntu-light fig-body-23 leading-[normal] not-italic fig-dark w-full transition-transform duration-300 ease-out ${
+        isOpen ? 'transform translate-y-0' : 'transform -translate-y-2'
+      }`}>
+        <p className="m-0 leading-[normal] pt-2">{answer}</p>
+      </div>
+    </div>
+  );
+});
+
+const Acordeon = memo(({ question, answer, isOpen, onToggle }: { 
+  question: string; 
+  answer: string; 
+  isOpen: boolean; 
+  onToggle: () => void;
+}) => {
+  return (
+    <div className={`relative shrink-0 w-full accordion-item transition-all duration-300 ease-out border-b border-black ${
+      isOpen ? 'bg-black/1' : 'bg-transparent'
+    }`} data-name="Acordeon">
+      <div className="content-stretch flex flex-col items-start justify-start relative w-full">
+        <Header question={question} isOpen={isOpen} onToggle={onToggle} />
+        <Panel answer={answer} isOpen={isOpen} />
+      </div>
+      
+
+    </div>
+  );
+});
+
+const Frame1 = memo(({ openAccordion, toggleAccordion, onHeightChange }: { 
+  openAccordion: number | null; 
+  toggleAccordion: (index: number) => void;
+  onHeightChange?: (h: number) => void;
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => onHeightChange?.(el.scrollHeight || el.offsetHeight || 0);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [openAccordion, onHeightChange]);
+  return (
+    <div ref={containerRef} className="absolute content-stretch flex flex-col items-start justify-start left-[63px] top-[5843px] w-[1280px]">
+      {faqData.map((item, i) => (
+        <Acordeon 
+          key={`faq-${i}`}
+          question={item.question}
+          answer={item.answer}
+          isOpen={openAccordion === i}
+          onToggle={() => toggleAccordion(i)}
+        />
+      ))}
+    </div>
+  );
+});
+
+const Bloco07 = memo(({ openAccordion, toggleAccordion, onBgHeightChange }: { 
+  openAccordion: number | null; 
+  toggleAccordion: (index: number) => void;
+  onBgHeightChange?: (h: number) => void;
+}) => {
+  // Medição real da lista do FAQ para ajustar a altura do background
+  // Fórmula: bgHeight = (LIST_TOP - FAQ_TOP) + measuredListH
+  // No Figma: LIST_TOP=5843, FAQ_TOP=5630 => offset=213
+  const LIST_TOP = 5843;
+  const FAQ_TOP = 5630;
+  const listOffsetInBlock = LIST_TOP - FAQ_TOP; // 213px
+  const [measuredListH, setMeasuredListH] = useState<number>(0);
+  const onListHeight = useCallback((h: number) => { setMeasuredListH(h); }, []);
+  const bgHeight = Math.max(0, listOffsetInBlock + measuredListH);
+  useEffect(() => { onBgHeightChange?.(bgHeight); }, [bgHeight, onBgHeightChange]);
+  
+  return (
+    <div className="absolute contents left-0 top-[5630px]" data-name="Bloco 07">
+      <div 
+        className="absolute bg-[#f8f8f2] top-[5630px] transition-all duration-300 ease-out" 
+        style={{ ...fullBleedBackground, height: `${bgHeight}px` }}
+      >
+        {/* Efeitos visuais sutis para indicar interatividade */}
+        
+        {/* Pontos decorativos que "pulsam" sutilmente para indicar interatividade */}
+        <div className="absolute right-16 top-20">
+          <div className="w-2 h-2 bg-[#00f5b9]/30 rounded-full animate-pulse" 
+               style={{ animationDelay: '0s', animationDuration: '3s' }} />
+        </div>
+        <div className="absolute right-20 top-32">
+          <div className="w-1.5 h-1.5 bg-[#00f5b9]/20 rounded-full animate-pulse" 
+               style={{ animationDelay: '1s', animationDuration: '3s' }} />
+        </div>
+        <div className="absolute right-12 top-44">
+          <div className="w-1 h-1 bg-[#00f5b9]/25 rounded-full animate-pulse" 
+               style={{ animationDelay: '2s', animationDuration: '3s' }} />
+        </div>
+        
+        {/* Linha decorativa sutil que "se move" para chamar atenção */}
+        <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-[#00f5b9]/20 to-transparent opacity-60">
+          <div className="relative h-full">
+            <div className="absolute top-0 right-0 w-full h-8 bg-[#00f5b9]/40 animate-pulse" 
+                 style={{ 
+                   animation: 'float 4s ease-in-out infinite',
+                   animationDelay: '0.5s' 
+                 }} />
+          </div>
+        </div>
+        
+        {/* Sombra interna sutil para dar profundidade */}
+        <div className="absolute inset-0 shadow-inner opacity-20 pointer-events-none" 
+             style={{ 
+               boxShadow: 'inset 0 2px 8px rgba(0, 245, 185, 0.1)' 
+             }} />
+        
+
+      </div>
+      {/* Título da seção (posicionado absoluto como no design) */}
+      <div className="absolute left-[63px] top-[5764px] w-[1314px] z-[10] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic">
+        <p className="m-0">DÚVIDAS FREQUENTES</p>
+      </div>
+  <Frame1 openAccordion={openAccordion} toggleAccordion={toggleAccordion} onHeightChange={onListHeight} />
+    </div>
+  );
+});
+
+const Bloco06 = memo(() => {
+  const titleParallax = useScrollParallax({ speed: -0.06 });
+  const bulletParallax = useScrollParallax({ speed: -0.04 });
+  const bgParallax = useScrollParallax({ speed: -0.05 });
+  const clampY = (v: number) => Math.max(-30, Math.min(30, v));
+  return (
+    <div className="absolute contents left-[-132px] top-[4380px]" data-name="Bloco 06">
+      <div
+        className="absolute bg-[#13171a] h-[1250px] top-[4380px]"
+        style={{ ...fullBleedBackground, zIndex: 0 }}
+      />
+      <div
+        className="absolute bg-center bg-cover bg-no-repeat h-[852px] left-[-132px] top-[4656px] w-[1515px]"
+        data-name="aquamarine (3) 1"
+        style={{
+          backgroundImage: `url('${imgAquamarine31}')`,
+          backgroundPosition: `50% calc(50% + ${clampY(bgParallax.offsetY).toFixed(2)}px)`,
+        }}
+      />
+      <div className="absolute left-[77px] top-[4530px] w-[987px] fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic" style={titleParallax.tw}>
+        <p className="m-0">O FLUXO NGI: DA ESTRATÉGIA À PRODUÇÃO, CRIATIVIDADE E TÉCNICA ACELERADAS PELA IA.</p>
+      </div>
+      <div className="absolute left-[1082px] top-[5497px] w-[326px] fig-subtitle-32-bold fig-light leading-[0] not-italic" style={bulletParallax.tw}>
+        <p className="leading-[normal]">+ IMPACTANTE</p>
+      </div>
+      <div className="absolute left-[1082px] top-[5455px] w-[288px] fig-subtitle-32-bold fig-light leading-[0] not-italic" style={bulletParallax.tw}>
+        <p className="leading-[normal]">+ ESCALÁVEL</p>
+      </div>
+      <div className="absolute left-[1082px] top-[5412px] w-[256px] fig-subtitle-32-bold fig-light leading-[0] not-italic" style={bulletParallax.tw}>
+        <p className="leading-[normal]">+ RÁPIDO</p>
+      </div>
+    </div>
+  );
+});
+
+const Bloco05 = memo(() => {
+  const titleParallax = useScrollParallax({ speed: -0.06 });
+  const bodyParallax = useScrollParallax({ speed: -0.04 });
+  return (
+    <div className="absolute contents left-0 top-[3780px]" data-name="Bloco 05">
+  <div
+    className="absolute bg-[#f8f8f2] h-[600px] left-0 top-[3780px] w-[1440px]"
+  />
+  <div className="absolute left-[816px] top-[4136px] w-[421px] fig-ubuntu-light fig-body-23 fig-dark text-smooth not-italic leading-[0]" style={bodyParallax.tw}>
+    <p className="m-0 leading-[normal]">Integramos criatividade, estratégia e tecnologia em um só fluxo, criando conteúdos relevantes de maneira mais rápida, escalável e impactante.</p>
+      </div>
+  <div className="absolute left-[181px] top-[3933px] w-[590px] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic leading-[normal]" style={titleParallax.tw}>
+    <p className="mb-0">MAIS DE 60 PROJETOS</p>
+    <p className="mb-0">EM 2025 QUE AJUDARAM NOSSOS CLIENTES A ECONOMIZAR MILHÕES</p>
+    <p>EM COMPARAÇÃO A PRODUÇÕES TRADICIONAIS.</p>
+      </div>
+    </div>
+  );
+});
+
+// Array de imagens da galeria - prefere ativos locais do Figma se existirem
+const localGallery = getGalleryAssets();
+const galleryList = (localGallery.images.length
+  ? localGallery.images.map((src, idx) => ({
+      id: idx,
+      src,
+      mask: localGallery.mask ?? img250127AlmapStillTeraTheTownFrenteV82,
+      thumbnail: localGallery.thumbs?.[idx] ?? src,
+      alt: `gallery-${String(idx + 1).padStart(2, '0')}`
+    }))
+  : []
+);
+
+const ImagemGrande = ({
+  activeIndex,
+  onThumbnailClick,
+  relativeContainer = false,
+  onBottomChange,
+}: {
+  activeIndex: number;
+  onThumbnailClick?: (index: number) => void;
+  relativeContainer?: boolean;
+  onBottomChange?: (bottom: number) => void;
+}) => {
+  const fallback = { src: '', mask: localGallery.mask ?? img250127AlmapStillTeraTheTownFrenteV82 } as any;
+  const activeImage = galleryList[activeIndex] ?? galleryList[0] ?? fallback;
+  // Parallax interno DESATIVADO temporariamente para validação pixel-perfect
+  // const imgParallax = useScrollParallax({ speed: -0.05 });
+  // const clampImg = (v:number) => Math.max(-30, Math.min(30, v));
+  // Constantes da janela e thresholds — definidas antes do uso
+  const WINDOW_W = 1440;
+  const WINDOW_H = 970;
+  const WINDOW_RATIO = WINDOW_W / WINDOW_H; // ~1.4845
+  const THRESH = 0.06; // 6% de tolerância
+  // Escala responsiva: 1 em >=1440px, diminui proporcionalmente abaixo disso
+  const [scale, setScale] = useState(1);
+  const offsetY = useMemo(() => WINDOW_H * (1 - scale), [scale]);
+  // Fit inteligente por imagem
+  const [bgSize, setBgSize] = useState<'cover' | 'contain'>('cover');
+  // Mantemos a janela visível exatamente em top=2510 independente do scale.
+  const deltaFix = 0;
+  useEffect(() => {
+    const update = () => {
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      setScale(Math.min(1, vw / 1440));
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  // Notifica o Bloco04 sobre a posição exata do rodapé da janela (para ancorar a tarja)
+  useEffect(() => {
+    // Quando relativo ao container 1440x970, compensamos a escala global para manter a base encostada na tarja.
+    // FIX: no modo relativo ao container, o stage-clip tem altura fixa (970px) e não escala.
+    // Portanto, o rodapé visual da janela é sempre em 2510 + 970 (doc coords),
+    // independente do scale global. Isso evita faixa/gap entre o herói e a tarja preta.
+    const bottom = relativeContainer
+      ? 2510 + WINDOW_H
+      : 2510 + WINDOW_H * scale;
+    onBottomChange?.(bottom);
+  }, [scale, onBottomChange, relativeContainer, offsetY]);
+
+  // Atualiza background-size conforme aspect ratio da imagem ativa
+  useEffect(() => {
+    let cancelled = false;
+    const src = activeImage?.src;
+    if (!src) return;
+    const img = new Image();
+    img.onload = () => {
+      if (cancelled) return;
+      const ratio = img.width / img.height;
+      const diff = Math.abs(ratio - WINDOW_RATIO) / WINDOW_RATIO;
+      // Se a diferença de aspecto for pequena, usamos cover para evitar barras; senão contain para não cortar demais
+      setBgSize(diff <= THRESH ? 'cover' : 'contain');
+    };
+    img.src = src;
+    return () => { cancelled = true; };
+  }, [activeImage?.src]);
+
+  return (
+    <div className="absolute contents left-0" data-name="imagem grande">
+      {/* Wrapper centralizado e escalável */}
+      <div
+        className="absolute left-1/2"
+        style={{
+          // Se relativo ao container 1440x970, não reduzimos escala para evitar "gap" no fundo do stage.
+          // Mantemos a janela 1440x970 exatamente encostada ao topo do clip.
+          // Caso contrário, ancora no documento em 2510px e escala com o viewport.
+          top: relativeContainer
+            ? `${-292 + offsetY + deltaFix}px`
+            : `${2510 - 292 * scale + deltaFix}px`,
+          width: '2122px',
+          height: '1274px',
+          transform: `translateX(-50%) scale(${relativeContainer ? 1 : scale})`,
+          transformOrigin: 'top center',
+          willChange: 'transform'
+        }}
+      >
+        {/* Janela centralizada 1440x970 com clipping retangular estável */}
+        <div
+          className="absolute left-1/2 top-[292px] translate-x-[-50%] overflow-hidden"
+          style={{
+            width: '1440px',
+            height: '970px',
+            backgroundColor: '#13171a',
+            borderRadius: '0px'
+          }}
+        >
+          <div
+            className="absolute inset-0 bg-no-repeat"
+            style={{
+              backgroundImage: `url('${activeImage.src}')`,
+              // Parallax desligado — manter centralizado
+              backgroundPosition: '50% 50%',
+              backgroundSize: bgSize,
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden'
+            }}
+          />
+          {/* Miniaturas SOBRE a imagem (dentro da janela 1440x970) */}
+          <ImagensCarrossel
+            activeIndex={activeIndex}
+            onThumbnailClick={(i) => onThumbnailClick?.(i)}
+            relative
+            relativeBottom={40}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ImagensCarrossel({ activeIndex, onThumbnailClick, offsetY = 0, insideStripe = false, relative = false, relativeBottom }: { 
+  activeIndex: number; 
+  onThumbnailClick: (index: number) => void; 
+  offsetY?: number;
+  insideStripe?: boolean;
+  relative?: boolean;
+  relativeBottom?: number; // distância da base quando relativo ao stage 1440x970
+}) {
+  const [showNavHint, setShowNavHint] = useState(false);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  
+  // Posições exatas das miniaturas do design original
+  // Conforme Figma (lefts absolutos para botões com w=98)
+  const thumbnailLefts = [251, 371, 491, 611, 731, 851, 971, 1091];
+
+  // Animação de dica de navegação após scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Mostra dica após 1 segundo de visualização
+            const timer = setTimeout(() => {
+              setShowNavHint(true);
+              // Remove a dica após 3 segundos
+              setTimeout(() => setShowNavHint(false), 3000);
+            }, 1000);
+            
+            return () => clearTimeout(timer);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    if (galleryRef.current) {
+      observer.observe(galleryRef.current);
+    }
+
+    return () => {
+      if (galleryRef.current) {
+        observer.unobserve(galleryRef.current);
+      }
+    };
+  }, []);
+
+  const count = Math.min(8, galleryList.length);
+  const containerStyle: React.CSSProperties = relative
+    ? { left: 0, right: 0, bottom: `${relativeBottom ?? 24}px`, height: '98px', zIndex: 3 }
+    : insideStripe
+      ? { left: 0, top: `24px`, zIndex: 2 }
+      : { left: 0, top: `${3370 - offsetY}px`, zIndex: 20 };
+  return (
+    <div
+      ref={galleryRef}
+      className="absolute"
+      style={containerStyle}
+      data-name="imagens carrossel"
+    >
+      {Array.from({ length: count }).map((_, index) => {
+        const image = galleryList[index];
+        return (
+          <button
+            key={image.id}
+            onClick={() => onThumbnailClick(index)}
+            className={`absolute size-[98px] top-0 cursor-pointer rounded-lg overflow-hidden transition-all duration-500 ease-out transform-gpu thumbnail-nav-hint ${
+              activeIndex === index 
+                ? 'scale-105 shadow-lg shadow-black/20' 
+                : 'hover:scale-110 hover:shadow-xl hover:shadow-black/25 hover:-translate-y-1'
+            } ${
+              showNavHint && index !== activeIndex ? 'thumbnail-breathing' : ''
+            }`}
+            style={{ 
+              left: `${thumbnailLefts[index]}px`,
+              animationDelay: `${index * 150}ms`,
+              boxShadow: activeIndex === index ? '0 0 0 2px #00f5b9' : undefined
+            }}
+            data-name={`thumbnail-${index}`}
+            aria-pressed={activeIndex === index}
+            tabIndex={0}
+            title={image.alt}
+          >
+            <div 
+              className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-all duration-300"
+              style={{ 
+                backgroundImage: `url('${image.thumbnail}')`,
+                transform: 'translateZ(0)',
+                backfaceVisibility: 'hidden'
+              }}
+            />
+            <div className="absolute inset-0 transition-all duration-300 bg-black/0 hover:bg-black/5" />
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+const Bloco03 = memo(() => {
+  return (
+    <div className="absolute contents left-0 top-[1540px]" data-name="Bloco 03">
+      <div
+        className="absolute bg-[#f8f8f2] h-[970px] top-[1540px]"
+        data-name="background"
+        style={fullBleedBackground}
+      />
+      <VideoTera3D />
+      <div className="absolute left-1/2 top-[2390px] translate-x-[-50%] w-[715px] text-center fig-body-23 fig-dark text-smooth not-italic">
+        <p className="m-0">O 3D já trascende o universo de stills e CGI: tornou-se linguagem, experiência e presença digital que é capaz de capturar e converter.</p>
+      </div>
+      <div className="absolute left-1/2 top-[1692px] translate-x-[-50%] w-[1121px] text-center fig-title-45 fig-dark text-smooth not-italic">
+        <p className="mb-0 fig-ubuntu-light">{titles.section3.line1}</p>
+        <p className="fig-ubuntu-bold">{titles.section3.line2}</p>
+      </div>
+    </div>
+  );
+});
+
+function Bloco04() {
+  // Versão interativa com layout 100% fixo (coordenadas do Figma)
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeImage = galleryList[activeIndex] ?? galleryList[0] ?? {
+    src: img250127AlmapStillTeraTheTownFrenteV081,
+    mask: img250127AlmapStillTeraTheTownFrenteV82,
+    thumbnail: img250127AlmapStillTeraTheTownFrenteV081,
+  } as any;
+  // Cross-fade entre imagens (200ms) sem mexer no layout
+  const [baseSrc, setBaseSrc] = useState<string>(() => activeImage.src);
+  const [overlaySrc, setOverlaySrc] = useState<string | null>(null);
+  const [overlayOpacity, setOverlayOpacity] = useState(0);
+  const fadeTimerRef = useRef<number | null>(null);
+  useEffect(() => {
+    const nextSrc = activeImage.src;
+    if (!nextSrc || nextSrc === baseSrc) return;
+    // Cancela fade anterior se existir
+    if (fadeTimerRef.current) {
+      window.clearTimeout(fadeTimerRef.current);
+      fadeTimerRef.current = null;
+    }
+    setOverlaySrc(nextSrc);
+    // Próximo frame para iniciar animação
+    requestAnimationFrame(() => setOverlayOpacity(1));
+    // Conclui fade e fixa nova base
+    fadeTimerRef.current = window.setTimeout(() => {
+      setBaseSrc(nextSrc);
+      setOverlaySrc(null);
+      setOverlayOpacity(0);
+      fadeTimerRef.current = null;
+    }, 200);
+    return () => {
+      if (fadeTimerRef.current) {
+        window.clearTimeout(fadeTimerRef.current);
+        fadeTimerRef.current = null;
+      }
+    };
+  }, [activeImage.src, baseSrc]);
+  const thumbLefts = [251, 371, 491, 611, 731, 851, 971, 1091];
+  const count = Math.min(8, galleryList.length || 8);
+
+  return (
+    <div className="absolute contents left-0 top-[2510px] z-[20]" data-name="Bloco 04">
+      {/* Fundo preto do bloco conforme design do Figma - seção "UM ASSET, INFINITAS POSSIBILIDADES" */}
+      <div
+        className="absolute bg-[#13171a] h-[970px] top-[3480px]"
+        data-name="background"
+        style={{
+          ...fullBleedBackground,
+          zIndex: -1,
+          position: "absolute"
+        }}
+      />
+      
+      {/* Imagem grande fixa com máscara (exatamente como Figma) + cross-fade */}
+      <div
+        className="absolute h-[1274px] left-[-267px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[267px_292px] mask-size-[1440px_970px] top-[2218px] w-[2122px] overflow-hidden"
+        data-name="25_0127_Almap_Still_TeraTheTown_Frente_V08 1"
+        style={{
+          maskImage: `url('${activeImage.mask ?? img250127AlmapStillTeraTheTownFrenteV82}')`,
+          zIndex: 10
+        }}
+      >
+        {/* Camada base visível */}
+        <div
+          className="absolute inset-0 bg-center bg-cover bg-no-repeat"
+          style={{ backgroundImage: `url('${baseSrc}')` }}
+        />
+        {/* Camada de overlay que faz o fade-in */}
+        {overlaySrc && (
+          <div
+            className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-opacity duration-200 ease-out"
+            style={{ 
+              backgroundImage: `url('${overlaySrc}')`, 
+              opacity: overlayOpacity,
+              willChange: 'opacity',
+              pointerEvents: 'none'
+            }}
+          />
+        )}
+      </div>
+
+      {/* Thumbnails absolutas nas coordenadas do Figma (3342px), com imagens reais e interação */}
+      {Array.from({ length: count }).map((_, i) => {
+        const img = galleryList[i] ?? activeImage;
+        return (
+          <button
+            key={i}
+            onClick={() => setActiveIndex(i)}
+            className={`group absolute size-[98px] top-[3342px] cursor-pointer rounded-lg overflow-hidden transform-gpu transition-transform duration-200 ease-out hover:scale-110 ${
+              activeIndex === i ? 'ring-2 ring-[#00f5b9] ring-offset-2 ring-offset-transparent' : ''
+            }`}
+            style={{ left: `${thumbLefts[i]}px`, zIndex: 25 }}
+            aria-pressed={activeIndex === i}
+            title={img.alt ?? `thumb-${i+1}`}
+          >
+            <div
+              className="absolute inset-0 bg-center bg-cover bg-no-repeat transform-gpu transition-transform duration-200 ease-out group-hover:scale-110"
+              style={{ backgroundImage: `url('${img.thumbnail ?? img.src}')` }}
+            />
+            <div className="absolute inset-0 bg-black/0 transition-colors pointer-events-none group-hover:bg-black/5" />
+          </button>
+        );
+      })}
+
+      {/* Textos exatamente posicionados */}
+      <div className="absolute left-[718.5px] top-[3653px] translate-x-[-50%] w-[905px] text-center fig-ubuntu-light fig-body-23 fig-light text-smooth not-italic">
+        <p className="m-0">Tenha um digital twin do seu produto e desdobre-o em conteúdos para redes sociais, e-commerce, experiências interativas, mídia OOH, propaganda, filmes, fotos e muito mais.</p>
+      </div>
+      <div className="absolute left-[718.5px] top-[3533px] translate-x-[-50%] w-[1121px] text-center fig-ubuntu-light fig-title-45 fig-light text-smooth not-italic">
+        <p className="mb-0">UM ASSET, INFINITAS POSSIBILIDADES.</p>
+        <p className="fig-ubuntu-bold">SEU BUDGET OTIMIZADO AO MÁXIMO.</p>
+      </div>
+    </div>
+  );
+}
+
+// (duplicate Bloco06 removed)
+
+const VideoAqui = memo(() => {
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const [muted, setMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [loaded, setLoaded] = useState(false);
+  const [failed, setFailed] = useState(false);
+  // Portal sempre para o body quando possível; posicionamos o wrapper com "position: fixed"
+  const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
+  const anchorRef = useRef<HTMLElement | null>(null);
+  const [rect, setRect] = useState<{ left: number; top: number; width: number; height: number } | null>(null);
+  const [debugHighlight, setDebugHighlight] = useState(false);
+  const isDebug = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('videoDebug');
+  const primaryId = 'kiZ6vtT3cjs';
+  const fallbackId = 'M7lc1UVf-VE';
+  const [videoId, setVideoId] = useState<string>(primaryId);
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://example.com';
+  const src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1&origin=${encodeURIComponent(origin)}`;
 
   const sendCommand = useCallback((func: string, args: any[] = []) => {
     const win = iframeRef.current?.contentWindow;
@@ -72,10 +1030,354 @@ const fullBleedBackground: CSSProperties = {
   }, []);
 
   const toggleMute = useCallback(() => {
-    const Bloco04 = memo(() => {
-      // Temporariamente desabilitado até refatorar o carrossel interno deste bloco
-      return null;
-    });
+    if (muted) {
+      sendCommand('unMute');
+      setMuted(false);
+    } else {
+      sendCommand('mute');
+      setMuted(true);
+    }
+  }, [muted, sendCommand]);
+
+  const togglePlay = useCallback(() => {
+    if (isPlaying) {
+      sendCommand('pauseVideo');
+      setIsPlaying(false);
+    } else {
+      sendCommand('playVideo');
+      setIsPlaying(true);
+    }
+  }, [isPlaying, sendCommand]);
+
+  // Mute garantido e fallback simples
+  useEffect(() => {
+    const muteTimer = window.setTimeout(() => sendCommand('mute'), 500);
+    const failTimer = window.setTimeout(() => {
+      if (!loaded) setFailed(true);
+    }, 3500);
+    return () => {
+      window.clearTimeout(muteTimer);
+      window.clearTimeout(failTimer);
+    };
+  }, [sendCommand, loaded]);
+
+  // Handler de mensagens do player
+  useEffect(() => {
+    const onMessage = (evt: MessageEvent) => {
+      try {
+        const allowed = typeof evt.origin === 'string' && (evt.origin.includes('youtube.com') || evt.origin.includes('youtube-nocookie.com'));
+        if (!allowed) return;
+        const data = typeof evt.data === 'string' ? JSON.parse(evt.data) : evt.data;
+        if (!data) return;
+        if (data.event === 'onError' && typeof data.info === 'number') {
+          const code = data.info;
+          if (code === 101 || code === 150 || code === 2 || code === 5) {
+            if (videoId !== fallbackId) {
+              setVideoId(fallbackId);
+              setLoaded(false);
+              setFailed(false);
+            } else {
+              setFailed(true);
+            }
+          }
+        }
+        if (data.event === 'infoDelivery' && !loaded) {
+          setLoaded(true);
+        }
+      } catch {}
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, [loaded, fallbackId, videoId]);
+
+  // Ativa debug opcional
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const active = Array.from(params.keys()).some(key => key.toLowerCase() === 'videodebug');
+    if (!active) return;
+    setDebugHighlight(true);
+    const timer = window.setTimeout(() => setDebugHighlight(false), 30000);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  // Portal alvo: usamos a própria âncora (#video1-anchor) para garantir stacking abaixo do header
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const anchor = document.getElementById('video1-anchor') as HTMLElement | null;
+    anchorRef.current = anchor;
+    // Garante que a âncora esteja interativa/visível
+    if (anchor) {
+  anchor.setAttribute('aria-hidden', 'false');
+  // Fora do modo debug, a âncora não deve interceptar cliques nem sobrepor o player
+  anchor.style.pointerEvents = isDebug ? 'auto' : 'none';
+  // Força dimensões exatas do design para evitar influências de ancestors
+  anchor.style.width = '958px';
+  anchor.style.height = '538px';
+  // Também persiste valores numéricos via dataset para referência do debug
+  (anchor.dataset as any).fallbackWidth = String(anchor.offsetWidth || 958);
+  (anchor.dataset as any).fallbackHeight = String(anchor.offsetHeight || 538);
+  // Garante position absolute na âncora
+  if (getComputedStyle(anchor).position !== 'absolute') anchor.style.position = 'absolute';
+    }
+  // Portal direto para a âncora
+  setPortalTarget(anchor);
+
+    const updateRect = () => {
+      const el = anchorRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      let left = r.left;
+      let top = r.top;
+      let w = r.width;
+      let h = r.height;
+      const DEFAULT_W = 958;
+      const DEFAULT_H = 538;
+      // Fallback quando algum estilo externo faz o rect reportar 0 de largura/altura
+      if (w < 1 || h < 1) {
+        const ow = el.offsetWidth;
+        const oh = el.offsetHeight;
+        if (ow > 0) w = ow;
+        if (oh > 0) h = oh;
+      }
+      // Fallback adicional: computed styles
+      if (w < 1 || h < 1) {
+        const cs = window.getComputedStyle(el);
+        const cw = parseFloat(cs.width || '0');
+        const ch = parseFloat(cs.height || '0');
+        if (cw > 0) w = cw;
+        if (ch > 0) h = ch;
+        // Também tenta recomputar left/top via offsetParent + computed left/top
+        const op = (el.offsetParent as HTMLElement | null);
+        if (op) {
+          const opRect = op.getBoundingClientRect();
+          const cleft = parseFloat(cs.left || '0');
+          const ctop = parseFloat(cs.top || '0');
+          if (isFinite(cleft)) left = opRect.left + cleft;
+          if (isFinite(ctop)) top = opRect.top + ctop;
+        }
+      }
+      // Última linha de defesa: usa dimensões padrão conhecidas do design
+      if (w < 1 && h >= 1) w = DEFAULT_W;
+      if (h < 1 && w >= 1) h = DEFAULT_H;
+      if (w < 1 && h < 1) { w = DEFAULT_W; h = DEFAULT_H; }
+      // Evita updates desnecessários
+      setRect(prev => {
+        const same = prev && Math.abs(prev.left - left) < 0.5 && Math.abs(prev.top - top) < 0.5 && Math.abs(prev.width - w) < 0.5 && Math.abs(prev.height - h) < 0.5;
+        if (same) return prev;
+        return { left, top, width: w, height: h };
+      });
+    };
+
+  // Observa mudanças da âncora para eventual debug
+  updateRect();
+  const ro = new ResizeObserver(() => updateRect());
+  if (anchor) ro.observe(anchor);
+  return () => ro.disconnect();
+  }, []);
+
+  // Wrapper absoluto ocupando a âncora inteira (#video1-anchor)
+  const videoNode = (
+    <div
+      className="video-portal-wrapper absolute inset-0"
+      style={{
+        zIndex: 1,
+        // Não deixar o wrapper interceptar cliques; os botões internos têm pointer-events: auto
+        pointerEvents: 'none',
+        outline: debugHighlight ? '2px solid rgba(0, 200, 255, 0.6)' : undefined,
+        outlineOffset: debugHighlight ? '2px' : undefined,
+        opacity: portalTarget ? 1 : 0
+      }}
+      aria-hidden={false}
+    >
+      <div
+        className="absolute inset-0 overflow-hidden rounded-[20px]"
+        style={{
+          backgroundImage: `url('${imgVwConstelattion313206X4CacambaPsb1}')`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          zIndex: 0,
+          backgroundColor: '#0b0d0f'
+        }}
+      >
+    <iframe
+          ref={iframeRef}
+          className="absolute inset-0 w-full h-full object-cover youtube-iframe"
+          style={{
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden',
+      // iframe não recebe cliques (para não bloquear CTA do header)
+      pointerEvents: 'none'
+          }}
+          src={src}
+          title="Sétima NGI Video"
+          frameBorder="0"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowFullScreen={false}
+          referrerPolicy="origin-when-cross-origin"
+          loading="eager"
+          onLoad={() => setLoaded(true)}
+        />
+        {failed && (
+          <a
+            href="https://www.youtube.com/watch?v=I9Wcs3Q3d4U"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute left-1/2 top-1/2 z-[130] -translate-x-1/2 -translate-y-1/2 bg-[rgba(0,0,0,0.55)] text-white px-3 py-2 rounded"
+            style={{ textDecoration: 'none' }}
+            title="Abrir vídeo no YouTube"
+          >
+            Problema ao carregar o player — abrir no YouTube
+          </a>
+        )}
+        <button
+          type="button"
+          onClick={togglePlay}
+          aria-label={isPlaying ? 'Pausar vídeo' : 'Reproduzir vídeo'}
+          className="absolute left-[24px] bottom-[24px] z-[120] w-10 h-10 rounded-full bg-[rgba(0,0,0,0.55)] flex items-center justify-center text-white hover:bg-[rgba(0,0,0,0.75)] transition-colors cursor-pointer"
+          style={{ pointerEvents: 'auto' }}
+        >
+          {isPlaying ? (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="4" width="4" height="16" fill="currentColor" />
+              <rect x="14" y="4" width="4" height="16" fill="currentColor" />
+            </svg>
+          ) : (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 5v14l11-7L8 5z" fill="currentColor" />
+            </svg>
+          )}
+        </button>
+        {/* Botão de volume conforme especificações do Figma */}
+        <button
+          type="button"
+          onClick={toggleMute}
+          aria-label={muted ? 'Ativar som' : 'Mutar vídeo'}
+          className="absolute z-[120] rounded-full transition-all duration-200 cursor-pointer hover:scale-110"
+          style={{ 
+            left: '93.42%',
+            right: '2.09%',
+            top: '88.31%',
+            bottom: '3.71%',
+            pointerEvents: 'auto'
+          }}
+        >
+          {/* Círculo verde do Figma */}
+          <div 
+            className="absolute inset-0 rounded-full"
+            style={{ 
+              backgroundColor: '#00F5B9'
+            }}
+          />
+          {/* Ícone de volume conforme Figma */}
+          <div
+            className="absolute"
+            style={{
+              left: '16.28%',
+              right: '13.95%',
+              top: '20.93%',
+              bottom: '18.6%'
+            }}
+          >
+            <VolumeIcon width="100%" height="100%" color="#13171A" muted={muted} />
+          </div>
+        </button>
+      </div>
+    </div>
+  );
+
+  // Se a âncora não foi encontrada por algum motivo, ainda renderiza inline como fallback visível
+  if (!portalTarget) return videoNode;
+  return (
+    <>
+    {isDebug && (
+        <div style={{ position: 'fixed', left: 8, top: 8, zIndex: 10000, background: 'rgba(0,0,0,0.7)', color: '#fff', padding: '6px 8px', borderRadius: 6, fontSize: 11, lineHeight: '14px', pointerEvents: 'none' }}>
+          <div>Video Debug</div>
+      <div>portal: {portalTarget?.id ? `#${portalTarget.id}` : (portalTarget?.tagName?.toLowerCase() || 'none')}</div>
+          <div>anchorEl: {anchorRef.current ? '#video1-anchor' : 'not-found'}</div>
+      <div>rect: {rect ? `${Math.round(rect.left)},${Math.round(rect.top)} ${Math.round(rect.width)}x${Math.round(rect.height)}` : 'null'}</div>
+          {anchorRef.current && (
+            <div style={{opacity:0.9}}>offset: {anchorRef.current.offsetWidth}x{anchorRef.current.offsetHeight}</div>
+          )}
+          {anchorRef.current && (
+            <div style={{opacity:0.9}}>computed: {parseFloat(getComputedStyle(anchorRef.current).width || '0')}x{parseFloat(getComputedStyle(anchorRef.current).height || '0')}</div>
+          )}
+          {anchorRef.current && (
+            <div style={{opacity:0.8}}>fallback(ds): {anchorRef.current.dataset.fallbackWidth}x{anchorRef.current.dataset.fallbackHeight}</div>
+          )}
+          <div>loaded: {String(loaded)}</div>
+          <div>failed: {String(failed)}</div>
+        </div>
+      )}
+    {portalTarget ? createPortal(videoNode, portalTarget) : null}
+    </>
+  );
+});
+
+const VideoTera3D = memo(() => {
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const [muted, setMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [loaded, setLoaded] = useState(false);
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://example.com';
+  const src = `https://www.youtube.com/embed/_9ZzNlJ9-FQ?autoplay=1&mute=1&loop=1&playlist=_9ZzNlJ9-FQ&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1&origin=${encodeURIComponent(origin)}`;
+
+  const sendCommand = useCallback((func: string, args: any[] = []) => {
+    const win = iframeRef.current?.contentWindow;
+    if (!win) return;
+    const message = JSON.stringify({ event: 'command', func, args });
+    win.postMessage(message, '*');
+  }, []);
+
+  const toggleMute = useCallback(() => {
+    if (muted) {
+      sendCommand('unMute');
+      setMuted(false);
+    } else {
+      sendCommand('mute');
+      setMuted(true);
+    }
+  }, [muted, sendCommand]);
+
+  const togglePlay = useCallback(() => {
+    if (isPlaying) {
+      sendCommand('pauseVideo');
+      setIsPlaying(false);
+    } else {
+      sendCommand('playVideo');
+      setIsPlaying(true);
+    }
+  }, [isPlaying, sendCommand]);
+
+  // Mute garantido e handler de mensagens
+  useEffect(() => {
+    const muteTimer = window.setTimeout(() => sendCommand('mute'), 500);
+    return () => window.clearTimeout(muteTimer);
+  }, [sendCommand]);
+
+  // Handler de mensagens do player
+  useEffect(() => {
+    const onMessage = (evt: MessageEvent) => {
+      try {
+        const allowed = typeof evt.origin === 'string' && (evt.origin.includes('youtube.com') || evt.origin.includes('youtube-nocookie.com'));
+        if (!allowed) return;
+        const data = typeof evt.data === 'string' ? JSON.parse(evt.data) : evt.data;
+        if (!data) return;
+        if (data.event === 'infoDelivery' && !loaded) {
+          setLoaded(true);
+        }
+      } catch {}
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, [loaded]);
+
+  return (
+    <div className="absolute block cursor-pointer h-[538px] left-1/2 object-cover top-[1823px] translate-x-[-50%] w-[1076px] rounded-lg overflow-hidden" data-name="video tera 3d exp argentina">
+      <iframe
+        ref={iframeRef}
+        className="absolute youtube-iframe"
         style={{ 
           transform: 'translateZ(0) scale(1.2)',
           transformOrigin: 'center center',
@@ -163,7 +1465,7 @@ function Bloco02() {
       {/* Âncora invisível usada para posicionar o vídeo via portal (position: fixed) */}
       <div
         id="video1-anchor"
-  className="absolute left-[404px] top-[836px] w-[958px] h-[538px] z-[10]"
+        className="absolute left-[404px] top-[836px] w-[958px] h-[538px] z-[10]"
         aria-hidden="false"
         style={{ 
           pointerEvents: debug ? 'auto' : 'none', 
@@ -174,16 +1476,16 @@ function Bloco02() {
         }}
       />
       
-  <div className="absolute fig-ubuntu-light fig-title-45 fig-white text-smooth left-[77px] not-italic top-[887px] w-[271px]" style={h1Parallax.tw}>
+      <div className="absolute fig-ubuntu-light fig-title-45 fig-white text-smooth left-[77px] not-italic top-[887px] w-[271px]" style={h1Parallax.tw}>
         <p className="mb-0">O CGI AGORA É NGI:</p>
         <p>NEXT-GEN IMAGERY.</p>
       </div>
       
-  <div className="absolute fig-ubuntu-light fig-body-23 fig-white text-smooth left-[77px] not-italic top-[1180px] w-[271px]" style={p1Parallax.tw}>
+      <div className="absolute fig-ubuntu-light fig-body-23 fig-white text-smooth left-[77px] not-italic top-[1180px] w-[271px]" style={p1Parallax.tw}>
         <p className="m-0">Um novo fluxo de produção aonde 3D, IA e outras tecnologias trabalham juntas para escalar conteúdo com impacto e consistência.</p>
       </div>
       
-  <div className="absolute fig-ubuntu-light fig-body-23 fig-white text-smooth left-[77px] not-italic top-[1396px] w-[1285px]" style={p2Parallax.tw}>
+      <div className="absolute fig-ubuntu-light fig-body-23 fig-white text-smooth left-[77px] not-italic top-[1396px] w-[1285px]" style={p2Parallax.tw}>
         <p className="m-0">Como uma content-tech, podemos atuar desde o conceito criativo até a distribuição multicanal e a análise de desempenho. Um fluxo sustentado por um stack tecnológico integrado que vai de IA à automação, do CMS/DAM ao analytics e além.</p>
       </div>
       
@@ -195,10 +1497,9 @@ function Bloco02() {
 function Transparencias() {
   return (
     <div className="absolute contents left-0 top-[527px]" data-name="Transparências">
-      {/* Full-bleed stripe to avoid lateral bars */}
-      <div className="absolute h-[173px] top-[527px] full-bleed">
-        <div className="flex-none scale-y-[-100%] h-full">
-          <div className="bg-cover-center h-full w-full" data-name="embaixo" style={{ 
+      <div className="absolute flex h-[173px] items-center justify-center left-0 top-[527px] w-[1440px]">
+        <div className="flex-none scale-y-[-100%]">
+          <div className="bg-center bg-cover bg-no-repeat h-[173px] w-[1440px]" data-name="embaixo" style={{ 
             backgroundImage: `url('${imgEmbaixo}')`,
             transform: 'translateZ(0) scaleY(-1)',
             backfaceVisibility: 'hidden',
@@ -210,38 +1511,33 @@ function Transparencias() {
   );
 }
 
-// Array com as imagens do carrossel - 6 PNGs, render via <img> 1440x700 com máscara, sem distorção
+// Array com as imagens do carrossel com valores exatos do Figma
 const carouselImages = [
   {
-    src: heroImage1,
+    src: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D811,
     mask: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D812,
-    alt: "Ônibus transparente com componentes internos visíveis",
+    className: "absolute bg-center bg-cover bg-no-repeat h-[1116px] left-[-124px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[124px_120px] mask-size-[1440px_700px] top-[-120px] w-[1744px]"
   },
   {
-    src: heroImage2,
+    src: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D813,
     mask: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D812,
-    alt: "Mulher profissional com óculos sorrindo",
+    className: "absolute bg-center bg-cover bg-no-repeat h-[1116px] left-[-124px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[124px_120px] mask-size-[1440px_700px] top-[-120px] w-[1744px]"
   },
   {
-    src: heroImage3,
+    src: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D814,
     mask: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D812,
-    alt: "Evento ifood MOVE com tapete vermelho",
+    className: "absolute bg-center bg-cover bg-no-repeat h-[980px] left-[-10px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[10px_254px] mask-size-[1440px_700px] top-[-254px] w-[1531.47px]"
   },
   {
-    src: heroImage4,
+    src: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D815,
     mask: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D812,
-    alt: "Caminhões VW de construção com betoneiras",
+    className: "absolute bg-center bg-cover bg-no-repeat h-[1007.22px] left-[-44px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[44px_74px] mask-size-[1440px_700px] top-[-74px] w-[1574px]"
   },
   {
-    src: heroImage5,
+    src: imgVwConstelattion313206X4CacambaPsb1,
     mask: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D812,
-    alt: "Carro VW T-Cross estacionado próximo ao lago",
-  },
-  {
-    src: heroImage6,
-    mask: imgAiToolsWaistUpPortraitAmericanShotOfASmilingPersonW47B472C7205A4D66Bacf38F70Faa6D812,
-    alt: "Fundo escuro texturizado com elementos sutis",
-  },
+    className: "absolute bg-center bg-cover bg-no-repeat h-[936.894px] left-[-2.11px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[2.107px_138.894px] mask-size-[1440px_700px] top-[-138.89px] w-[1464.11px]"
+  }
 ];
 
 const AnimatedCarousel = memo(({ currentIndex, parallaxOffsetY }: { currentIndex: number; parallaxOffsetY?: number }) => {
@@ -249,36 +1545,26 @@ const AnimatedCarousel = memo(({ currentIndex, parallaxOffsetY }: { currentIndex
     <div className="absolute h-[700px] w-[1440px] left-0 top-0">
       {carouselImages.map((image, index) => {
         const isActive = index === currentIndex;
-        const clampedY = Math.max(-40, Math.min(40, parallaxOffsetY ?? 0));
-
+    // Parallax interno por background-position-Y evita deslocar o container
+    const clampedY = Math.max(-40, Math.min(40, parallaxOffsetY ?? 0));
+        
         return (
-          <img
+          <div
             key={index}
-            src={image.src}
-            alt={image.alt}
-            decoding="async"
-            className="absolute left-0 top-0 carousel-image-smooth"
+            className={`${image.className} carousel-image-smooth`}
             style={{
-              width: '1440px',
-              height: '700px',
-              objectFit: 'contain', // preserva o recorte original sem esticar
+              backgroundImage: `url('${image.src}')`,
+              maskImage: `url('${image.mask}')`,
+      // Move somente o conteúdo do background dentro do mesmo box
+      backgroundPosition: `50% calc(50% + ${clampedY.toFixed(2)}px)`,
               opacity: isActive ? 1 : 0,
               zIndex: isActive ? 2 : 1,
-              // Parallax sutil movendo o conteúdo, sem alterar o box
-              transform: `translateZ(0) translateY(${clampedY.toFixed(2)}px)`,
-              willChange: 'transform, opacity',
+      // Mantém aceleração via GPU sem alterar posição do elemento
+      transform: 'translateZ(0)',
+      willChange: 'background-position',
               backfaceVisibility: 'hidden',
               transition: 'opacity 800ms cubic-bezier(0.25, 0.1, 0.25, 1)',
-              pointerEvents: 'none',
-              // Máscara alinhada 1:1 com o canvas 1440x700
-              WebkitMaskImage: `url('${image.mask}')`,
-              maskImage: `url('${image.mask}')`,
-              WebkitMaskRepeat: 'no-repeat',
-              maskRepeat: 'no-repeat',
-              WebkitMaskSize: '1440px 700px',
-              maskSize: '1440px 700px',
-              WebkitMaskPosition: '0 0',
-              maskPosition: '0 0',
+              pointerEvents: 'none'
             }}
           />
         );
@@ -493,12 +1779,12 @@ const Cabecalho = memo(({ onCallClick, isScrolled, showCTA, scale, stageLeft, st
     background: 'linear-gradient(360deg, rgba(19, 23, 26, 0.72) 0%, rgba(19, 23, 26, 0.88) 100%)'
   }), []);
 
-  // Largura do header baseada no scale para alinhar com o stage visível
+  // Largura do header baseada no stage visível
   const headerWidth = stageWidth ?? (1440 * Math.max(0, Math.min(1, scale || 1)));
 
   return (
     <div 
-      className="fixed h-[124px] top-0 z-[9999] transition-all duration-300 ease-out header-container"
+      className="fixed h-[124px] top-0 z-[10000] transition-all duration-300 ease-out header-container"
       style={{
         left: stageLeft ?? '50%',
         width: `${headerWidth}px`,
@@ -546,112 +1832,303 @@ const CabecalhoPortal = (props: { onCallClick: () => void; isScrolled: boolean; 
   return createPortal(<Cabecalho {...props} />, document.body);
 };
 
-export default function InteractiveDesktop({ headerScale = 1 }: { headerScale?: number }) {
-  // Estado principal
+// Overlay de grid para QA: ativar com ?grid=1
+const GridOverlay = memo(({ stageLeft, stageWidth, height }: { stageLeft?: number; stageWidth?: number; height: number; }) => {
+  const style: React.CSSProperties = {
+    position: 'absolute',
+    top: 0,
+    left: stageLeft ?? 0,
+    width: stageWidth ?? '100vw',
+    height,
+    pointerEvents: 'none',
+    zIndex: 11000,
+    backgroundImage: [
+      'repeating-linear-gradient(0deg, rgba(255,0,0,0.08) 0, rgba(255,0,0,0.08) 1px, transparent 1px, transparent 8px)',
+      'repeating-linear-gradient(90deg, rgba(255,0,0,0.08) 0, rgba(255,0,0,0.08) 1px, transparent 1px, transparent 8px)',
+      'repeating-linear-gradient(0deg, rgba(255,0,0,0.18) 0, rgba(255,0,0,0.18) 1px, transparent 1px, transparent 100px)',
+      'repeating-linear-gradient(90deg, rgba(255,0,0,0.18) 0, rgba(255,0,0,0.18) 1px, transparent 1px, transparent 100px)'
+    ].join(', '),
+    mixBlendMode: 'normal',
+  };
+  return <div style={style} aria-hidden />;
+});
+
+const GridOverlayPortal = ({ stageLeft, stageWidth, height }: { stageLeft?: number; stageWidth?: number; height: number; }) => {
+  if (typeof document === 'undefined') return null;
+  return createPortal(
+    <GridOverlay stageLeft={stageLeft} stageWidth={stageWidth} height={height} />,
+    document.body
+  );
+};
+
+export default function InteractiveDesktop({ scale = 1 }: { scale?: number }) {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
+  // CTA do header controlado por rolagem para evitar duplicidade com o CTA do herói
   const [showHeaderCTA, setShowHeaderCTA] = useState(false);
+  // Ref para evitar flicker e permitir histerese sem recriar listeners
+  const showCTARef = useRef(showHeaderCTA);
+  useEffect(() => { showCTARef.current = showHeaderCTA; }, [showHeaderCTA]);
+  // Flag opcional para forçar CTA sempre visível (debug/QA): use ?ctaAlways na URL
+  const ctaAlways = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.has('ctaAlways') || p.get('cta') === '1';
+  }, []);
 
-  // FAQ toggle
+  // Flag QA via querystring
+  const qa = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.has('qa');
+  }, []);
+
+  // Flag para fixar o footer no rodapé durante QA
+  const footerFixed = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.has('footerFixed');
+  }, []);
+
+  // Grid QA (?grid=1)
+  const showGrid = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.has('grid') || p.get('grid') === '1';
+  }, []);
+
+  // Alterna acordeon (FAQ)
   const toggleAccordion = useCallback((index: number) => {
     setOpenAccordion(prev => (prev === index ? null : index));
   }, []);
 
-  // CTA principal (WhatsApp)
+  // CTA: abrir WhatsApp em nova aba
   const handleCallClick = useCallback(() => {
+    const url = 'https://api.whatsapp.com/send/?phone=5511949528682&text&type=phone_number&app_absent=0';
     try {
-      const url = 'https://api.whatsapp.com/send/?phone=5511949528682&text&type=phone_number&app_absent=0';
       const w = window.open(url, '_blank', 'noopener,noreferrer');
       if (!w) window.location.assign(url);
     } catch {
-      window.location.href = 'https://api.whatsapp.com/send/?phone=5511949528682&text&type=phone_number&app_absent=0';
+      window.location.href = url;
     }
   }, []);
 
-  // Carrossel automático (3s)
+  // Auto-rotação da imagem do herói
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex(prev => (prev + 1) % carouselImages.length);
+    const id = window.setInterval(() => {
+      setCurrentImageIndex(prev => (prev + 1) % Math.max(1, carouselImages.length));
     }, 3000);
-    return () => clearInterval(interval);
+    return () => window.clearInterval(id);
   }, []);
 
-  // Scroll: header e CTA
+  // Previne rolagem além do footer
+  useEffect(() => {
+    const handleScroll = () => {
+      const footerElement = document.querySelector('[data-name="Bloco 08"]');
+      if (!footerElement) return;
+      
+      const footerRect = footerElement.getBoundingClientRect();
+      const footerTop = footerRect.top;
+      const viewportHeight = window.innerHeight;
+      
+      // Se o topo do footer está visível ou abaixo da viewport
+      if (footerTop <= viewportHeight) {
+        // Calcular quanto do footer deveria estar visível
+        const visibleFooterPart = Math.min(footerRect.height, viewportHeight - footerTop);
+        
+        // Se estamos tentando mostrar mais do que deveria ser visível
+        if (footerTop < viewportHeight - visibleFooterPart) {
+          // Ajustar a posição do scroll suavemente
+          const adjustment = viewportHeight - visibleFooterPart - footerTop;
+          if (Math.abs(adjustment) > 2) { // Só ajustar se a diferença for significativa
+            window.scrollBy(0, -adjustment);
+          }
+        }
+      }
+    };
+    
+    // Throttle para performance
+    let ticking = false;
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', throttledHandleScroll);
+  }, []);
+
+  // Medição do stage para alinhar header
+  const [stageRect, setStageRect] = useState<{ left: number; width: number } | null>(null);
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const update = () => {
+      const el = document.getElementById('stage-root');
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      setStageRect({ left: r.left, width: r.width });
+    };
+    update();
+    window.addEventListener('resize', update, { passive: true } as any);
+    const el = document.getElementById('stage-root');
+    const ro = new ResizeObserver(() => update());
+    if (el) ro.observe(el);
+    return () => {
+      window.removeEventListener('resize', update as any);
+      ro.disconnect();
+    };
+  }, []);
+
+  // Sistema de scroll com histerese no CTA do header
   useEffect(() => {
     let ticking = false;
+
     const handleUpdate = () => {
       if (typeof window === 'undefined') return;
+      
+      // Scroll tracking
       const scrollY = window.scrollY;
       setIsScrolled(scrollY > 10);
-      const threshold = Math.max(200, 560 * (headerScale || 1));
-      setShowHeaderCTA(scrollY > threshold);
+      // Permite forçar CTA sempre visível via query param (QA/debug)
+      if (ctaAlways) {
+        if (!showCTARef.current) setShowHeaderCTA(true);
+        ticking = false;
+        return;
+      }
+      // Threshold baseado no design (~560px de 700px do herói), ajustado pela escala visível
+      const scaleValue = Math.max(0, Math.min(1, scale || 1));
+      const showThreshold = Math.max(200, 560 * scale);
+      // Histerese: esconde só bem acima do topo para evitar piscar em pequenas rolagens
+      const hideThreshold = Math.max(120, showThreshold - 140);
+      let nextVisible = showCTARef.current;
+      if (scrollY > showThreshold) nextVisible = true;
+      else if (scrollY < hideThreshold) nextVisible = false;
+      if (nextVisible !== showCTARef.current) setShowHeaderCTA(nextVisible);
+      
       ticking = false;
     };
+
     const onEvent = () => {
       if (!ticking) {
         requestAnimationFrame(handleUpdate);
         ticking = true;
       }
     };
+
+    // Inicialização
     handleUpdate();
+    
+    // Event listeners
     window.addEventListener('scroll', onEvent, { passive: true });
     window.addEventListener('resize', onEvent, { passive: true });
+    
     return () => {
       window.removeEventListener('scroll', onEvent);
       window.removeEventListener('resize', onEvent);
     };
-  }, [headerScale]);
+  }, [scale, ctaAlways]);
 
-  // Altura dinâmica simples (abre espaço para o FAQ)
-  const dynamicHeight = useMemo(() => 6466 + (openAccordion !== null ? 200 : 0), [openAccordion]);
+  // Recebe a altura real do fundo do FAQ (Bloco07)
+  const [faqBgHeight, setFaqBgHeight] = useState<number>(608);
 
-  // Bloco 07 (FAQ)
-  const Bloco07 = memo(({ openAccordion, toggleAccordion }: { openAccordion: number | null; toggleAccordion: (index: number) => void; }) => {
-    const extraHeight = openAccordion !== null ? 200 : 0;
-    return (
-      <div className="absolute contents left-0 top-[5630px]" data-name="Bloco 07">
-        <div
-          className="absolute bg-[#f8f8f2] top-[5630px] transition-all duration-500 ease-out"
-          style={{ ...fullBleedBackground, height: `${608 + extraHeight}px` }}
-        >
-          {/* Decor */}
-          <div className="absolute right-16 top-20">
-            <div className="w-2 h-2 bg-[#00f5b9]/30 rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '3s' }} />
-          </div>
-          <div className="absolute right-20 top-32">
-            <div className="w-1.5 h-1.5 bg-[#00f5b9]/20 rounded-full animate-pulse" style={{ animationDelay: '1s', animationDuration: '3s' }} />
-          </div>
-          <div className="absolute right-12 top-44">
-            <div className="w-1 h-1 bg-[#00f5b9]/25 rounded-full animate-pulse" style={{ animationDelay: '2s', animationDuration: '3s' }} />
-          </div>
-          <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-[#00f5b9]/20 to-transparent opacity-60">
-            <div className="relative h-full">
-              <div className="absolute top-0 right-0 w-full h-8 bg-[#00f5b9]/40 animate-pulse" style={{ animation: 'float 4s ease-in-out infinite', animationDelay: '0.5s' }} />
-            </div>
-          </div>
-          <div className="absolute inset-0 shadow-inner opacity-20 pointer-events-none" style={{ boxShadow: 'inset 0 2px 8px rgba(0, 245, 185, 0.1)' }} />
-        </div>
-        <div className="absolute left-[63px] top-[5764px] w-[1314px] z-[10] fig-ubuntu-light fig-title-45 fig-dark text-smooth not-italic">
-          <p className="m-0">DÚVIDAS FREQUENTES</p>
-        </div>
-        <Frame1 openAccordion={openAccordion} toggleAccordion={toggleAccordion} />
-      </div>
-    );
-  });
+  // Topo do footer no stage (px): 5630 + altura real do bloco 07
+  const footerTop = useMemo(() => 5630 + (faqBgHeight || 608), [faqBgHeight]);
+
+  // Altura dinâmica baseada no footerTop + altura escalada do footer
+  const dynamicHeight = useMemo(() => {
+    const footerHeight = Math.ceil(172 * scale);
+    const total = footerTop + footerHeight;
+    return Math.max(total, (typeof window !== 'undefined' ? window.innerHeight : 0));
+  }, [footerTop, scale]);
+
+  // Container principal - garante que não há overflow horizontal
+  const mainStyle: React.CSSProperties = {
+    backgroundColor: 'white',
+    minHeight: '100vh',
+    width: '100%',
+    overflow: 'hidden',
+    position: 'relative'
+  };
+
+  // Stage interno - escalado mas mantém posicionamento correto
+  const stageStyle: React.CSSProperties = {
+    position: 'relative',
+    width: '1440px',
+    marginLeft: '50%',
+    transform: 'translateX(-50%)',
+    minHeight: `${dynamicHeight}px`
+  };
+
+  // Debug panel para QA
+  const debugPanel = qa && (
+    <div style={{
+      position: 'fixed',
+      top: 8,
+      right: 8,
+      padding: '8px 12px',
+      background: 'rgba(0,0,0,0.8)',
+      color: '#fff',
+      fontSize: '12px',
+      fontFamily: 'monospace',
+      lineHeight: '1.4',
+      borderRadius: '4px',
+      zIndex: 100000
+    }}>
+      scale: {scale.toFixed(3)}<br />
+      footer top: {footerTop}px<br />
+      dynamic h: {dynamicHeight}px<br />
+      viewport: {typeof window !== 'undefined' ? `${window.innerWidth}×${window.innerHeight}` : 'SSR'}
+    </div>
+  );
 
   return (
-    <div className="bg-[#0b0d0f] min-h-screen w-full overflow-x-hidden" data-name="Desktop - 1">
-      {/* Header fixo via Portal */}
-      <CabecalhoPortal onCallClick={handleCallClick} isScrolled={isScrolled} showCTA={showHeaderCTA} scale={headerScale} />
-
-      {/* Stage centralizado 1440px */}
-      <div id="stage-root" className="relative" style={{ width: '1440px', marginLeft: '50%', transform: 'translateX(-50%)', minHeight: `${dynamicHeight}px` }}>
-        <Bloco01 onCallClick={handleCallClick} currentImageIndex={currentImageIndex} />
+    <div style={mainStyle} data-name="Desktop - 1">
+      <CabecalhoPortal 
+        onCallClick={handleCallClick}
+        isScrolled={isScrolled}
+        showCTA={showHeaderCTA}
+        scale={scale}
+        stageLeft={stageRect?.left}
+        stageWidth={stageRect?.width}
+        qa={qa}
+      />
+      {showGrid && (
+        <GridOverlayPortal 
+          stageLeft={stageRect?.left} 
+          stageWidth={stageRect?.width} 
+          height={dynamicHeight} 
+        />
+      )}
+      {debugPanel}
+      <div id="stage-root" style={stageStyle}>
+        <Bloco01 
+          onCallClick={handleCallClick} 
+          currentImageIndex={currentImageIndex}
+        />
         <Bloco02 />
         <Bloco03 />
         <Bloco04 />
-        <Bloco07 openAccordion={openAccordion} toggleAccordion={toggleAccordion} />
+        <Bloco05 />
+        <Bloco06 />
+        <Bloco07 
+          openAccordion={openAccordion} 
+          toggleAccordion={toggleAccordion} 
+          onBgHeightChange={setFaqBgHeight}
+        />
+  {/* Footer no final do fluxo para evitar gaps de rolagem desnecessários */}
+  <Bloco08 
+    footerFixed={footerFixed} 
+    stageLeft={stageRect?.left} 
+    stageWidth={stageRect?.width} 
+    top={footerTop}
+    scale={scale}
+  />
       </div>
     </div>
   );
