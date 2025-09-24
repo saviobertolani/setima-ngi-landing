@@ -61,9 +61,12 @@
                     "vite": "6.3.5"
           },
           "scripts": {
+                    "predev": "node tools/vendor-css.mjs",
                     "dev": "vite",
                     "dev:local": "cross-env LOCAL_DEV=1 VITE_LOCAL_DEV=1 vite",
+                    "prebuild": "node tools/vendor-css.mjs",
                     "build": "vite build",
+                    "prepreview": "node tools/vendor-css.mjs",
                     "preview": "vite preview --port 4173",
                     "ship": "git add -A && git commit -m 'chore: update' || true && git push",
                     "figma:pull": "node tools/figma-pull.mjs",
