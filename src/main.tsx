@@ -4,6 +4,8 @@
   // CSS utilitário: usar apenas o index.css local para evitar paths cruzados no CI
   // Estilos locais e globais
   import "./index.css";
+  // Estilos globais (tokens, animações, utilitários e classes fig-*)
+  import "./styles/globals.css";
   // Overrides carregados por último para garantir precedência e evitar barras laterais
   import "./styles/overrides.css";
 

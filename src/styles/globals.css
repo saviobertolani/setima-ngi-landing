@@ -140,6 +140,20 @@
   font-display: swap;
 }
 @font-face {
+  font-family: 'Ubuntu:Regular';
+  src: local('Ubuntu Regular'), local('Ubuntu-Regular'), local('Ubuntu');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Ubuntu:Medium';
+  src: local('Ubuntu Medium'), local('Ubuntu-Medium'), local('Ubuntu');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
   font-family: 'Ubuntu:Bold';
   src: local('Ubuntu Bold'), local('Ubuntu-Bold'), local('Ubuntu');
   font-weight: 700;
@@ -554,6 +568,46 @@ html, body {
 /* Suavização geral para todas as animações Motion */
 * {
   /* Melhora renderização de texto durante animações */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================= */
+/* Utilitários fig-* (Figma) */
+/* ========================= */
+/* Famílias e pesos */
+.fig-ubuntu-light {
+  font-family: 'Ubuntu', 'Ubuntu:Light', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 300;
+}
+.fig-ubuntu-regular {
+  font-family: 'Ubuntu', 'Ubuntu:Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+}
+.fig-ubuntu-medium {
+  font-family: 'Ubuntu', 'Ubuntu:Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 500;
+}
+.fig-ubuntu-bold {
+  font-family: 'Ubuntu', 'Ubuntu:Bold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+}
+
+/* Tamanhos tipográficos alinhados ao Figma */
+.fig-title-45 { font-size: 45px; line-height: 1.1; }
+.fig-title-40 { font-size: 40px; line-height: 1.1; }
+.fig-subtitle-32-bold { font-size: 32px; font-weight: 700; line-height: 1.1; }
+.fig-subtitle-18 { font-size: 18px; line-height: 1.2; }
+.fig-body-23 { font-size: 23px; line-height: 1.35; }
+.fig-caption-12 { font-size: 12px; line-height: 1; }
+
+/* Cores semânticas usadas no layout */
+.fig-dark { color: #13171a; }
+.fig-light { color: #f8f8f2; }
+.fig-white { color: #ffffff; }
+
+/* Suavização explícita quando necessário */
+.text-smooth {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
