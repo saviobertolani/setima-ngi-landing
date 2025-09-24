@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 
 // Importando as imagens reais das animações
 import heroImg1 from '../../assets/705cc0dc55d0d5a68388c772e2b6117b6c99cd0f.png';
@@ -7,9 +7,85 @@ import heroImg3 from '../../assets/012759f13f56517f1097b1fc4887ce210daa0750.png'
 import heroImg4 from '../../assets/8fca1f53bb6c91dfa7bb390285d6e25c4fdabb30.png';
 import heroImg5 from '../../assets/982534bd46b9e568691c0e5652a818ec5954a309.png';
 
+// Importando os ícones do Figma
+import LogoSetimaIcon from '../icons/LogoSetimaIcon';
+import ArrowRightIcon from '../icons/ArrowRightIcon';
+import PlusIcon from '../icons/PlusIcon';
+import SocialMediaIcon from '../icons/SocialMediaIcon';
+import ImageGridIcon from '../icons/ImageGridIcon';
+import VolumeIcon from '../icons/VolumeIcon';
+
+// Importando componentes
+import FluxoNGISection from '../FluxoNGISection';
+import { getFullBleedStyles, getResponsiveContainer, getResponsivePadding } from '../ResponsiveUtils';
+
 export default function LandingPageSetima3DMobile() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const heroImages = [heroImg1, heroImg2, heroImg3, heroImg4, heroImg5];
+
+  // Estados para o vídeo do bloco 3
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const [muted, setMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [loaded, setLoaded] = useState(false);
+
+  const videoId = '_9ZzNlJ9-FQ';
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://example.com';
+  const videoSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1&origin=${encodeURIComponent(origin)}`;
+
+  const sendCommand = useCallback((func: string, args: any[] = []) => {
+    const win = iframeRef.current?.contentWindow;
+    if (!win) return;
+    const message = JSON.stringify({ event: 'command', func, args });
+    win.postMessage(message, '*');
+  }, []);
+
+  const toggleMute = useCallback(() => {
+    if (muted) {
+      sendCommand('unMute');
+      setMuted(false);
+    } else {
+      sendCommand('mute');
+      setMuted(true);
+    }
+  }, [muted, sendCommand]);
+
+  const togglePlay = useCallback(() => {
+    if (isPlaying) {
+      sendCommand('pauseVideo');
+      setIsPlaying(false);
+    } else {
+      sendCommand('playVideo');
+      setIsPlaying(true);
+    }
+  }, [isPlaying, sendCommand]);
+
+  // Garantir que o vídeo inicie mutado
+  useEffect(() => {
+    const muteTimer = window.setTimeout(() => sendCommand('mute'), 500);
+    return () => window.clearTimeout(muteTimer);
+  }, [sendCommand]);
+
+  // Handler de mensagens do player do YouTube
+  useEffect(() => {
+    const onMessage = (evt: MessageEvent) => {
+      try {
+        const allowed = typeof evt.origin === 'string' && 
+          (evt.origin.includes('youtube.com') || evt.origin.includes('youtube-nocookie.com'));
+        if (!allowed) return;
+        
+        const data = typeof evt.data === 'string' ? JSON.parse(evt.data) : evt.data;
+        if (!data) return;
+        
+        if (data.event === 'infoDelivery' && !loaded) {
+          setLoaded(true);
+        }
+      } catch {}
+    };
+    
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, [loaded]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,7 +99,7 @@ export default function LandingPageSetima3DMobile() {
     <div 
       data-figma-node="1:75" 
       style={{
-        width: '402px',
+        ...getResponsiveContainer('402px'),
         minHeight: '5714px',
         backgroundColor: '#FFFFFF',
         position: 'relative',
@@ -31,135 +107,161 @@ export default function LandingPageSetima3DMobile() {
       }}
     >
       {/* Header Fixo */}
-      <div style={{
+    <div style={{
         position: 'fixed',
         top: 0,
         left: 0,
-        width: '402px',
+        width: '100%',
         height: '87px',
-        background: 'linear-gradient(180deg, rgba(19, 23, 26, 0.4) 0%, rgba(19, 23, 26, 0) 100%)',
         zIndex: 1000,
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '0 24px'
+        justifyContent: 'center',
+        background: 'linear-gradient(180deg, rgba(19, 23, 26, 0.4) 0%, rgba(19, 23, 26, 0) 100%)'
       }}>
-        {/* Logo Sétima */}
         <div style={{
-          color: '#F8F8F2',
-          fontSize: '16px',
-          fontWeight: 700,
-          letterSpacing: '2px'
-        }}>
-          SÉTIMA
-        </div>
-
-        {/* CTA Button */}
-        <div style={{
-          backgroundColor: '#00F5B9',
-          borderRadius: '30px',
-          padding: '8px 16px',
-          fontSize: '10px',
-          fontWeight: 400,
-          color: '#000',
-          cursor: 'pointer',
+          width: '100%',
+          maxWidth: '402px',
           display: 'flex',
           alignItems: 'center',
-          gap: '6px'
+          justifyContent: 'space-between',
+      padding: '0 clamp(16px, 6vw, 24px)'
         }}>
-          MARQUE UM CALL
-          <svg width="12" height="6" viewBox="0 0 16 8" fill="none">
-            <path d="M12.01 3.5L8.5 0M12.01 3.5L8.5 7M12.01 3.5H0" stroke="#131A1A"/>
-          </svg>
+          {/* Logo Sétima */}
+          <LogoSetimaIcon width={39} height={35} color="#FFFFFF" />
+
+          {/* CTA Button */}
+          <div style={{
+            backgroundColor: '#00F5B9',
+            borderRadius: '30px',
+            padding: '8px 16px',
+            fontSize: '10px',
+            fontWeight: 400,
+            color: '#000',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}>
+            MARQUE UM CALL
+            <ArrowRightIcon width={15} height={8} color="#000000" />
+          </div>
         </div>
       </div>
 
-      {/* Bloco 01 - Hero */}
-      <div style={{
-        width: '402px',
-        height: '874px',
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
+      {/* Bloco 01 - Hero (full-bleed, sem barras laterais) */}
+      <div
+        style={{
+          ...getFullBleedStyles(),
+          height: '874px',
+          position: 'relative'
+        }}
+      >
         {/* Background Hero com animação */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundImage: `url(${heroImages[currentImageIndex]})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          transition: 'background-image 0.5s ease-in-out'
-        }} />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: `url(${heroImages[currentImageIndex]})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            transition: 'opacity 400ms ease-in-out'
+          }}
+        />
 
-        {/* Gradient overlay */}
-        <div style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          width: '100%',
-          height: '173px',
-          background: 'linear-gradient(180deg, rgba(19, 23, 26, 0) 0%, rgba(19, 23, 26, 0.4) 100%)'
-        }} />
+        {/* Top gradient (Figma) */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '175px',
+            background:
+              'linear-gradient(180deg, rgba(19, 23, 26, 0.4) 0%, rgba(19, 23, 26, 0) 100%)'
+          }}
+        />
 
-        {/* Content */}
-        <div style={{
-          position: 'absolute',
-          bottom: '80px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          textAlign: 'center',
-          color: '#FFFFFF',
-          zIndex: 2
-        }}>
-          <div style={{
-            fontSize: '15px',
-            fontWeight: 500,
-            marginBottom: '20px',
-            letterSpacing: '0px',
-            lineHeight: '17.2px'
-          }}>
+        {/* Bottom gradient (Figma) */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            width: '100%',
+            height: '173px',
+            background:
+              'linear-gradient(180deg, rgba(19, 23, 26, 0) 0%, rgba(19, 23, 26, 0.4) 100%)'
+          }}
+        />
+
+        {/* Content (Figma spacing/line-height) */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '80px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            color: '#FFFFFF',
+            zIndex: 2,
+            width: '100%',
+            maxWidth: '402px',
+            padding: `0 ${getResponsivePadding()}`
+          }}
+        >
+          <div
+            style={{
+              fontSize: '15px',
+              fontWeight: 500,
+              lineHeight: '17.235px',
+              letterSpacing: '0px',
+              marginBottom: '20px',
+              textAlign: 'left'
+            }}
+          >
             SOMOS UMA CONTENT-TECH
           </div>
-          
-          <h1 style={{
-            fontSize: '30px',
-            fontWeight: 300,
-            lineHeight: '32.3px',
-            margin: '0 0 40px 0',
-            maxWidth: '296px'
-          }}>
+
+          <h1
+            style={{
+              fontSize: '30px',
+              fontWeight: 300,
+              lineHeight: '32.312px',
+              letterSpacing: '0px',
+              margin: '0 0 30px 0',
+              maxWidth: '296px',
+              textAlign: 'left'
+            }}
+          >
             A NOVA MATEMÁTICA<br />
             DO MARKETING:<br />
             MENOS CUSTO,<br />
             MAIS IMPACTO.
           </h1>
 
-          <div style={{
-            backgroundColor: '#00F5B9',
-            borderRadius: '30px',
-            padding: '12px 32px',
-            fontSize: '12px',
-            fontWeight: 400,
-            color: '#000',
-            cursor: 'pointer',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '12px'
-          }}>
+          <div
+            style={{
+              backgroundColor: '#00F5B9',
+              borderRadius: '30px',
+              padding: '12px 32px',
+              fontSize: '12px',
+              lineHeight: '13.788px',
+              fontWeight: 400,
+              color: '#000',
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '12px'
+            }}
+          >
             MARQUE UM CALL E SAIBA COMO FUNCIONA
-            <svg width="16" height="8" viewBox="0 0 16 8" fill="none">
-              <path d="M12.01 3.5L8.5 0M12.01 3.5L8.5 7M12.01 3.5H0" stroke="#131A1A"/>
-            </svg>
+            <ArrowRightIcon width={16} height={8} color="#000000" />
           </div>
         </div>
       </div>
 
       {/* Bloco 02 - O CGI AGORA É NGI */}
       <div style={{
-        width: '402px',
+  width: '100%',
         minHeight: '774px',
         backgroundColor: '#131A1A',
         padding: '88px 24px',
@@ -193,7 +295,8 @@ export default function LandingPageSetima3DMobile() {
 
         {/* Video placeholder */}
         <div style={{
-          width: '355px',
+          width: '100%',
+          maxWidth: '355px',
           height: '199px',
           backgroundColor: '#D9D9D9',
           borderRadius: '12px',
@@ -229,7 +332,7 @@ export default function LandingPageSetima3DMobile() {
 
       {/* Bloco 03 - O PODER DAS EXPERIÊNCIAS INTERATIVAS EM 3D */}
       <div style={{
-        width: '402px',
+  width: '100%',
         minHeight: '674px',
         backgroundColor: '#F8F8F2',
         padding: '86px 24px',
@@ -250,22 +353,106 @@ export default function LandingPageSetima3DMobile() {
           <span style={{ fontWeight: 700 }}>+66% DE ENGAJAMENTO, +9% EM VENDAS.</span>
         </h2>
 
-        {/* Interactive 3D demo */}
+        {/* Interactive 3D video */}
         <div style={{
-          width: '352px',
+          position: 'relative',
+          width: '100%',
+          maxWidth: '352px',
           height: '176px',
-          backgroundColor: '#D9D9D9',
           borderRadius: '12px',
+          overflow: 'hidden',
           marginBottom: '32px',
-          backgroundImage: 'linear-gradient(45deg, #00F5B9 0%, #131A1A 100%)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#FFFFFF',
-          fontSize: '16px',
-          fontWeight: 500
+          backgroundColor: '#0b0d0f'
         }}>
-          EXPERIÊNCIA INTERATIVA 3D
+          <iframe
+            ref={iframeRef}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              border: 'none',
+              pointerEvents: 'none'
+            }}
+            src={videoSrc}
+            title="Experiência Interativa 3D"
+            allow="autoplay; encrypted-media"
+            loading="eager"
+            onLoad={() => setLoaded(true)}
+          />
+          
+          {/* Botão de Play/Pause */}
+          <button
+            type="button"
+            onClick={togglePlay}
+            aria-label={isPlaying ? 'Pausar vídeo' : 'Reproduzir vídeo'}
+            style={{
+              position: 'absolute',
+              left: '12px',
+              bottom: '12px',
+              width: '32px',
+              height: '32px',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(0,0,0,0.55)',
+              border: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'white',
+              cursor: 'pointer',
+              transition: 'background-color 0.2s',
+              zIndex: 10
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.75)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.55)';
+            }}
+          >
+            {isPlaying ? (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <rect x="6" y="4" width="4" height="16" fill="currentColor"/>
+                <rect x="14" y="4" width="4" height="16" fill="currentColor"/>
+              </svg>
+            ) : (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
+              </svg>
+            )}
+          </button>
+
+          {/* Botão de Volume Verde - Conforme Figma */}
+          <button
+            type="button"
+            onClick={toggleMute}
+            aria-label={muted ? 'Ativar som' : 'Mutar vídeo'}
+            style={{
+              position: 'absolute',
+              right: '12px',
+              bottom: '12px',
+              width: '32px',
+              height: '32px',
+              borderRadius: '50%',
+              backgroundColor: '#00F5B9',
+              border: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              transition: 'transform 0.2s',
+              zIndex: 10
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.1)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
+          >
+            <VolumeIcon width="16" height="16" color="#131A1A" muted={muted} />
+          </button>
         </div>
 
         <p style={{
@@ -282,7 +469,7 @@ export default function LandingPageSetima3DMobile() {
 
       {/* Bloco 04 - UM ASSET, INFINITAS POSSIBILIDADES */}
       <div style={{
-        width: '402px',
+        width: '100%',
         minHeight: '1136px',
         backgroundColor: '#131A1A',
         padding: '88px 24px',
@@ -293,7 +480,7 @@ export default function LandingPageSetima3DMobile() {
       }}>
         {/* Main hero image */}
         <div style={{
-          width: '402px',
+          width: '100%',
           height: '536px',
           backgroundImage: `url(${heroImg2})`,
           backgroundSize: 'cover',
@@ -318,19 +505,12 @@ export default function LandingPageSetima3DMobile() {
 
         {/* Gallery grid */}
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 74px)',
-          gap: '19px',
-          marginBottom: '40px'
+          display: 'flex',
+          justifyContent: 'center',
+          marginBottom: '40px',
+          width: '100%'
         }}>
-          {[...Array(8)].map((_, i) => (
-            <div key={i} style={{
-              width: '74px',
-              height: '74px',
-              backgroundColor: '#D9D9D9',
-              borderRadius: '4px'
-            }} />
-          ))}
+          <ImageGridIcon width={353} height={167} color="#D9D9D9" />
         </div>
 
         <p style={{
@@ -347,7 +527,7 @@ export default function LandingPageSetima3DMobile() {
 
       {/* Bloco 05 - MAIS DE 60 PROJETOS EM 2025 */}
       <div style={{
-        width: '402px',
+  width: '100%',
         minHeight: '448px',
         backgroundColor: '#F8F8F2',
         padding: '43px 24px',
@@ -382,73 +562,11 @@ export default function LandingPageSetima3DMobile() {
       </div>
 
       {/* Bloco 06 - O FLUXO NGI */}
-      <div style={{
-        width: '402px',
-        minHeight: '836px',
-        backgroundColor: '#131A1A',
-        padding: '71px 24px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        textAlign: 'center',
-        position: 'relative'
-      }}>
-        {/* Background image */}
-        <div style={{
-          position: 'absolute',
-          top: '250px',
-          left: '-183px',
-          width: '898px',
-          height: '506px',
-          backgroundImage: 'linear-gradient(135deg, #00F5B9 0%, #131A1A 100%)',
-          opacity: 0.3
-        }} />
-
-        <h2 style={{
-          color: '#FFFFFF',
-          fontSize: '30px',
-          fontWeight: 300,
-          lineHeight: '34.5px',
-          margin: '0 0 40px 0',
-          maxWidth: '354px',
-          position: 'relative',
-          zIndex: 2
-        }}>
-          O FLUXO NGI: DA ESTRATÉGIA À PRODUÇÃO, CRIATIVIDADE E TÉCNICA ACELERADAS PELA IA.
-        </h2>
-
-        <div style={{
-          position: 'relative',
-          zIndex: 2,
-          marginTop: '200px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '20px'
-        }}>
-          <div style={{
-            color: '#FFFFFF',
-            fontSize: '18px',
-            fontWeight: 700,
-            textAlign: 'center'
-          }}>+ RÁPIDO</div>
-          <div style={{
-            color: '#FFFFFF',
-            fontSize: '18px',
-            fontWeight: 700,
-            textAlign: 'center'
-          }}>+ ESCALÁVEL</div>
-          <div style={{
-            color: '#FFFFFF',
-            fontSize: '18px',
-            fontWeight: 700,
-            textAlign: 'center'
-          }}>+ IMPACTANTE</div>
-        </div>
-      </div>
+      <FluxoNGISection />
 
       {/* Bloco 07 - DÚVIDAS FREQUENTES */}
       <div style={{
-        width: '402px',
+  width: '100%',
         minHeight: '782px',
         backgroundColor: '#F8F8F2',
         padding: '78px 22px 10px 22px'
@@ -470,7 +588,14 @@ export default function LandingPageSetima3DMobile() {
           flexDirection: 'column',
           gap: '0'
         }}>
-          {[...Array(6)].map((_, i) => (
+          {[
+            'O que é uma content-tech?',
+            'Como a IA pode ajudar na produção de conteúdo?',
+            'Qual é a diferença entre CGI e NGI?',
+            'Como vocês garantem a qualidade do conteúdo produzido?',
+            'Quais tipos de projeto vocês atendem?',
+            'Como funciona o processo de trabalho?'
+          ].map((question, i) => (
             <div key={i} style={{
               borderBottom: '1px solid #000',
               padding: '12px 0'
@@ -486,30 +611,9 @@ export default function LandingPageSetima3DMobile() {
                   fontWeight: 700,
                   lineHeight: '23px'
                 }}>
-                  O que é uma content-tech?
+                  {question}
                 </span>
-                <div style={{
-                  width: '18px',
-                  height: '18px',
-                  position: 'relative'
-                }}>
-                  <div style={{
-                    position: 'absolute',
-                    top: '8px',
-                    left: '0',
-                    width: '18px',
-                    height: '2px',
-                    backgroundColor: '#000'
-                  }} />
-                  <div style={{
-                    position: 'absolute',
-                    top: '0',
-                    left: '8px',
-                    width: '2px',
-                    height: '18px',
-                    backgroundColor: '#000'
-                  }} />
-                </div>
+                <PlusIcon width={18} height={18} color="#000000" />
               </div>
             </div>
           ))}
@@ -518,7 +622,7 @@ export default function LandingPageSetima3DMobile() {
 
       {/* Bloco 08 - Footer */}
       <div style={{
-        width: '402px',
+  width: '100%',
         height: '200px',
         backgroundColor: '#131A1A',
         padding: '24px',
@@ -528,63 +632,16 @@ export default function LandingPageSetima3DMobile() {
         justifyContent: 'center',
         textAlign: 'center'
       }}>
-        {/* Logo Sétima Real */}
-        <div style={{
-          width: '137px',
-          height: '58px',
-          marginBottom: '20px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}>
-          <svg width="137" height="58" viewBox="0 0 137 58" fill="none">
-            <path d="M31 0C31 12.344 31 12.344 31 12.344" fill="#F8F8F2"/>
-            <path d="M32 0C32 12.344 32 12.344 32 12.344" fill="#F8F8F2"/>
-            <path d="M33 0C33 12.344 33 12.344 33 12.344" fill="#F8F8F2"/>
-            <path d="M34 0C34 12.344 34 12.344 34 12.344" fill="#F8F8F2"/>
-            <path d="M35 0C35 12.344 35 12.344 35 12.344" fill="#F8F8F2"/>
-            <path d="M60 20C60 25.401 60 25.401 60 25.401" fill="#F8F8F2"/>
-            <text x="10" y="35" fill="#F8F8F2" fontSize="12" fontFamily="Ubuntu">SÉTIMA</text>
-          </svg>
-        </div>
+        {/* Logo Sétima */}
+        <LogoSetimaIcon width={137} height={58} color="#F8F8F2" style={{ marginBottom: '20px' }} />
 
         {/* Redes sociais */}
         <div style={{
           display: 'flex',
-          gap: '67px',
+          justifyContent: 'center',
           marginBottom: '20px'
         }}>
-          <div style={{
-            width: '49px',
-            height: '49px',
-            borderRadius: '12px',
-            backgroundColor: 'rgba(248, 248, 242, 0.1)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-              <path d="M7.5 2.5h11c2.75 0 5 2.25 5 5v11c0 2.75-2.25 5-5 5h-11c-2.75 0-5-2.25-5-5v-11c0-2.75 2.25-5 5-5z" stroke="#F8F8F2" strokeWidth="2"/>
-              <circle cx="13" cy="13" r="4" stroke="#F8F8F2" strokeWidth="2"/>
-              <circle cx="19" cy="7" r="1" fill="#F8F8F2"/>
-            </svg>
-          </div>
-          
-          <div style={{
-            width: '49px',
-            height: '49px',
-            borderRadius: '12px',
-            backgroundColor: 'rgba(248, 248, 242, 0.1)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-              <path d="M20.5 7.5h-15v11h15v-11z" stroke="#F8F8F2" strokeWidth="2"/>
-              <path d="M7.5 10.5v-3h4v13h-4v-10z" fill="#F8F8F2"/>
-              <path d="M14.5 10.5c0-1 0.8-2 2-2s2 1 2 2v7h-4v-7z" fill="#F8F8F2"/>
-            </svg>
-          </div>
+          <SocialMediaIcon width={116} height={49} color="#F8F8F2" />
         </div>
 
         {/* Copyright */}

@@ -64,12 +64,9 @@ html, body {
   contain: layout style;
 }
 
-/* Footer fixo - abordagem melhorada sem tremida */
+/* Footer fixo - CSS backup para casos extremos */
 body:has([data-name="Bloco 08"][style*="position: fixed"]) {
-  /* Evita completamente qualquer scroll quando o footer está visível */
-  overflow: hidden !important;
-  overscroll-behavior: none !important;
-  touch-action: none !important; /* Impede qualquer interação de touch que cause scroll */
+  overflow-y: hidden !important;
 }
 
 /* Ajustar altura do container quando footer estiver fixo */
@@ -80,6 +77,25 @@ body:has([data-name="Bloco 08"][style*="position: fixed"]) .responsive-design {
 /* Garantir que o footer fixo não cause overflow */
 body:has([data-name="Bloco 08"][style*="position: fixed"]) .smooth-scaling {
   max-height: calc(100vh - 172px) !important;
+}
+
+/* Previne rolagem além do footer */
+html {
+  scroll-padding-bottom: 172px; /* Altura do footer */
+  overscroll-behavior-y: none; /* Evita comportamento de bouncing em alguns navegadores */
+}
+
+/* Forçar footer a ficar na parte inferior visível da página */
+body::after {
+  content: "";
+  display: block;
+  height: 1px;
+  position: absolute;
+  bottom: 172px; /* Altura do footer */
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: -999;
 }
 
 /* Controle adicional para viewports menores */

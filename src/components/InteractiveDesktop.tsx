@@ -279,11 +279,8 @@ const Bloco08 = memo(({ footerFixed, stageLeft, stageWidth, top, scale }: {
         </div>
         
         {/* Logo Setima - posicionamento exato do Figma */}
-        <button 
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-          className="absolute cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-none p-0"
+        <div 
+          className="absolute"
           style={{ 
             left: 63,
             top: 49,
@@ -292,10 +289,9 @@ const Bloco08 = memo(({ footerFixed, stageLeft, stageWidth, top, scale }: {
           }}
           data-name="logo setima" 
           data-node-id="7:190"
-          title="Voltar ao topo"
         >
           <img alt="Logo Setima" className="block max-w-none size-full" src={imgLogoSetima} />
-        </button>
+        </div>
         
         {/* Social Icons - posicionamento exato do Figma */}
         <div className="absolute" style={{ right: 77, top: 63 }} data-node-id="43:85">

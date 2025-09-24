@@ -1,11 +1,8 @@
+import InteractiveDesktop from "./components/InteractiveDesktop";
 import InteractiveMobile from "./components/InteractiveMobile";
+import DesktopScaleContainer from "./components/motion/DesktopScaleContainer";
 import MobileFigmaDebug from "./components/figma/MobileFigmaDebug";
-import MobileFigmaFixed from "./components/figma/MobileFigmaFixed";
-import { useMemo, useState, useEffect, Suspense, lazy } from "react";
-
-// Lazy-load dos componentes de Desktop para evitar parse em tempo de inicialização
-const InteractiveDesktop = lazy(() => import("./components/InteractiveDesktop.stub"));
-const DesktopScaleContainer = lazy(() => import("./components/motion/DesktopScaleContainer"));
+import { useMemo, useState, useEffect } from "react";
 
 export default function App() {
   const [isMobile, setIsMobile] = useState(false);
@@ -27,18 +24,11 @@ export default function App() {
     const p = new URLSearchParams(window.location.search);
     return p.has("mobile");
   }, []);
-
-  // Flags para visualizar diretamente as variantes geradas pelo get_code
-  const mobileGetCode = useMemo(() => {
+  
+  const footerFixed = useMemo(() => {
     if (typeof window === "undefined") return false;
     const p = new URLSearchParams(window.location.search);
-    return p.has("mobileGetCode");
-  }, []);
-
-  const mobileDebug = useMemo(() => {
-    if (typeof window === "undefined") return false;
-    const p = new URLSearchParams(window.location.search);
-    return p.has("mobileDebug");
+    return p.has("footerFixed");
   }, []);
 
   useEffect(() => {
@@ -75,13 +65,7 @@ export default function App() {
             Mobile render OK — try ?desktop para forçar modo desktop
           </div>
         )}
-        {mobileGetCode ? (
-          <MobileFigmaFixed />
-        ) : mobileDebug ? (
-          <MobileFigmaDebug />
-        ) : (
-          <InteractiveMobile />
-        )}
+        <InteractiveMobile />
       </>
     );
   }
@@ -107,11 +91,9 @@ export default function App() {
           Desktop render OK — try ?desktop para forçar modo desktop
         </div>
       )}
-      <Suspense fallback={null}>
-        <DesktopScaleContainer>
-          {({ scale }) => <InteractiveDesktop headerScale={scale} />}
-        </DesktopScaleContainer>
-      </Suspense>
+      <DesktopScaleContainer footerFixed={footerFixed}>
+        {({ scale }) => <InteractiveDesktop scale={scale} />}
+      </DesktopScaleContainer>
     </>
   );
 }

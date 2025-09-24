@@ -67,6 +67,7 @@ export default function DesktopScaleContainer({
         if (footerElement) {
           const footerRect = footerElement.getBoundingClientRect();
           footerHeight = footerRect.height;
+          console.log('Footer encontrado, altura:', footerHeight);
         }
         
         const viewportHeight = window.innerHeight;
@@ -74,6 +75,15 @@ export default function DesktopScaleContainer({
         
         // Garantir que o conteúdo não ultrapasse o espaço disponível
         effectiveHeight = Math.min(effectiveHeight, maxContentHeight / newScale);
+        
+        // Debug
+        console.log('Ajustando para footer fixo:', {
+          viewportHeight,
+          footerHeight,
+          maxContentHeight,
+          effectiveHeight: effectiveHeight * newScale,
+          scale: newScale
+        });
       }
       
       setOuterHeight(Math.ceil(effectiveHeight * newScale));
