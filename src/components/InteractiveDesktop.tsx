@@ -104,7 +104,7 @@ function LogoSetima() {
           <path d={svgPaths.pc905f70} fill="#F8F8F2" id="Vector_6" />
           <path d={svgPaths.p3d49680} fill="#F8F8F2" id="Vector_7" />
           <path d={svgPaths.p30c6aa00} fill="#F8F8F2" id="Vector_8" />
-          {/* Parallax interno DESATIVADO temporariamente para validação pixel-perfect. */}
+          <path d={svgPaths.pa05aa00} fill="#F8F8F2" id="Vector_9" />
           <path d={svgPaths.p51f1a00} fill="#F8F8F2" id="Vector_10" />
           <path d={svgPaths.p2cb69700} fill="#F8F8F2" id="Vector_11" />
           <path d={svgPaths.p1fcd5800} fill="#F8F8F2" id="Vector_12" />
@@ -1716,6 +1716,7 @@ function LogoSetima1() {
           <path d={svgPaths.pc905f70} fill="#F8F8F2" id="Vector_6" />
           <path d={svgPaths.p3d49680} fill="#F8F8F2" id="Vector_7" />
           <path d={svgPaths.p30c6aa00} fill="#F8F8F2" id="Vector_8" />
+          <path d={svgPaths.pa05aa00} fill="#F8F8F2" id="Vector_9" />
           <path d={svgPaths.p51f1a00} fill="#F8F8F2" id="Vector_10" />
           <path d={svgPaths.p2cb69700} fill="#F8F8F2" id="Vector_11" />
           <path d={svgPaths.p1fcd5800} fill="#F8F8F2" id="Vector_12" />
