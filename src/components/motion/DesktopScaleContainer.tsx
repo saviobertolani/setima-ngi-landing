@@ -4,7 +4,6 @@ type DesktopScaleContainerProps = {
   children: React.ReactNode | ((ctx: { scale: number }) => React.ReactNode);
   baseWidth?: number; // largura original do design (px)
   minDesktopWidth?: number; // largura mínima para considerar desktop
-  footerFixed?: boolean; // se o footer deve ser fixado na parte inferior
 };
 
 /**
@@ -15,8 +14,7 @@ type DesktopScaleContainerProps = {
 export default function DesktopScaleContainer({
   children,
   baseWidth = 1440,
-  minDesktopWidth = 768,
-  footerFixed = false,
+  minDesktopWidth = 1024,
 }: DesktopScaleContainerProps) {
   const innerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
@@ -26,9 +24,9 @@ export default function DesktopScaleContainer({
   const recompute = useCallback(() => {
     const vv = (window as any).visualViewport as VisualViewport | undefined;
     const width = vv?.width ?? window.innerWidth;
-    const params = new URLSearchParams(window.location.search);
-    const forceDesktop = params.has('desktop');
-    const isMobile = width < minDesktopWidth && !forceDesktop;
+  const params = new URLSearchParams(window.location.search);
+  const forceDesktop = params.has('desktop');
+  const isMobile = width < minDesktopWidth && !forceDesktop;
     setIsMobileWidth(isMobile);
 
     // Escala baseada apenas na largura para manter a proporção vertical e permitir scroll.
@@ -38,57 +36,11 @@ export default function DesktopScaleContainer({
     // Medir conteúdo interno e ajustar a altura externa escalada.
     if (innerRef.current) {
       const node = innerRef.current;
-      // Base rect do container interno (não escalado)
-      const baseRect = node.getBoundingClientRect();
-      let maxBottom = baseRect.bottom;
-      // Captura a maior borda inferior entre filhos (inclui elementos absolutos)
-      node.querySelectorAll<HTMLElement>(":scope > *").forEach((el) => {
-        const r = el.getBoundingClientRect();
-        if (!Number.isNaN(r.bottom)) {
-          maxBottom = Math.max(maxBottom, r.bottom);
-        }
-      });
-      // Altura efetiva não escalada
-      let effectiveHeight = Math.max(node.scrollHeight, maxBottom - baseRect.top);
-      
-      // Verificar se footerFixed está presente via props ou URL
-      const params = new URLSearchParams(window.location.search);
-      const isFooterFixed = footerFixed || params.has('footerFixed');
-      
-      // Se o footer estiver fixo, limitar a altura efetiva para não ultrapassar o espaço disponível
-      if (isFooterFixed) {
-        // Buscar footer real para medição precisa
-        const footerElement = document.querySelector('footer') || 
-                             document.querySelector('[data-name="Bloco 08"]');
-        
-        // Usar altura real do footer se disponível
-        let footerHeight = 172 * newScale; // valor padrão
-        
-        if (footerElement) {
-          const footerRect = footerElement.getBoundingClientRect();
-          footerHeight = footerRect.height;
-          console.log('Footer encontrado, altura:', footerHeight);
-        }
-        
-        const viewportHeight = window.innerHeight;
-        const maxContentHeight = viewportHeight - footerHeight;
-        
-        // Garantir que o conteúdo não ultrapasse o espaço disponível
-        effectiveHeight = Math.min(effectiveHeight, maxContentHeight / newScale);
-        
-        // Debug
-        console.log('Ajustando para footer fixo:', {
-          viewportHeight,
-          footerHeight,
-          maxContentHeight,
-          effectiveHeight: effectiveHeight * newScale,
-          scale: newScale
-        });
-      }
-      
-      setOuterHeight(Math.ceil(effectiveHeight * newScale));
+      // scrollHeight é mais confiável com conteúdos absolutos; getBoundingClientRect também ajuda após layout.
+      const h = Math.max(node.scrollHeight, node.getBoundingClientRect().height);
+      setOuterHeight(Math.ceil(h * newScale));
     }
-  }, [baseWidth, minDesktopWidth, footerFixed]);
+  }, [baseWidth, minDesktopWidth]);
 
   useLayoutEffect(() => {
     recompute();
@@ -117,19 +69,26 @@ export default function DesktopScaleContainer({
     };
   }, [recompute]);
 
-  // Em telas menores, não bloqueia: apenas permite escala automática do conteúdo desktop.
-  // Mantemos isMobileWidth apenas para eventual telemetria/ajustes visuais, sem bloquear render.
+  if (isMobileWidth) {
+    return (
+      <div className="min-h-screen w-full flex items-center justify-center bg-white">
+        <div className="text-center px-6 py-10 max-w-[560px]">
+          <h2 className="text-[24px] font-['Ubuntu:Bold',_sans-serif] leading-[normal] mb-3">Versão mobile em construção</h2>
+          <p className="text-[16px] leading-[1.5] text-[#13171a] opacity-80">
+            Esta experiência está otimizada para telas desktop no momento. 
+            Em breve liberaremos a versão mobile. Acesse em um computador para visualizar a página completa.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   const content = typeof children === 'function' ? children({ scale }) : children;
 
   return (
     <div
       className="responsive-design smooth-scaling w-full flex justify-center"
-      style={{
-        minHeight: outerHeight && outerHeight > 0 ? outerHeight : "100vh",
-        /* Evita que transforms no ancestral influenciem elementos fixed do portal */
-        transform: 'none'
-      }}
+      style={{ minHeight: outerHeight && outerHeight > 0 ? outerHeight : "100vh" }}
     >
       {/* Wrapper que define a altura de scroll correta */}
       <div
@@ -137,7 +96,7 @@ export default function DesktopScaleContainer({
         className="w-full flex justify-center"
       >
         {/* Conteúdo com largura base e escala aplicada */}
-  <div
+        <div
           ref={innerRef}
           style={{
             width: baseWidth,
