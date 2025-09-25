@@ -31,7 +31,7 @@ export default function App() {
         </div>
       )}
       <DesktopScaleContainer>
-        {({ scale }) => <InteractiveDesktop headerScale={scale} />}
+        {({ scale }) => <InteractiveDesktop scale={scale} />}
       </DesktopScaleContainer>
     </>
   );
